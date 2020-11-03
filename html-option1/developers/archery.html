@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Development using Archery &#8212; Apache Arrow v3.0.0.dev94+g959e8c558.d20201103</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c78d4f2b1f8277c2fa0830b4506d5cfe.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.8636327e669f6dcffc22.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Packaging and Testing with Crossbow" href="crossbow.html" />
+    <link rel="prev" title="Python Development" href="python.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    <a class="navbar-brand" href="../index.html">
+    
+      <img src="../_static/arrow.png" class="logo" alt="logo" />
+    
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../spec.html">Specifications and Protocols</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../libraries.html">Libraries</a>
+        </li>
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="../developers.html">Development</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+    <div class="bd-toc-item active">
+    
+  
+    <ul class="nav bd-sidenav">
+        
+        
+        
+        
+        
+        
+          
+            
+                <li class="">
+                    <a href="contributing.html">Contributing to Apache Arrow</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="cpp/index.html">C++ Development</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="python.html">Python Development</a>
+                </li>
+            
+          
+            
+                <li class="active">
+                    <a href="">Daily Development using Archery</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="crossbow.html">Packaging and Testing with Crossbow</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="docker.html">Running Docker Builds</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="benchmarks.html">Benchmarks</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="documentation.html">Building the Documentation</a>
+                </li>
+            
+          
+        
+        
+      </ul>
+  
+  </nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#installation" class="nav-link">Installation</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#usage" class="nav-link">Usage</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="daily-development-using-archery">
+<span id="archery"></span><h1>Daily Development using Archery<a class="headerlink" href="#daily-development-using-archery" title="Permalink to this headline">¶</a></h1>
+<p>To ease some of the daily development tasks, we developed a Python-written
+utility called Archery.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Archery requires Python 3.5 or later. It is recommended to install archery in
+<em>editable</em> mode with the <code class="docutils literal notranslate"><span class="pre">-e</span></code> flag to automatically update the installation
+when pulling the Arrow repository.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -e dev/archery
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>You can inspect Archery usage by passing the <code class="docutils literal notranslate"><span class="pre">--help</span></code> flag:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ archery --help
+Usage: archery <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+
+  Apache Arrow developer utilities.
+
+  See sub-commands <span class="nb">help</span> with <span class="sb">`</span>archery &lt;cmd&gt; --help<span class="sb">`</span>.
+
+Options:
+  --debug      Increase logging with debugging output.
+  --pdb        Invoke pdb on uncaught exception.
+  -q, --quiet  Silence executed commands.
+  --help       Show this message and exit.
+
+Commands:
+  benchmark    Arrow benchmarking.
+  build        Initialize an Arrow C++ build
+  docker       Interact with docker-compose based builds.
+  integration  Execute protocol and Flight integration tests
+  lint         Check Arrow <span class="nb">source</span> tree <span class="k">for</span> errors
+  numpydoc     Lint python docstring with NumpyDoc
+  trigger-bot
+</pre></div>
+</div>
+<p>Archery exposes independent subcommands, each of which provides dedicated
+help output, for example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ archery docker --help
+Usage: archery docker <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+
+  Interact with docker-compose based builds.
+
+Options:
+  --src &lt;arrow_src&gt;  Specify Arrow <span class="nb">source</span> directory.
+  --help             Show this message and exit.
+
+Commands:
+  images  List the available docker-compose images.
+  push    Push the generated docker-compose image.
+  run     Execute docker-compose builds.
+</pre></div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="python.html" title="previous page">Python Development</a>
+    <a class='right-next' id="next-link" href="crossbow.html" title="next page">Packaging and Testing with Crossbow</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.8636327e669f6dcffc22.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>

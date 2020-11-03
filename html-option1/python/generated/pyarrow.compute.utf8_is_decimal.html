@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pyarrow.compute.utf8_is_decimal &#8212; Apache Arrow v3.0.0.dev94+g959e8c558.d20201103</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c78d4f2b1f8277c2fa0830b4506d5cfe.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.8636327e669f6dcffc22.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pyarrow.compute.utf8_is_digit" href="pyarrow.compute.utf8_is_digit.html" />
+    <link rel="prev" title="pyarrow.compute.utf8_is_alpha" href="pyarrow.compute.utf8_is_alpha.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    <a class="navbar-brand" href="../../index.html">
+    
+      <img src="../../_static/arrow.png" class="logo" alt="logo" />
+    
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../spec.html">Specifications and Protocols</a>
+        </li>
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="../../libraries.html">Libraries</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../developers.html">Development</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+    <div class="bd-toc-item active">
+    
+  
+    <ul class="nav bd-sidenav">
+        
+        
+        
+        
+          
+            
+                <li class="">
+                    <a href="../../status.html">Implementation Status</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/c_glib/">C/GLib</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../../cpp/index.html">C++</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../../java/index.html">Java</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/js/">JavaScript</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+                </li>
+            
+          
+            
+  
+                <li class="active">
+                    <a href="../index.html">Python</a>
+                    <ul>
+                    
+                        <li class="">
+                            <a href="../install.html">Installing PyArrow</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../memory.html">Memory and IO Interfaces</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../data.html">Data Types and In-Memory Data Model</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../compute.html">Compute Functions</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../ipc.html">Streaming, Serialization, and IPC</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../filesystems.html">Filesystem Interface</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../filesystems_deprecated.html">Filesystem Interface (legacy)</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../plasma.html">The Plasma In-Memory Object Store</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../numpy.html">NumPy Integration</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../pandas.html">Pandas Integration</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../timestamps.html">Timestamps</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../csv.html">Reading CSV files</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../feather.html">Feather File Format</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../json.html">Reading JSON files</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../parquet.html">Reading and Writing the Apache Parquet Format</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../dataset.html">Tabular Datasets</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../cuda.html">CUDA Integration</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../extending_types.html">Extending pyarrow</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../extending.html">Using pyarrow from C++ and Cython Code</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="../api.html">API Reference</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../getting_involved.html">Getting Involved</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../benchmarks.html">Benchmarks</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/r/">R</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://docs.rs/crate/arrow/">Rust</a>
+                </li>
+            
+          
+        
+        
+        
+        
+      </ul>
+  
+  </nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="pyarrow-compute-utf8-is-decimal">
+<h1>pyarrow.compute.utf8_is_decimal<a class="headerlink" href="#pyarrow-compute-utf8-is-decimal" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="pyarrow.compute.utf8_is_decimal">
+<code class="sig-prename descclassname">pyarrow.compute.</code><code class="sig-name descname">utf8_is_decimal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">strings</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">memory_pool</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.compute.utf8_is_decimal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classify strings as decimal.</p>
+<p>For each string in <cite>strings</cite>, emit true iff the string is non-empty
+and consists only of decimal Unicode characters.  Null strings emit null.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>strings</strong> (<em>Array-like</em><em> or </em><em>scalar-like</em>) – Argument to compute function</p></li>
+<li><p><strong>memory_pool</strong> (<a class="reference internal" href="pyarrow.MemoryPool.html#pyarrow.MemoryPool" title="pyarrow.MemoryPool"><em>pyarrow.MemoryPool</em></a><em>, </em><em>optional</em>) – If not passed, will allocate memory from the default memory pool.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="pyarrow.compute.utf8_is_alpha.html" title="previous page">pyarrow.compute.utf8_is_alpha</a>
+    <a class='right-next' id="next-link" href="pyarrow.compute.utf8_is_digit.html" title="next page">pyarrow.compute.utf8_is_digit</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.8636327e669f6dcffc22.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,462 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pyarrow.SerializationContext &#8212; Apache Arrow v3.0.0.dev94+g959e8c558.d20201103</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c78d4f2b1f8277c2fa0830b4506d5cfe.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.8636327e669f6dcffc22.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Arrow Flight" href="../api/flight.html" />
+    <link rel="prev" title="pyarrow.SerializedPyObject" href="pyarrow.SerializedPyObject.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    <a class="navbar-brand" href="../../index.html">
+    
+      <img src="../../_static/arrow.png" class="logo" alt="logo" />
+    
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../spec.html">Specifications and Protocols</a>
+        </li>
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="../../libraries.html">Libraries</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../developers.html">Development</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+    <div class="bd-toc-item active">
+    
+  
+    <ul class="nav bd-sidenav">
+        
+        
+        
+        
+          
+            
+                <li class="">
+                    <a href="../../status.html">Implementation Status</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/c_glib/">C/GLib</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../../cpp/index.html">C++</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../../java/index.html">Java</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/js/">JavaScript</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+                </li>
+            
+          
+            
+  
+                <li class="active">
+                    <a href="../index.html">Python</a>
+                    <ul>
+                    
+                        <li class="">
+                            <a href="../install.html">Installing PyArrow</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../memory.html">Memory and IO Interfaces</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../data.html">Data Types and In-Memory Data Model</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../compute.html">Compute Functions</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../ipc.html">Streaming, Serialization, and IPC</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../filesystems.html">Filesystem Interface</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../filesystems_deprecated.html">Filesystem Interface (legacy)</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../plasma.html">The Plasma In-Memory Object Store</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../numpy.html">NumPy Integration</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../pandas.html">Pandas Integration</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../timestamps.html">Timestamps</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../csv.html">Reading CSV files</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../feather.html">Feather File Format</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../json.html">Reading JSON files</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../parquet.html">Reading and Writing the Apache Parquet Format</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../dataset.html">Tabular Datasets</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../cuda.html">CUDA Integration</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../extending_types.html">Extending pyarrow</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../extending.html">Using pyarrow from C++ and Cython Code</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="../api.html">API Reference</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../getting_involved.html">Getting Involved</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../benchmarks.html">Benchmarks</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/r/">R</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://docs.rs/crate/arrow/">Rust</a>
+                </li>
+            
+          
+        
+        
+        
+        
+      </ul>
+  
+  </nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="pyarrow-serializationcontext">
+<h1>pyarrow.SerializationContext<a class="headerlink" href="#pyarrow-serializationcontext" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="pyarrow.SerializationContext">
+<em class="property">class </em><code class="sig-prename descclassname">pyarrow.</code><code class="sig-name descname">SerializationContext</code><a class="headerlink" href="#pyarrow.SerializationContext" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.lib._Weakrefable</span></code></p>
+<dl class="py method">
+<dt id="pyarrow.SerializationContext.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.SerializationContext.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.SerializationContext.__init__" title="pyarrow.SerializationContext.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Initialize self.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.SerializationContext.clone" title="pyarrow.SerializationContext.clone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clone</span></code></a>(self)</p></td>
+<td><p>Return copy of this SerializationContext.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.SerializationContext.deserialize" title="pyarrow.SerializationContext.deserialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deserialize</span></code></a>(self, what)</p></td>
+<td><p>Call pyarrow.deserialize and pass this SerializationContext.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.SerializationContext.deserialize_components" title="pyarrow.SerializationContext.deserialize_components"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deserialize_components</span></code></a>(self, what)</p></td>
+<td><p>Call pyarrow.deserialize_components and pass this SerializationContext.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.SerializationContext.register_type" title="pyarrow.SerializationContext.register_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_type</span></code></a>(self, type_, type_id[, …])</p></td>
+<td><p>EXPERIMENTAL: Add type to the list of types we can serialize.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.SerializationContext.serialize" title="pyarrow.SerializationContext.serialize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">serialize</span></code></a>(self, obj)</p></td>
+<td><p>Call pyarrow.serialize and pass this SerializationContext.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.SerializationContext.serialize_to" title="pyarrow.SerializationContext.serialize_to"><code class="xref py py-obj docutils literal notranslate"><span class="pre">serialize_to</span></code></a>(self, value, sink)</p></td>
+<td><p>Call pyarrow.serialize_to and pass this SerializationContext.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.SerializationContext.set_pickle" title="pyarrow.SerializationContext.set_pickle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_pickle</span></code></a>(self, serializer, deserializer)</p></td>
+<td><p>Set the serializer and deserializer to use for objects that are to be pickled.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt id="pyarrow.SerializationContext.clone">
+<code class="sig-name descname">clone</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.SerializationContext.clone" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return copy of this SerializationContext.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>clone</strong> (<em>SerializationContext</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.SerializationContext.deserialize">
+<code class="sig-name descname">deserialize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">what</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.SerializationContext.deserialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call pyarrow.deserialize and pass this SerializationContext.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.SerializationContext.deserialize_components">
+<code class="sig-name descname">deserialize_components</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">what</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.SerializationContext.deserialize_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call pyarrow.deserialize_components and pass this SerializationContext.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.SerializationContext.register_type">
+<code class="sig-name descname">register_type</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">type_</span></em>, <em class="sig-param"><span class="n">type_id</span></em>, <em class="sig-param"><span class="n">pickle</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">custom_serializer</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">custom_deserializer</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.SerializationContext.register_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>EXPERIMENTAL: Add type to the list of types we can serialize.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type_</strong> (<em>type</em>) – The type that we can serialize.</p></li>
+<li><p><strong>type_id</strong> (<em>string</em>) – A string used to identify the type.</p></li>
+<li><p><strong>pickle</strong> (<em>bool</em>) – True if the serialization should be done with pickle.
+False if it should be done efficiently with Arrow.</p></li>
+<li><p><strong>custom_serializer</strong> (<em>callable</em>) – This argument is optional, but can be provided to
+serialize objects of the class in a particular way.</p></li>
+<li><p><strong>custom_deserializer</strong> (<em>callable</em>) – This argument is optional, but can be provided to
+deserialize objects of the class in a particular way.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.SerializationContext.serialize">
+<code class="sig-name descname">serialize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.SerializationContext.serialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call pyarrow.serialize and pass this SerializationContext.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.SerializationContext.serialize_to">
+<code class="sig-name descname">serialize_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">sink</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.SerializationContext.serialize_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call pyarrow.serialize_to and pass this SerializationContext.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.SerializationContext.set_pickle">
+<code class="sig-name descname">set_pickle</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">serializer</span></em>, <em class="sig-param"><span class="n">deserializer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.SerializationContext.set_pickle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the serializer and deserializer to use for objects that are to be
+pickled.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>serializer</strong> (<em>callable</em>) – The serializer to use (e.g., pickle.dumps or cloudpickle.dumps).</p></li>
+<li><p><strong>deserializer</strong> (<em>callable</em>) – The deserializer to use (e.g., pickle.dumps or cloudpickle.dumps).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="pyarrow.SerializedPyObject.html" title="previous page">pyarrow.SerializedPyObject</a>
+    <a class='right-next' id="next-link" href="../api/flight.html" title="next page">Arrow Flight</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.8636327e669f6dcffc22.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>

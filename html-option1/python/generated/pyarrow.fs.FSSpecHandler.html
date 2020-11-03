@@ -1,0 +1,511 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pyarrow.fs.FSSpecHandler &#8212; Apache Arrow v3.0.0.dev94+g959e8c558.d20201103</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c78d4f2b1f8277c2fa0830b4506d5cfe.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.8636327e669f6dcffc22.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Dataset" href="../api/dataset.html" />
+    <link rel="prev" title="pyarrow.fs.FileSystemHandler" href="pyarrow.fs.FileSystemHandler.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    <a class="navbar-brand" href="../../index.html">
+    
+      <img src="../../_static/arrow.png" class="logo" alt="logo" />
+    
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../spec.html">Specifications and Protocols</a>
+        </li>
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="../../libraries.html">Libraries</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../developers.html">Development</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+    <div class="bd-toc-item active">
+    
+  
+    <ul class="nav bd-sidenav">
+        
+        
+        
+        
+          
+            
+                <li class="">
+                    <a href="../../status.html">Implementation Status</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/c_glib/">C/GLib</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../../cpp/index.html">C++</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../../java/index.html">Java</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/js/">JavaScript</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+                </li>
+            
+          
+            
+  
+                <li class="active">
+                    <a href="../index.html">Python</a>
+                    <ul>
+                    
+                        <li class="">
+                            <a href="../install.html">Installing PyArrow</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../memory.html">Memory and IO Interfaces</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../data.html">Data Types and In-Memory Data Model</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../compute.html">Compute Functions</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../ipc.html">Streaming, Serialization, and IPC</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../filesystems.html">Filesystem Interface</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../filesystems_deprecated.html">Filesystem Interface (legacy)</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../plasma.html">The Plasma In-Memory Object Store</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../numpy.html">NumPy Integration</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../pandas.html">Pandas Integration</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../timestamps.html">Timestamps</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../csv.html">Reading CSV files</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../feather.html">Feather File Format</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../json.html">Reading JSON files</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../parquet.html">Reading and Writing the Apache Parquet Format</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../dataset.html">Tabular Datasets</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../cuda.html">CUDA Integration</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../extending_types.html">Extending pyarrow</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../extending.html">Using pyarrow from C++ and Cython Code</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="../api.html">API Reference</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../getting_involved.html">Getting Involved</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../benchmarks.html">Benchmarks</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/r/">R</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://docs.rs/crate/arrow/">Rust</a>
+                </li>
+            
+          
+        
+        
+        
+        
+      </ul>
+  
+  </nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="pyarrow-fs-fsspechandler">
+<h1>pyarrow.fs.FSSpecHandler<a class="headerlink" href="#pyarrow-fs-fsspechandler" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="pyarrow.fs.FSSpecHandler">
+<em class="property">class </em><code class="sig-prename descclassname">pyarrow.fs.</code><code class="sig-name descname">FSSpecHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/fs.html#FSSpecHandler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.fs.FSSpecHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow._fs.FileSystemHandler</span></code></p>
+<p>Handler for fsspec-based Python filesystems.</p>
+<p><a class="reference external" href="https://filesystem-spec.readthedocs.io/en/latest/index.html">https://filesystem-spec.readthedocs.io/en/latest/index.html</a></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">PyFileSystem</span><span class="p">(</span><span class="n">FSSpecHandler</span><span class="p">(</span><span class="n">fsspec_fs</span><span class="p">))</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="pyarrow.fs.FSSpecHandler.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/fs.html#FSSpecHandler.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.fs.FSSpecHandler.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.fs.FSSpecHandler.__init__" title="pyarrow.fs.FSSpecHandler.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(fs)</p></td>
+<td><p>Initialize self.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.fs.FSSpecHandler.copy_file" title="pyarrow.fs.FSSpecHandler.copy_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy_file</span></code></a>(src, dest)</p></td>
+<td><p>Implement PyFileSystem.copy_file(…).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.fs.FSSpecHandler.create_dir" title="pyarrow.fs.FSSpecHandler.create_dir"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_dir</span></code></a>(path, recursive)</p></td>
+<td><p>Implement PyFileSystem.create_dir(…).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.fs.FSSpecHandler.delete_dir" title="pyarrow.fs.FSSpecHandler.delete_dir"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_dir</span></code></a>(path)</p></td>
+<td><p>Implement PyFileSystem.delete_dir(…).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.fs.FSSpecHandler.delete_dir_contents" title="pyarrow.fs.FSSpecHandler.delete_dir_contents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_dir_contents</span></code></a>(path)</p></td>
+<td><p>Implement PyFileSystem.delete_dir_contents(…).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.fs.FSSpecHandler.delete_file" title="pyarrow.fs.FSSpecHandler.delete_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_file</span></code></a>(path)</p></td>
+<td><p>Implement PyFileSystem.delete_file(…).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.fs.FSSpecHandler.delete_root_dir_contents" title="pyarrow.fs.FSSpecHandler.delete_root_dir_contents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_root_dir_contents</span></code></a>()</p></td>
+<td><p>Implement PyFileSystem.delete_dir_contents(“/”, accept_root_dir=True).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.fs.FSSpecHandler.get_file_info" title="pyarrow.fs.FSSpecHandler.get_file_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_info</span></code></a>(paths)</p></td>
+<td><p>Implement PyFileSystem.get_file_info(paths).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.fs.FSSpecHandler.get_file_info_selector" title="pyarrow.fs.FSSpecHandler.get_file_info_selector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_file_info_selector</span></code></a>(selector)</p></td>
+<td><p>Implement PyFileSystem.get_file_info(selector).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.fs.FSSpecHandler.get_type_name" title="pyarrow.fs.FSSpecHandler.get_type_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_type_name</span></code></a>()</p></td>
+<td><p>Implement PyFileSystem.type_name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.fs.FSSpecHandler.move" title="pyarrow.fs.FSSpecHandler.move"><code class="xref py py-obj docutils literal notranslate"><span class="pre">move</span></code></a>(src, dest)</p></td>
+<td><p>Implement PyFileSystem.move(…).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.fs.FSSpecHandler.normalize_path" title="pyarrow.fs.FSSpecHandler.normalize_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normalize_path</span></code></a>(path)</p></td>
+<td><p>Implement PyFileSystem.normalize_path(…).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.fs.FSSpecHandler.open_append_stream" title="pyarrow.fs.FSSpecHandler.open_append_stream"><code class="xref py py-obj docutils literal notranslate"><span class="pre">open_append_stream</span></code></a>(path)</p></td>
+<td><p>Implement PyFileSystem.open_append_stream(…).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.fs.FSSpecHandler.open_input_file" title="pyarrow.fs.FSSpecHandler.open_input_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">open_input_file</span></code></a>(path)</p></td>
+<td><p>Implement PyFileSystem.open_input_file(…).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.fs.FSSpecHandler.open_input_stream" title="pyarrow.fs.FSSpecHandler.open_input_stream"><code class="xref py py-obj docutils literal notranslate"><span class="pre">open_input_stream</span></code></a>(path)</p></td>
+<td><p>Implement PyFileSystem.open_input_stream(…).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.fs.FSSpecHandler.open_output_stream" title="pyarrow.fs.FSSpecHandler.open_output_stream"><code class="xref py py-obj docutils literal notranslate"><span class="pre">open_output_stream</span></code></a>(path)</p></td>
+<td><p>Implement PyFileSystem.open_output_stream(…).</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt id="pyarrow.fs.FSSpecHandler.copy_file">
+<code class="sig-name descname">copy_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">src</span></em>, <em class="sig-param"><span class="n">dest</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/fs.html#FSSpecHandler.copy_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.fs.FSSpecHandler.copy_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement PyFileSystem.copy_file(…).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.fs.FSSpecHandler.create_dir">
+<code class="sig-name descname">create_dir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">recursive</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/fs.html#FSSpecHandler.create_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.fs.FSSpecHandler.create_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement PyFileSystem.create_dir(…).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.fs.FSSpecHandler.delete_dir">
+<code class="sig-name descname">delete_dir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/fs.html#FSSpecHandler.delete_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.fs.FSSpecHandler.delete_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement PyFileSystem.delete_dir(…).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.fs.FSSpecHandler.delete_dir_contents">
+<code class="sig-name descname">delete_dir_contents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/fs.html#FSSpecHandler.delete_dir_contents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.fs.FSSpecHandler.delete_dir_contents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement PyFileSystem.delete_dir_contents(…).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.fs.FSSpecHandler.delete_file">
+<code class="sig-name descname">delete_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/fs.html#FSSpecHandler.delete_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.fs.FSSpecHandler.delete_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement PyFileSystem.delete_file(…).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.fs.FSSpecHandler.delete_root_dir_contents">
+<code class="sig-name descname">delete_root_dir_contents</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/fs.html#FSSpecHandler.delete_root_dir_contents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.fs.FSSpecHandler.delete_root_dir_contents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement PyFileSystem.delete_dir_contents(“/”, accept_root_dir=True).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.fs.FSSpecHandler.get_file_info">
+<code class="sig-name descname">get_file_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">paths</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/fs.html#FSSpecHandler.get_file_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.fs.FSSpecHandler.get_file_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement PyFileSystem.get_file_info(paths).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.fs.FSSpecHandler.get_file_info_selector">
+<code class="sig-name descname">get_file_info_selector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">selector</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/fs.html#FSSpecHandler.get_file_info_selector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.fs.FSSpecHandler.get_file_info_selector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement PyFileSystem.get_file_info(selector).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.fs.FSSpecHandler.get_type_name">
+<code class="sig-name descname">get_type_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/fs.html#FSSpecHandler.get_type_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.fs.FSSpecHandler.get_type_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement PyFileSystem.type_name.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.fs.FSSpecHandler.move">
+<code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">src</span></em>, <em class="sig-param"><span class="n">dest</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/fs.html#FSSpecHandler.move"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.fs.FSSpecHandler.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement PyFileSystem.move(…).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.fs.FSSpecHandler.normalize_path">
+<code class="sig-name descname">normalize_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/fs.html#FSSpecHandler.normalize_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.fs.FSSpecHandler.normalize_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement PyFileSystem.normalize_path(…).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.fs.FSSpecHandler.open_append_stream">
+<code class="sig-name descname">open_append_stream</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/fs.html#FSSpecHandler.open_append_stream"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.fs.FSSpecHandler.open_append_stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement PyFileSystem.open_append_stream(…).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.fs.FSSpecHandler.open_input_file">
+<code class="sig-name descname">open_input_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/fs.html#FSSpecHandler.open_input_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.fs.FSSpecHandler.open_input_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement PyFileSystem.open_input_file(…).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.fs.FSSpecHandler.open_input_stream">
+<code class="sig-name descname">open_input_stream</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/fs.html#FSSpecHandler.open_input_stream"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.fs.FSSpecHandler.open_input_stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement PyFileSystem.open_input_stream(…).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.fs.FSSpecHandler.open_output_stream">
+<code class="sig-name descname">open_output_stream</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/fs.html#FSSpecHandler.open_output_stream"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.fs.FSSpecHandler.open_output_stream" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement PyFileSystem.open_output_stream(…).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="pyarrow.fs.FileSystemHandler.html" title="previous page">pyarrow.fs.FileSystemHandler</a>
+    <a class='right-next' id="next-link" href="../api/dataset.html" title="next page">Dataset</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.8636327e669f6dcffc22.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>

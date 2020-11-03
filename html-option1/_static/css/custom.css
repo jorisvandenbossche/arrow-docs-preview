@@ -1,0 +1,11 @@
+/* colors */
+
+:root {
+    --color-active-navigation: 215, 70, 51;
+    --color-h1: var(--color-text-base);
+    --color-h2: var(--color-text-base);
+}
+
+code {
+  color: rgb(215, 70, 51);
+}

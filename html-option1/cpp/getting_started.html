@@ -1,0 +1,415 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Guide &#8212; Apache Arrow v3.0.0.dev94+g959e8c558.d20201103</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c78d4f2b1f8277c2fa0830b4506d5cfe.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.8636327e669f6dcffc22.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="High-Level Overview" href="overview.html" />
+    <link rel="prev" title="C++ Implementation" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    <a class="navbar-brand" href="../index.html">
+    
+      <img src="../_static/arrow.png" class="logo" alt="logo" />
+    
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../spec.html">Specifications and Protocols</a>
+        </li>
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="../libraries.html">Libraries</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../developers.html">Development</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+    <div class="bd-toc-item active">
+    
+  
+    <ul class="nav bd-sidenav">
+        
+        
+        
+        
+          
+            
+                <li class="">
+                    <a href="../status.html">Implementation Status</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/c_glib/">C/GLib</a>
+                </li>
+            
+          
+            
+  
+                <li class="active">
+                    <a href="index.html">C++</a>
+                    <ul>
+                    
+                        <li class="active">
+                            <a href="">User Guide</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="examples/index.html">Examples</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="api.html">API Reference</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../java/index.html">Java</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/js/">JavaScript</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../python/index.html">Python</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/r/">R</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://docs.rs/crate/arrow/">Rust</a>
+                </li>
+            
+          
+        
+        
+        
+        
+      </ul>
+  
+  </nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="user-guide">
+<h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">High-Level Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#the-physical-layer">The physical layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#the-one-dimensional-layer">The one-dimensional layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#the-two-dimensional-layer">The two-dimensional layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#the-compute-layer">The compute layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#the-io-layer">The IO layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#the-inter-process-communication-ipc-layer">The Inter-Process Communication (IPC) layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#the-file-formats-layer">The file formats layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#the-devices-layer">The devices layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#the-filesystem-layer">The filesystem layer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="conventions.html#language-version">Language version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conventions.html#namespacing">Namespacing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conventions.html#safe-pointers">Safe pointers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conventions.html#immutability">Immutability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conventions.html#error-reporting">Error reporting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cmake.html">Using Arrow C++ in your own project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cmake.html#basic-usage">Basic usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmake.html#available-variables-and-targets">Available variables and targets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html">Memory Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#buffers">Buffers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="memory.html#accessing-buffer-memory">Accessing Buffer Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html#slicing">Slicing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html#allocating-a-buffer">Allocating a Buffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html#building-a-buffer">Building a Buffer</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#memory-pools">Memory Pools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="memory.html#default-memory-pool">Default Memory Pool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="memory.html#stl-integration">STL Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#devices">Devices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="memory.html#device-agnostic-programming">Device-Agnostic Programming</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="arrays.html">Arrays</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html#building-an-array">Building an array</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="arrays.html#performance">Performance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html#size-limitations-and-recommendations">Size Limitations and Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html#chunked-arrays">Chunked Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arrays.html#slicing">Slicing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="datatypes.html">Data Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="datatypes.html#creating-data-types">Creating data types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">Tabular Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tables.html#fields">Fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tables.html#schemas">Schemas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tables.html#tables">Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tables.html#record-batches">Record Batches</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="compute.html">Compute Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="compute.html#the-generic-compute-api">The generic Compute API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="compute.html#functions-and-function-registry">Functions and function registry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compute.html#input-shapes">Input shapes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compute.html#invoking-functions">Invoking functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compute.html#available-functions">Available functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="compute.html#type-categories">Type categories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compute.html#aggregations">Aggregations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compute.html#element-wise-scalar-functions">Element-wise (“scalar”) functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="compute.html#arithmetic-functions">Arithmetic functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute.html#comparisons">Comparisons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute.html#logical-functions">Logical functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute.html#string-predicates">String predicates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute.html#string-transforms">String transforms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute.html#containment-tests">Containment tests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute.html#string-splitting">String splitting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute.html#structural-transforms">Structural transforms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute.html#conversions">Conversions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="compute.html#array-wise-vector-functions">Array-wise (“vector”) functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="compute.html#associative-transforms">Associative transforms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute.html#selections">Selections</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute.html#sorts-and-partitions">Sorts and partitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compute.html#id1">Structural transforms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="io.html">Input / output and filesystems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="io.html#reading-binary-data">Reading binary data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="io.html#writing-binary-data">Writing binary data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="io.html#filesystems">Filesystems</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parquet.html">Reading and writing Parquet files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parquet.html#filereader">FileReader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parquet.html#writetable">WriteTable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parquet.html#streamreader">StreamReader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parquet.html#streamwriter">StreamWriter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="csv.html">Reading CSV files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="csv.html#basic-usage">Basic usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csv.html#column-names">Column names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csv.html#column-selection">Column selection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="csv.html#interaction-with-column-names">Interaction with column names</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="csv.html#data-types">Data types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="csv.html#dictionary-inference">Dictionary inference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="csv.html#nulls">Nulls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="csv.html#character-encoding">Character encoding</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="csv.html#performance">Performance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="json.html">Reading JSON files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="json.html#basic-usage">Basic usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json.html#data-types">Data types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="flight.html">Arrow Flight RPC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flight.html#writing-a-flight-service">Writing a Flight Service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flight.html#enabling-tls-and-authentication">Enabling TLS and Authentication</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="flight.html#using-the-flight-client">Using the Flight Client</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">C++ Implementation</a>
+    <a class='right-next' id="next-link" href="overview.html" title="next page">High-Level Overview</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.8636327e669f6dcffc22.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>

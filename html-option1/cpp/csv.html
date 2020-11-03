@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading CSV files &#8212; Apache Arrow v3.0.0.dev94+g959e8c558.d20201103</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c78d4f2b1f8277c2fa0830b4506d5cfe.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.8636327e669f6dcffc22.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Reading JSON files" href="json.html" />
+    <link rel="prev" title="Reading and writing Parquet files" href="parquet.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    <a class="navbar-brand" href="../index.html">
+    
+      <img src="../_static/arrow.png" class="logo" alt="logo" />
+    
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../spec.html">Specifications and Protocols</a>
+        </li>
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="../libraries.html">Libraries</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../developers.html">Development</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+    <div class="bd-toc-item active">
+    
+  
+    <ul class="nav bd-sidenav">
+        
+        
+        
+        
+          
+            
+                <li class="">
+                    <a href="../status.html">Implementation Status</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/c_glib/">C/GLib</a>
+                </li>
+            
+          
+            
+  
+                <li class="active">
+                    <a href="index.html">C++</a>
+                    <ul>
+                    
+                        <li class="active">
+                            <a href="getting_started.html">User Guide</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="examples/index.html">Examples</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="api.html">API Reference</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../java/index.html">Java</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/js/">JavaScript</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../python/index.html">Python</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/r/">R</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://docs.rs/crate/arrow/">Rust</a>
+                </li>
+            
+          
+        
+        
+        
+        
+      </ul>
+  
+  </nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#basic-usage" class="nav-link">Basic usage</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#column-names" class="nav-link">Column names</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#column-selection" class="nav-link">Column selection</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#interaction-with-column-names" class="nav-link">Interaction with column names</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#data-types" class="nav-link">Data types</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#dictionary-inference" class="nav-link">Dictionary inference</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#nulls" class="nav-link">Nulls</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#character-encoding" class="nav-link">Character encoding</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#performance" class="nav-link">Performance</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="reading-csv-files">
+<h1>Reading CSV files<a class="headerlink" href="#reading-csv-files" title="Permalink to this headline">¶</a></h1>
+<p>Arrow provides a fast CSV reader allowing ingestion of external data
+as Arrow tables.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="api/formats.html#cpp-api-csv"><span class="std std-ref">CSV reader API reference</span></a>.</p>
+</div>
+<div class="section" id="basic-usage">
+<h2>Basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
+<p>A CSV file is read from a <a class="reference internal" href="api/io.html#_CPPv4N5arrow2io11InputStreamE" title="arrow::io::InputStream"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">InputStream</span></code></a>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;arrow/csv/api.h&quot;</span><span class="cp"></span>
+
+<span class="p">{</span>
+   <span class="c1">// ...</span>
+   <span class="n">arrow</span><span class="o">::</span><span class="n">MemoryPool</span><span class="o">*</span> <span class="n">pool</span> <span class="o">=</span> <span class="n">default_memory_pool</span><span class="p">();</span>
+   <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">arrow</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">InputStream</span><span class="o">&gt;</span> <span class="n">input</span> <span class="o">=</span> <span class="p">...;</span>
+
+   <span class="k">auto</span> <span class="n">read_options</span> <span class="o">=</span> <span class="n">arrow</span><span class="o">::</span><span class="n">csv</span><span class="o">::</span><span class="n">ReadOptions</span><span class="o">::</span><span class="n">Defaults</span><span class="p">();</span>
+   <span class="k">auto</span> <span class="n">parse_options</span> <span class="o">=</span> <span class="n">arrow</span><span class="o">::</span><span class="n">csv</span><span class="o">::</span><span class="n">ParseOptions</span><span class="o">::</span><span class="n">Defaults</span><span class="p">();</span>
+   <span class="k">auto</span> <span class="n">convert_options</span> <span class="o">=</span> <span class="n">arrow</span><span class="o">::</span><span class="n">csv</span><span class="o">::</span><span class="n">ConvertOptions</span><span class="o">::</span><span class="n">Defaults</span><span class="p">();</span>
+
+   <span class="c1">// Instantiate TableReader from input stream and options</span>
+   <span class="k">auto</span> <span class="n">maybe_reader</span> <span class="o">=</span>
+     <span class="n">arrow</span><span class="o">::</span><span class="n">csv</span><span class="o">::</span><span class="n">TableReader</span><span class="o">::</span><span class="n">Make</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span>
+                                   <span class="n">input</span><span class="p">,</span>
+                                   <span class="n">read_options</span><span class="p">,</span>
+                                   <span class="n">parse_options</span><span class="p">,</span>
+                                   <span class="n">convert_options</span><span class="p">);</span>
+   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">maybe_reader</span><span class="p">.</span><span class="n">ok</span><span class="p">())</span> <span class="p">{</span>
+      <span class="c1">// Handle TableReader instantiation error...</span>
+   <span class="p">}</span>
+   <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">arrow</span><span class="o">::</span><span class="n">csv</span><span class="o">::</span><span class="n">TableReader</span><span class="o">&gt;</span> <span class="n">reader</span> <span class="o">=</span> <span class="o">*</span><span class="n">maybe_reader</span><span class="p">;</span>
+
+   <span class="c1">// Read table from CSV file</span>
+   <span class="k">auto</span> <span class="n">maybe_table</span> <span class="o">=</span> <span class="n">reader</span><span class="o">-&gt;</span><span class="n">Read</span><span class="p">();</span>
+   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">maybe_table</span><span class="p">.</span><span class="n">ok</span><span class="p">())</span> <span class="p">{</span>
+      <span class="c1">// Handle CSV read error</span>
+      <span class="c1">// (for example a CSV syntax error or failed type conversion)</span>
+   <span class="p">}</span>
+   <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">arrow</span><span class="o">::</span><span class="n">Table</span><span class="o">&gt;</span> <span class="n">table</span> <span class="o">=</span> <span class="o">*</span><span class="n">maybe_table</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="column-names">
+<h2>Column names<a class="headerlink" href="#column-names" title="Permalink to this headline">¶</a></h2>
+<p>There are three possible ways to infer column names from the CSV file:</p>
+<ul class="simple">
+<li><p>By default, the column names are read from the first row in the CSV file</p></li>
+<li><p>If <a class="reference internal" href="api/formats.html#_CPPv4N5arrow3csv11ReadOptions12column_namesE" title="arrow::csv::ReadOptions::column_names"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">ReadOptions::column_names</span></code></a> is set, it forces the column
+names in the table to these values (the first row in the CSV file is
+read as data)</p></li>
+<li><p>If <a class="reference internal" href="api/formats.html#_CPPv4N5arrow3csv11ReadOptions25autogenerate_column_namesE" title="arrow::csv::ReadOptions::autogenerate_column_names"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">ReadOptions::autogenerate_column_names</span></code></a> is true, column names
+will be autogenerated with the pattern “f0”, “f1”… (the first row in the
+CSV file is read as data)</p></li>
+</ul>
+</div>
+<div class="section" id="column-selection">
+<h2>Column selection<a class="headerlink" href="#column-selection" title="Permalink to this headline">¶</a></h2>
+<p>By default, Arrow reads all columns in the CSV file.  You can narrow the
+selection of columns with the <a class="reference internal" href="api/formats.html#_CPPv4N5arrow3csv14ConvertOptions15include_columnsE" title="arrow::csv::ConvertOptions::include_columns"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">ConvertOptions::include_columns</span></code></a>
+option.  If some columns in <a class="reference internal" href="api/formats.html#_CPPv4N5arrow3csv14ConvertOptions15include_columnsE" title="arrow::csv::ConvertOptions::include_columns"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">ConvertOptions::include_columns</span></code></a>
+are missing from the CSV file, an error will be emitted unless
+<a class="reference internal" href="api/formats.html#_CPPv4N5arrow3csv14ConvertOptions23include_missing_columnsE" title="arrow::csv::ConvertOptions::include_missing_columns"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">ConvertOptions::include_missing_columns</span></code></a> is true, in which case
+the missing columns are assumed to contain all-null values.</p>
+<div class="section" id="interaction-with-column-names">
+<h3>Interaction with column names<a class="headerlink" href="#interaction-with-column-names" title="Permalink to this headline">¶</a></h3>
+<p>If both <a class="reference internal" href="api/formats.html#_CPPv4N5arrow3csv11ReadOptions12column_namesE" title="arrow::csv::ReadOptions::column_names"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">ReadOptions::column_names</span></code></a> and
+<a class="reference internal" href="api/formats.html#_CPPv4N5arrow3csv14ConvertOptions15include_columnsE" title="arrow::csv::ConvertOptions::include_columns"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">ConvertOptions::include_columns</span></code></a> are specified,
+the <a class="reference internal" href="api/formats.html#_CPPv4N5arrow3csv11ReadOptions12column_namesE" title="arrow::csv::ReadOptions::column_names"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">ReadOptions::column_names</span></code></a> are assumed to map to CSV columns,
+and <a class="reference internal" href="api/formats.html#_CPPv4N5arrow3csv14ConvertOptions15include_columnsE" title="arrow::csv::ConvertOptions::include_columns"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">ConvertOptions::include_columns</span></code></a> is a subset of those column
+names that will part of the Arrow Table.</p>
+</div>
+</div>
+<div class="section" id="data-types">
+<h2>Data types<a class="headerlink" href="#data-types" title="Permalink to this headline">¶</a></h2>
+<p>By default, the CSV reader infers the most appropriate data type for each
+column.  Type inference considers the following data types, in order:</p>
+<ul class="simple">
+<li><p>Null</p></li>
+<li><p>Int64</p></li>
+<li><p>Boolean</p></li>
+<li><p>Timestamp (with seconds unit)</p></li>
+<li><p>Float64</p></li>
+<li><p>Dictionary&lt;String&gt; (if <a class="reference internal" href="api/formats.html#_CPPv4N5arrow3csv14ConvertOptions16auto_dict_encodeE" title="arrow::csv::ConvertOptions::auto_dict_encode"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">ConvertOptions::auto_dict_encode</span></code></a> is true)</p></li>
+<li><p>Dictionary&lt;Binary&gt; (if <a class="reference internal" href="api/formats.html#_CPPv4N5arrow3csv14ConvertOptions16auto_dict_encodeE" title="arrow::csv::ConvertOptions::auto_dict_encode"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">ConvertOptions::auto_dict_encode</span></code></a> is true)</p></li>
+<li><p>String</p></li>
+<li><p>Binary</p></li>
+</ul>
+<p>It is possible to override type inference for select columns by setting
+the <a class="reference internal" href="api/formats.html#_CPPv4N5arrow3csv14ConvertOptions12column_typesE" title="arrow::csv::ConvertOptions::column_types"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">ConvertOptions::column_types</span></code></a> option.  Explicit data types
+can be chosen from the following list:</p>
+<ul class="simple">
+<li><p>Null</p></li>
+<li><p>All Integer types</p></li>
+<li><p>Float32 and Float64</p></li>
+<li><p>Decimal128</p></li>
+<li><p>Boolean</p></li>
+<li><p>Date32 and Date64</p></li>
+<li><p>Timestamp</p></li>
+<li><p>Binary and Large Binary</p></li>
+<li><p>String and Large String (with optional UTF8 input validation)</p></li>
+<li><p>Fixed-Size Binary</p></li>
+<li><p>Dictionary with index type Int32 and value type one of the following:
+Binary, String, LargeBinary, LargeString,  Int32, UInt32, Int64, UInt64,
+Float32, Float64, Decimal128</p></li>
+</ul>
+<p>Other data types do not support conversion from CSV values and will error out.</p>
+<div class="section" id="dictionary-inference">
+<h3>Dictionary inference<a class="headerlink" href="#dictionary-inference" title="Permalink to this headline">¶</a></h3>
+<p>If type inference is enabled and <a class="reference internal" href="api/formats.html#_CPPv4N5arrow3csv14ConvertOptions16auto_dict_encodeE" title="arrow::csv::ConvertOptions::auto_dict_encode"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">ConvertOptions::auto_dict_encode</span></code></a>
+is true, the CSV reader first tries to convert string-like columns to a
+dictionary-encoded string-like array.  It switches to a plain string-like
+array when the threshold in <code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">ConvertOptions::auto_dict_max_cardinality</span></code>
+is reached.</p>
+</div>
+<div class="section" id="nulls">
+<h3>Nulls<a class="headerlink" href="#nulls" title="Permalink to this headline">¶</a></h3>
+<p>Null values are recognized from the spellings stored in
+<a class="reference internal" href="api/formats.html#_CPPv4N5arrow3csv14ConvertOptions11null_valuesE" title="arrow::csv::ConvertOptions::null_values"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">ConvertOptions::null_values</span></code></a>.  The <a class="reference internal" href="api/formats.html#_CPPv4N5arrow3csv14ConvertOptions8DefaultsEv" title="arrow::csv::ConvertOptions::Defaults"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">ConvertOptions::Defaults()</span></code></a>
+factory method will initialize a number of conventional null spellings such
+as <code class="docutils literal notranslate"><span class="pre">N/A</span></code>.</p>
+</div>
+<div class="section" id="character-encoding">
+<h3>Character encoding<a class="headerlink" href="#character-encoding" title="Permalink to this headline">¶</a></h3>
+<p>CSV files are expected to be encoded in UTF8.  However, non-UTF8 data
+is accepted for Binary columns.</p>
+</div>
+</div>
+<div class="section" id="performance">
+<h2>Performance<a class="headerlink" href="#performance" title="Permalink to this headline">¶</a></h2>
+<p>By default, the CSV reader will parallelize reads in order to exploit all
+CPU cores on your machine.  You can change this setting in
+<a class="reference internal" href="api/formats.html#_CPPv4N5arrow3csv11ReadOptions11use_threadsE" title="arrow::csv::ReadOptions::use_threads"><code class="xref cpp cpp-member docutils literal notranslate"><span class="pre">ReadOptions::use_threads</span></code></a>.  A reasonable expectation is at least
+100 MB/s per core on a modern desktop machine (measured in source CSV bytes,
+not target Arrow data bytes).</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="parquet.html" title="previous page">Reading and writing Parquet files</a>
+    <a class='right-next' id="next-link" href="json.html" title="next page">Reading JSON files</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.8636327e669f6dcffc22.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>

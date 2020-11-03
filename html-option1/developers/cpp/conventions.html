@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conventions &#8212; Apache Arrow v3.0.0.dev94+g959e8c558.d20201103</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c78d4f2b1f8277c2fa0830b4506d5cfe.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.8636327e669f6dcffc22.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Fuzzing Arrow C++" href="fuzzing.html" />
+    <link rel="prev" title="Developing on Windows" href="windows.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    <a class="navbar-brand" href="../../index.html">
+    
+      <img src="../../_static/arrow.png" class="logo" alt="logo" />
+    
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../spec.html">Specifications and Protocols</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../libraries.html">Libraries</a>
+        </li>
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="../../developers.html">Development</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+    <div class="bd-toc-item active">
+    
+  
+    <ul class="nav bd-sidenav">
+        
+        
+        
+        
+        
+        
+          
+            
+                <li class="">
+                    <a href="../contributing.html">Contributing to Apache Arrow</a>
+                </li>
+            
+          
+            
+  
+                <li class="active">
+                    <a href="index.html">C++ Development</a>
+                    <ul>
+                    
+                        <li class="">
+                            <a href="building.html">Building Arrow C++</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="development.html">Development Guidelines</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="windows.html">Developing on Windows</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="">Conventions</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="fuzzing.html">Fuzzing Arrow C++</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../python.html">Python Development</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../archery.html">Daily Development using Archery</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../crossbow.html">Packaging and Testing with Crossbow</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../docker.html">Running Docker Builds</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../benchmarks.html">Benchmarks</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../documentation.html">Building the Documentation</a>
+                </li>
+            
+          
+        
+        
+      </ul>
+  
+  </nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#file-naming" class="nav-link">File Naming</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#comments-and-docstrings" class="nav-link">Comments and Docstrings</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#memory-pools" class="nav-link">Memory Pools</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#error-handling-and-exceptions" class="nav-link">Error Handling and Exceptions</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="conventions">
+<h1>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h1>
+<p>This section provides some information about some of the abstractions and
+development approaches we use to solve problems common to many parts of the C++
+project.</p>
+<div class="section" id="file-naming">
+<h2>File Naming<a class="headerlink" href="#file-naming" title="Permalink to this headline">¶</a></h2>
+<p>C++ source and header files should use underscores for word separation, not hyphens.
+Compiled executables, however, will automatically use hyphens (such that
+e.g. <code class="docutils literal notranslate"><span class="pre">src/arrow/scalar_test.cc</span></code> will be compiled into <code class="docutils literal notranslate"><span class="pre">arrow-scalar-test</span></code>).</p>
+<p>C++ header files use the <code class="docutils literal notranslate"><span class="pre">.h</span></code> extension. Any header file name not
+containing <code class="docutils literal notranslate"><span class="pre">internal</span></code> is considered to be a public header, and will be
+automatically installed by the build.</p>
+</div>
+<div class="section" id="comments-and-docstrings">
+<h2>Comments and Docstrings<a class="headerlink" href="#comments-and-docstrings" title="Permalink to this headline">¶</a></h2>
+<p>Regular comments start with <code class="docutils literal notranslate"><span class="pre">//</span></code>.</p>
+<p>Doxygen docstrings start with <code class="docutils literal notranslate"><span class="pre">///</span></code>, and Doxygen directives start with <code class="docutils literal notranslate"><span class="pre">\</span></code>,
+like this:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">/// \brief Allocate a fixed size mutable buffer from a memory pool, zero its padding.</span>
+<span class="c1">///</span>
+<span class="c1">/// \param[in] size size of buffer to allocate</span>
+<span class="c1">/// \param[in] pool a memory pool</span>
+<span class="n">ARROW_EXPORT</span>
+<span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Buffer</span><span class="o">&gt;&gt;</span> <span class="n">AllocateBuffer</span><span class="p">(</span><span class="k">const</span> <span class="kt">int64_t</span> <span class="n">size</span><span class="p">,</span>
+                                               <span class="n">MemoryPool</span><span class="o">*</span> <span class="n">pool</span> <span class="o">=</span> <span class="n">NULLPTR</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The summary line of a docstring uses the infinitive, not the indicative
+(for example, “Allocate a buffer” rather than “Allocates a buffer”).</p>
+</div>
+<div class="section" id="memory-pools">
+<h2>Memory Pools<a class="headerlink" href="#memory-pools" title="Permalink to this headline">¶</a></h2>
+<p>We provide a default memory pool with <code class="docutils literal notranslate"><span class="pre">arrow::default_memory_pool()</span></code>.</p>
+</div>
+<div class="section" id="error-handling-and-exceptions">
+<h2>Error Handling and Exceptions<a class="headerlink" href="#error-handling-and-exceptions" title="Permalink to this headline">¶</a></h2>
+<p>For error handling, we return <code class="docutils literal notranslate"><span class="pre">arrow::Status</span></code> values instead of throwing C++
+exceptions. Since the Arrow C++ libraries are intended to be useful as a
+component in larger C++ projects, using <code class="docutils literal notranslate"><span class="pre">Status</span></code> objects can help with good
+code hygiene by making explicit when a function is expected to be able to fail.</p>
+<p>A more recent option is to return a <code class="docutils literal notranslate"><span class="pre">arrow::Result&lt;T&gt;</span></code> object that can
+represent either a successful result with a <code class="docutils literal notranslate"><span class="pre">T</span></code> value, or an error result
+with a <code class="docutils literal notranslate"><span class="pre">Status</span></code> value.</p>
+<p>For expressing internal invariants and “cannot fail” errors, we use <code class="docutils literal notranslate"><span class="pre">DCHECK</span></code> macros
+defined in <code class="docutils literal notranslate"><span class="pre">arrow/util/logging.h</span></code>. These checks are disabled in release builds
+and are intended to catch internal development errors, particularly when
+refactoring. These macros are not to be included in any public header files.</p>
+<p>Since we do not use exceptions, we avoid doing expensive work in object
+constructors. Objects that are expensive to construct may often have private
+constructors, with public static factory methods that return <code class="docutils literal notranslate"><span class="pre">Status</span></code> or
+<code class="docutils literal notranslate"><span class="pre">Result&lt;T&gt;</span></code>.</p>
+<p>There are a number of object constructors, like <code class="docutils literal notranslate"><span class="pre">arrow::Schema</span></code> and
+<code class="docutils literal notranslate"><span class="pre">arrow::RecordBatch</span></code> where larger STL container objects like <code class="docutils literal notranslate"><span class="pre">std::vector</span></code> may
+be created. While it is possible for <code class="docutils literal notranslate"><span class="pre">std::bad_alloc</span></code> to be thrown in these
+constructors, the circumstances where they would are somewhat esoteric, and it
+is likely that an application would have encountered other more serious
+problems prior to having <code class="docutils literal notranslate"><span class="pre">std::bad_alloc</span></code> thrown in a constructor.</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="windows.html" title="previous page">Developing on Windows</a>
+    <a class='right-next' id="next-link" href="fuzzing.html" title="next page">Fuzzing Arrow C++</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.8636327e669f6dcffc22.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>

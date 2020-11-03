@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pyarrow.parquet.ParquetWriter &#8212; Apache Arrow v3.0.0.dev94+g959e8c558.d20201103</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c78d4f2b1f8277c2fa0830b4506d5cfe.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.8636327e669f6dcffc22.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pyarrow.parquet.read_table" href="pyarrow.parquet.read_table.html" />
+    <link rel="prev" title="pyarrow.parquet.ParquetFile" href="pyarrow.parquet.ParquetFile.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    <a class="navbar-brand" href="../../index.html">
+    
+      <img src="../../_static/arrow.png" class="logo" alt="logo" />
+    
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../spec.html">Specifications and Protocols</a>
+        </li>
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="../../libraries.html">Libraries</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../developers.html">Development</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+    <div class="bd-toc-item active">
+    
+  
+    <ul class="nav bd-sidenav">
+        
+        
+        
+        
+          
+            
+                <li class="">
+                    <a href="../../status.html">Implementation Status</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/c_glib/">C/GLib</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../../cpp/index.html">C++</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../../java/index.html">Java</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/js/">JavaScript</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+                </li>
+            
+          
+            
+  
+                <li class="active">
+                    <a href="../index.html">Python</a>
+                    <ul>
+                    
+                        <li class="">
+                            <a href="../install.html">Installing PyArrow</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../memory.html">Memory and IO Interfaces</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../data.html">Data Types and In-Memory Data Model</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../compute.html">Compute Functions</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../ipc.html">Streaming, Serialization, and IPC</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../filesystems.html">Filesystem Interface</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../filesystems_deprecated.html">Filesystem Interface (legacy)</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../plasma.html">The Plasma In-Memory Object Store</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../numpy.html">NumPy Integration</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../pandas.html">Pandas Integration</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../timestamps.html">Timestamps</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../csv.html">Reading CSV files</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../feather.html">Feather File Format</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../json.html">Reading JSON files</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../parquet.html">Reading and Writing the Apache Parquet Format</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../dataset.html">Tabular Datasets</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../cuda.html">CUDA Integration</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../extending_types.html">Extending pyarrow</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../extending.html">Using pyarrow from C++ and Cython Code</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="../api.html">API Reference</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../getting_involved.html">Getting Involved</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../benchmarks.html">Benchmarks</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/r/">R</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://docs.rs/crate/arrow/">Rust</a>
+                </li>
+            
+          
+        
+        
+        
+        
+      </ul>
+  
+  </nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="pyarrow-parquet-parquetwriter">
+<h1>pyarrow.parquet.ParquetWriter<a class="headerlink" href="#pyarrow-parquet-parquetwriter" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="pyarrow.parquet.ParquetWriter">
+<em class="property">class </em><code class="sig-prename descclassname">pyarrow.parquet.</code><code class="sig-name descname">ParquetWriter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">where</span></em>, <em class="sig-param"><span class="n">schema</span></em>, <em class="sig-param"><span class="n">filesystem</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">flavor</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">version</span><span class="o">=</span><span class="default_value">'1.0'</span></em>, <em class="sig-param"><span class="n">use_dictionary</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">compression</span><span class="o">=</span><span class="default_value">'snappy'</span></em>, <em class="sig-param"><span class="n">write_statistics</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">use_deprecated_int96_timestamps</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">compression_level</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_byte_stream_split</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">writer_engine_version</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data_page_version</span><span class="o">=</span><span class="default_value">'1.0'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">options</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/parquet.html#ParquetWriter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.parquet.ParquetWriter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for incrementally building a Parquet file for Arrow tables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>where</strong> (<em>path</em><em> or </em><em>file-like object</em>) – </p></li>
+<li><p><strong>schema</strong> (<em>arrow Schema</em>) – </p></li>
+<li><p><strong>version</strong> (<em>{&quot;1.0&quot;</em><em>, </em><em>&quot;2.0&quot;}</em><em>, </em><em>default &quot;1.0&quot;</em>) – Determine which Parquet logical types are available for use, whether the
+reduced set from the Parquet 1.x.x format or the expanded logical types
+added in format version 2.0.0 and after. Note that files written with
+version=’2.0’ may not be readable in all Parquet implementations, so
+version=’1.0’ is likely the choice that maximizes file compatibility. Some
+features, such as lossless storage of nanosecond timestamps as INT64
+physical storage, are only available with version=’2.0’. The Parquet 2.0.0
+format version also introduced a new serialized data page format; this can
+be enabled separately using the data_page_version option.</p></li>
+<li><p><strong>use_dictionary</strong> (<em>bool</em><em> or </em><em>list</em>) – Specify if we should use dictionary encoding in general or only for
+some columns.</p></li>
+<li><p><strong>use_deprecated_int96_timestamps</strong> (<em>bool</em><em>, </em><em>default None</em>) – Write timestamps to INT96 Parquet format. Defaults to False unless enabled
+by flavor argument. This take priority over the coerce_timestamps option.</p></li>
+<li><p><strong>coerce_timestamps</strong> (<em>str</em><em>, </em><em>default None</em>) – Cast timestamps a particular resolution. The defaults depends on <cite>version</cite>.
+For <code class="docutils literal notranslate"><span class="pre">version='1.0'</span></code> (the default), nanoseconds will be cast to
+microseconds (‘us’), and seconds to milliseconds (‘ms’) by default. For
+<code class="docutils literal notranslate"><span class="pre">version='2.0'</span></code>, the original resolution is preserved and no casting
+is done by default. The casting might result in loss of data, in which
+case <code class="docutils literal notranslate"><span class="pre">allow_truncated_timestamps=True</span></code> can be used to suppress the
+raised exception.
+Valid values: {None, ‘ms’, ‘us’}</p></li>
+<li><p><strong>data_page_size</strong> (<em>int</em><em>, </em><em>default None</em>) – Set a target threshold for the approximate encoded size of data
+pages within a column chunk (in bytes). If None, use the default data page
+size of 1MByte.</p></li>
+<li><p><strong>allow_truncated_timestamps</strong> (<em>bool</em><em>, </em><em>default False</em>) – Allow loss of data when coercing timestamps to a particular
+resolution. E.g. if microsecond or nanosecond data is lost when coercing to
+‘ms’, do not raise an exception.</p></li>
+<li><p><strong>compression</strong> (<em>str</em><em> or </em><em>dict</em>) – Specify the compression codec, either on a general basis or per-column.
+Valid values: {‘NONE’, ‘SNAPPY’, ‘GZIP’, ‘LZO’, ‘BROTLI’, ‘LZ4’, ‘ZSTD’}.</p></li>
+<li><p><strong>write_statistics</strong> (<em>bool</em><em> or </em><em>list</em>) – Specify if we should write statistics in general (default is True) or only
+for some columns.</p></li>
+<li><p><strong>flavor</strong> (<em>{'spark'}</em><em>, </em><em>default None</em>) – Sanitize schema or set other compatibility options to work with
+various target systems.</p></li>
+<li><p><strong>filesystem</strong> (<a class="reference internal" href="pyarrow.fs.FileSystem.html#pyarrow.fs.FileSystem" title="pyarrow.fs.FileSystem"><em>FileSystem</em></a><em>, </em><em>default None</em>) – If nothing passed, will be inferred from <cite>where</cite> if path-like, else
+<cite>where</cite> is already a file-like object so no filesystem is needed.</p></li>
+<li><p><strong>compression_level</strong> (<em>int</em><em> or </em><em>dict</em><em>, </em><em>default None</em>) – Specify the compression level for a codec, either on a general basis or
+per-column. If None is passed, arrow selects the compression level for
+the compression codec in use. The compression level has a different
+meaning for each codec, so you have to read the documentation of the
+codec you are using.
+An exception is thrown if the compression codec does not allow specifying
+a compression level.</p></li>
+<li><p><strong>use_byte_stream_split</strong> (<em>bool</em><em> or </em><em>list</em><em>, </em><em>default False</em>) – Specify if the byte_stream_split encoding should be used in general or
+only for some columns. If both dictionary and byte_stream_stream are
+enabled, then dictionary is preferred.
+The byte_stream_split encoding is valid only for floating-point data types
+and should be combined with a compression codec.</p></li>
+<li><p><strong>data_page_version</strong> (<em>{&quot;1.0&quot;</em><em>, </em><em>&quot;2.0&quot;}</em><em>, </em><em>default &quot;1.0&quot;</em>) – The serialized Parquet data page format version to write, defaults to
+1.0. This does not impact the file schema logical types and Arrow to
+Parquet type casting behavior; for that use the “version” option.</p></li>
+<li><p><strong>**options</strong> (<em>dict</em>) – If options contains a key <cite>metadata_collector</cite> then the
+corresponding value is assumed to be a list (or any object with
+<cite>.append</cite> method) that will be filled with the file metadata instance
+of the written file.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="pyarrow.parquet.ParquetWriter.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">where</span></em>, <em class="sig-param"><span class="n">schema</span></em>, <em class="sig-param"><span class="n">filesystem</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">flavor</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">version</span><span class="o">=</span><span class="default_value">'1.0'</span></em>, <em class="sig-param"><span class="n">use_dictionary</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">compression</span><span class="o">=</span><span class="default_value">'snappy'</span></em>, <em class="sig-param"><span class="n">write_statistics</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">use_deprecated_int96_timestamps</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">compression_level</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_byte_stream_split</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">writer_engine_version</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data_page_version</span><span class="o">=</span><span class="default_value">'1.0'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">options</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/parquet.html#ParquetWriter.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.parquet.ParquetWriter.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.parquet.ParquetWriter.__init__" title="pyarrow.parquet.ParquetWriter.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(where, schema[, filesystem, …])</p></td>
+<td><p>Initialize self.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.parquet.ParquetWriter.close" title="pyarrow.parquet.ParquetWriter.close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">close</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.parquet.ParquetWriter.write_table" title="pyarrow.parquet.ParquetWriter.write_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_table</span></code></a>(table[, row_group_size])</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt id="pyarrow.parquet.ParquetWriter.close">
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/parquet.html#ParquetWriter.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.parquet.ParquetWriter.close" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.parquet.ParquetWriter.write_table">
+<code class="sig-name descname">write_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">table</span></em>, <em class="sig-param"><span class="n">row_group_size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/parquet.html#ParquetWriter.write_table"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.parquet.ParquetWriter.write_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="pyarrow.parquet.ParquetFile.html" title="previous page">pyarrow.parquet.ParquetFile</a>
+    <a class='right-next' id="next-link" href="pyarrow.parquet.read_table.html" title="next page">pyarrow.parquet.read_table</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.8636327e669f6dcffc22.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>

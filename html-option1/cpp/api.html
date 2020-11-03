@@ -1,0 +1,391 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference &#8212; Apache Arrow v3.0.0.dev94+g959e8c558.d20201103</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c78d4f2b1f8277c2fa0830b4506d5cfe.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.8636327e669f6dcffc22.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Programming Support" href="api/support.html" />
+    <link rel="prev" title="Conversion of range of std::tuple-like to Table instances" href="examples/tuple_range_conversion.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    <a class="navbar-brand" href="../index.html">
+    
+      <img src="../_static/arrow.png" class="logo" alt="logo" />
+    
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../spec.html">Specifications and Protocols</a>
+        </li>
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="../libraries.html">Libraries</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../developers.html">Development</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+    <div class="bd-toc-item active">
+    
+  
+    <ul class="nav bd-sidenav">
+        
+        
+        
+        
+          
+            
+                <li class="">
+                    <a href="../status.html">Implementation Status</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/c_glib/">C/GLib</a>
+                </li>
+            
+          
+            
+  
+                <li class="active">
+                    <a href="index.html">C++</a>
+                    <ul>
+                    
+                        <li class="">
+                            <a href="getting_started.html">User Guide</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="examples/index.html">Examples</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="">API Reference</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../java/index.html">Java</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/js/">JavaScript</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../python/index.html">Python</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/r/">R</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://docs.rs/crate/arrow/">Rust</a>
+                </li>
+            
+          
+        
+        
+        
+        
+      </ul>
+  
+  </nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/support.html">Programming Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/support.html#general-information">General information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/support.html#error-return-and-reporting">Error return and reporting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/memory.html">Memory (management)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/memory.html#devices">Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/memory.html#memory-managers">Memory Managers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/memory.html#buffers">Buffers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/memory.html#memory-pools">Memory Pools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/memory.html#allocation-functions">Allocation Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/memory.html#slicing">Slicing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/memory.html#buffer-builders">Buffer Builders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/memory.html#stl-integration">STL Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/datatype.html">Data Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/datatype.html#factory-functions">Factory functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/datatype.html#concrete-type-subclasses">Concrete type subclasses</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/datatype.html#primitive">Primitive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/datatype.html#time-related">Time-related</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/datatype.html#binary-like">Binary-like</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/datatype.html#nested">Nested</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/datatype.html#dictionary-encoded">Dictionary-encoded</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/datatype.html#fields-and-schemas">Fields and Schemas</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/array.html">Arrays</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/array.html#concrete-array-subclasses">Concrete array subclasses</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/array.html#non-nested">Non-nested</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/array.html#nested">Nested</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/array.html#chunked-arrays">Chunked Arrays</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/scalar.html">Scalars</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/scalar.html#factory-functions">Factory functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/scalar.html#concrete-scalar-subclasses">Concrete scalar subclasses</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/builder.html">Array Builders</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/builder.html#concrete-builder-subclasses">Concrete builder subclasses</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/table.html">Two-dimensional Datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/table.html#record-batches">Record Batches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/table.html#tables">Tables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/c_abi.html">C Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/c_abi.html#abi-structures">ABI Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/c_abi.html#c-data-interface">C Data Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/c_abi.html#c-stream-interface">C Stream Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/compute.html">Compute Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/compute.html#datum-class">Datum class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/compute.html#abstract-function-classes">Abstract Function classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/compute.html#function-registry">Function registry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/compute.html#convenience-functions">Convenience functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/compute.html#concrete-options-classes">Concrete options classes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/tensor.html">Tensors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/tensor.html#dense-tensors">Dense Tensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/tensor.html#sparse-tensors">Sparse Tensors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/utilities.html">Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/utilities.html#decimal-numbers">Decimal Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/utilities.html#abstract-sequences">Abstract Sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/utilities.html#compression">Compression</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/io.html">Input / output</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/io.html#interfaces">Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/io.html#concrete-implementations">Concrete implementations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/io.html#in-memory-streams">In-memory streams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/io.html#local-files">Local files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/io.html#buffering-input-output-wrappers">Buffering input / output wrappers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/io.html#compressed-input-output-wrappers">Compressed input / output wrappers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/formats.html">File Formats</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/formats.html#csv">CSV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/formats.html#line-separated-json">Line-separated JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/formats.html#parquet-reader">Parquet reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/formats.html#parquet-writer">Parquet writer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/cuda.html">CUDA support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/cuda.html#contexts">Contexts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/cuda.html#devices">Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/cuda.html#buffers">Buffers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/cuda.html#memory-input-output">Memory Input / Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/cuda.html#ipc">IPC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/flight.html">Arrow Flight RPC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/flight.html#common-types">Common Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/flight.html#clients">Clients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/flight.html#servers">Servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/flight.html#error-handling">Error Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/filesystem.html">Filesystems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/filesystem.html#interface">Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/filesystem.html#high-level-factory-function">High-level factory function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/filesystem.html#concrete-implementations">Concrete implementations</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="examples/tuple_range_conversion.html" title="previous page">Conversion of range of <code class="docutils literal notranslate"><span class="pre">std::tuple</span></code>-like to <code class="docutils literal notranslate"><span class="pre">Table</span></code> instances</a>
+    <a class='right-next' id="next-link" href="api/support.html" title="next page">Programming Support</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.8636327e669f6dcffc22.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>

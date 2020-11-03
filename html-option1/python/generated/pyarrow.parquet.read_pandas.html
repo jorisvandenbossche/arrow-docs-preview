@@ -1,0 +1,417 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pyarrow.parquet.read_pandas &#8212; Apache Arrow v3.0.0.dev94+g959e8c558.d20201103</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c78d4f2b1f8277c2fa0830b4506d5cfe.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.8636327e669f6dcffc22.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pyarrow.parquet.read_schema" href="pyarrow.parquet.read_schema.html" />
+    <link rel="prev" title="pyarrow.parquet.read_metadata" href="pyarrow.parquet.read_metadata.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    <a class="navbar-brand" href="../../index.html">
+    
+      <img src="../../_static/arrow.png" class="logo" alt="logo" />
+    
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../spec.html">Specifications and Protocols</a>
+        </li>
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="../../libraries.html">Libraries</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../developers.html">Development</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+    <div class="bd-toc-item active">
+    
+  
+    <ul class="nav bd-sidenav">
+        
+        
+        
+        
+          
+            
+                <li class="">
+                    <a href="../../status.html">Implementation Status</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/c_glib/">C/GLib</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../../cpp/index.html">C++</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../../java/index.html">Java</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/js/">JavaScript</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+                </li>
+            
+          
+            
+  
+                <li class="active">
+                    <a href="../index.html">Python</a>
+                    <ul>
+                    
+                        <li class="">
+                            <a href="../install.html">Installing PyArrow</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../memory.html">Memory and IO Interfaces</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../data.html">Data Types and In-Memory Data Model</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../compute.html">Compute Functions</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../ipc.html">Streaming, Serialization, and IPC</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../filesystems.html">Filesystem Interface</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../filesystems_deprecated.html">Filesystem Interface (legacy)</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../plasma.html">The Plasma In-Memory Object Store</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../numpy.html">NumPy Integration</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../pandas.html">Pandas Integration</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../timestamps.html">Timestamps</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../csv.html">Reading CSV files</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../feather.html">Feather File Format</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../json.html">Reading JSON files</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../parquet.html">Reading and Writing the Apache Parquet Format</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../dataset.html">Tabular Datasets</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../cuda.html">CUDA Integration</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../extending_types.html">Extending pyarrow</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../extending.html">Using pyarrow from C++ and Cython Code</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="../api.html">API Reference</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../getting_involved.html">Getting Involved</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../benchmarks.html">Benchmarks</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/r/">R</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://docs.rs/crate/arrow/">Rust</a>
+                </li>
+            
+          
+        
+        
+        
+        
+      </ul>
+  
+  </nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="pyarrow-parquet-read-pandas">
+<h1>pyarrow.parquet.read_pandas<a class="headerlink" href="#pyarrow-parquet-read-pandas" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="pyarrow.parquet.read_pandas">
+<code class="sig-prename descclassname">pyarrow.parquet.</code><code class="sig-name descname">read_pandas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">source</span></em>, <em class="sig-param"><span class="n">columns</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">use_threads</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">memory_map</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">metadata</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">filters</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">buffer_size</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">use_legacy_dataset</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">ignore_prefixes</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyarrow/parquet.html#read_pandas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyarrow.parquet.read_pandas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a Table from Parquet format, also reading DataFrame
+index values if known in the file metadata</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<em>str</em><em>, </em><a class="reference internal" href="pyarrow.NativeFile.html#pyarrow.NativeFile" title="pyarrow.NativeFile"><em>pyarrow.NativeFile</em></a><em>, or </em><em>file-like object</em>) – If a string passed, can be a single file name or directory name. For
+file-like objects, only read a single file. Use pyarrow.BufferReader to
+read a file contained in a bytes or buffer-like object.</p></li>
+<li><p><strong>columns</strong> (<em>list</em>) – If not None, only these columns will be read from the file. A column
+name may be a prefix of a nested field, e.g. ‘a’ will select ‘a.b’,
+‘a.c’, and ‘a.d.e’.</p></li>
+<li><p><strong>use_threads</strong> (<em>bool</em><em>, </em><em>default True</em>) – Perform multi-threaded column reads.</p></li>
+<li><p><strong>metadata</strong> (<em>FileMetaData</em>) – If separately computed</p></li>
+<li><p><strong>read_dictionary</strong> (<em>list</em><em>, </em><em>default None</em>) – List of names or column paths (for nested types) to read directly
+as DictionaryArray. Only supported for BYTE_ARRAY storage. To read
+a flat column as dictionary-encoded pass the column name. For
+nested types, you must pass the full column “path”, which could be
+something like level1.level2.list.item. Refer to the Parquet
+file’s schema to obtain the paths.</p></li>
+<li><p><strong>memory_map</strong> (<em>bool</em><em>, </em><em>default False</em>) – If the source is a file path, use a memory map to read file, which can
+improve performance in some environments.</p></li>
+<li><p><strong>buffer_size</strong> (<em>int</em><em>, </em><em>default 0</em>) – If positive, perform read buffering when deserializing individual
+column chunks. Otherwise IO calls are unbuffered.</p></li>
+<li><p><strong>partitioning</strong> (<a class="reference internal" href="pyarrow.dataset.Partitioning.html#pyarrow.dataset.Partitioning" title="pyarrow.dataset.Partitioning"><em>Partitioning</em></a><em> or </em><em>str</em><em> or </em><em>list of str</em><em>, </em><em>default &quot;hive&quot;</em>) – The partitioning scheme for a partitioned dataset. The default of “hive”
+assumes directory names with key=value pairs like “/year=2009/month=11”.
+In addition, a scheme like “/2009/11” is also supported, in which case
+you need to specify the field names or a full schema. See the
+<code class="docutils literal notranslate"><span class="pre">pyarrow.dataset.partitioning()</span></code> function for more details.</p></li>
+<li><p><strong>use_legacy_dataset</strong> (<em>bool</em><em>, </em><em>default False</em>) – By default, <cite>read_table</cite> uses the new Arrow Datasets API since
+pyarrow 1.0.0. Among other things, this allows to pass <cite>filters</cite>
+for all columns and not only the partition keys, enables
+different partitioning schemes, etc.
+Set to True to use the legacy behaviour.</p></li>
+<li><p><strong>ignore_prefixes</strong> (<em>list</em><em>, </em><em>optional</em>) – Files matching any of these prefixes will be ignored by the
+discovery process if use_legacy_dataset=False.
+This is matched to the basename of a path.
+By default this is [‘.’, ‘_’].
+Note that discovery happens only if a directory is passed as source.</p></li>
+<li><p><strong>filesystem</strong> (<a class="reference internal" href="pyarrow.fs.FileSystem.html#pyarrow.fs.FileSystem" title="pyarrow.fs.FileSystem"><em>FileSystem</em></a><em>, </em><em>default None</em>) – If nothing passed, paths assumed to be found in the local on-disk
+filesystem.</p></li>
+<li><p><strong>filters</strong> (<em>List</em><em>[</em><em>Tuple</em><em>] or </em><em>List</em><em>[</em><em>List</em><em>[</em><em>Tuple</em><em>]</em><em>] or </em><em>None</em><em> (</em><em>default</em><em>)</em>) – <p>Rows which do not match the filter predicate will be removed from scanned
+data. Partition keys embedded in a nested directory structure will be
+exploited to avoid loading files at all if they contain no matching rows.
+If <cite>use_legacy_dataset</cite> is True, filters can only reference partition
+keys and only a hive-style directory structure is supported. When
+setting <cite>use_legacy_dataset</cite> to False, also within-file level filtering
+and different partitioning schemes are supported.</p>
+<p>Predicates are expressed in disjunctive normal form (DNF), like
+<code class="docutils literal notranslate"><span class="pre">[[('x',</span> <span class="pre">'=',</span> <span class="pre">0),</span> <span class="pre">...],</span> <span class="pre">...]</span></code>. DNF allows arbitrary boolean logical
+combinations of single column predicates. The innermost tuples each
+describe a single column predicate. The list of inner predicates is
+interpreted as a conjunction (AND), forming a more selective and
+multiple column predicate. Finally, the most outer list combines these
+filters as a disjunction (OR).</p>
+<p>Predicates may also be passed as List[Tuple]. This form is interpreted
+as a single conjunction. To express OR in predicates, one must
+use the (preferred) List[List[Tuple]] notation.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>pyarrow.Table</em> – Content of the file as a Table of Columns, including DataFrame
+indexes as columns</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="pyarrow.parquet.read_metadata.html" title="previous page">pyarrow.parquet.read_metadata</a>
+    <a class='right-next' id="next-link" href="pyarrow.parquet.read_schema.html" title="next page">pyarrow.parquet.read_schema</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.8636327e669f6dcffc22.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>

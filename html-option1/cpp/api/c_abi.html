@@ -1,0 +1,537 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C Interfaces &#8212; Apache Arrow v3.0.0.dev94+g959e8c558.d20201103</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c78d4f2b1f8277c2fa0830b4506d5cfe.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.8636327e669f6dcffc22.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Compute Functions" href="compute.html" />
+    <link rel="prev" title="Two-dimensional Datasets" href="table.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    <a class="navbar-brand" href="../../index.html">
+    
+      <img src="../../_static/arrow.png" class="logo" alt="logo" />
+    
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../spec.html">Specifications and Protocols</a>
+        </li>
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="../../libraries.html">Libraries</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../../developers.html">Development</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+    <div class="bd-toc-item active">
+    
+  
+    <ul class="nav bd-sidenav">
+        
+        
+        
+        
+          
+            
+                <li class="">
+                    <a href="../../status.html">Implementation Status</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/c_glib/">C/GLib</a>
+                </li>
+            
+          
+            
+  
+                <li class="active">
+                    <a href="../index.html">C++</a>
+                    <ul>
+                    
+                        <li class="">
+                            <a href="../getting_started.html">User Guide</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="../examples/index.html">Examples</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="../api.html">API Reference</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../../java/index.html">Java</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/js/">JavaScript</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../../python/index.html">Python</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/r/">R</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://docs.rs/crate/arrow/">Rust</a>
+                </li>
+            
+          
+        
+        
+        
+        
+      </ul>
+  
+  </nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#abi-structures" class="nav-link">ABI Structures</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#c-data-interface" class="nav-link">C Data Interface</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#c-stream-interface" class="nav-link">C Stream Interface</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="c-interfaces">
+<h1>C Interfaces<a class="headerlink" href="#c-interfaces" title="Permalink to this headline">¶</a></h1>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="reference internal" href="../../format/CDataInterface.html#c-data-interface"><span class="std std-ref">C data interface</span></a> and
+<a class="reference internal" href="../../format/CStreamInterface.html#c-stream-interface"><span class="std std-ref">C stream interface</span></a> specifications.</p>
+</div>
+<div class="section" id="abi-structures">
+<h2>ABI Structures<a class="headerlink" href="#abi-structures" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp struct">
+<dt id="_CPPv411ArrowSchema">
+<span id="_CPPv311ArrowSchema"></span><span id="_CPPv211ArrowSchema"></span><span id="ArrowSchema"></span><span class="target" id="struct_arrow_schema"></span><em class="property">struct </em><code class="sig-name descname">ArrowSchema</code><a class="headerlink" href="#_CPPv411ArrowSchema" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv410ArrowArray">
+<span id="_CPPv310ArrowArray"></span><span id="_CPPv210ArrowArray"></span><span id="ArrowArray"></span><span class="target" id="struct_arrow_array"></span><em class="property">struct </em><code class="sig-name descname">ArrowArray</code><a class="headerlink" href="#_CPPv410ArrowArray" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv416ArrowArrayStream">
+<span id="_CPPv316ArrowArrayStream"></span><span id="_CPPv216ArrowArrayStream"></span><span id="ArrowArrayStream"></span><span class="target" id="struct_arrow_array_stream"></span><em class="property">struct </em><code class="sig-name descname">ArrowArrayStream</code><a class="headerlink" href="#_CPPv416ArrowArrayStream" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="c-data-interface">
+<h2>C Data Interface<a class="headerlink" href="#c-data-interface" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp function">
+<dt id="_CPPv410ExportTypeRK8DataTypeP11ArrowSchema">
+<span id="_CPPv310ExportTypeRK8DataTypeP11ArrowSchema"></span><span id="_CPPv210ExportTypeRK8DataTypeP11ArrowSchema"></span><span id="ExportType__DataTypeCR.ArrowSchemaP"></span><span class="target" id="group__c-data-interface_1ga7da90da6bbc1e4274c5ab69ef548c5cc"></span>Status <code class="sig-name descname">ExportType</code><span class="sig-paren">(</span><em class="property">const</em> DataType &amp;<em>type</em>, <em class="property">struct</em> <a class="reference internal" href="#_CPPv411ArrowSchema" title="ArrowSchema">ArrowSchema</a> *<em>out</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410ExportTypeRK8DataTypeP11ArrowSchema" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Export C++ <a class="reference internal" href="datatype.html#classarrow_1_1_data_type"><span class="std std-ref">DataType</span></a> using the C data interface format. </p>
+<p>The root type is considered to have empty name and metadata. If you want the root type to have a name and/or metadata, pass a <a class="reference internal" href="datatype.html#classarrow_1_1_field"><span class="std std-ref">Field</span></a> instead.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">type</span></code>: <a class="reference internal" href="datatype.html#classarrow_1_1_data_type"><span class="std std-ref">DataType</span></a> object to export </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">out</span></code>: C struct where to export the datatype </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411ExportFieldRK5FieldP11ArrowSchema">
+<span id="_CPPv311ExportFieldRK5FieldP11ArrowSchema"></span><span id="_CPPv211ExportFieldRK5FieldP11ArrowSchema"></span><span id="ExportField__FieldCR.ArrowSchemaP"></span><span class="target" id="group__c-data-interface_1ga59a445f143c92c1b6c2ccd1bbac0dd38"></span>Status <code class="sig-name descname">ExportField</code><span class="sig-paren">(</span><em class="property">const</em> Field &amp;<em>field</em>, <em class="property">struct</em> <a class="reference internal" href="#_CPPv411ArrowSchema" title="ArrowSchema">ArrowSchema</a> *<em>out</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411ExportFieldRK5FieldP11ArrowSchema" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Export C++ <a class="reference internal" href="datatype.html#classarrow_1_1_field"><span class="std std-ref">Field</span></a> using the C data interface format. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">field</span></code>: <a class="reference internal" href="datatype.html#classarrow_1_1_field"><span class="std std-ref">Field</span></a> object to export </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">out</span></code>: C struct where to export the field </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv412ExportSchemaRK6SchemaP11ArrowSchema">
+<span id="_CPPv312ExportSchemaRK6SchemaP11ArrowSchema"></span><span id="_CPPv212ExportSchemaRK6SchemaP11ArrowSchema"></span><span id="ExportSchema__SchemaCR.ArrowSchemaP"></span><span class="target" id="group__c-data-interface_1gaf3170f491c928ed457de8b950cb751cc"></span>Status <code class="sig-name descname">ExportSchema</code><span class="sig-paren">(</span><em class="property">const</em> Schema &amp;<em>schema</em>, <em class="property">struct</em> <a class="reference internal" href="#_CPPv411ArrowSchema" title="ArrowSchema">ArrowSchema</a> *<em>out</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412ExportSchemaRK6SchemaP11ArrowSchema" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Export C++ <a class="reference internal" href="datatype.html#classarrow_1_1_schema"><span class="std std-ref">Schema</span></a> using the C data interface format. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">schema</span></code>: <a class="reference internal" href="datatype.html#classarrow_1_1_schema"><span class="std std-ref">Schema</span></a> object to export </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">out</span></code>: C struct where to export the field </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411ExportArrayRK5ArrayP10ArrowArrayP11ArrowSchema">
+<span id="_CPPv311ExportArrayRK5ArrayP10ArrowArrayP11ArrowSchema"></span><span id="_CPPv211ExportArrayRK5ArrayP10ArrowArrayP11ArrowSchema"></span><span id="ExportArray__ArrayCR.ArrowArrayP.ArrowSchemaP"></span><span class="target" id="group__c-data-interface_1ga39affd3a4b79ea656cfbdce075e1980d"></span>Status <code class="sig-name descname">ExportArray</code><span class="sig-paren">(</span><em class="property">const</em> Array &amp;<em>array</em>, <em class="property">struct</em> <a class="reference internal" href="#_CPPv410ArrowArray" title="ArrowArray">ArrowArray</a> *<em>out</em>, <em class="property">struct</em> <a class="reference internal" href="#_CPPv411ArrowSchema" title="ArrowSchema">ArrowSchema</a> *<em>out_schema</em> = NULLPTR<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411ExportArrayRK5ArrayP10ArrowArrayP11ArrowSchema" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Export C++ <a class="reference internal" href="array.html#classarrow_1_1_array"><span class="std std-ref">Array</span></a> using the C data interface format. </p>
+<p>The resulting <a class="reference internal" href="#struct_arrow_array"><span class="std std-ref">ArrowArray</span></a> struct keeps the array data and buffers alive until its release callback is called by the consumer.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">array</span></code>: <a class="reference internal" href="array.html#classarrow_1_1_array"><span class="std std-ref">Array</span></a> object to export </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">out</span></code>: C struct where to export the array </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">out_schema</span></code>: optional C struct where to export the array type </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417ExportRecordBatchRK11RecordBatchP10ArrowArrayP11ArrowSchema">
+<span id="_CPPv317ExportRecordBatchRK11RecordBatchP10ArrowArrayP11ArrowSchema"></span><span id="_CPPv217ExportRecordBatchRK11RecordBatchP10ArrowArrayP11ArrowSchema"></span><span id="ExportRecordBatch__RecordBatchCR.ArrowArrayP.ArrowSchemaP"></span><span class="target" id="group__c-data-interface_1ga4975ac879aa6563af28fbdaea6809d90"></span>Status <code class="sig-name descname">ExportRecordBatch</code><span class="sig-paren">(</span><em class="property">const</em> RecordBatch &amp;<em>batch</em>, <em class="property">struct</em> <a class="reference internal" href="#_CPPv410ArrowArray" title="ArrowArray">ArrowArray</a> *<em>out</em>, <em class="property">struct</em> <a class="reference internal" href="#_CPPv411ArrowSchema" title="ArrowSchema">ArrowSchema</a> *<em>out_schema</em> = NULLPTR<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417ExportRecordBatchRK11RecordBatchP10ArrowArrayP11ArrowSchema" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Export C++ <a class="reference internal" href="table.html#classarrow_1_1_record_batch"><span class="std std-ref">RecordBatch</span></a> using the C data interface format. </p>
+<p>The record batch is exported as if it were a struct array. The resulting <a class="reference internal" href="#struct_arrow_array"><span class="std std-ref">ArrowArray</span></a> struct keeps the record batch data and buffers alive until its release callback is called by the consumer.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">batch</span></code>: Record batch to export </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">out</span></code>: C struct where to export the record batch </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">out_schema</span></code>: optional C struct where to export the record batch schema </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv410ImportTypeP11ArrowSchema">
+<span id="_CPPv310ImportTypeP11ArrowSchema"></span><span id="_CPPv210ImportTypeP11ArrowSchema"></span><span id="ImportType__ArrowSchemaP"></span><span class="target" id="group__c-data-interface_1ga93879eda95b4d068637bf9aa3cd4acea"></span>Result&lt;std::shared_ptr&lt;DataType&gt;&gt; <code class="sig-name descname">ImportType</code><span class="sig-paren">(</span><em class="property">struct</em> <a class="reference internal" href="#_CPPv411ArrowSchema" title="ArrowSchema">ArrowSchema</a> *<em>schema</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410ImportTypeP11ArrowSchema" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Import C++ <a class="reference internal" href="datatype.html#classarrow_1_1_data_type"><span class="std std-ref">DataType</span></a> from the C data interface. </p>
+<p>The given <a class="reference internal" href="#struct_arrow_schema"><span class="std std-ref">ArrowSchema</span></a> struct is released (as per the C data interface specification), even if this function fails.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Imported type object </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">schema</span></code>: C data interface struct representing the data type </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411ImportFieldP11ArrowSchema">
+<span id="_CPPv311ImportFieldP11ArrowSchema"></span><span id="_CPPv211ImportFieldP11ArrowSchema"></span><span id="ImportField__ArrowSchemaP"></span><span class="target" id="group__c-data-interface_1ga4aacb5719ecca8b93ddff5dcc0dc3891"></span>Result&lt;std::shared_ptr&lt;Field&gt;&gt; <code class="sig-name descname">ImportField</code><span class="sig-paren">(</span><em class="property">struct</em> <a class="reference internal" href="#_CPPv411ArrowSchema" title="ArrowSchema">ArrowSchema</a> *<em>schema</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411ImportFieldP11ArrowSchema" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Import C++ <a class="reference internal" href="datatype.html#classarrow_1_1_field"><span class="std std-ref">Field</span></a> from the C data interface. </p>
+<p>The given <a class="reference internal" href="#struct_arrow_schema"><span class="std std-ref">ArrowSchema</span></a> struct is released (as per the C data interface specification), even if this function fails.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Imported field object </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">schema</span></code>: C data interface struct representing the field </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv412ImportSchemaP11ArrowSchema">
+<span id="_CPPv312ImportSchemaP11ArrowSchema"></span><span id="_CPPv212ImportSchemaP11ArrowSchema"></span><span id="ImportSchema__ArrowSchemaP"></span><span class="target" id="group__c-data-interface_1gac24528129a0426eb3f26ed1e15880616"></span>Result&lt;std::shared_ptr&lt;Schema&gt;&gt; <code class="sig-name descname">ImportSchema</code><span class="sig-paren">(</span><em class="property">struct</em> <a class="reference internal" href="#_CPPv411ArrowSchema" title="ArrowSchema">ArrowSchema</a> *<em>schema</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412ImportSchemaP11ArrowSchema" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Import C++ <a class="reference internal" href="datatype.html#classarrow_1_1_schema"><span class="std std-ref">Schema</span></a> from the C data interface. </p>
+<p>The given <a class="reference internal" href="#struct_arrow_schema"><span class="std std-ref">ArrowSchema</span></a> struct is released (as per the C data interface specification), even if this function fails.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Imported field object </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">schema</span></code>: C data interface struct representing the field </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411ImportArrayP10ArrowArrayNSt10shared_ptrI8DataTypeEE">
+<span id="_CPPv311ImportArrayP10ArrowArrayNSt10shared_ptrI8DataTypeEE"></span><span id="_CPPv211ImportArrayP10ArrowArrayNSt10shared_ptrI8DataTypeEE"></span><span id="ImportArray__ArrowArrayP.std::shared_ptr:DataType:"></span><span class="target" id="group__c-data-interface_1ga9933efa71a537134c5d829861537fd0e"></span>Result&lt;std::shared_ptr&lt;Array&gt;&gt; <code class="sig-name descname">ImportArray</code><span class="sig-paren">(</span><em class="property">struct</em> <a class="reference internal" href="#_CPPv410ArrowArray" title="ArrowArray">ArrowArray</a> *<em>array</em>, std::shared_ptr&lt;DataType&gt; <em>type</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411ImportArrayP10ArrowArrayNSt10shared_ptrI8DataTypeEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Import C++ array from the C data interface. </p>
+<p>The <a class="reference internal" href="#struct_arrow_array"><span class="std std-ref">ArrowArray</span></a> struct has its contents moved (as per the C data interface specification) to a private object held alive by the resulting array.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Imported array object </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">array</span></code>: C data interface struct holding the array data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">type</span></code>: type of the imported array </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411ImportArrayP10ArrowArrayP11ArrowSchema">
+<span id="_CPPv311ImportArrayP10ArrowArrayP11ArrowSchema"></span><span id="_CPPv211ImportArrayP10ArrowArrayP11ArrowSchema"></span><span id="ImportArray__ArrowArrayP.ArrowSchemaP"></span><span class="target" id="group__c-data-interface_1gaccb0b54d5d9aad0bf4e7881a5e9c8e0b"></span>Result&lt;std::shared_ptr&lt;Array&gt;&gt; <code class="sig-name descname">ImportArray</code><span class="sig-paren">(</span><em class="property">struct</em> <a class="reference internal" href="#_CPPv410ArrowArray" title="ArrowArray">ArrowArray</a> *<em>array</em>, <em class="property">struct</em> <a class="reference internal" href="#_CPPv411ArrowSchema" title="ArrowSchema">ArrowSchema</a> *<em>type</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411ImportArrayP10ArrowArrayP11ArrowSchema" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Import C++ array and its type from the C data interface. </p>
+<p>The <a class="reference internal" href="#struct_arrow_array"><span class="std std-ref">ArrowArray</span></a> struct has its contents moved (as per the C data interface specification) to a private object held alive by the resulting array. The <a class="reference internal" href="#struct_arrow_schema"><span class="std std-ref">ArrowSchema</span></a> struct is released, even if this function fails.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Imported array object </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">array</span></code>: C data interface struct holding the array data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">type</span></code>: C data interface struct holding the array type </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417ImportRecordBatchP10ArrowArrayNSt10shared_ptrI6SchemaEE">
+<span id="_CPPv317ImportRecordBatchP10ArrowArrayNSt10shared_ptrI6SchemaEE"></span><span id="_CPPv217ImportRecordBatchP10ArrowArrayNSt10shared_ptrI6SchemaEE"></span><span id="ImportRecordBatch__ArrowArrayP.std::shared_ptr:Schema:"></span><span class="target" id="group__c-data-interface_1ga62dd7e4fbb15ed2d07fb8640412e74ff"></span>Result&lt;std::shared_ptr&lt;RecordBatch&gt;&gt; <code class="sig-name descname">ImportRecordBatch</code><span class="sig-paren">(</span><em class="property">struct</em> <a class="reference internal" href="#_CPPv410ArrowArray" title="ArrowArray">ArrowArray</a> *<em>array</em>, std::shared_ptr&lt;Schema&gt; <em>schema</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417ImportRecordBatchP10ArrowArrayNSt10shared_ptrI6SchemaEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Import C++ record batch from the C data interface. </p>
+<p>The <a class="reference internal" href="#struct_arrow_array"><span class="std std-ref">ArrowArray</span></a> struct has its contents moved (as per the C data interface specification) to a private object held alive by the resulting record batch.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Imported record batch object </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">array</span></code>: C data interface struct holding the record batch data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">schema</span></code>: schema of the imported record batch </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417ImportRecordBatchP10ArrowArrayP11ArrowSchema">
+<span id="_CPPv317ImportRecordBatchP10ArrowArrayP11ArrowSchema"></span><span id="_CPPv217ImportRecordBatchP10ArrowArrayP11ArrowSchema"></span><span id="ImportRecordBatch__ArrowArrayP.ArrowSchemaP"></span><span class="target" id="group__c-data-interface_1ga4b9c523c08a0551164440c3995b74fa4"></span>Result&lt;std::shared_ptr&lt;RecordBatch&gt;&gt; <code class="sig-name descname">ImportRecordBatch</code><span class="sig-paren">(</span><em class="property">struct</em> <a class="reference internal" href="#_CPPv410ArrowArray" title="ArrowArray">ArrowArray</a> *<em>array</em>, <em class="property">struct</em> <a class="reference internal" href="#_CPPv411ArrowSchema" title="ArrowSchema">ArrowSchema</a> *<em>schema</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417ImportRecordBatchP10ArrowArrayP11ArrowSchema" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Import C++ record batch and its schema from the C data interface. </p>
+<p>The type represented by the <a class="reference internal" href="#struct_arrow_schema"><span class="std std-ref">ArrowSchema</span></a> struct must be a struct type array. The <a class="reference internal" href="#struct_arrow_array"><span class="std std-ref">ArrowArray</span></a> struct has its contents moved (as per the C data interface specification) to a private object held alive by the resulting record batch. The <a class="reference internal" href="#struct_arrow_schema"><span class="std std-ref">ArrowSchema</span></a> struct is released, even if this function fails.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Imported record batch object </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">array</span></code>: C data interface struct holding the record batch data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">schema</span></code>: C data interface struct holding the record batch schema </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="section" id="c-stream-interface">
+<h2>C Stream Interface<a class="headerlink" href="#c-stream-interface" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp function">
+<dt id="_CPPv423ExportRecordBatchReaderNSt10shared_ptrI17RecordBatchReaderEEP16ArrowArrayStream">
+<span id="_CPPv323ExportRecordBatchReaderNSt10shared_ptrI17RecordBatchReaderEEP16ArrowArrayStream"></span><span id="_CPPv223ExportRecordBatchReaderNSt10shared_ptrI17RecordBatchReaderEEP16ArrowArrayStream"></span><span id="ExportRecordBatchReader__std::shared_ptr:RecordBatchReader:.ArrowArrayStreamP"></span><span class="target" id="group__c-stream-interface_1gaab98b9b0f2b4f8449a71be23cbd31676"></span>Status <code class="sig-name descname">ExportRecordBatchReader</code><span class="sig-paren">(</span>std::shared_ptr&lt;RecordBatchReader&gt; <em>reader</em>, <em class="property">struct</em> <a class="reference internal" href="#_CPPv416ArrowArrayStream" title="ArrowArrayStream">ArrowArrayStream</a> *<em>out</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423ExportRecordBatchReaderNSt10shared_ptrI17RecordBatchReaderEEP16ArrowArrayStream" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EXPERIMENTAL: Export C++ <a class="reference internal" href="table.html#classarrow_1_1_record_batch_reader"><span class="std std-ref">RecordBatchReader</span></a> using the C stream interface. </p>
+<p>The resulting <a class="reference internal" href="#struct_arrow_array_stream"><span class="std std-ref">ArrowArrayStream</span></a> struct keeps the record batch reader alive until its release callback is called by the consumer.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[in]</span> <span class="pre">reader</span></code>: <a class="reference internal" href="table.html#classarrow_1_1_record_batch_reader"><span class="std std-ref">RecordBatchReader</span></a> object to export </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[out]</span> <span class="pre">out</span></code>: C struct where to export the stream </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423ImportRecordBatchReaderP16ArrowArrayStream">
+<span id="_CPPv323ImportRecordBatchReaderP16ArrowArrayStream"></span><span id="_CPPv223ImportRecordBatchReaderP16ArrowArrayStream"></span><span id="ImportRecordBatchReader__ArrowArrayStreamP"></span><span class="target" id="group__c-stream-interface_1ga587787e82333e783dd9304bd040a6e2d"></span>Result&lt;std::shared_ptr&lt;RecordBatchReader&gt;&gt; <code class="sig-name descname">ImportRecordBatchReader</code><span class="sig-paren">(</span><em class="property">struct</em> <a class="reference internal" href="#_CPPv416ArrowArrayStream" title="ArrowArrayStream">ArrowArrayStream</a> *<em>stream</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423ImportRecordBatchReaderP16ArrowArrayStream" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EXPERIMENTAL: Import C++ <a class="reference internal" href="table.html#classarrow_1_1_record_batch_reader"><span class="std std-ref">RecordBatchReader</span></a> from the C stream interface. </p>
+<p>The <a class="reference internal" href="#struct_arrow_array_stream"><span class="std std-ref">ArrowArrayStream</span></a> struct has its contents moved to a private object held alive by the resulting record batch reader.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Imported <a class="reference internal" href="table.html#classarrow_1_1_record_batch_reader"><span class="std std-ref">RecordBatchReader</span></a> object </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[inout]</span> <span class="pre">stream</span></code>: C stream interface struct </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="table.html" title="previous page">Two-dimensional Datasets</a>
+    <a class='right-next' id="next-link" href="compute.html" title="next page">Compute Functions</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.8636327e669f6dcffc22.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>

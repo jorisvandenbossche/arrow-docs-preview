@@ -1,0 +1,273 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other Data Structures &#8212; Apache Arrow v3.0.0.dev94+g959e8c558.d20201103</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c78d4f2b1f8277c2fa0830b4506d5cfe.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.8636327e669f6dcffc22.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Libraries" href="../libraries.html" />
+    <link rel="prev" title="The Arrow C stream interface" href="CStreamInterface.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    <a class="navbar-brand" href="../index.html">
+    
+      <img src="../_static/arrow.png" class="logo" alt="logo" />
+    
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="../spec.html">Specifications and Protocols</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../libraries.html">Libraries</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../developers.html">Development</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+    <div class="bd-toc-item active">
+    
+  
+    <ul class="nav bd-sidenav">
+        
+        
+          
+            
+                <li class="">
+                    <a href="Versioning.html">Format Versioning and Stability</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="Columnar.html">Arrow Columnar Format</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="Flight.html">Arrow Flight RPC</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="Integration.html">Integration Testing</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="CDataInterface.html">The Arrow C data interface</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="CStreamInterface.html">The Arrow C stream interface</a>
+                </li>
+            
+          
+            
+                <li class="active">
+                    <a href="">Other Data Structures</a>
+                </li>
+            
+          
+        
+        
+        
+        
+        
+        
+      </ul>
+  
+  </nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#tensor-multi-dimensional-array" class="nav-link">Tensor (Multi-dimensional Array)</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#sparse-tensor" class="nav-link">Sparse Tensor</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="other-data-structures">
+<h1>Other Data Structures<a class="headerlink" href="#other-data-structures" title="Permalink to this headline">¶</a></h1>
+<p>Our Flatbuffers protocol files have metadata for some other data
+structures defined to allow other kinds of applications to take
+advantage of common interprocess communication machinery. These data
+structures are not considered to be part of the columnar format.</p>
+<p>An Arrow columnar implementation is not required to implement these
+types.</p>
+<div class="section" id="tensor-multi-dimensional-array">
+<h2>Tensor (Multi-dimensional Array)<a class="headerlink" href="#tensor-multi-dimensional-array" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Tensor</span></code> message types provides a way to write a
+multidimensional array of fixed-size values (such as a NumPy ndarray).</p>
+<p>When writing a standalone encapsulated tensor message, we use the
+encapsulated IPC format defined in the <a class="reference internal" href="Columnar.html#format-columnar"><span class="std std-ref">Columnar Specification</span></a>, but additionally align the starting offset of the
+tensor body to be a multiple of 64 bytes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">metadata</span> <span class="n">prefix</span> <span class="ow">and</span> <span class="n">metadata</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">PADDING</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">tensor</span> <span class="n">body</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sparse-tensor">
+<h2>Sparse Tensor<a class="headerlink" href="#sparse-tensor" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">SparseTensor</span></code> represents a multidimensional array whose elements
+are generally almost all zeros.</p>
+<p>When writing a standalone encapsulated sparse tensor message, we use
+the encapsulated IPC format defined in the <a class="reference internal" href="Columnar.html#format-columnar"><span class="std std-ref">Columnar Specification</span></a>, but additionally align the starting offsets of the
+sparse index and the sparse tensor body (if writing to a shared memory
+region) to be multiples of 64 bytes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">metadata</span> <span class="n">prefix</span> <span class="ow">and</span> <span class="n">metadata</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">PADDING</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">sparse</span> <span class="n">index</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">PADDING</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">sparse</span> <span class="n">tensor</span> <span class="n">body</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The contents of the sparse tensor index depends on what kind of sparse
+format is used.</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="CStreamInterface.html" title="previous page">The Arrow C stream interface</a>
+    <a class='right-next' id="next-link" href="../libraries.html" title="next page">Libraries</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.8636327e669f6dcffc22.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>

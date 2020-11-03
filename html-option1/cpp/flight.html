@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Flight RPC &#8212; Apache Arrow v3.0.0.dev94+g959e8c558.d20201103</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c78d4f2b1f8277c2fa0830b4506d5cfe.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.8636327e669f6dcffc22.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Examples" href="examples/index.html" />
+    <link rel="prev" title="Reading JSON files" href="json.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+    <a class="navbar-brand" href="../index.html">
+    
+      <img src="../_static/arrow.png" class="logo" alt="logo" />
+    
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../spec.html">Specifications and Protocols</a>
+        </li>
+        
+        <li class="nav-item active">
+            <a class="nav-link" href="../libraries.html">Libraries</a>
+        </li>
+        
+        <li class="nav-item ">
+            <a class="nav-link" href="../developers.html">Development</a>
+        </li>
+        
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+
+    <div class="bd-toc-item active">
+    
+  
+    <ul class="nav bd-sidenav">
+        
+        
+        
+        
+          
+            
+                <li class="">
+                    <a href="../status.html">Implementation Status</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/c_glib/">C/GLib</a>
+                </li>
+            
+          
+            
+  
+                <li class="active">
+                    <a href="index.html">C++</a>
+                    <ul>
+                    
+                        <li class="active">
+                            <a href="getting_started.html">User Guide</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="examples/index.html">Examples</a>
+                        </li>
+                    
+                        <li class="">
+                            <a href="api.html">API Reference</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../java/index.html">Java</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/js/">JavaScript</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="../python/index.html">Python</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://arrow.apache.org/docs/r/">R</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+                </li>
+            
+          
+            
+                <li class="">
+                    <a href="https://docs.rs/crate/arrow/">Rust</a>
+                </li>
+            
+          
+        
+        
+        
+        
+      </ul>
+  
+  </nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#writing-a-flight-service" class="nav-link">Writing a Flight Service</a><ul class="nav section-nav flex-column">
+                
+        <li class="nav-item toc-entry toc-h3">
+            <a href="#enabling-tls-and-authentication" class="nav-link">Enabling TLS and Authentication</a>
+        </li>
+    
+            </ul>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#using-the-flight-client" class="nav-link">Using the Flight Client</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="arrow-flight-rpc">
+<h1>Arrow Flight RPC<a class="headerlink" href="#arrow-flight-rpc" title="Permalink to this headline">¶</a></h1>
+<p>Arrow Flight is an RPC framework for efficient transfer of Flight data
+over the network. See <a class="reference internal" href="../format/Flight.html"><span class="doc">Arrow Flight RPC</span></a> for full details on
+the protocol, or <a class="reference internal" href="api/flight.html"><span class="doc">Arrow Flight RPC</span></a> for API docs.</p>
+<div class="section" id="writing-a-flight-service">
+<h2>Writing a Flight Service<a class="headerlink" href="#writing-a-flight-service" title="Permalink to this headline">¶</a></h2>
+<p>Servers are subclasses of <a class="reference internal" href="api/flight.html#_CPPv4N5arrow6flight16FlightServerBaseE" title="arrow::flight::FlightServerBase"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">arrow::flight::FlightServerBase</span></code></a>. To
+implement individual RPCs, override the RPC methods on this class.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyFlightServer</span> <span class="o">:</span> <span class="k">public</span> <span class="n">FlightServerBase</span> <span class="p">{</span>
+  <span class="n">Status</span> <span class="n">ListFlights</span><span class="p">(</span><span class="k">const</span> <span class="n">ServerCallContext</span><span class="o">&amp;</span> <span class="n">context</span><span class="p">,</span> <span class="k">const</span> <span class="n">Criteria</span><span class="o">*</span> <span class="n">criteria</span><span class="p">,</span>
+                     <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">FlightListing</span><span class="o">&gt;*</span> <span class="n">listings</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">FlightInfo</span><span class="o">&gt;</span> <span class="n">flights</span> <span class="o">=</span> <span class="p">...;</span>
+    <span class="o">*</span><span class="n">listings</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">FlightListing</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="n">SimpleFlightListing</span><span class="p">(</span><span class="n">flights</span><span class="p">));</span>
+    <span class="k">return</span> <span class="n">Status</span><span class="o">::</span><span class="n">OK</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Each RPC method always takes a
+<a class="reference internal" href="api/flight.html#_CPPv4N5arrow6flight17ServerCallContextE" title="arrow::flight::ServerCallContext"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">arrow::flight::ServerCallContext</span></code></a> for common parameters and
+returns a <a class="reference internal" href="api/support.html#_CPPv4N5arrow6StatusE" title="arrow::Status"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">arrow::Status</span></code></a> to indicate success or
+failure. Flight-specific error codes can be returned via
+<code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">arrow::flight::MakeFlightError()</span></code>.</p>
+<p>RPC methods that return a value in addition to a status will use an
+out parameter, as shown above. Often, there are helper classes
+providing basic implementations of these out parameters. For instance,
+above, <a class="reference internal" href="api/flight.html#_CPPv4N5arrow6flight19SimpleFlightListingE" title="arrow::flight::SimpleFlightListing"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">arrow::flight::SimpleFlightListing</span></code></a> uses a vector of
+<a class="reference internal" href="api/flight.html#_CPPv4N5arrow6flight10FlightInfoE" title="arrow::flight::FlightInfo"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">arrow::flight::FlightInfo</span></code></a> objects as the result of a
+<code class="docutils literal notranslate"><span class="pre">ListFlights</span></code> RPC.</p>
+<p>To start a server, create a <a class="reference internal" href="api/flight.html#_CPPv4N5arrow6flight8LocationE" title="arrow::flight::Location"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">arrow::flight::Location</span></code></a> to
+specify where to listen, and call
+<a class="reference internal" href="api/flight.html#_CPPv4N5arrow6flight16FlightServerBase4InitERK19FlightServerOptions" title="arrow::flight::FlightServerBase::Init"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">arrow::flight::FlightServerBase::Init()</span></code></a>. This will start the
+server, but won’t block the rest of the program. Use
+<a class="reference internal" href="api/flight.html#_CPPv4N5arrow6flight16FlightServerBase20SetShutdownOnSignalsEKNSt6vectorIiEE" title="arrow::flight::FlightServerBase::SetShutdownOnSignals"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">arrow::flight::FlightServerBase::SetShutdownOnSignals()</span></code></a> to
+enable stopping the server if an interrupt signal is received, then
+call <a class="reference internal" href="api/flight.html#_CPPv4N5arrow6flight16FlightServerBase5ServeEv" title="arrow::flight::FlightServerBase::Serve"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">arrow::flight::FlightServerBase::Serve()</span></code></a> to block until the
+server stops.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">arrow</span><span class="o">::</span><span class="n">flight</span><span class="o">::</span><span class="n">FlightServerBase</span><span class="o">&gt;</span> <span class="n">server</span><span class="p">;</span>
+<span class="c1">// Initialize server</span>
+<span class="n">arrow</span><span class="o">::</span><span class="n">flight</span><span class="o">::</span><span class="n">Location</span> <span class="n">location</span><span class="p">;</span>
+<span class="c1">// Listen to all interfaces on a free port</span>
+<span class="n">ARROW_CHECK_OK</span><span class="p">(</span><span class="n">arrow</span><span class="o">::</span><span class="n">flight</span><span class="o">::</span><span class="n">Location</span><span class="o">::</span><span class="n">ForGrpcTcp</span><span class="p">(</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">location</span><span class="p">));</span>
+<span class="n">arrow</span><span class="o">::</span><span class="n">flight</span><span class="o">::</span><span class="n">FlightServerOptions</span> <span class="n">options</span><span class="p">(</span><span class="n">location</span><span class="p">);</span>
+
+<span class="c1">// Start the server</span>
+<span class="n">ARROW_CHECK_OK</span><span class="p">(</span><span class="n">server</span><span class="o">-&gt;</span><span class="n">Init</span><span class="p">(</span><span class="n">options</span><span class="p">));</span>
+<span class="c1">// Exit with a clean error code (0) on SIGTERM</span>
+<span class="n">ARROW_CHECK_OK</span><span class="p">(</span><span class="n">server</span><span class="o">-&gt;</span><span class="n">SetShutdownOnSignals</span><span class="p">({</span><span class="n">SIGTERM</span><span class="p">}));</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Server listening on localhost:&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">server</span><span class="o">-&gt;</span><span class="n">port</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">ARROW_CHECK_OK</span><span class="p">(</span><span class="n">server</span><span class="o">-&gt;</span><span class="n">Serve</span><span class="p">());</span>
+</pre></div>
+</div>
+<div class="section" id="enabling-tls-and-authentication">
+<h3>Enabling TLS and Authentication<a class="headerlink" href="#enabling-tls-and-authentication" title="Permalink to this headline">¶</a></h3>
+<p>TLS can be enabled by providing a certificate and key pair to
+<a class="reference internal" href="api/flight.html#_CPPv4N5arrow6flight16FlightServerBase4InitERK19FlightServerOptions" title="arrow::flight::FlightServerBase::Init"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">FlightServerBase::Init</span></code></a>. Additionally, use
+<a class="reference internal" href="api/flight.html#_CPPv4N5arrow6flight8Location10ForGrpcTlsERKNSt6stringEKiP8Location" title="arrow::flight::Location::ForGrpcTls"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">Location::ForGrpcTls</span></code></a> to
+construct the <a class="reference internal" href="api/flight.html#_CPPv4N5arrow6flight8LocationE" title="arrow::flight::Location"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">arrow::flight::Location</span></code></a> to listen on.</p>
+<p>Similarly, authentication can be enabled by providing an
+implementation of <a class="reference internal" href="api/flight.html#_CPPv4N5arrow6flight17ServerAuthHandlerE" title="arrow::flight::ServerAuthHandler"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">ServerAuthHandler</span></code></a>. Authentication consists of two
+parts: on initial client connection, the server and client
+authentication implementations can perform any negotiation needed;
+then, on each RPC thereafter, the client provides a token. The server
+authentication handler validates the token and provides the identity
+of the client. This identity can be obtained from the
+<a class="reference internal" href="api/flight.html#_CPPv4N5arrow6flight17ServerCallContextE" title="arrow::flight::ServerCallContext"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">arrow::flight::ServerCallContext</span></code></a>.</p>
+</div>
+</div>
+<div class="section" id="using-the-flight-client">
+<h2>Using the Flight Client<a class="headerlink" href="#using-the-flight-client" title="Permalink to this headline">¶</a></h2>
+<p>To connect to a Flight service, create an instance of
+<a class="reference internal" href="api/flight.html#_CPPv4N5arrow6flight12FlightClientE" title="arrow::flight::FlightClient"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">arrow::flight::FlightClient</span></code></a> by calling <a class="reference internal" href="api/flight.html#_CPPv4N5arrow6flight12FlightClient7ConnectERK8LocationPNSt10unique_ptrI12FlightClientEE" title="arrow::flight::FlightClient::Connect"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">Connect</span></code></a>. This takes a Location and
+returns the client through an out parameter. To authenticate, call
+<a class="reference internal" href="api/flight.html#_CPPv4N5arrow6flight12FlightClient12AuthenticateERK17FlightCallOptionsNSt10unique_ptrI17ClientAuthHandlerEE" title="arrow::flight::FlightClient::Authenticate"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">Authenticate</span></code></a> with
+the desired client authentication implementation.</p>
+<p>Each RPC method returns <a class="reference internal" href="api/support.html#_CPPv4N5arrow6StatusE" title="arrow::Status"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">arrow::Status</span></code></a> to indicate the
+success/failure of the request. Any other return values are specified
+through out parameters. They also take an optional <a class="reference internal" href="api/flight.html#_CPPv4N5arrow6flight17FlightCallOptionsE" title="arrow::flight::FlightCallOptions"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">options</span></code></a> parameter that allows specifying a
+timeout for the call.</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="json.html" title="previous page">Reading JSON files</a>
+    <a class='right-next' id="next-link" href="examples/index.html" title="next page">Examples</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.8636327e669f6dcffc22.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>
