@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specifications and Protocols &#8212; Apache Arrow v3.0.0.dev641+ge8678380d</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.22694625df1dc3917a75ecd1c8e51ec6.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.ba662cee8b5f0abc50a9.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Format Versioning and Stability" href="format/Versioning.html" />
+    <link rel="prev" title="Apache Arrow" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-toc" viewBox="0 0 24 24">
+        <title>Contents</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="10" y1="12" x2="20" y2="12" />
+          <line x1="6" y1="18" x2="20" y2="18" />
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+
+    
+      
+      <a class="navbar-brand" href="index.html">
+        <img src="_static/arrow.png" class="logo" alt="logo">
+      </a>
+      
+    
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        <li class="toctree-l1 current active nav-item">
+ <a class="current reference internal nav-link" href="#">
+  Specifications and Protocols
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="libraries.html">
+  Libraries
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="developers.html">
+  Development
+ </a>
+</li>
+
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/apache/arrow" target="_blank" rel="noopener">
+              <span><i class="fab fa-github-square"></i></span>
+            </a>
+          </li>
+        
+        
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://twitter.com/ApacheArrow" target="_blank" rel="noopener">
+              <span><i class="fab fa-twitter-square"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <!-- <ul class="nav bd-sidenav"> -->
+      <ul class="nav bd-sidenav">
+ <li class="toctree-l2">
+  <a class="reference internal" href="format/Versioning.html">
+   Format Versioning and Stability
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference internal" href="format/Columnar.html">
+   Arrow Columnar Format
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference internal" href="format/Flight.html">
+   Arrow Flight RPC
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference internal" href="format/Integration.html">
+   Integration Testing
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference internal" href="format/CDataInterface.html">
+   The Arrow C data interface
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference internal" href="format/CStreamInterface.html">
+   The Arrow C stream interface
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference internal" href="format/Other.html">
+   Other Data Structures
+  </a>
+ </li>
+</ul>
+    <!-- </ul> -->
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+
+<nav id="bd-toc-nav">
+    
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="specifications-and-protocols">
+<h1>Specifications and Protocols<a class="headerlink" href="#specifications-and-protocols" title="Permalink to this headline">¶</a></h1>
+<p>TODO better landing page</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="format/Versioning.html">Format Versioning and Stability</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="format/Versioning.html#backward-compatibility">Backward Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/Versioning.html#forward-compatibility">Forward Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/Versioning.html#long-term-stability">Long-Term Stability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/Versioning.html#pre-1-0-0-versions">Pre-1.0.0 Versions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="format/Columnar.html">Arrow Columnar Format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="format/Columnar.html#terminology">Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/Columnar.html#physical-memory-layout">Physical Memory Layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/Columnar.html#logical-types">Logical Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/Columnar.html#serialization-and-interprocess-communication-ipc">Serialization and Interprocess Communication (IPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/Columnar.html#implementation-guidelines">Implementation guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="format/Flight.html">Arrow Flight RPC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="format/Flight.html#rpc-methods">RPC Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/Flight.html#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/Flight.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/Flight.html#external-resources">External Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/Flight.html#protocol-buffer-definitions">Protocol Buffer Definitions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="format/Integration.html">Integration Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="format/Integration.html#running-integration-tests">Running integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/Integration.html#json-test-data-format">JSON test data format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="format/CDataInterface.html">The Arrow C data interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="format/CDataInterface.html#rationale">Rationale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/CDataInterface.html#data-type-description-format-strings">Data type description – format strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/CDataInterface.html#structure-definitions">Structure definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/CDataInterface.html#example-use-case">Example use case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/CDataInterface.html#c-producer-examples">C producer examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/CDataInterface.html#why-two-distinct-structures">Why two distinct structures?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/CDataInterface.html#updating-this-specification">Updating this specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/CDataInterface.html#inspiration">Inspiration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="format/CStreamInterface.html">The Arrow C stream interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="format/CStreamInterface.html#semantics">Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/CStreamInterface.html#structure-definition">Structure definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/CStreamInterface.html#c-consumer-example">C consumer example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="format/Other.html">Other Data Structures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="format/Other.html#tensor-multi-dimensional-array">Tensor (Multi-dimensional Array)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="format/Other.html#sparse-tensor">Sparse Tensor</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">Apache Arrow</a>
+    <a class='right-next' id="next-link" href="format/Versioning.html" title="next page">Format Versioning and Stability</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.ba662cee8b5f0abc50a9.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>

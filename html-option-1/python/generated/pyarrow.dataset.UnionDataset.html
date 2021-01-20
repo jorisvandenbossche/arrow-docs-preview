@@ -1,0 +1,1029 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pyarrow.dataset.UnionDataset &#8212; Apache Arrow v3.0.0.dev641+ge8678380d</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.22694625df1dc3917a75ecd1c8e51ec6.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.ba662cee8b5f0abc50a9.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pyarrow.dataset.Scanner" href="pyarrow.dataset.Scanner.html" />
+    <link rel="prev" title="pyarrow.dataset.FileSystemDatasetFactory" href="pyarrow.dataset.FileSystemDatasetFactory.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-toc" viewBox="0 0 24 24">
+        <title>Contents</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="10" y1="12" x2="20" y2="12" />
+          <line x1="6" y1="18" x2="20" y2="18" />
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+
+    
+      
+      <a class="navbar-brand" href="../../index.html">
+        <img src="../../_static/arrow.png" class="logo" alt="logo">
+      </a>
+      
+    
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../spec.html">
+  Specifications and Protocols
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../../libraries.html">
+  Libraries
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../developers.html">
+  Development
+ </a>
+</li>
+
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/apache/arrow" target="_blank" rel="noopener">
+              <span><i class="fab fa-github-square"></i></span>
+            </a>
+          </li>
+        
+        
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://twitter.com/ApacheArrow" target="_blank" rel="noopener">
+              <span><i class="fab fa-twitter-square"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <!-- <ul class="nav bd-sidenav"> -->
+      <ul class="current nav bd-sidenav">
+ <li class="toctree-l2">
+  <a class="reference internal" href="../../status.html">
+   Implementation Status
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference external" href="https://arrow.apache.org/docs/c_glib/">
+   C/GLib
+  </a>
+ </li>
+ <li class="toctree-l2 has-children">
+  <a class="reference internal" href="../../cpp/index.html">
+   C++
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="icon">
+    <svg>
+     <use href="#svg-arrow-right">
+     </use>
+    </svg>
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l3 has-children">
+    <a class="reference internal" href="../../cpp/getting_started.html">
+     User Guide
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="icon">
+      <svg>
+       <use href="#svg-arrow-right">
+       </use>
+      </svg>
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/overview.html">
+       High-Level Overview
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/conventions.html">
+       Conventions
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/cmake.html">
+       Using Arrow C++ in your own project
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/memory.html">
+       Memory Management
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/arrays.html">
+       Arrays
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/datatypes.html">
+       Data Types
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/tables.html">
+       Tabular Data
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/compute.html">
+       Compute Functions
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/io.html">
+       Input / output and filesystems
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/ipc.html">
+       Reading and writing the Arrow IPC format
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/parquet.html">
+       Reading and writing Parquet files
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/csv.html">
+       Reading CSV files
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/json.html">
+       Reading JSON files
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/flight.html">
+       Arrow Flight RPC
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l3 has-children">
+    <a class="reference internal" href="../../cpp/examples/index.html">
+     Examples
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="icon">
+      <svg>
+       <use href="#svg-arrow-right">
+       </use>
+      </svg>
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/examples/cmake_minimal_build.html">
+       Minimal build using CMake
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/examples/row_columnar_conversion.html">
+       Row to columnar conversion
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/examples/tuple_range_conversion.html">
+       std::tuple-like ranges to Arrow
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l3 has-children">
+    <a class="reference internal" href="../../cpp/api.html">
+     API Reference
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="icon">
+      <svg>
+       <use href="#svg-arrow-right">
+       </use>
+      </svg>
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/api/support.html">
+       Programming Support
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/api/memory.html">
+       Memory (management)
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/api/datatype.html">
+       Data Types
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/api/array.html">
+       Arrays
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/api/scalar.html">
+       Scalars
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/api/builder.html">
+       Array Builders
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/api/table.html">
+       Two-dimensional Datasets
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/api/c_abi.html">
+       C Interfaces
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/api/compute.html">
+       Compute Functions
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/api/tensor.html">
+       Tensors
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/api/utilities.html">
+       Utilities
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/api/io.html">
+       Input / output
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/api/ipc.html">
+       Arrow IPC
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/api/formats.html">
+       File Formats
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/api/cuda.html">
+       CUDA support
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/api/flight.html">
+       Arrow Flight RPC
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../../cpp/api/filesystem.html">
+       Filesystems
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference external" href="https://github.com/apache/arrow/blob/master/csharp/README.md">
+   C#
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference external" href="https://godoc.org/github.com/apache/arrow/go/arrow">
+   Go
+  </a>
+ </li>
+ <li class="toctree-l2 has-children">
+  <a class="reference internal" href="../../java/index.html">
+   Java
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="icon">
+    <svg>
+     <use href="#svg-arrow-right">
+     </use>
+    </svg>
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../../java/vector.html">
+     ValueVector
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../../java/vector_schema_root.html">
+     VectorSchemaRoot
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../../java/ipc.html">
+     Reading/Writing IPC formats
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference external" href="https://arrow.apache.org/docs/java/reference/">
+     Reference (javadoc)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference external" href="https://arrow.apache.org/docs/js/">
+   JavaScript
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference external" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">
+   Julia
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference external" href="https://github.com/apache/arrow/blob/master/matlab/README.md">
+   MATLAB
+  </a>
+ </li>
+ <li class="toctree-l2 current active has-children">
+  <a class="reference internal" href="../index.html">
+   Python
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="icon">
+    <svg>
+     <use href="#svg-arrow-right">
+     </use>
+    </svg>
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l3">
+    <a class="reference internal" href="../install.html">
+     Installing PyArrow
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../memory.html">
+     Memory and IO Interfaces
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../data.html">
+     Data Types and In-Memory Data Model
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../compute.html">
+     Compute Functions
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../ipc.html">
+     Streaming, Serialization, and IPC
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../filesystems.html">
+     Filesystem Interface
+    </a>
+   </li>
+   <li class="toctree-l3 has-children">
+    <a class="reference internal" href="../filesystems_deprecated.html">
+     Filesystem Interface (legacy)
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="icon">
+      <svg>
+       <use href="#svg-arrow-right">
+       </use>
+      </svg>
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.hdfs.connect.html">
+       pyarrow.hdfs.connect
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.HadoopFileSystem.cat.html">
+       pyarrow.HadoopFileSystem.cat
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.HadoopFileSystem.chmod.html">
+       pyarrow.HadoopFileSystem.chmod
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.HadoopFileSystem.chown.html">
+       pyarrow.HadoopFileSystem.chown
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.HadoopFileSystem.delete.html">
+       pyarrow.HadoopFileSystem.delete
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.HadoopFileSystem.df.html">
+       pyarrow.HadoopFileSystem.df
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.HadoopFileSystem.disk_usage.html">
+       pyarrow.HadoopFileSystem.disk_usage
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.HadoopFileSystem.download.html">
+       pyarrow.HadoopFileSystem.download
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.HadoopFileSystem.exists.html">
+       pyarrow.HadoopFileSystem.exists
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.HadoopFileSystem.get_capacity.html">
+       pyarrow.HadoopFileSystem.get_capacity
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.HadoopFileSystem.get_space_used.html">
+       pyarrow.HadoopFileSystem.get_space_used
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.HadoopFileSystem.info.html">
+       pyarrow.HadoopFileSystem.info
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.HadoopFileSystem.ls.html">
+       pyarrow.HadoopFileSystem.ls
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.HadoopFileSystem.mkdir.html">
+       pyarrow.HadoopFileSystem.mkdir
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.HadoopFileSystem.open.html">
+       pyarrow.HadoopFileSystem.open
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.HadoopFileSystem.rename.html">
+       pyarrow.HadoopFileSystem.rename
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.HadoopFileSystem.rm.html">
+       pyarrow.HadoopFileSystem.rm
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.HadoopFileSystem.upload.html">
+       pyarrow.HadoopFileSystem.upload
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="pyarrow.HdfsFile.html">
+       pyarrow.HdfsFile
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../plasma.html">
+     The Plasma In-Memory Object Store
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../numpy.html">
+     NumPy Integration
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../pandas.html">
+     Pandas Integration
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../timestamps.html">
+     Timestamps
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../csv.html">
+     Reading CSV files
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../feather.html">
+     Feather File Format
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../json.html">
+     Reading JSON files
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../parquet.html">
+     Reading and Writing the Apache Parquet Format
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../dataset.html">
+     Tabular Datasets
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../cuda.html">
+     CUDA Integration
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../extending_types.html">
+     Extending pyarrow
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../extending.html">
+     Using pyarrow from C++ and Cython Code
+    </a>
+   </li>
+   <li class="toctree-l3 current active has-children">
+    <a class="reference internal" href="../api.html">
+     API Reference
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="icon">
+      <svg>
+       <use href="#svg-arrow-right">
+       </use>
+      </svg>
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l4">
+      <a class="reference internal" href="../api/datatypes.html">
+       Data Types and Schemas
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../api/arrays.html">
+       Arrays and Scalars
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../api/memory.html">
+       Buffers and Memory
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../api/compute.html">
+       Compute Functions
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../api/files.html">
+       Streams and File Access
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../api/tables.html">
+       Tables and Tensors
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../api/ipc.html">
+       Serialization and IPC
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../api/flight.html">
+       Arrow Flight
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../api/formats.html">
+       Tabular File Formats
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../api/filesystems.html">
+       Filesystems
+      </a>
+     </li>
+     <li class="toctree-l4 current active current-page">
+      <a class="reference internal" href="../api/dataset.html">
+       Dataset
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../api/plasma.html">
+       Plasma In-Memory Object Store
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../api/cuda.html">
+       CUDA Integration
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../api/misc.html">
+       Miscellaneous
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../getting_involved.html">
+     Getting Involved
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../benchmarks.html">
+     Benchmarks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference external" href="https://arrow.apache.org/docs/r/">
+   R
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference external" href="https://github.com/apache/arrow/blob/master/ruby/README.md">
+   Ruby
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference external" href="https://docs.rs/crate/arrow/">
+   Rust
+  </a>
+ </li>
+</ul>
+    <!-- </ul> -->
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+
+<nav id="bd-toc-nav">
+    
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="pyarrow-dataset-uniondataset">
+<h1>pyarrow.dataset.UnionDataset<a class="headerlink" href="#pyarrow-dataset-uniondataset" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="pyarrow.dataset.UnionDataset">
+<em class="property">class </em><code class="sig-prename descclassname">pyarrow.dataset.</code><code class="sig-name descname">UnionDataset</code><a class="headerlink" href="#pyarrow.dataset.UnionDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow._dataset.Dataset</span></code></p>
+<p>A Dataset wrapping child datasets.</p>
+<p>Children’s schemas must agree with the provided schema.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>schema</strong> (<a class="reference internal" href="pyarrow.Schema.html#pyarrow.Schema" title="pyarrow.Schema"><em>Schema</em></a>) – A known schema to conform to.</p></li>
+<li><p><strong>children</strong> (<em>list of Dataset</em>) – One or more input children</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="pyarrow.dataset.UnionDataset.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.dataset.UnionDataset.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.dataset.UnionDataset.__init__" title="pyarrow.dataset.UnionDataset.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Initialize self.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.dataset.UnionDataset.get_fragments" title="pyarrow.dataset.UnionDataset.get_fragments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_fragments</span></code></a></p></td>
+<td><p>Returns an iterator over the fragments in this dataset.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.dataset.UnionDataset.replace_schema" title="pyarrow.dataset.UnionDataset.replace_schema"><code class="xref py py-obj docutils literal notranslate"><span class="pre">replace_schema</span></code></a></p></td>
+<td><p>Return a copy of this Dataset with a different schema.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.dataset.UnionDataset.scan" title="pyarrow.dataset.UnionDataset.scan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scan</span></code></a></p></td>
+<td><p>Builds a scan operation against the dataset.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.dataset.UnionDataset.to_batches" title="pyarrow.dataset.UnionDataset.to_batches"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_batches</span></code></a></p></td>
+<td><p>Read the dataset as materialized record batches.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.dataset.UnionDataset.to_table" title="pyarrow.dataset.UnionDataset.to_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_table</span></code></a></p></td>
+<td><p>Read the dataset to an arrow table.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.dataset.UnionDataset.children" title="pyarrow.dataset.UnionDataset.children"><code class="xref py py-obj docutils literal notranslate"><span class="pre">children</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.dataset.UnionDataset.partition_expression" title="pyarrow.dataset.UnionDataset.partition_expression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">partition_expression</span></code></a></p></td>
+<td><p>An Expression which evaluates to true for all data viewed by this Dataset.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.dataset.UnionDataset.schema" title="pyarrow.dataset.UnionDataset.schema"><code class="xref py py-obj docutils literal notranslate"><span class="pre">schema</span></code></a></p></td>
+<td><p>The common schema of the full Dataset</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py attribute">
+<dt id="pyarrow.dataset.UnionDataset.children">
+<code class="sig-name descname">children</code><a class="headerlink" href="#pyarrow.dataset.UnionDataset.children" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.dataset.UnionDataset.get_fragments">
+<code class="sig-name descname">get_fragments</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.dataset.UnionDataset.get_fragments" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator over the fragments in this dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filter</strong> (<a class="reference internal" href="pyarrow.dataset.Expression.html#pyarrow.dataset.Expression" title="pyarrow.dataset.Expression"><em>Expression</em></a><em>, </em><em>default None</em>) – Return fragments matching the optional filter, either using the
+partition_expression or internal information like Parquet’s
+statistics.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>fragments</strong> (<em>iterator of Fragment</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pyarrow.dataset.UnionDataset.partition_expression">
+<code class="sig-name descname">partition_expression</code><a class="headerlink" href="#pyarrow.dataset.UnionDataset.partition_expression" title="Permalink to this definition">¶</a></dt>
+<dd><p>An Expression which evaluates to true for all data viewed by this
+Dataset.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.dataset.UnionDataset.replace_schema">
+<code class="sig-name descname">replace_schema</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.dataset.UnionDataset.replace_schema" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of this Dataset with a different schema.</p>
+<p>The copy will view the same Fragments. If the new schema is not
+compatible with the original dataset’s schema then an error will
+be raised.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.dataset.UnionDataset.scan">
+<code class="sig-name descname">scan</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.dataset.UnionDataset.scan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds a scan operation against the dataset.</p>
+<p>It produces a stream of ScanTasks which is meant to be a unit of work
+to be dispatched. The tasks are not executed automatically, the user is
+responsible to execute and dispatch the individual tasks, so custom
+local task scheduling can be implemented.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>columns</strong> (<em>list of str</em><em>, </em><em>default None</em>) – List of columns to project. Order and duplicates will be preserved.
+The columns will be passed down to Datasets and corresponding data
+fragments to avoid loading, copying, and deserializing columns
+that will not be required further down the compute chain.
+By default all of the available columns are projected. Raises
+an exception if any of the referenced column names does not exist
+in the dataset’s Schema.</p></li>
+<li><p><strong>filter</strong> (<a class="reference internal" href="pyarrow.dataset.Expression.html#pyarrow.dataset.Expression" title="pyarrow.dataset.Expression"><em>Expression</em></a><em>, </em><em>default None</em>) – Scan will return only the rows matching the filter.
+If possible the predicate will be pushed down to exploit the
+partition information or internal metadata found in the data
+source, e.g. Parquet statistics. Otherwise filters the loaded
+RecordBatches before yielding them.</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em><em>, </em><em>default 1M</em>) – The maximum row count for scanned record batches. If scanned
+record batches are overflowing memory then this method can be
+called to reduce their size.</p></li>
+<li><p><strong>use_threads</strong> (<em>bool</em><em>, </em><em>default True</em>) – If enabled, then maximum parallelism will be used determined by
+the number of available CPU cores.</p></li>
+<li><p><strong>memory_pool</strong> (<a class="reference internal" href="pyarrow.MemoryPool.html#pyarrow.MemoryPool" title="pyarrow.MemoryPool"><em>MemoryPool</em></a><em>, </em><em>default None</em>) – For memory allocations, if required. If not specified, uses the
+default pool.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>scan_tasks</strong> (<em>iterator of ScanTask</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pyarrow.dataset.UnionDataset.schema">
+<code class="sig-name descname">schema</code><a class="headerlink" href="#pyarrow.dataset.UnionDataset.schema" title="Permalink to this definition">¶</a></dt>
+<dd><p>The common schema of the full Dataset</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.dataset.UnionDataset.to_batches">
+<code class="sig-name descname">to_batches</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.dataset.UnionDataset.to_batches" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the dataset as materialized record batches.</p>
+<p>Builds a scan operation against the dataset and sequentially executes
+the ScanTasks as the returned generator gets consumed.</p>
+<p>See scan method parameters documentation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>record_batches</strong> (<em>iterator of RecordBatch</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.dataset.UnionDataset.to_table">
+<code class="sig-name descname">to_table</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.dataset.UnionDataset.to_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the dataset to an arrow table.</p>
+<p>Note that this method reads all the selected data from the dataset
+into memory.</p>
+<p>See scan method parameters documentation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>table</strong> (<em>Table instance</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="pyarrow.dataset.FileSystemDatasetFactory.html" title="previous page">pyarrow.dataset.FileSystemDatasetFactory</a>
+    <a class='right-next' id="next-link" href="pyarrow.dataset.Scanner.html" title="next page">pyarrow.dataset.Scanner</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.ba662cee8b5f0abc50a9.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>

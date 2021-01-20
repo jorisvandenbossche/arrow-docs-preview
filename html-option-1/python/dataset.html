@@ -1,0 +1,1446 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabular Datasets &#8212; Apache Arrow v3.0.0.dev641+ge8678380d</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.22694625df1dc3917a75ecd1c8e51ec6.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.ba662cee8b5f0abc50a9.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="CUDA Integration" href="cuda.html" />
+    <link rel="prev" title="Reading and Writing the Apache Parquet Format" href="parquet.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-toc" viewBox="0 0 24 24">
+        <title>Contents</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="10" y1="12" x2="20" y2="12" />
+          <line x1="6" y1="18" x2="20" y2="18" />
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+
+    
+      
+      <a class="navbar-brand" href="../index.html">
+        <img src="../_static/arrow.png" class="logo" alt="logo">
+      </a>
+      
+    
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../spec.html">
+  Specifications and Protocols
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../libraries.html">
+  Libraries
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../developers.html">
+  Development
+ </a>
+</li>
+
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/apache/arrow" target="_blank" rel="noopener">
+              <span><i class="fab fa-github-square"></i></span>
+            </a>
+          </li>
+        
+        
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://twitter.com/ApacheArrow" target="_blank" rel="noopener">
+              <span><i class="fab fa-twitter-square"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <!-- <ul class="nav bd-sidenav"> -->
+      <ul class="current nav bd-sidenav">
+ <li class="toctree-l2">
+  <a class="reference internal" href="../status.html">
+   Implementation Status
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference external" href="https://arrow.apache.org/docs/c_glib/">
+   C/GLib
+  </a>
+ </li>
+ <li class="toctree-l2 has-children">
+  <a class="reference internal" href="../cpp/index.html">
+   C++
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="icon">
+    <svg>
+     <use href="#svg-arrow-right">
+     </use>
+    </svg>
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l3 has-children">
+    <a class="reference internal" href="../cpp/getting_started.html">
+     User Guide
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="icon">
+      <svg>
+       <use href="#svg-arrow-right">
+       </use>
+      </svg>
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/overview.html">
+       High-Level Overview
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/conventions.html">
+       Conventions
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/cmake.html">
+       Using Arrow C++ in your own project
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/memory.html">
+       Memory Management
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/arrays.html">
+       Arrays
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/datatypes.html">
+       Data Types
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/tables.html">
+       Tabular Data
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/compute.html">
+       Compute Functions
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/io.html">
+       Input / output and filesystems
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/ipc.html">
+       Reading and writing the Arrow IPC format
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/parquet.html">
+       Reading and writing Parquet files
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/csv.html">
+       Reading CSV files
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/json.html">
+       Reading JSON files
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/flight.html">
+       Arrow Flight RPC
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l3 has-children">
+    <a class="reference internal" href="../cpp/examples/index.html">
+     Examples
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="icon">
+      <svg>
+       <use href="#svg-arrow-right">
+       </use>
+      </svg>
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/examples/cmake_minimal_build.html">
+       Minimal build using CMake
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/examples/row_columnar_conversion.html">
+       Row to columnar conversion
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/examples/tuple_range_conversion.html">
+       std::tuple-like ranges to Arrow
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l3 has-children">
+    <a class="reference internal" href="../cpp/api.html">
+     API Reference
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="icon">
+      <svg>
+       <use href="#svg-arrow-right">
+       </use>
+      </svg>
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/api/support.html">
+       Programming Support
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/api/memory.html">
+       Memory (management)
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/api/datatype.html">
+       Data Types
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/api/array.html">
+       Arrays
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/api/scalar.html">
+       Scalars
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/api/builder.html">
+       Array Builders
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/api/table.html">
+       Two-dimensional Datasets
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/api/c_abi.html">
+       C Interfaces
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/api/compute.html">
+       Compute Functions
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/api/tensor.html">
+       Tensors
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/api/utilities.html">
+       Utilities
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/api/io.html">
+       Input / output
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/api/ipc.html">
+       Arrow IPC
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/api/formats.html">
+       File Formats
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/api/cuda.html">
+       CUDA support
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/api/flight.html">
+       Arrow Flight RPC
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="../cpp/api/filesystem.html">
+       Filesystems
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference external" href="https://github.com/apache/arrow/blob/master/csharp/README.md">
+   C#
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference external" href="https://godoc.org/github.com/apache/arrow/go/arrow">
+   Go
+  </a>
+ </li>
+ <li class="toctree-l2 has-children">
+  <a class="reference internal" href="../java/index.html">
+   Java
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="icon">
+    <svg>
+     <use href="#svg-arrow-right">
+     </use>
+    </svg>
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../java/vector.html">
+     ValueVector
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../java/vector_schema_root.html">
+     VectorSchemaRoot
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="../java/ipc.html">
+     Reading/Writing IPC formats
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference external" href="https://arrow.apache.org/docs/java/reference/">
+     Reference (javadoc)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference external" href="https://arrow.apache.org/docs/js/">
+   JavaScript
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference external" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">
+   Julia
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference external" href="https://github.com/apache/arrow/blob/master/matlab/README.md">
+   MATLAB
+  </a>
+ </li>
+ <li class="toctree-l2 current active has-children">
+  <a class="reference internal" href="index.html">
+   Python
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="icon">
+    <svg>
+     <use href="#svg-arrow-right">
+     </use>
+    </svg>
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l3">
+    <a class="reference internal" href="install.html">
+     Installing PyArrow
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="memory.html">
+     Memory and IO Interfaces
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="data.html">
+     Data Types and In-Memory Data Model
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="compute.html">
+     Compute Functions
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="ipc.html">
+     Streaming, Serialization, and IPC
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="filesystems.html">
+     Filesystem Interface
+    </a>
+   </li>
+   <li class="toctree-l3 has-children">
+    <a class="reference internal" href="filesystems_deprecated.html">
+     Filesystem Interface (legacy)
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="icon">
+      <svg>
+       <use href="#svg-arrow-right">
+       </use>
+      </svg>
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.hdfs.connect.html">
+       pyarrow.hdfs.connect
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.cat.html">
+       pyarrow.HadoopFileSystem.cat
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.chmod.html">
+       pyarrow.HadoopFileSystem.chmod
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.chown.html">
+       pyarrow.HadoopFileSystem.chown
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.delete.html">
+       pyarrow.HadoopFileSystem.delete
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.df.html">
+       pyarrow.HadoopFileSystem.df
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.disk_usage.html">
+       pyarrow.HadoopFileSystem.disk_usage
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.download.html">
+       pyarrow.HadoopFileSystem.download
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.exists.html">
+       pyarrow.HadoopFileSystem.exists
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.get_capacity.html">
+       pyarrow.HadoopFileSystem.get_capacity
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.get_space_used.html">
+       pyarrow.HadoopFileSystem.get_space_used
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.info.html">
+       pyarrow.HadoopFileSystem.info
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.ls.html">
+       pyarrow.HadoopFileSystem.ls
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.mkdir.html">
+       pyarrow.HadoopFileSystem.mkdir
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.open.html">
+       pyarrow.HadoopFileSystem.open
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.rename.html">
+       pyarrow.HadoopFileSystem.rename
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.rm.html">
+       pyarrow.HadoopFileSystem.rm
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.upload.html">
+       pyarrow.HadoopFileSystem.upload
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="generated/pyarrow.HdfsFile.html">
+       pyarrow.HdfsFile
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="plasma.html">
+     The Plasma In-Memory Object Store
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="numpy.html">
+     NumPy Integration
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="pandas.html">
+     Pandas Integration
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="timestamps.html">
+     Timestamps
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="csv.html">
+     Reading CSV files
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="feather.html">
+     Feather File Format
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="json.html">
+     Reading JSON files
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="parquet.html">
+     Reading and Writing the Apache Parquet Format
+    </a>
+   </li>
+   <li class="toctree-l3 current active current-page">
+    <a class="current reference internal" href="#">
+     Tabular Datasets
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="cuda.html">
+     CUDA Integration
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="extending_types.html">
+     Extending pyarrow
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="extending.html">
+     Using pyarrow from C++ and Cython Code
+    </a>
+   </li>
+   <li class="toctree-l3 has-children">
+    <a class="reference internal" href="api.html">
+     API Reference
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="icon">
+      <svg>
+       <use href="#svg-arrow-right">
+       </use>
+      </svg>
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l4">
+      <a class="reference internal" href="api/datatypes.html">
+       Data Types and Schemas
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="api/arrays.html">
+       Arrays and Scalars
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="api/memory.html">
+       Buffers and Memory
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="api/compute.html">
+       Compute Functions
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="api/files.html">
+       Streams and File Access
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="api/tables.html">
+       Tables and Tensors
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="api/ipc.html">
+       Serialization and IPC
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="api/flight.html">
+       Arrow Flight
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="api/formats.html">
+       Tabular File Formats
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="api/filesystems.html">
+       Filesystems
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="api/dataset.html">
+       Dataset
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="api/plasma.html">
+       Plasma In-Memory Object Store
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="api/cuda.html">
+       CUDA Integration
+      </a>
+     </li>
+     <li class="toctree-l4">
+      <a class="reference internal" href="api/misc.html">
+       Miscellaneous
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="getting_involved.html">
+     Getting Involved
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="benchmarks.html">
+     Benchmarks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference external" href="https://arrow.apache.org/docs/r/">
+   R
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference external" href="https://github.com/apache/arrow/blob/master/ruby/README.md">
+   Ruby
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference external" href="https://docs.rs/crate/arrow/">
+   Rust
+  </a>
+ </li>
+</ul>
+    <!-- </ul> -->
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-datasets">
+   Reading Datasets
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dataset-discovery">
+     Dataset discovery
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reading-different-file-formats">
+     Reading different file formats
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#customizing-file-formats">
+     Customizing file formats
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#filtering-data">
+   Filtering data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-partitioned-data">
+   Reading partitioned data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#different-partitioning-schemes">
+     Different partitioning schemes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-from-cloud-storage">
+   Reading from cloud storage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-from-minio">
+   Reading from Minio
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-parquet-datasets">
+   Working with Parquet Datasets
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#manual-specification-of-the-dataset">
+   Manual specification of the Dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#manual-scheduling">
+   Manual scheduling
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="tabular-datasets">
+<span id="dataset"></span><h1>Tabular Datasets<a class="headerlink" href="#tabular-datasets" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">pyarrow.dataset</span></code> module is experimental (specifically the classes),
+and a stable API is not yet guaranteed.</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">pyarrow.dataset</span></code> module provides functionality to efficiently work with
+tabular, potentially larger than memory and multi-file datasets:</p>
+<ul class="simple">
+<li><p>A unified interface for different sources: supporting different sources and
+file formats (Parquet, Feather files) and different file systems (local,
+cloud).</p></li>
+<li><p>Discovery of sources (crawling directories, handle directory-based partitioned
+datasets, basic schema normalization, ..)</p></li>
+<li><p>Optimized reading with predicate pushdown (filtering rows), projection
+(selecting columns), parallel reading or fine-grained managing of tasks.</p></li>
+</ul>
+<p>Currently, only Parquet and Feather / Arrow IPC files are supported. The goal
+is to expand this in the future to other file formats and data sources (e.g.
+database connections).</p>
+<p>For those familiar with the existing <a class="reference internal" href="generated/pyarrow.parquet.ParquetDataset.html#pyarrow.parquet.ParquetDataset" title="pyarrow.parquet.ParquetDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.parquet.ParquetDataset</span></code></a> for
+reading Parquet datasets: <code class="docutils literal notranslate"><span class="pre">pyarrow.dataset</span></code>’s goal is similar but not specific
+to the Parquet format and not tied to Python: the same datasets API is exposed
+in the R bindings or Arrow. In addition <code class="docutils literal notranslate"><span class="pre">pyarrow.dataset</span></code> boasts improved
+performance and new features (e.g. filtering within files rather than only on
+partition keys).</p>
+<div class="section" id="reading-datasets">
+<h2>Reading Datasets<a class="headerlink" href="#reading-datasets" title="Permalink to this headline">¶</a></h2>
+<p>For the examples below, let’s create a small dataset consisting
+of a directory with two parquet files:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">tempfile</span>
+
+<span class="gp">In [2]: </span><span class="kn">import</span> <span class="nn">pathlib</span>
+
+<span class="gp">In [3]: </span><span class="kn">import</span> <span class="nn">pyarrow</span> <span class="k">as</span> <span class="nn">pa</span>
+
+<span class="gp">In [4]: </span><span class="kn">import</span> <span class="nn">pyarrow.parquet</span> <span class="k">as</span> <span class="nn">pq</span>
+
+<span class="gp">In [5]: </span><span class="n">base</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">gettempdir</span><span class="p">())</span>
+
+<span class="gp">In [6]: </span><span class="p">(</span><span class="n">base</span> <span class="o">/</span> <span class="s2">&quot;parquet_dataset&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="go"># creating an Arrow Table</span>
+<span class="gp">In [7]: </span><span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">table</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span><span class="p">})</span>
+
+<span class="go"># writing it into two parquet files</span>
+<span class="gp">In [8]: </span><span class="n">pq</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">base</span> <span class="o">/</span> <span class="s2">&quot;parquet_dataset/data1.parquet&quot;</span><span class="p">)</span>
+
+<span class="gp">In [9]: </span><span class="n">pq</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">base</span> <span class="o">/</span> <span class="s2">&quot;parquet_dataset/data2.parquet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="dataset-discovery">
+<h3>Dataset discovery<a class="headerlink" href="#dataset-discovery" title="Permalink to this headline">¶</a></h3>
+<p>A <a class="reference internal" href="generated/pyarrow.dataset.Dataset.html#pyarrow.dataset.Dataset" title="pyarrow.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a> object can be created with the <a class="reference internal" href="generated/pyarrow.dataset.dataset.html#pyarrow.dataset.dataset" title="pyarrow.dataset.dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">dataset()</span></code></a> function. We
+can pass it the path to the directory containing the data files:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="kn">import</span> <span class="nn">pyarrow.dataset</span> <span class="k">as</span> <span class="nn">ds</span>
+
+<span class="gp">In [11]: </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="n">base</span> <span class="o">/</span> <span class="s2">&quot;parquet_dataset&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;parquet&quot;</span><span class="p">)</span>
+
+<span class="gp">In [12]: </span><span class="n">dataset</span>
+<span class="gh">Out[12]: </span><span class="go">&lt;pyarrow._dataset.FileSystemDataset at 0x7fd6c59f6830&gt;</span>
+</pre></div>
+</div>
+<p>In addition to a base directory path, <a class="reference internal" href="generated/pyarrow.dataset.dataset.html#pyarrow.dataset.dataset" title="pyarrow.dataset.dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">dataset()</span></code></a> accepts a path to a single
+file or a list of file paths.</p>
+<p>Creating a <a class="reference internal" href="generated/pyarrow.dataset.Dataset.html#pyarrow.dataset.Dataset" title="pyarrow.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a> object loads nothing into memory, it only crawls the
+directory to find all the files:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">files</span>
+<span class="gh">Out[13]: </span><span class="go">[&#39;/tmp/parquet_dataset/data1.parquet&#39;, &#39;/tmp/parquet_dataset/data2.parquet&#39;]</span>
+</pre></div>
+</div>
+<p>… and infers the dataset’s schema (by default from the first file):</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">schema</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">show_field_metadata</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="go">a: int64</span>
+<span class="go">b: double</span>
+<span class="go">c: int64</span>
+</pre></div>
+</div>
+<p>Using the <a class="reference internal" href="generated/pyarrow.dataset.Dataset.html#pyarrow.dataset.Dataset.to_table" title="pyarrow.dataset.Dataset.to_table"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Dataset.to_table()</span></code></a> method we can read the dataset (or a portion
+of it) into a pyarrow Table (note that depending on the size of your dataset
+this can require a lot of memory, see below on filtering / iterative loading):</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">()</span>
+<span class="gh">Out[15]: </span><span class="go"></span>
+<span class="go">pyarrow.Table</span>
+<span class="go">a: int64</span>
+<span class="go">b: double</span>
+<span class="go">c: int64</span>
+
+<span class="go"># converting to pandas to see the contents of the scanned table</span>
+<span class="gp">In [16]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">()</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<span class="gh">Out[16]: </span><span class="go"></span>
+<span class="go">   a         b  c</span>
+<span class="go">0  0  0.879128  1</span>
+<span class="go">1  1 -1.009125  2</span>
+<span class="go">2  2 -1.175422  1</span>
+<span class="go">3  3  0.719227  2</span>
+<span class="go">4  4  0.509713  1</span>
+<span class="go">5  5 -0.293638  2</span>
+<span class="go">6  6 -1.386648  1</span>
+<span class="go">7  7  0.010612  2</span>
+<span class="go">8  8  0.119091  1</span>
+<span class="go">9  9  0.839271  2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reading-different-file-formats">
+<h3>Reading different file formats<a class="headerlink" href="#reading-different-file-formats" title="Permalink to this headline">¶</a></h3>
+<p>The above examples use Parquet files as dataset source but the Dataset API
+provides a consistent interface across multiple file formats and sources.
+Currently, Parquet and Feather / Arrow IPC file format are supported; more
+formats are planned in the future.</p>
+<p>If we save the table as a Feather file instead of Parquet files:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [17]: </span><span class="kn">import</span> <span class="nn">pyarrow.feather</span> <span class="k">as</span> <span class="nn">feather</span>
+
+<span class="gp">In [18]: </span><span class="n">feather</span><span class="o">.</span><span class="n">write_feather</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">base</span> <span class="o">/</span> <span class="s2">&quot;data.feather&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>then we can read the Feather file using the same functions, but with specifying
+<code class="docutils literal notranslate"><span class="pre">format=&quot;feather&quot;</span></code>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [19]: </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="n">base</span> <span class="o">/</span> <span class="s2">&quot;data.feather&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;feather&quot;</span><span class="p">)</span>
+
+<span class="gp">In [20]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">()</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[20]: </span><span class="go"></span>
+<span class="go">   a         b  c</span>
+<span class="go">0  0  0.879128  1</span>
+<span class="go">1  1 -1.009125  2</span>
+<span class="go">2  2 -1.175422  1</span>
+<span class="go">3  3  0.719227  2</span>
+<span class="go">4  4  0.509713  1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="customizing-file-formats">
+<h3>Customizing file formats<a class="headerlink" href="#customizing-file-formats" title="Permalink to this headline">¶</a></h3>
+<p>The format name as a string, like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;parquet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>is short hand for a default constructed <a class="reference internal" href="generated/pyarrow.dataset.ParquetFileFormat.html#pyarrow.dataset.ParquetFileFormat" title="pyarrow.dataset.ParquetFileFormat"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParquetFileFormat</span></code></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">ParquetFileForma</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="generated/pyarrow.dataset.FileFormat.html#pyarrow.dataset.FileFormat" title="pyarrow.dataset.FileFormat"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileFormat</span></code></a> objects can be customized using keywords. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">parquet_format</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">ParquetFileFormat</span><span class="p">(</span><span class="n">read_options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;dictionary_columns&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]})</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">parquet_format</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Will configure column <code class="docutils literal notranslate"><span class="pre">&quot;a&quot;</span></code> to be dictionary encoded on scan.</p>
+</div>
+</div>
+<div class="section" id="filtering-data">
+<h2>Filtering data<a class="headerlink" href="#filtering-data" title="Permalink to this headline">¶</a></h2>
+<p>To avoid reading all data when only needing a subset, the <code class="docutils literal notranslate"><span class="pre">columns</span></code> and
+<code class="docutils literal notranslate"><span class="pre">filter</span></code> keywords can be used.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">columns</span></code> keyword can be used to only read the specified columns:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [21]: </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="n">base</span> <span class="o">/</span> <span class="s2">&quot;parquet_dataset&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;parquet&quot;</span><span class="p">)</span>
+
+<span class="gp">In [22]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<span class="gh">Out[22]: </span><span class="go"></span>
+<span class="go">   a         b</span>
+<span class="go">0  0  0.879128</span>
+<span class="go">1  1 -1.009125</span>
+<span class="go">2  2 -1.175422</span>
+<span class="go">3  3  0.719227</span>
+<span class="go">4  4  0.509713</span>
+<span class="go">5  5 -0.293638</span>
+<span class="go">6  6 -1.386648</span>
+<span class="go">7  7  0.010612</span>
+<span class="go">8  8  0.119091</span>
+<span class="go">9  9  0.839271</span>
+</pre></div>
+</div>
+<p>With the <code class="docutils literal notranslate"><span class="pre">filter</span></code> keyword, rows which do not match the filter predicate will
+not be included in the returned table. The keyword expects a boolean
+<a class="reference internal" href="generated/pyarrow.dataset.Expression.html#pyarrow.dataset.Expression" title="pyarrow.dataset.Expression"><code class="xref py py-class docutils literal notranslate"><span class="pre">Expression</span></code></a> referencing at least one of the columns:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [23]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<span class="gh">Out[23]: </span><span class="go"></span>
+<span class="go">   a         b  c</span>
+<span class="go">0  7  0.010612  2</span>
+<span class="go">1  8  0.119091  1</span>
+<span class="go">2  9  0.839271  2</span>
+
+<span class="gp">In [24]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<span class="gh">Out[24]: </span><span class="go"></span>
+<span class="go">   a         b  c</span>
+<span class="go">0  1 -1.009125  2</span>
+<span class="go">1  3  0.719227  2</span>
+<span class="go">2  5 -0.293638  2</span>
+<span class="go">3  7  0.010612  2</span>
+<span class="go">4  9  0.839271  2</span>
+</pre></div>
+</div>
+<p>The easiest way to construct those <a class="reference internal" href="generated/pyarrow.dataset.Expression.html#pyarrow.dataset.Expression" title="pyarrow.dataset.Expression"><code class="xref py py-class docutils literal notranslate"><span class="pre">Expression</span></code></a> objects is by using the
+<a class="reference internal" href="generated/pyarrow.dataset.field.html#pyarrow.dataset.field" title="pyarrow.dataset.field"><code class="xref py py-func docutils literal notranslate"><span class="pre">field()</span></code></a> helper function. Any column - not just partition columns - can be
+referenced using the <a class="reference internal" href="generated/pyarrow.dataset.field.html#pyarrow.dataset.field" title="pyarrow.dataset.field"><code class="xref py py-func docutils literal notranslate"><span class="pre">field()</span></code></a> function (which creates a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">FieldExpression</span></code>). Operator overloads are provided to compose filters
+including the comparisons (equal, larger/less than, etc), set membership
+testing, and boolean combinations (and, or, not):</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [25]: </span><span class="n">ds</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span>
+<span class="gh">Out[25]: </span><span class="go">&lt;pyarrow.dataset.Expression (a != 3)&gt;</span>
+
+<span class="gp">In [26]: </span><span class="n">ds</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gh">Out[26]: </span><span class="go"></span>
+<span class="go">&lt;pyarrow.dataset.Expression is_in(a, value_set=[</span>
+<span class="go">  1,</span>
+<span class="go">  2,</span>
+<span class="go">  3</span>
+<span class="go">], skip_nulls)&gt;</span>
+
+<span class="gp">In [27]: </span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">ds</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gh">Out[27]: </span><span class="go">&lt;pyarrow.dataset.Expression ((a &gt; b) and (b &gt; 1))&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reading-partitioned-data">
+<h2>Reading partitioned data<a class="headerlink" href="#reading-partitioned-data" title="Permalink to this headline">¶</a></h2>
+<p>Above, a dataset consisting of a flat directory with files was shown. However, a
+dataset can exploit a nested directory structure defining a partitioned dataset,
+where the sub-directory names hold information about which subset of the data is
+stored in that directory.</p>
+<p>For example, a dataset partitioned by year and month may look like on disk:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>dataset_name/
+  year=2007/
+    month=01/
+       data0.parquet
+       data1.parquet
+       ...
+    month=02/
+       data0.parquet
+       data1.parquet
+       ...
+    month=03/
+    ...
+  year=2008/
+    month=01/
+    ...
+  ...
+</pre></div>
+</div>
+<p>The above partitioning scheme is using “/key=value/” directory names, as found
+in Apache Hive.</p>
+<p>Let’s create a small partitioned dataset. The <a class="reference internal" href="generated/pyarrow.parquet.write_to_dataset.html#pyarrow.parquet.write_to_dataset" title="pyarrow.parquet.write_to_dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">write_to_dataset()</span></code></a>
+function can write such hive-like partitioned datasets.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [28]: </span><span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">table</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span>
+<span class="gp">   ....: </span>                  <span class="s1">&#39;part&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span><span class="p">})</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [29]: </span><span class="n">pq</span><span class="o">.</span><span class="n">write_to_dataset</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">base</span> <span class="o">/</span> <span class="s2">&quot;parquet_dataset_partitioned&quot;</span><span class="p">),</span>
+<span class="gp">   ....: </span>                    <span class="n">partition_cols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;part&#39;</span><span class="p">])</span>
+<span class="gp">   ....: </span>
+</pre></div>
+</div>
+<p>The above created a directory with two subdirectories (“part=a” and “part=b”),
+and the Parquet files written in those directories no longer include the “part”
+column.</p>
+<p>Reading this dataset with <a class="reference internal" href="generated/pyarrow.dataset.dataset.html#pyarrow.dataset.dataset" title="pyarrow.dataset.dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">dataset()</span></code></a>, we now specify that the dataset
+uses a hive-like partitioning scheme with the <cite>partitioning</cite> keyword:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [30]: </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">base</span> <span class="o">/</span> <span class="s2">&quot;parquet_dataset_partitioned&quot;</span><span class="p">),</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;parquet&quot;</span><span class="p">,</span>
+<span class="gp">   ....: </span>                     <span class="n">partitioning</span><span class="o">=</span><span class="s2">&quot;hive&quot;</span><span class="p">)</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [31]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">files</span>
+<span class="gh">Out[31]: </span><span class="go"></span>
+<span class="go">[&#39;/tmp/parquet_dataset_partitioned/part=a/068db89f3ccf4b27b58fc405d8597bab.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/12e8056330784e629e4f85636c935689.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/40f43a0f1064419fa554eb75ebc6afff.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/521f717b42a6456dbc01c81f3855c668.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/874f3131820e46fbb5f01f3f31f5880b.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/8c642c1be6824b1a9843f58b56885876.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/a2dc21214d4d4b0eaeb9e8005abdf9c1.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/a4855f76f9834bd08db0c96f725db10a.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/d0e5c8c18dc94273853aae42bff6ca49.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/df3d89168279485e886e672f104f9b95.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/eb6fdb18dc504fedb4d7350757967954.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/ec5684713d734d4694bee3b375704b5d.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/283c674f0c5f46febc6d252cfa23f89a.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/3671905c4f4b4df49d1b1b083312935c.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/40a5f8ae3b944060b43ce6a0336afec4.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/5376e022ff8b44e5baa349e4aee06434.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/630dc9618544424083717ed42551990b.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/79edc96fd64244bab2b745dc4ab764a9.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/a494d942eca045b295abbbe787b67b5a.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/b41a7d94e0f94ababa4ed695bc48244c.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/be6c5dfe4d1040b4aca7713a60b7d638.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/cc491a1c39554a2ebd22c748fbfc7df6.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/d3fe9b6ad7134c74a79ea73810108ad8.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/e5984aff6c044addbe742b6f6e6db80f.parquet&#39;]</span>
+</pre></div>
+</div>
+<p>Although the partition fields are not included in the actual Parquet files,
+they will be added back to the resulting table when scanning this dataset:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [32]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">()</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="gh">Out[32]: </span><span class="go"></span>
+<span class="go">   a         b  c part</span>
+<span class="go">0  0 -0.808563  1    a</span>
+<span class="go">1  1  2.249315  2    a</span>
+<span class="go">2  2  0.860461  1    a</span>
+</pre></div>
+</div>
+<p>We can now filter on the partition keys, which avoids loading files
+altogether if they do not match the predicate:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [33]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s2">&quot;part&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<span class="gh">Out[33]: </span><span class="go"></span>
+<span class="go">    a         b  c part</span>
+<span class="go">0   5  0.795325  2    b</span>
+<span class="go">1   6 -0.583944  1    b</span>
+<span class="go">2   7  0.836431  2    b</span>
+<span class="go">3   8 -1.131249  1    b</span>
+<span class="go">4   9  2.504313  2    b</span>
+<span class="go">5   5 -0.564053  2    b</span>
+<span class="go">6   6 -2.683015  1    b</span>
+<span class="go">7   7  0.569455  2    b</span>
+<span class="go">8   8  1.725854  1    b</span>
+<span class="go">9   9 -0.326392  2    b</span>
+<span class="go">10  5 -0.659025  2    b</span>
+<span class="go">11  6  0.585470  1    b</span>
+<span class="go">12  7 -0.054836  2    b</span>
+<span class="go">13  8 -1.957769  1    b</span>
+<span class="go">14  9 -0.487895  2    b</span>
+<span class="go">15  5 -0.021566  2    b</span>
+<span class="go">16  6 -1.935174  1    b</span>
+<span class="go">17  7  0.124375  2    b</span>
+<span class="go">18  8  1.246378  1    b</span>
+<span class="go">19  9  2.335445  2    b</span>
+<span class="go">20  5 -0.944526  2    b</span>
+<span class="go">21  6 -0.571998  1    b</span>
+<span class="go">22  7 -0.847706  2    b</span>
+<span class="go">23  8  0.264592  1    b</span>
+<span class="go">24  9 -0.595947  2    b</span>
+<span class="go">25  5 -0.494687  2    b</span>
+<span class="go">26  6  0.606583  1    b</span>
+<span class="go">27  7  1.211075  2    b</span>
+<span class="go">28  8 -0.259429  1    b</span>
+<span class="go">29  9  0.181120  2    b</span>
+<span class="go">30  5  0.472841  2    b</span>
+<span class="go">31  6  1.562121  1    b</span>
+<span class="go">32  7 -0.185555  2    b</span>
+<span class="go">33  8  0.756926  1    b</span>
+<span class="go">34  9  0.321280  2    b</span>
+<span class="go">35  5  0.106109  2    b</span>
+<span class="go">36  6 -0.078371  1    b</span>
+<span class="go">37  7 -0.444149  2    b</span>
+<span class="go">38  8  2.142733  1    b</span>
+<span class="go">39  9  1.660620  2    b</span>
+<span class="go">40  5  0.782454  2    b</span>
+<span class="go">41  6 -1.500030  1    b</span>
+<span class="go">42  7  0.982322  2    b</span>
+<span class="go">43  8 -0.065645  1    b</span>
+<span class="go">44  9 -0.128961  2    b</span>
+<span class="go">45  5  1.057241  2    b</span>
+<span class="go">46  6 -0.106782  1    b</span>
+<span class="go">47  7  1.037168  2    b</span>
+<span class="go">48  8  0.883316  1    b</span>
+<span class="go">49  9  0.654793  2    b</span>
+<span class="go">50  5  1.040640  2    b</span>
+<span class="go">51  6 -0.920901  1    b</span>
+<span class="go">52  7 -0.418331  2    b</span>
+<span class="go">53  8 -0.790127  1    b</span>
+<span class="go">54  9 -0.916662  2    b</span>
+<span class="go">55  5 -1.215203  2    b</span>
+<span class="go">56  6  1.215521  1    b</span>
+<span class="go">57  7  0.924982  2    b</span>
+<span class="go">58  8  0.444038  1    b</span>
+<span class="go">59  9  1.653409  2    b</span>
+</pre></div>
+</div>
+<div class="section" id="different-partitioning-schemes">
+<h3>Different partitioning schemes<a class="headerlink" href="#different-partitioning-schemes" title="Permalink to this headline">¶</a></h3>
+<p>The above example uses a hive-like directory scheme, such as “/year=2009/month=11/day=15”.
+We specified this passing the <code class="docutils literal notranslate"><span class="pre">partitioning=&quot;hive&quot;</span></code> keyword. In this case,
+the types of the partition keys are inferred from the file paths.</p>
+<p>It is also possible to explicitly define the schema of the partition keys
+using the <a class="reference internal" href="generated/pyarrow.dataset.partitioning.html#pyarrow.dataset.partitioning" title="pyarrow.dataset.partitioning"><code class="xref py py-func docutils literal notranslate"><span class="pre">partitioning()</span></code></a> function. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">part</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">partitioning</span><span class="p">(</span>
+    <span class="n">pa</span><span class="o">.</span><span class="n">schema</span><span class="p">([(</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">pa</span><span class="o">.</span><span class="n">int16</span><span class="p">()),</span> <span class="p">(</span><span class="s2">&quot;month&quot;</span><span class="p">,</span> <span class="n">pa</span><span class="o">.</span><span class="n">int8</span><span class="p">()),</span> <span class="p">(</span><span class="s2">&quot;day&quot;</span><span class="p">,</span> <span class="n">pa</span><span class="o">.</span><span class="n">int32</span><span class="p">())]),</span>
+    <span class="n">flavor</span><span class="o">=</span><span class="s2">&quot;hive&quot;</span>
+<span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">partitioning</span><span class="o">=</span><span class="n">part</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>“Directory partitioning” is also supported, where the segments in the file path
+represent the values of the partition keys without including the name (the
+field name are implicit in the segment’s index). For example, given field names
+“year”, “month”, and “day”, one path might be “/2019/11/15”.</p>
+<p>Since the names are not included in the file paths, these must be specified
+when constructing a directory partitioning:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">part</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">partitioning</span><span class="p">(</span><span class="n">field_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">,</span> <span class="s2">&quot;day&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Directory partitioning also supports providing a full schema rather than inferring
+types from file paths.</p>
+</div>
+</div>
+<div class="section" id="reading-from-cloud-storage">
+<h2>Reading from cloud storage<a class="headerlink" href="#reading-from-cloud-storage" title="Permalink to this headline">¶</a></h2>
+<p>In addition to local files, pyarrow also supports reading from cloud storage.
+Currently, <code class="xref py py-class docutils literal notranslate"><span class="pre">HDFS</span></code> and
+<a class="reference internal" href="generated/pyarrow.fs.S3FileSystem.html#pyarrow.fs.S3FileSystem" title="pyarrow.fs.S3FileSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">Amazon</span> <span class="pre">S3-compatible</span> <span class="pre">storage</span></code></a> are supported.</p>
+<p>When passing a file URI, the file system will be inferred. For example,
+specifying a S3 path:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="s2">&quot;s3://ursa-labs-taxi-data/&quot;</span><span class="p">,</span> <span class="n">partitioning</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Typically, you will want to customize the connection parameters, and then
+a file system object can be created and passed to the <code class="docutils literal notranslate"><span class="pre">filesystem</span></code> keyword:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyarrow</span> <span class="kn">import</span> <span class="n">fs</span>
+
+<span class="n">s3</span>  <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="n">S3FileSystem</span><span class="p">(</span><span class="n">region</span><span class="o">=</span><span class="s2">&quot;us-east-2&quot;</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="s2">&quot;ursa-labs-taxi-data/&quot;</span><span class="p">,</span> <span class="n">filesystem</span><span class="o">=</span><span class="n">s3</span><span class="p">,</span>
+                     <span class="n">partitioning</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The currently available classes are <a class="reference internal" href="generated/pyarrow.fs.S3FileSystem.html#pyarrow.fs.S3FileSystem" title="pyarrow.fs.S3FileSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">S3FileSystem</span></code></a> and
+<code class="xref py py-class docutils literal notranslate"><span class="pre">HadoopFileSystem</span></code>. See the <a class="reference internal" href="filesystems.html#filesystem"><span class="std std-ref">Filesystem Interface</span></a> docs for more
+details.</p>
+</div>
+<div class="section" id="reading-from-minio">
+<h2>Reading from Minio<a class="headerlink" href="#reading-from-minio" title="Permalink to this headline">¶</a></h2>
+<p>In addition to cloud storage, pyarrow also supports reading from a
+<a class="reference external" href="https://github.com/minio/minio">MinIO</a> object storage instance emulating S3
+APIs. Paired with <a class="reference external" href="https://github.com/shopify/toxiproxy">toxiproxy</a>, this is
+useful for testing or benchmarking.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyarrow</span> <span class="kn">import</span> <span class="n">fs</span>
+
+<span class="c1"># By default, MinIO will listen for unencrypted HTTP traffic.</span>
+<span class="n">minio</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="n">S3FileSystem</span><span class="p">(</span><span class="n">scheme</span><span class="o">=</span><span class="s2">&quot;http&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;localhost:9000&quot;</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="s2">&quot;ursa-labs-taxi-data/&quot;</span><span class="p">,</span> <span class="n">filesystem</span><span class="o">=</span><span class="n">minio</span><span class="p">,</span>
+                     <span class="n">partitioning</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="working-with-parquet-datasets">
+<h2>Working with Parquet Datasets<a class="headerlink" href="#working-with-parquet-datasets" title="Permalink to this headline">¶</a></h2>
+<p>While the Datasets API provides a unified interface to different file formats,
+some specific methods exist for Parquet Datasets.</p>
+<p>Some processing frameworks such as Dask (optionally) use a <code class="docutils literal notranslate"><span class="pre">_metadata</span></code> file
+with partitioned datasets which includes information about the schema and the
+row group metadata of the full dataset. Using such file can give a more
+efficient creation of a parquet Dataset, since it does not need to infer the
+schema and crawl the directories for all Parquet files (this is especially the
+case for filesystems where accessing files is expensive). The
+<a class="reference internal" href="generated/pyarrow.dataset.parquet_dataset.html#pyarrow.dataset.parquet_dataset" title="pyarrow.dataset.parquet_dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">parquet_dataset()</span></code></a> function allows to create a Dataset from a partitioned
+dataset with a <code class="docutils literal notranslate"><span class="pre">_metadata</span></code> file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">parquet_dataset</span><span class="p">(</span><span class="s2">&quot;/path/to/dir/_metadata&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>By default, the constructed <a class="reference internal" href="generated/pyarrow.dataset.Dataset.html#pyarrow.dataset.Dataset" title="pyarrow.dataset.Dataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dataset</span></code></a> object for Parquet datasets maps
+each fragment to a single Parquet file. If you want fragments mapping to each
+row group of a Parquet file, you can use the <code class="docutils literal notranslate"><span class="pre">split_by_row_group()</span></code> method of
+the fragments:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fragments</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_fragments</span><span class="p">())</span>
+<span class="n">fragments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split_by_row_group</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This method returns a list of new Fragments mapping to each row group of
+the original Fragment (Parquet file). Both <code class="docutils literal notranslate"><span class="pre">get_fragments()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">split_by_row_group()</span></code> accept an optional filter expression to get a
+filtered list of fragments.</p>
+</div>
+<div class="section" id="manual-specification-of-the-dataset">
+<h2>Manual specification of the Dataset<a class="headerlink" href="#manual-specification-of-the-dataset" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="generated/pyarrow.dataset.dataset.html#pyarrow.dataset.dataset" title="pyarrow.dataset.dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">dataset()</span></code></a> function allows easy creation of a Dataset viewing a directory,
+crawling all subdirectories for files and partitioning information. However
+sometimes discovery is not required and the dataset’s files and partitions
+are already known (for example, when this information is stored in metadata).
+In this case it is possible to create a Dataset explicitly without any
+automatic discovery or inference.</p>
+<p>For the example here, we are going to use a dataset where the file names contain
+additional partitioning information:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># creating a dummy dataset: directory with two files</span>
+<span class="gp">In [34]: </span><span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">table</span><span class="p">({</span><span class="s1">&#39;col1&#39;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="s1">&#39;col2&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">)})</span>
+
+<span class="gp">In [35]: </span><span class="p">(</span><span class="n">base</span> <span class="o">/</span> <span class="s2">&quot;parquet_dataset_manual&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="gp">In [36]: </span><span class="n">pq</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">base</span> <span class="o">/</span> <span class="s2">&quot;parquet_dataset_manual&quot;</span> <span class="o">/</span> <span class="s2">&quot;data_2018.parquet&quot;</span><span class="p">)</span>
+
+<span class="gp">In [37]: </span><span class="n">pq</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">base</span> <span class="o">/</span> <span class="s2">&quot;parquet_dataset_manual&quot;</span> <span class="o">/</span> <span class="s2">&quot;data_2019.parquet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To create a Dataset from a list of files, we need to specify the paths, schema,
+format, filesystem, and partition expressions manually:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [38]: </span><span class="kn">from</span> <span class="nn">pyarrow</span> <span class="kn">import</span> <span class="n">fs</span>
+
+<span class="gp">In [39]: </span><span class="n">schema</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">schema</span><span class="p">([(</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">pa</span><span class="o">.</span><span class="n">int64</span><span class="p">()),</span> <span class="p">(</span><span class="s2">&quot;col1&quot;</span><span class="p">,</span> <span class="n">pa</span><span class="o">.</span><span class="n">int64</span><span class="p">()),</span> <span class="p">(</span><span class="s2">&quot;col2&quot;</span><span class="p">,</span> <span class="n">pa</span><span class="o">.</span><span class="n">float64</span><span class="p">())])</span>
+
+<span class="gp">In [40]: </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">FileSystemDataset</span><span class="o">.</span><span class="n">from_paths</span><span class="p">(</span>
+<span class="gp">   ....: </span>    <span class="p">[</span><span class="s2">&quot;data_2018.parquet&quot;</span><span class="p">,</span> <span class="s2">&quot;data_2019.parquet&quot;</span><span class="p">],</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">ParquetFileFormat</span><span class="p">(),</span>
+<span class="gp">   ....: </span>    <span class="n">filesystem</span><span class="o">=</span><span class="n">fs</span><span class="o">.</span><span class="n">SubTreeFileSystem</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">base</span> <span class="o">/</span> <span class="s2">&quot;parquet_dataset_manual&quot;</span><span class="p">),</span> <span class="n">fs</span><span class="o">.</span><span class="n">LocalFileSystem</span><span class="p">()),</span>
+<span class="gp">   ....: </span>    <span class="n">partitions</span><span class="o">=</span><span class="p">[</span><span class="n">ds</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2018</span><span class="p">,</span> <span class="n">ds</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2019</span><span class="p">])</span>
+<span class="gp">   ....: </span>
+</pre></div>
+</div>
+<p>Since we specified the “partition expressions” for our files, this information
+is materialized as columns when reading the data and can be used for filtering:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [41]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">()</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<span class="gh">Out[41]: </span><span class="go"></span>
+<span class="go">   year  col1      col2</span>
+<span class="go">0  2018     0 -0.008808</span>
+<span class="go">1  2018     1  0.614782</span>
+<span class="go">2  2018     2  0.843375</span>
+<span class="go">3  2019     0 -0.008808</span>
+<span class="go">4  2019     1  0.614782</span>
+<span class="go">5  2019     2  0.843375</span>
+
+<span class="gp">In [42]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2019</span><span class="p">)</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<span class="gh">Out[42]: </span><span class="go"></span>
+<span class="go">   year  col1      col2</span>
+<span class="go">0  2019     0 -0.008808</span>
+<span class="go">1  2019     1  0.614782</span>
+<span class="go">2  2019     2  0.843375</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="manual-scheduling">
+<h2>Manual scheduling<a class="headerlink" href="#manual-scheduling" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="generated/pyarrow.dataset.Dataset.html#pyarrow.dataset.Dataset.to_table" title="pyarrow.dataset.Dataset.to_table"><code class="xref py py-func docutils literal notranslate"><span class="pre">to_table()</span></code></a> method loads all selected data into memory
+at once resulting in a pyarrow Table. Alternatively, a dataset can also be
+scanned one RecordBatch at a time in an iterative manner using the
+<a class="reference internal" href="generated/pyarrow.dataset.Dataset.html#pyarrow.dataset.Dataset.scan" title="pyarrow.dataset.Dataset.scan"><code class="xref py py-func docutils literal notranslate"><span class="pre">scan()</span></code></a> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">scan_task</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">],</span> <span class="nb">filter</span><span class="o">=...</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">record_batch</span> <span class="ow">in</span> <span class="n">scan_task</span><span class="o">.</span><span class="n">execute</span><span class="p">():</span>
+        <span class="c1"># process the record batch</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="parquet.html" title="previous page">Reading and Writing the Apache Parquet Format</a>
+    <a class='right-next' id="next-link" href="cuda.html" title="next page">CUDA Integration</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.ba662cee8b5f0abc50a9.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>

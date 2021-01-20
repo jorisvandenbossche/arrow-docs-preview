@@ -1,0 +1,452 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benchmarks &#8212; Apache Arrow v3.0.0.dev641+ge8678380d</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.22694625df1dc3917a75ecd1c8e51ec6.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.ba662cee8b5f0abc50a9.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Building the Documentation" href="documentation.html" />
+    <link rel="prev" title="Running Docker Builds" href="docker.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-toc" viewBox="0 0 24 24">
+        <title>Contents</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="10" y1="12" x2="20" y2="12" />
+          <line x1="6" y1="18" x2="20" y2="18" />
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+
+    
+      
+      <a class="navbar-brand" href="../index.html">
+        <img src="../_static/arrow.png" class="logo" alt="logo">
+      </a>
+      
+    
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    
+    <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+      <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+        <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../spec.html">
+  Specifications and Protocols
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../libraries.html">
+  Libraries
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../developers.html">
+  Development
+ </a>
+</li>
+
+        
+      </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/apache/arrow" target="_blank" rel="noopener">
+              <span><i class="fab fa-github-square"></i></span>
+            </a>
+          </li>
+        
+        
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://twitter.com/ApacheArrow" target="_blank" rel="noopener">
+              <span><i class="fab fa-twitter-square"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <!-- <ul class="nav bd-sidenav"> -->
+      <ul class="current nav bd-sidenav">
+ <li class="toctree-l2">
+  <a class="reference internal" href="contributing.html">
+   Contributing to Apache Arrow
+  </a>
+ </li>
+ <li class="toctree-l2 has-children">
+  <a class="reference internal" href="cpp/index.html">
+   C++ Development
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="icon">
+    <svg>
+     <use href="#svg-arrow-right">
+     </use>
+    </svg>
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l3">
+    <a class="reference internal" href="cpp/building.html">
+     Building Arrow C++
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="cpp/development.html">
+     Development Guidelines
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="cpp/windows.html">
+     Developing on Windows
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="cpp/conventions.html">
+     Conventions
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="cpp/fuzzing.html">
+     Fuzzing Arrow C++
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference internal" href="python.html">
+   Python Development
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference internal" href="archery.html">
+   Daily Development using Archery
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference internal" href="crossbow.html">
+   Packaging and Testing with Crossbow
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference internal" href="docker.html">
+   Running Docker Builds
+  </a>
+ </li>
+ <li class="toctree-l2 current active current-page">
+  <a class="current reference internal" href="#">
+   Benchmarks
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference internal" href="documentation.html">
+   Building the Documentation
+  </a>
+ </li>
+</ul>
+    <!-- </ul> -->
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-the-benchmark-suite">
+   Running the benchmark suite
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison">
+   Comparison
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iterating-efficiently">
+     Iterating efficiently
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regression-detection">
+   Regression detection
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#writing-a-benchmark">
+     Writing a benchmark
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scripting">
+   Scripting
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="benchmarks">
+<span id="id1"></span><h1>Benchmarks<a class="headerlink" href="#benchmarks" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>First install the <a class="reference internal" href="archery.html#archery"><span class="std std-ref">Archery</span></a> utility to run the benchmark suite.</p>
+</div>
+<div class="section" id="running-the-benchmark-suite">
+<h2>Running the benchmark suite<a class="headerlink" href="#running-the-benchmark-suite" title="Permalink to this headline">¶</a></h2>
+<p>The benchmark suites can be ran with the <code class="docutils literal notranslate"><span class="pre">benchmark</span> <span class="pre">run</span></code> sub-command.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run benchmarks in the current git workspace</span>
+archery benchmark run
+<span class="c1"># Storing the results in a file</span>
+archery benchmark run --output<span class="o">=</span>run.json
+</pre></div>
+</div>
+<p>Sometimes, it is required to pass custom CMake flags, e.g.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CC</span><span class="o">=</span>clang-8 <span class="nv">CXX</span><span class="o">=</span>clang++8
+archery benchmark run --cmake-extras<span class="o">=</span><span class="s2">&quot;-DARROW_SIMD_LEVEL=NONE&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="comparison">
+<h2>Comparison<a class="headerlink" href="#comparison" title="Permalink to this headline">¶</a></h2>
+<p>One goal with benchmarking is to detect performance regressions. To this end,
+<code class="docutils literal notranslate"><span class="pre">archery</span></code> implements a benchmark comparison facility via the <code class="docutils literal notranslate"><span class="pre">benchmark</span>
+<span class="pre">diff</span></code> sub-command.</p>
+<p>In the default invocation, it will compare the current source (known as the
+current workspace in git) with local master branch.</p>
+<p>For more information, invoke the <code class="docutils literal notranslate"><span class="pre">archery</span> <span class="pre">benchmark</span> <span class="pre">diff</span> <span class="pre">--help</span></code> command for
+multiple examples of invocation.</p>
+<div class="section" id="iterating-efficiently">
+<h3>Iterating efficiently<a class="headerlink" href="#iterating-efficiently" title="Permalink to this headline">¶</a></h3>
+<p>Iterating with benchmark development can be a tedious process due to long
+build time and long run times. Multiple tricks can be used with
+<code class="docutils literal notranslate"><span class="pre">archery</span> <span class="pre">benchmark</span> <span class="pre">diff</span></code> to reduce this overhead.</p>
+<p>First, the benchmark command supports comparing existing
+build directories, This can be paired with the <code class="docutils literal notranslate"><span class="pre">--preserve</span></code> flag to
+avoid rebuilding sources from zero.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># First invocation clone and checkouts in a temporary directory. The</span>
+<span class="c1"># directory is preserved with --preserve</span>
+archery benchmark diff --preserve
+
+<span class="c1"># Modify C++ sources</span>
+
+<span class="c1"># Re-run benchmark in the previously created build directory.</span>
+archery benchmark diff /tmp/arrow-bench*/<span class="o">{</span>WORKSPACE,master<span class="o">}</span>/build
+</pre></div>
+</div>
+<p>Second, a benchmark run result can be saved in a json file. This also avoids
+rebuilding the sources, but also executing the (sometimes) heavy benchmarks.
+This technique can be used as a poor’s man caching.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the benchmarks on a given commit and save the result</span>
+archery benchmark run --output<span class="o">=</span>run-head-1.json HEAD~1
+<span class="c1"># Compare the previous captured result with HEAD</span>
+archery benchmark diff HEAD run-head-1.json
+</pre></div>
+</div>
+<p>Third, the benchmark command supports filtering suites (<code class="docutils literal notranslate"><span class="pre">--suite-filter</span></code>)
+and benchmarks (<code class="docutils literal notranslate"><span class="pre">--benchmark-filter</span></code>), both options supports regular
+expressions.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Taking over a previous run, but only filtering for benchmarks matching</span>
+<span class="c1"># `Kernel` and suite matching `compute-aggregate`.</span>
+archery benchmark diff                                       <span class="se">\</span>
+  --suite-filter<span class="o">=</span>compute-aggregate --benchmark-filter<span class="o">=</span>Kernel <span class="se">\</span>
+  /tmp/arrow-bench*/<span class="o">{</span>WORKSPACE,master<span class="o">}</span>/build
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="regression-detection">
+<h2>Regression detection<a class="headerlink" href="#regression-detection" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="writing-a-benchmark">
+<h3>Writing a benchmark<a class="headerlink" href="#writing-a-benchmark" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>The benchmark command will filter (by default) benchmarks with the regular
+expression <code class="docutils literal notranslate"><span class="pre">^Regression</span></code>. This way, not all benchmarks are run by default.
+Thus, if you want your benchmark to be verified for regression
+automatically, the name must match.</p></li>
+<li><p>The benchmark command will run with the <code class="docutils literal notranslate"><span class="pre">--benchmark_repetitions=K</span></code>
+options for statistical significance. Thus, a benchmark should not override
+the repetitions in the (C++) benchmark’s arguments definition.</p></li>
+<li><p>Due to #2, a benchmark should run sufficiently fast. Often, when the input
+does not fit in memory (L2/L3), the benchmark will be memory bound instead
+of CPU bound. In this case, the input can be downsized.</p></li>
+<li><p>By default, google’s benchmark library will use the cputime metric, which
+is the sum of runtime dedicated on the CPU for all threads of the process.
+By contrast to realtime which is the wall clock time, e.g. the difference
+between end_time - start_time. In a single thread model, the cputime is
+preferable since it is less affected by context switching. In a multi thread
+scenario, the cputime will give incorrect result since the since it’ll
+be inflated by the number of threads and can be far off realtime. Thus, if
+the benchmark is multi threaded, it might be better to use
+<code class="docutils literal notranslate"><span class="pre">SetRealtime()</span></code>, see this <cite>example &lt;https://github.com/apache/arrow/blob/a9582ea6ab2db055656809a2c579165fe6a811ba/cpp/src/arrow/io/memory-benchmark.cc#L223-L227&gt;</cite>.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="scripting">
+<h2>Scripting<a class="headerlink" href="#scripting" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">archery</span></code> is written as a python library with a command line frontend. The
+library can be imported to automate some tasks.</p>
+<p>Some invocation of the command line interface can be quite verbose due to build
+output. This can be controlled/avoided with the <code class="docutils literal notranslate"><span class="pre">--quiet</span></code> option, e.g.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>archery --quiet benchmark diff --benchmark-filter<span class="o">=</span>Kernel
+<span class="o">{</span><span class="s2">&quot;benchmark&quot;</span>: <span class="s2">&quot;BenchSumKernel/32768/0&quot;</span>, <span class="s2">&quot;change&quot;</span>: -0.6498, <span class="s2">&quot;regression&quot;</span>: true, ...
+<span class="o">{</span><span class="s2">&quot;benchmark&quot;</span>: <span class="s2">&quot;BenchSumKernel/32768/1&quot;</span>, <span class="s2">&quot;change&quot;</span>: <span class="m">0</span>.01553, <span class="s2">&quot;regression&quot;</span>: false, ...
+...
+</pre></div>
+</div>
+<p>or the <code class="docutils literal notranslate"><span class="pre">--output=&lt;file&gt;</span></code> can be used, e.g.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>archery benchmark diff --benchmark-filter<span class="o">=</span>Kernel --output<span class="o">=</span>compare.json
+...
+</pre></div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="docker.html" title="previous page">Running Docker Builds</a>
+    <a class='right-next' id="next-link" href="documentation.html" title="next page">Building the Documentation</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.ba662cee8b5f0abc50a9.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>
