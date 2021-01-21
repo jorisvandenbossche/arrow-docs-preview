@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 <html>
@@ -9,7 +8,7 @@
     <title>Data Types and In-Memory Data Model &#8212; Apache Arrow v3.0.0.dev641+ge8678380d</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.22694625df1dc3917a75ecd1c8e51ec6.css" rel="stylesheet" />
+  <link href="../_static/css/index.5d5914fd1cc083e2424bb9c5e974de8e.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -27,7 +26,7 @@
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.ba662cee8b5f0abc50a9.js">
+  <link rel="preload" as="script" href="../_static/js/index.90951cbc93101d5860c0.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -94,7 +93,7 @@
     <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
       <ul id="navbar-main-elements" class="navbar-nav mr-auto">
         <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../spec.html">
+ <a class="reference internal nav-link" href="../format.html">
   Specifications and Protocols
  </a>
 </li>
@@ -151,7 +150,7 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
     <!-- <ul class="nav bd-sidenav"> -->
-      <ul class="current nav bd-sidenav">
+      <ul class="current nav bd-sidenav testest">
  <li class="toctree-l2">
   <a class="reference internal" href="../status.html">
    Implementation Status
@@ -1031,7 +1030,7 @@ for you:</p>
 
 <span class="gp">In [26]: </span><span class="n">arr</span>
 <span class="gh">Out[26]: </span><span class="go"></span>
-<span class="go">&lt;pyarrow.lib.Int64Array object at 0x7fd6d749d0a0&gt;</span>
+<span class="go">&lt;pyarrow.lib.Int64Array object at 0x7f45b0e2c820&gt;</span>
 <span class="go">[</span>
 <span class="go">  1,</span>
 <span class="go">  2,</span>
@@ -1043,7 +1042,7 @@ for you:</p>
 <p>But you may also pass a specific data type to override type inference:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [27]: </span><span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="nb">type</span><span class="o">=</span><span class="n">pa</span><span class="o">.</span><span class="n">uint16</span><span class="p">())</span>
 <span class="gh">Out[27]: </span><span class="go"></span>
-<span class="go">&lt;pyarrow.lib.UInt16Array object at 0x7fd6d749dd00&gt;</span>
+<span class="go">&lt;pyarrow.lib.UInt16Array object at 0x7f45b6eff0a0&gt;</span>
 <span class="go">[</span>
 <span class="go">  1,</span>
 <span class="go">  2</span>
@@ -1078,7 +1077,7 @@ nulls:</p>
 <p>Arrays can be sliced without copying:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [33]: </span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 <span class="gh">Out[33]: </span><span class="go"></span>
-<span class="go">&lt;pyarrow.lib.Int64Array object at 0x7fd6d6473880&gt;</span>
+<span class="go">&lt;pyarrow.lib.Int64Array object at 0x7f45b70f1b20&gt;</span>
 <span class="go">[</span>
 <span class="go">  2,</span>
 <span class="go">  null</span>
@@ -1120,7 +1119,7 @@ sequence of Python dicts or tuples:</p>
 
 <span class="gp">In [37]: </span><span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">([{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}],</span> <span class="nb">type</span><span class="o">=</span><span class="n">ty</span><span class="p">)</span>
 <span class="gh">Out[37]: </span><span class="go"></span>
-<span class="go">&lt;pyarrow.lib.StructArray object at 0x7fd6d12a23a0&gt;</span>
+<span class="go">&lt;pyarrow.lib.StructArray object at 0x7f45b0804160&gt;</span>
 <span class="go">-- is_valid: all not null</span>
 <span class="go">-- child 0 type: int8</span>
 <span class="go">  [</span>
@@ -1135,7 +1134,7 @@ sequence of Python dicts or tuples:</p>
 
 <span class="gp">In [38]: </span><span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="mi">3</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="kc">False</span><span class="p">)],</span> <span class="nb">type</span><span class="o">=</span><span class="n">ty</span><span class="p">)</span>
 <span class="gh">Out[38]: </span><span class="go"></span>
-<span class="go">&lt;pyarrow.lib.StructArray object at 0x7fd6d12a22e0&gt;</span>
+<span class="go">&lt;pyarrow.lib.StructArray object at 0x7f45b0e3f700&gt;</span>
 <span class="go">-- is_valid: all not null</span>
 <span class="go">-- child 0 type: int8</span>
 <span class="go">  [</span>
@@ -1154,7 +1153,7 @@ level and at the individual field level.  If initializing from a sequence
 of Python dicts, a missing dict key is handled as a null value:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [39]: </span><span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">([{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="kc">None</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}],</span> <span class="nb">type</span><span class="o">=</span><span class="n">ty</span><span class="p">)</span>
 <span class="gh">Out[39]: </span><span class="go"></span>
-<span class="go">&lt;pyarrow.lib.StructArray object at 0x7fd6d12a2ee0&gt;</span>
+<span class="go">&lt;pyarrow.lib.StructArray object at 0x7f45b70f1340&gt;</span>
 <span class="go">-- is_valid:</span>
 <span class="go">  [</span>
 <span class="go">    true,</span>
@@ -1189,7 +1188,7 @@ individual arrays, and no copy is involved:</p>
 
 <span class="gp">In [44]: </span><span class="n">arr</span>
 <span class="gh">Out[44]: </span><span class="go"></span>
-<span class="go">&lt;pyarrow.lib.StructArray object at 0x7fd6d12a26a0&gt;</span>
+<span class="go">&lt;pyarrow.lib.StructArray object at 0x7f45b0e3f760&gt;</span>
 <span class="go">-- is_valid: all not null</span>
 <span class="go">-- child 0 type: int16</span>
 <span class="go">  [</span>
@@ -1228,7 +1227,7 @@ selected:</p>
 
 <span class="gp">In [50]: </span><span class="n">union_arr</span>
 <span class="gh">Out[50]: </span><span class="go"></span>
-<span class="go">&lt;pyarrow.lib.UnionArray object at 0x7fd6d6473040&gt;</span>
+<span class="go">&lt;pyarrow.lib.UnionArray object at 0x7f45b0e3f040&gt;</span>
 <span class="go">-- is_valid: all not null</span>
 <span class="go">-- type_ids:   [</span>
 <span class="go">    0,</span>
@@ -1267,7 +1266,7 @@ each offset in the selected child array it can be found:</p>
 
 <span class="gp">In [57]: </span><span class="n">union_arr</span>
 <span class="gh">Out[57]: </span><span class="go"></span>
-<span class="go">&lt;pyarrow.lib.UnionArray object at 0x7fd6d8190460&gt;</span>
+<span class="go">&lt;pyarrow.lib.UnionArray object at 0x7f45b5f8f160&gt;</span>
 <span class="go">-- is_valid: all not null</span>
 <span class="go">-- type_ids:   [</span>
 <span class="go">    0,</span>
@@ -1316,7 +1315,7 @@ consider an example:</p>
 
 <span class="gp">In [61]: </span><span class="n">dict_array</span>
 <span class="gh">Out[61]: </span><span class="go"></span>
-<span class="go">&lt;pyarrow.lib.DictionaryArray object at 0x7fd6d0e037b0&gt;</span>
+<span class="go">&lt;pyarrow.lib.DictionaryArray object at 0x7f45b0c92c80&gt;</span>
 
 <span class="go">-- dictionary:</span>
 <span class="go">  [</span>
@@ -1343,7 +1342,7 @@ consider an example:</p>
 
 <span class="gp">In [63]: </span><span class="n">dict_array</span><span class="o">.</span><span class="n">indices</span>
 <span class="gh">Out[63]: </span><span class="go"></span>
-<span class="go">&lt;pyarrow.lib.Int64Array object at 0x7fd6d0c02160&gt;</span>
+<span class="go">&lt;pyarrow.lib.Int64Array object at 0x7f45b5f8f1c0&gt;</span>
 <span class="go">[</span>
 <span class="go">  0,</span>
 <span class="go">  1,</span>
@@ -1357,7 +1356,7 @@ consider an example:</p>
 
 <span class="gp">In [64]: </span><span class="n">dict_array</span><span class="o">.</span><span class="n">dictionary</span>
 <span class="gh">Out[64]: </span><span class="go"></span>
-<span class="go">&lt;pyarrow.lib.StringArray object at 0x7fd6d0c02700&gt;</span>
+<span class="go">&lt;pyarrow.lib.StringArray object at 0x7f45b5f8fa60&gt;</span>
 <span class="go">[</span>
 <span class="go">  &quot;foo&quot;,</span>
 <span class="go">  &quot;bar&quot;,</span>
@@ -1413,7 +1412,7 @@ instances. Let’s consider a collection of arrays:</p>
 
 <span class="gp">In [71]: </span><span class="n">batch</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="gh">Out[71]: </span><span class="go"></span>
-<span class="go">&lt;pyarrow.lib.StringArray object at 0x7fd6d6433fa0&gt;</span>
+<span class="go">&lt;pyarrow.lib.StringArray object at 0x7f45b07ffa00&gt;</span>
 <span class="go">[</span>
 <span class="go">  &quot;foo&quot;,</span>
 <span class="go">  &quot;bar&quot;,</span>
@@ -1427,7 +1426,7 @@ instances. Let’s consider a collection of arrays:</p>
 
 <span class="gp">In [73]: </span><span class="n">batch2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="gh">Out[73]: </span><span class="go"></span>
-<span class="go">&lt;pyarrow.lib.StringArray object at 0x7fd6d0c6bac0&gt;</span>
+<span class="go">&lt;pyarrow.lib.StringArray object at 0x7f45b0ee7640&gt;</span>
 <span class="go">[</span>
 <span class="go">  &quot;bar&quot;,</span>
 <span class="go">  &quot;baz&quot;,</span>
@@ -1467,7 +1466,7 @@ container for one or more arrays of the same type.</p>
 
 <span class="gp">In [79]: </span><span class="n">c</span>
 <span class="gh">Out[79]: </span><span class="go"></span>
-<span class="go">&lt;pyarrow.lib.ChunkedArray object at 0x7fd6c5eefb80&gt;</span>
+<span class="go">&lt;pyarrow.lib.ChunkedArray object at 0x7f45a3d1bea0&gt;</span>
 <span class="go">[</span>
 <span class="go">  [</span>
 <span class="go">    1,</span>
@@ -1506,7 +1505,7 @@ container for one or more arrays of the same type.</p>
 
 <span class="gp">In [81]: </span><span class="n">c</span><span class="o">.</span><span class="n">chunk</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gh">Out[81]: </span><span class="go"></span>
-<span class="go">&lt;pyarrow.lib.Int64Array object at 0x7fd6d0c6b580&gt;</span>
+<span class="go">&lt;pyarrow.lib.Int64Array object at 0x7f45b0ee7d60&gt;</span>
 <span class="go">[</span>
 <span class="go">  1,</span>
 <span class="go">  2,</span>
@@ -1586,18 +1585,16 @@ around, so if your data is already in table form, then use
     </div>
 
     
-  <script src="../_static/js/index.ba662cee8b5f0abc50a9.js"></script>
+  <script src="../_static/js/index.90951cbc93101d5860c0.js"></script>
 
 
-    
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-107500873-1');
-</script>
-
+    <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    <p>
+          &copy; Copyright 2016-2019 Apache Software Foundation.<br/>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+    </p>
+  </div>
+</footer>
   </body>
 </html>

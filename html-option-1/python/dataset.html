@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 <html>
@@ -9,7 +8,7 @@
     <title>Tabular Datasets &#8212; Apache Arrow v3.0.0.dev641+ge8678380d</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.22694625df1dc3917a75ecd1c8e51ec6.css" rel="stylesheet" />
+  <link href="../_static/css/index.5d5914fd1cc083e2424bb9c5e974de8e.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -27,7 +26,7 @@
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.ba662cee8b5f0abc50a9.js">
+  <link rel="preload" as="script" href="../_static/js/index.90951cbc93101d5860c0.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -94,7 +93,7 @@
     <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
       <ul id="navbar-main-elements" class="navbar-nav mr-auto">
         <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../spec.html">
+ <a class="reference internal nav-link" href="../format.html">
   Specifications and Protocols
  </a>
 </li>
@@ -151,7 +150,7 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
     <!-- <ul class="nav bd-sidenav"> -->
-      <ul class="current nav bd-sidenav">
+      <ul class="current nav bd-sidenav testest">
  <li class="toctree-l2">
   <a class="reference internal" href="../status.html">
    Implementation Status
@@ -944,7 +943,7 @@ can pass it the path to the directory containing the data files:</p>
 <span class="gp">In [11]: </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">dataset</span><span class="p">(</span><span class="n">base</span> <span class="o">/</span> <span class="s2">&quot;parquet_dataset&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;parquet&quot;</span><span class="p">)</span>
 
 <span class="gp">In [12]: </span><span class="n">dataset</span>
-<span class="gh">Out[12]: </span><span class="go">&lt;pyarrow._dataset.FileSystemDataset at 0x7fd6c59f6830&gt;</span>
+<span class="gh">Out[12]: </span><span class="go">&lt;pyarrow._dataset.FileSystemDataset at 0x7f45a560c030&gt;</span>
 </pre></div>
 </div>
 <p>In addition to a base directory path, <a class="reference internal" href="generated/pyarrow.dataset.dataset.html#pyarrow.dataset.dataset" title="pyarrow.dataset.dataset"><code class="xref py py-func docutils literal notranslate"><span class="pre">dataset()</span></code></a> accepts a path to a single
@@ -976,16 +975,16 @@ this can require a lot of memory, see below on filtering / iterative loading):</
 <span class="gp">In [16]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">()</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 <span class="gh">Out[16]: </span><span class="go"></span>
 <span class="go">   a         b  c</span>
-<span class="go">0  0  0.879128  1</span>
-<span class="go">1  1 -1.009125  2</span>
-<span class="go">2  2 -1.175422  1</span>
-<span class="go">3  3  0.719227  2</span>
-<span class="go">4  4  0.509713  1</span>
-<span class="go">5  5 -0.293638  2</span>
-<span class="go">6  6 -1.386648  1</span>
-<span class="go">7  7  0.010612  2</span>
-<span class="go">8  8  0.119091  1</span>
-<span class="go">9  9  0.839271  2</span>
+<span class="go">0  0  0.098849  1</span>
+<span class="go">1  1  1.497456  2</span>
+<span class="go">2  2 -1.263916  1</span>
+<span class="go">3  3  0.398483  2</span>
+<span class="go">4  4  0.443290  1</span>
+<span class="go">5  5 -1.342694  2</span>
+<span class="go">6  6 -1.291174  1</span>
+<span class="go">7  7 -0.647400  2</span>
+<span class="go">8  8  1.238199  1</span>
+<span class="go">9  9  1.119966  2</span>
 </pre></div>
 </div>
 </div>
@@ -1008,11 +1007,11 @@ formats are planned in the future.</p>
 <span class="gp">In [20]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">()</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 <span class="gh">Out[20]: </span><span class="go"></span>
 <span class="go">   a         b  c</span>
-<span class="go">0  0  0.879128  1</span>
-<span class="go">1  1 -1.009125  2</span>
-<span class="go">2  2 -1.175422  1</span>
-<span class="go">3  3  0.719227  2</span>
-<span class="go">4  4  0.509713  1</span>
+<span class="go">0  0  0.098849  1</span>
+<span class="go">1  1  1.497456  2</span>
+<span class="go">2  2 -1.263916  1</span>
+<span class="go">3  3  0.398483  2</span>
+<span class="go">4  4  0.443290  1</span>
 </pre></div>
 </div>
 </div>
@@ -1044,16 +1043,16 @@ formats are planned in the future.</p>
 <span class="gp">In [22]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 <span class="gh">Out[22]: </span><span class="go"></span>
 <span class="go">   a         b</span>
-<span class="go">0  0  0.879128</span>
-<span class="go">1  1 -1.009125</span>
-<span class="go">2  2 -1.175422</span>
-<span class="go">3  3  0.719227</span>
-<span class="go">4  4  0.509713</span>
-<span class="go">5  5 -0.293638</span>
-<span class="go">6  6 -1.386648</span>
-<span class="go">7  7  0.010612</span>
-<span class="go">8  8  0.119091</span>
-<span class="go">9  9  0.839271</span>
+<span class="go">0  0  0.098849</span>
+<span class="go">1  1  1.497456</span>
+<span class="go">2  2 -1.263916</span>
+<span class="go">3  3  0.398483</span>
+<span class="go">4  4  0.443290</span>
+<span class="go">5  5 -1.342694</span>
+<span class="go">6  6 -1.291174</span>
+<span class="go">7  7 -0.647400</span>
+<span class="go">8  8  1.238199</span>
+<span class="go">9  9  1.119966</span>
 </pre></div>
 </div>
 <p>With the <code class="docutils literal notranslate"><span class="pre">filter</span></code> keyword, rows which do not match the filter predicate will
@@ -1062,18 +1061,18 @@ not be included in the returned table. The keyword expects a boolean
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [23]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 <span class="gh">Out[23]: </span><span class="go"></span>
 <span class="go">   a         b  c</span>
-<span class="go">0  7  0.010612  2</span>
-<span class="go">1  8  0.119091  1</span>
-<span class="go">2  9  0.839271  2</span>
+<span class="go">0  7 -0.647400  2</span>
+<span class="go">1  8  1.238199  1</span>
+<span class="go">2  9  1.119966  2</span>
 
 <span class="gp">In [24]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 <span class="gh">Out[24]: </span><span class="go"></span>
 <span class="go">   a         b  c</span>
-<span class="go">0  1 -1.009125  2</span>
-<span class="go">1  3  0.719227  2</span>
-<span class="go">2  5 -0.293638  2</span>
-<span class="go">3  7  0.010612  2</span>
-<span class="go">4  9  0.839271  2</span>
+<span class="go">0  1  1.497456  2</span>
+<span class="go">1  3  0.398483  2</span>
+<span class="go">2  5 -1.342694  2</span>
+<span class="go">3  7 -0.647400  2</span>
+<span class="go">4  9  1.119966  2</span>
 </pre></div>
 </div>
 <p>The easiest way to construct those <a class="reference internal" href="generated/pyarrow.dataset.Expression.html#pyarrow.dataset.Expression" title="pyarrow.dataset.Expression"><code class="xref py py-class docutils literal notranslate"><span class="pre">Expression</span></code></a> objects is by using the
@@ -1148,9 +1147,13 @@ uses a hive-like partitioning scheme with the <cite>partitioning</cite> keyword:
 <span class="gp">In [31]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">files</span>
 <span class="gh">Out[31]: </span><span class="go"></span>
 <span class="go">[&#39;/tmp/parquet_dataset_partitioned/part=a/068db89f3ccf4b27b58fc405d8597bab.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/0a21bf2c3d874a9d87344a5e46a62cd1.parquet&#39;,</span>
 <span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/12e8056330784e629e4f85636c935689.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/17307869eaae46608fd7e34ab709d944.parquet&#39;,</span>
 <span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/40f43a0f1064419fa554eb75ebc6afff.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/4422a56873a948cb8497e63bd33053eb.parquet&#39;,</span>
 <span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/521f717b42a6456dbc01c81f3855c668.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/59733c4d51ff4d699792046c49fe6d71.parquet&#39;,</span>
 <span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/874f3131820e46fbb5f01f3f31f5880b.parquet&#39;,</span>
 <span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/8c642c1be6824b1a9843f58b56885876.parquet&#39;,</span>
 <span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/a2dc21214d4d4b0eaeb9e8005abdf9c1.parquet&#39;,</span>
@@ -1161,16 +1164,20 @@ uses a hive-like partitioning scheme with the <cite>partitioning</cite> keyword:
 <span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=a/ec5684713d734d4694bee3b375704b5d.parquet&#39;,</span>
 <span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/283c674f0c5f46febc6d252cfa23f89a.parquet&#39;,</span>
 <span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/3671905c4f4b4df49d1b1b083312935c.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/3d08f7f6a7e94ecbacc90ba221823b82.parquet&#39;,</span>
 <span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/40a5f8ae3b944060b43ce6a0336afec4.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/507aa7edc7f645848ffea3b67702c34d.parquet&#39;,</span>
 <span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/5376e022ff8b44e5baa349e4aee06434.parquet&#39;,</span>
 <span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/630dc9618544424083717ed42551990b.parquet&#39;,</span>
 <span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/79edc96fd64244bab2b745dc4ab764a9.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/8290ece298574a1da5366d263822a6c1.parquet&#39;,</span>
 <span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/a494d942eca045b295abbbe787b67b5a.parquet&#39;,</span>
 <span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/b41a7d94e0f94ababa4ed695bc48244c.parquet&#39;,</span>
 <span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/be6c5dfe4d1040b4aca7713a60b7d638.parquet&#39;,</span>
 <span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/cc491a1c39554a2ebd22c748fbfc7df6.parquet&#39;,</span>
 <span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/d3fe9b6ad7134c74a79ea73810108ad8.parquet&#39;,</span>
-<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/e5984aff6c044addbe742b6f6e6db80f.parquet&#39;]</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/e5984aff6c044addbe742b6f6e6db80f.parquet&#39;,</span>
+<span class="go"> &#39;/tmp/parquet_dataset_partitioned/part=b/eadcdd05d41a40e9a3a2d1b71b709afa.parquet&#39;]</span>
 </pre></div>
 </div>
 <p>Although the partition fields are not included in the actual Parquet files,
@@ -1193,61 +1200,14 @@ altogether if they do not match the predicate:</p>
 <span class="go">2   7  0.836431  2    b</span>
 <span class="go">3   8 -1.131249  1    b</span>
 <span class="go">4   9  2.504313  2    b</span>
-<span class="go">5   5 -0.564053  2    b</span>
-<span class="go">6   6 -2.683015  1    b</span>
-<span class="go">7   7  0.569455  2    b</span>
-<span class="go">8   8  1.725854  1    b</span>
-<span class="go">9   9 -0.326392  2    b</span>
-<span class="go">10  5 -0.659025  2    b</span>
-<span class="go">11  6  0.585470  1    b</span>
-<span class="go">12  7 -0.054836  2    b</span>
-<span class="go">13  8 -1.957769  1    b</span>
-<span class="go">14  9 -0.487895  2    b</span>
-<span class="go">15  5 -0.021566  2    b</span>
-<span class="go">16  6 -1.935174  1    b</span>
-<span class="go">17  7  0.124375  2    b</span>
-<span class="go">18  8  1.246378  1    b</span>
-<span class="go">19  9  2.335445  2    b</span>
-<span class="go">20  5 -0.944526  2    b</span>
-<span class="go">21  6 -0.571998  1    b</span>
-<span class="go">22  7 -0.847706  2    b</span>
-<span class="go">23  8  0.264592  1    b</span>
-<span class="go">24  9 -0.595947  2    b</span>
-<span class="go">25  5 -0.494687  2    b</span>
-<span class="go">26  6  0.606583  1    b</span>
-<span class="go">27  7  1.211075  2    b</span>
-<span class="go">28  8 -0.259429  1    b</span>
-<span class="go">29  9  0.181120  2    b</span>
-<span class="go">30  5  0.472841  2    b</span>
-<span class="go">31  6  1.562121  1    b</span>
-<span class="go">32  7 -0.185555  2    b</span>
-<span class="go">33  8  0.756926  1    b</span>
-<span class="go">34  9  0.321280  2    b</span>
-<span class="go">35  5  0.106109  2    b</span>
-<span class="go">36  6 -0.078371  1    b</span>
-<span class="go">37  7 -0.444149  2    b</span>
-<span class="go">38  8  2.142733  1    b</span>
-<span class="go">39  9  1.660620  2    b</span>
-<span class="go">40  5  0.782454  2    b</span>
-<span class="go">41  6 -1.500030  1    b</span>
-<span class="go">42  7  0.982322  2    b</span>
-<span class="go">43  8 -0.065645  1    b</span>
-<span class="go">44  9 -0.128961  2    b</span>
-<span class="go">45  5  1.057241  2    b</span>
-<span class="go">46  6 -0.106782  1    b</span>
-<span class="go">47  7  1.037168  2    b</span>
-<span class="go">48  8  0.883316  1    b</span>
-<span class="go">49  9  0.654793  2    b</span>
-<span class="go">50  5  1.040640  2    b</span>
-<span class="go">51  6 -0.920901  1    b</span>
-<span class="go">52  7 -0.418331  2    b</span>
-<span class="go">53  8 -0.790127  1    b</span>
-<span class="go">54  9 -0.916662  2    b</span>
-<span class="go">55  5 -1.215203  2    b</span>
-<span class="go">56  6  1.215521  1    b</span>
-<span class="go">57  7  0.924982  2    b</span>
-<span class="go">58  8  0.444038  1    b</span>
-<span class="go">59  9  1.653409  2    b</span>
+<span class="go">.. ..       ... ..  ...</span>
+<span class="go">75  5 -1.054258  2    b</span>
+<span class="go">76  6 -0.389159  1    b</span>
+<span class="go">77  7 -2.074697  2    b</span>
+<span class="go">78  8  1.057094  1    b</span>
+<span class="go">79  9  0.016708  2    b</span>
+
+<span class="go">[80 rows x 4 columns]</span>
 </pre></div>
 </div>
 <div class="section" id="different-partitioning-schemes">
@@ -1381,19 +1341,19 @@ is materialized as columns when reading the data and can be used for filtering:<
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [41]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">()</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 <span class="gh">Out[41]: </span><span class="go"></span>
 <span class="go">   year  col1      col2</span>
-<span class="go">0  2018     0 -0.008808</span>
-<span class="go">1  2018     1  0.614782</span>
-<span class="go">2  2018     2  0.843375</span>
-<span class="go">3  2019     0 -0.008808</span>
-<span class="go">4  2019     1  0.614782</span>
-<span class="go">5  2019     2  0.843375</span>
+<span class="go">0  2018     0 -0.379642</span>
+<span class="go">1  2018     1 -0.306568</span>
+<span class="go">2  2018     2  2.076508</span>
+<span class="go">3  2019     0 -0.379642</span>
+<span class="go">4  2019     1 -0.306568</span>
+<span class="go">5  2019     2  2.076508</span>
 
 <span class="gp">In [42]: </span><span class="n">dataset</span><span class="o">.</span><span class="n">to_table</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="n">ds</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2019</span><span class="p">)</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
 <span class="gh">Out[42]: </span><span class="go"></span>
 <span class="go">   year  col1      col2</span>
-<span class="go">0  2019     0 -0.008808</span>
-<span class="go">1  2019     1  0.614782</span>
-<span class="go">2  2019     2  0.843375</span>
+<span class="go">0  2019     0 -0.379642</span>
+<span class="go">1  2019     1 -0.306568</span>
+<span class="go">2  2019     2  2.076508</span>
 </pre></div>
 </div>
 </div>
@@ -1429,18 +1389,16 @@ scanned one RecordBatch at a time in an iterative manner using the
     </div>
 
     
-  <script src="../_static/js/index.ba662cee8b5f0abc50a9.js"></script>
+  <script src="../_static/js/index.90951cbc93101d5860c0.js"></script>
 
 
-    
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-107500873-1');
-</script>
-
+    <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    <p>
+          &copy; Copyright 2016-2019 Apache Software Foundation.<br/>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+    </p>
+  </div>
+</footer>
   </body>
 </html>

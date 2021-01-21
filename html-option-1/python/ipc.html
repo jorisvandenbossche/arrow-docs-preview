@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 
 <html>
@@ -9,7 +8,7 @@
     <title>Streaming, Serialization, and IPC &#8212; Apache Arrow v3.0.0.dev641+ge8678380d</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.22694625df1dc3917a75ecd1c8e51ec6.css" rel="stylesheet" />
+  <link href="../_static/css/index.5d5914fd1cc083e2424bb9c5e974de8e.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -27,7 +26,7 @@
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.ba662cee8b5f0abc50a9.js">
+  <link rel="preload" as="script" href="../_static/js/index.90951cbc93101d5860c0.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -94,7 +93,7 @@
     <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
       <ul id="navbar-main-elements" class="navbar-nav mr-auto">
         <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../spec.html">
+ <a class="reference internal nav-link" href="../format.html">
   Specifications and Protocols
  </a>
 </li>
@@ -151,7 +150,7 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   <div class="bd-toc-item active">
     <!-- <ul class="nav bd-sidenav"> -->
-      <ul class="current nav bd-sidenav">
+      <ul class="current nav bd-sidenav testest">
  <li class="toctree-l2">
   <a class="reference internal" href="../status.html">
    Implementation Status
@@ -1052,19 +1051,19 @@ Python object:</p>
 
 <span class="gp">In [35]: </span><span class="n">restored_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gh">Out[35]: </span><span class="go"></span>
-<span class="go">array([[ 0.08086317, -0.15339708, -1.2233628 , ...,  1.75092352,</span>
-<span class="go">        -0.06968275, -0.78633994],</span>
-<span class="go">       [ 0.35211416,  0.74955105,  0.15330511, ..., -0.17556658,</span>
-<span class="go">         0.60241027,  0.39607615],</span>
-<span class="go">       [ 0.38225826, -0.4352757 ,  0.28904774, ...,  1.72771017,</span>
-<span class="go">         0.74964457,  1.24154372],</span>
+<span class="go">array([[ 0.64820119, -0.38601196,  0.14767262, ..., -1.9307092 ,</span>
+<span class="go">         1.6621215 , -0.27856431],</span>
+<span class="go">       [ 2.47299217, -0.72001473,  1.0101204 , ..., -0.86087672,</span>
+<span class="go">        -1.99292471, -0.347532  ],</span>
+<span class="go">       [-1.19857377,  2.01893907,  0.44893984, ...,  2.88352341,</span>
+<span class="go">        -0.43650426, -0.10245501],</span>
 <span class="go">       ...,</span>
-<span class="go">       [ 1.54346028,  0.38338749, -0.4764439 , ..., -1.14705716,</span>
-<span class="go">         0.68802839,  0.20743694],</span>
-<span class="go">       [ 0.27806684, -0.61462593,  0.53629784, ..., -0.71272166,</span>
-<span class="go">         1.03214615,  1.13396347],</span>
-<span class="go">       [ 0.13435586,  0.88054945,  0.2872042 , ..., -0.81999691,</span>
-<span class="go">         1.91235507,  0.20643412]])</span>
+<span class="go">       [ 0.10732804,  2.99118718,  0.04358707, ..., -2.67503544,</span>
+<span class="go">        -1.65309905, -0.71402152],</span>
+<span class="go">       [-1.62579923, -0.09071528,  1.30103766, ...,  0.63146368,</span>
+<span class="go">        -0.07129444,  0.15195041],</span>
+<span class="go">       [-0.76015271,  0.14741605, -1.29972417, ...,  0.06238563,</span>
+<span class="go">         1.05291462, -1.7756216 ]])</span>
 </pre></div>
 </div>
 <p>When dealing with NumPy arrays, <code class="docutils literal notranslate"><span class="pre">pyarrow.deserialize</span></code> can be significantly
@@ -1073,7 +1072,7 @@ into the input buffer. The larger the arrays, the larger the performance
 savings.</p>
 <p>Consider this example, we have for <code class="docutils literal notranslate"><span class="pre">pyarrow.deserialize</span></code></p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [36]: </span><span class="o">%</span><span class="k">timeit</span> restored_data = pa.deserialize(buf)
-<span class="go">6.81 ms +- 479 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">5.16 ms +- 273 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 <p>And for pickle:</p>
@@ -1082,7 +1081,7 @@ savings.</p>
 <span class="gp">In [38]: </span><span class="n">pickled</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 <span class="gp">In [39]: </span><span class="o">%</span><span class="k">timeit</span> unpickled_data = pickle.loads(pickled)
-<span class="go">83.7 ms +- 6.43 ms per loop (mean +- std. dev. of 7 runs, 10 loops each)</span>
+<span class="go">60.7 ms +- 5.44 ms per loop (mean +- std. dev. of 7 runs, 10 loops each)</span>
 </pre></div>
 </div>
 <p>We aspire to make these functions a high-speed alternative to pickle for
@@ -1152,7 +1151,7 @@ this, use the <code class="docutils literal notranslate"><span class="pre">to_co
 important. The objects in the <code class="docutils literal notranslate"><span class="pre">'data'</span></code> field are <code class="docutils literal notranslate"><span class="pre">pyarrow.Buffer</span></code> objects,
 which are zero-copy convertible to Python <code class="docutils literal notranslate"><span class="pre">memoryview</span></code> objects:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [44]: </span><span class="nb">memoryview</span><span class="p">(</span><span class="n">components</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-<span class="gh">Out[44]: </span><span class="go">&lt;memory at 0x7fd68d1bbdc0&gt;</span>
+<span class="gh">Out[44]: </span><span class="go">&lt;memory at 0x7f456ced6c40&gt;</span>
 </pre></div>
 </div>
 <p>A memoryview can be converted back to a Arrow <code class="docutils literal notranslate"><span class="pre">Buffer</span></code> with
@@ -1168,26 +1167,26 @@ which are zero-copy convertible to Python <code class="docutils literal notransl
 
 <span class="gp">In [48]: </span><span class="n">restored_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="gh">Out[48]: </span><span class="go"></span>
-<span class="go">array([[-0.23850969,  1.32920699,  0.76985493, -1.22520196,  0.26161391,</span>
-<span class="go">         0.99357564, -0.87183528, -0.79722423,  1.0482922 , -0.75056673],</span>
-<span class="go">       [ 1.24563858, -1.48923882,  0.23418059,  0.57757871, -0.93665932,</span>
-<span class="go">         0.14380596, -0.03815082, -0.80968489, -0.051575  ,  0.82924497],</span>
-<span class="go">       [ 1.74375809, -0.45019671, -0.59568206,  0.51331612,  0.68579756,</span>
-<span class="go">        -0.72540481,  0.89099186, -0.20768666, -0.71208115, -0.52088429],</span>
-<span class="go">       [-0.90591722, -0.2172315 ,  2.6947224 , -0.5855737 ,  0.65341977,</span>
-<span class="go">        -0.33144727, -0.88909263, -0.17789488, -0.45269692, -1.6861478 ],</span>
-<span class="go">       [ 0.33921834, -0.27573791, -0.67307891,  0.07189158, -0.27342777,</span>
-<span class="go">         0.66115663, -1.31980165,  0.89558165,  1.17584375,  0.42320954],</span>
-<span class="go">       [-1.12975364, -1.35559966,  0.22752417, -0.91789977,  1.6525106 ,</span>
-<span class="go">         0.72081786,  0.85715962, -0.27964387,  2.52244352,  1.85540214],</span>
-<span class="go">       [-0.70366479,  0.2895391 , -0.82267797, -2.68867111, -0.43811328,</span>
-<span class="go">        -1.0663029 ,  1.19422758, -0.49391742,  0.96665603, -0.58007525],</span>
-<span class="go">       [ 0.16898368, -0.71581343,  0.32289835,  0.15449145,  0.37648664,</span>
-<span class="go">         0.2720877 , -0.41427978, -0.30418224,  0.84152601,  0.25933119],</span>
-<span class="go">       [-1.58531298,  0.46646702, -1.0388344 , -0.73411778,  1.42150465,</span>
-<span class="go">         0.8105638 ,  0.065114  ,  1.84166214, -0.5641379 ,  0.54325875],</span>
-<span class="go">       [-1.40486615, -0.52276686, -0.30151966,  0.55420637,  2.14987241,</span>
-<span class="go">        -0.87537486,  0.71528949,  0.51744782,  1.04001966,  1.53107351]])</span>
+<span class="go">array([[-0.35877135, -2.51773353, -0.84389805, -0.98125567, -1.34302008,</span>
+<span class="go">        -0.44906898, -0.08549797, -0.58309222,  1.81535447,  1.05342757],</span>
+<span class="go">       [-0.24753045,  0.17957378,  0.17851669, -0.70141335, -0.31781268,</span>
+<span class="go">        -1.32608964,  0.29060248,  0.12477758,  0.55853732,  0.45509454],</span>
+<span class="go">       [ 0.75905128, -0.13488564,  0.02821017, -0.34546607,  1.07731204,</span>
+<span class="go">         0.24856209, -0.26044299,  0.54263583, -1.71214622, -1.09650775],</span>
+<span class="go">       [-0.83449206, -0.12741361,  1.79358359,  1.14733259, -0.61476166,</span>
+<span class="go">         1.0159387 ,  0.16364928, -0.10032169,  1.70003769, -1.14295053],</span>
+<span class="go">       [-0.6867576 ,  0.86297437,  1.44024983, -0.79046437, -0.89126699,</span>
+<span class="go">         1.26336829,  0.92043435,  0.20190474,  0.43108901, -1.12612219],</span>
+<span class="go">       [-0.44766553,  2.75567347, -0.59150961, -1.2388233 , -1.05572603,</span>
+<span class="go">         1.01695957,  1.21077829, -1.66173002, -1.40843011, -0.22600291],</span>
+<span class="go">       [-1.07651455,  0.73861024,  0.28535416,  0.14974063, -0.46841324,</span>
+<span class="go">         1.04100439,  0.37790715, -1.52211419, -0.07362726,  0.44448781],</span>
+<span class="go">       [-0.13231401,  0.55705081,  0.32915587,  1.79299123,  0.92216964,</span>
+<span class="go">         1.52427178,  0.1392953 , -0.79662869,  0.1531308 , -2.13152145],</span>
+<span class="go">       [-0.53055191,  0.50609375,  1.14126383, -1.0305084 , -1.50686475,</span>
+<span class="go">        -0.84452967, -0.61560335, -0.06488616, -1.2554371 , -1.34335406],</span>
+<span class="go">       [ 0.45532604, -0.66538028, -1.19521167, -0.61887914,  1.44895512,</span>
+<span class="go">        -1.10278506,  0.83054835, -0.8016957 ,  2.25439509,  0.69299259]])</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">deserialize_components</span></code> is also available as a method on
@@ -1214,18 +1213,16 @@ which are zero-copy convertible to Python <code class="docutils literal notransl
     </div>
 
     
-  <script src="../_static/js/index.ba662cee8b5f0abc50a9.js"></script>
+  <script src="../_static/js/index.90951cbc93101d5860c0.js"></script>
 
 
-    
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-107500873-1');
-</script>
-
+    <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    <p>
+          &copy; Copyright 2016-2019 Apache Software Foundation.<br/>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+    </p>
+  </div>
+</footer>
   </body>
 </html>
