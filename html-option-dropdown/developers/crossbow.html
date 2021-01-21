@@ -1,0 +1,603 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packaging and Testing with Crossbow &#8212; Apache Arrow v3.0.0.dev641+ge8678380d</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.5d5914fd1cc083e2424bb9c5e974de8e.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.90951cbc93101d5860c0.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Running Docker Builds" href="docker.html" />
+    <link rel="prev" title="Daily Development using Archery" href="archery.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-toc" viewBox="0 0 24 24">
+        <title>Contents</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="10" y1="12" x2="20" y2="12" />
+          <line x1="6" y1="18" x2="20" y2="18" />
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+
+    
+      
+      <a class="navbar-brand" href="../index.html">
+        <img src="../_static/arrow.png" class="logo" alt="logo">
+      </a>
+      
+    
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+
+      <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+        <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+          <li class="toctree-l1  nav-item">
+            <a class="reference internal nav-link" href="../format.html">
+              Specifications and Protocols
+            </a>
+          </li>
+  
+          <li class="toctree-l1  nav-item dropdown">
+            <a class="reference internal nav-link dropdown-toggle" href="#"
+            id="navbarDropdownLibraries" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+              Libraries
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownGetArrow">
+              <a class="reference internal nav-link" href="../status.html">
+                Implementation Status
+               </a>
+               <a class="reference external nav-link" href="https://arrow.apache.org/docs/c_glib/">
+                C/GLib
+               </a>
+               <a class="reference internal nav-link" href="../cpp/index.html">
+                C++
+               </a>
+               <a class="reference external nav-link" href="https://github.com/apache/arrow/blob/master/csharp/README.md">
+                C#
+               </a>
+               <a class="reference external nav-link" href="https://godoc.org/github.com/apache/arrow/go/arrow">
+                Go
+               </a>
+               <a class="reference internal nav-link" href="../java/index.html">
+                Java
+               </a>
+               <a class="reference external nav-link" href="https://arrow.apache.org/docs/js/">
+                JavaScript
+               </a>
+               <a class="reference external nav-link" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">
+                Julia
+               </a>
+               <a class="reference external nav-link" href="https://github.com/apache/arrow/blob/master/matlab/README.md">
+                MATLAB
+               </a>
+               <a class="reference internal nav-link" href="../python/index.html">
+                Python
+               </a>
+               <a class="reference external nav-link" href="https://arrow.apache.org/docs/r/">
+                R
+               </a>
+               <a class="reference external nav-link" href="https://github.com/apache/arrow/blob/master/ruby/README.md">
+                Ruby
+               </a>
+               <a class="reference external nav-link" href="https://docs.rs/crate/arrow/">
+                Rust
+               </a>
+              </div>
+            </li>
+
+          <li class="toctree-l1 active nav-item">
+            <a class="reference internal nav-link" href="../developers.html">
+              Development
+            </a>
+          </li>
+        </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/apache/arrow" target="_blank" rel="noopener">
+              <span><i class="fab fa-github-square"></i></span>
+            </a>
+          </li>
+        
+        
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://twitter.com/ApacheArrow" target="_blank" rel="noopener">
+              <span><i class="fab fa-twitter-square"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <!-- <ul class="nav bd-sidenav"> -->
+      
+      <ul class="current nav bd-sidenav testest">
+ <li class="toctree-l2">
+  <a class="reference internal" href="contributing.html">
+   Contributing to Apache Arrow
+  </a>
+ </li>
+ <li class="toctree-l2 has-children">
+  <a class="reference internal" href="cpp/index.html">
+   C++ Development
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="icon">
+    <svg>
+     <use href="#svg-arrow-right">
+     </use>
+    </svg>
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l3">
+    <a class="reference internal" href="cpp/building.html">
+     Building Arrow C++
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="cpp/development.html">
+     Development Guidelines
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="cpp/windows.html">
+     Developing on Windows
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="cpp/conventions.html">
+     Conventions
+    </a>
+   </li>
+   <li class="toctree-l3">
+    <a class="reference internal" href="cpp/fuzzing.html">
+     Fuzzing Arrow C++
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference internal" href="python.html">
+   Python Development
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference internal" href="archery.html">
+   Daily Development using Archery
+  </a>
+ </li>
+ <li class="toctree-l2 current active current-page">
+  <a class="current reference internal" href="#">
+   Packaging and Testing with Crossbow
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference internal" href="docker.html">
+   Running Docker Builds
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference internal" href="benchmarks.html">
+   Benchmarks
+  </a>
+ </li>
+ <li class="toctree-l2">
+  <a class="reference internal" href="documentation.html">
+   Building the Documentation
+  </a>
+ </li>
+</ul>
+      
+    <!-- </ul> -->
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#architecture">
+   Architecture
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#executors">
+     Executors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#queue">
+     Queue
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scheduler">
+     Scheduler
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install">
+   Install
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#usage">
+   Usage
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#query-the-build-status">
+     Query the build status
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#download-the-build-artifacts">
+     Download the build artifacts
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples">
+     Examples
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="packaging-and-testing-with-crossbow">
+<h1>Packaging and Testing with Crossbow<a class="headerlink" href="#packaging-and-testing-with-crossbow" title="Permalink to this headline">¶</a></h1>
+<p>The content of <code class="docutils literal notranslate"><span class="pre">arrow/dev/tasks</span></code> directory aims for automating the process of
+Arrow packaging and integration testing.</p>
+<dl class="simple">
+<dt>Packages:</dt><dd><ul class="simple">
+<li><p>C++ and Python <a class="reference external" href="conda-recipes">conda-forge packages</a> for Linux, Mac and Windows</p></li>
+<li><p>Python <a class="reference external" href="python-wheels">Wheels</a> for Linux, Mac and Windows</p></li>
+<li><p>C++ and GLib <a class="reference external" href="linux-packages">Linux packages</a> for multiple distributions</p></li>
+<li><p>Java for Gandiva</p></li>
+</ul>
+</dd>
+<dt>Integration tests:</dt><dd><ul class="simple">
+<li><p>Various docker tests</p></li>
+<li><p>Pandas</p></li>
+<li><p>Dask</p></li>
+<li><p>Turbodbc</p></li>
+<li><p>HDFS</p></li>
+<li><p>Spark</p></li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="executors">
+<h3>Executors<a class="headerlink" href="#executors" title="Permalink to this headline">¶</a></h3>
+<p>Individual jobs are executed on public CI services, currently:</p>
+<ul class="simple">
+<li><p>Linux: TravisCI, CircleCI, Azure Pipelines</p></li>
+<li><p>Mac: TravisCI, Azure Pipelines</p></li>
+<li><p>Windows: AppVeyor, Azure Pipelines</p></li>
+</ul>
+</div>
+<div class="section" id="queue">
+<h3>Queue<a class="headerlink" href="#queue" title="Permalink to this headline">¶</a></h3>
+<p>Because of the nature of how the CI services work, the scheduling of
+jobs happens through an additional git repository, which acts like a job
+queue for the tasks. Anyone can host a <code class="docutils literal notranslate"><span class="pre">queue</span></code> repository which is usually
+called as <code class="docutils literal notranslate"><span class="pre">crossbow</span></code>.</p>
+<p>A job is a git commit on a particular git branch, containing only the required
+configuration file to run the requested build (like <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code>,
+<code class="docutils literal notranslate"><span class="pre">appveyor.yml</span></code> or <code class="docutils literal notranslate"><span class="pre">azure-pipelines.yml</span></code>).</p>
+</div>
+<div class="section" id="scheduler">
+<h3>Scheduler<a class="headerlink" href="#scheduler" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="crossbow.py">Crossbow.py</a> handles version generation, task rendering and
+submission. The tasks are defined in <code class="docutils literal notranslate"><span class="pre">tasks.yml</span></code>.</p>
+</div>
+</div>
+<div class="section" id="install">
+<h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>The following guide depends on GitHub, but theoretically any git
+server can be used.</p>
+</div></blockquote>
+<ol class="arabic">
+<li><p><a class="reference external" href="https://help.github.com/articles/creating-a-new-repository">Create the queue repository</a></p></li>
+<li><p>Enable <a class="reference external" href="https://travis-ci.org/getting_started">TravisCI</a>, <a class="reference external" href="https://www.appveyor.com/docs/">Appveyor</a>, <cite>Azure Pipelines_</cite> and <a class="reference external" href="https://circleci.com/docs/2.0/getting-started/">CircleCI</a>
+integrations on for the newly created queue repository.</p>
+<ul class="simple">
+<li><p>turn off Travis’ <a class="reference external" href="https://docs.travis-ci.com/user/customizing-the-build/#Building-only-the-latest-commit">auto cancellation</a> feature on branches</p></li>
+</ul>
+</li>
+<li><p>Clone the newly created repository next to the arrow repository:</p>
+<p>By default the scripts looks for <code class="docutils literal notranslate"><span class="pre">crossbow</span></code> next to arrow repository, but
+this can configured through command line arguments.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/&lt;user&gt;/crossbow crossbow
+</pre></div>
+</div>
+<p><strong>Important note:</strong> Crossbow only supports GitHub token based
+authentication. Although it overwrites the repository urls provided with ssh
+protocol, it’s advisable to use the HTTPS repository URLs.</p>
+</li>
+<li><p><a class="reference external" href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/">Create a Personal Access Token</a> with <code class="docutils literal notranslate"><span class="pre">repo</span></code> permissions (other
+permissions are not needed)</p></li>
+<li><p>Locally export the token as an environment variable:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">CROSSBOW_GITHUB_TOKEN</span><span class="o">=</span>&lt;token&gt;
+</pre></div>
+</div>
+<blockquote>
+<div><p>or pass as an argument to the CLI script <code class="docutils literal notranslate"><span class="pre">--github-token</span></code></p>
+</div></blockquote>
+</li>
+<li><p>Export the previously created GitHub token on both CI services:</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">CROSSBOW_GITHUB_TOKEN</span></code> encrypted environment variable. You can
+set them at the following URLs, where <code class="docutils literal notranslate"><span class="pre">ghuser</span></code> is the GitHub
+username and <code class="docutils literal notranslate"><span class="pre">ghrepo</span></code> is the GitHub repository name (typically
+<code class="docutils literal notranslate"><span class="pre">crossbow</span></code>):</p>
+<ul class="simple">
+<li><p>TravisCI: <code class="docutils literal notranslate"><span class="pre">https://travis-ci.org/&lt;ghuser&gt;/&lt;ghrepo&gt;/settings</span></code></p></li>
+<li><p>Appveyor:
+<code class="docutils literal notranslate"><span class="pre">https://ci.appveyor.com/project/&lt;ghuser&gt;/&lt;ghrepo&gt;/settings/environment</span></code></p></li>
+<li><p>CircleCI:
+<code class="docutils literal notranslate"><span class="pre">https://circleci.com/gh/&lt;ghuser&gt;/&lt;ghrepo&gt;/edit#env-vars</span></code></p></li>
+</ul>
+<p>On Appveyor check the <code class="docutils literal notranslate"><span class="pre">skip</span> <span class="pre">branches</span> <span class="pre">without</span> <span class="pre">appveyor.yml</span></code> checkbox
+on the web UI under crossbow repository’s settings.</p>
+</li>
+<li><p>Install Python (minimum supported version is 3.6):</p>
+<p>Miniconda is preferred, see installation instructions:
+<a class="reference external" href="https://conda.io/docs/user-guide/install/index.html">https://conda.io/docs/user-guide/install/index.html</a></p>
+</li>
+<li><p>Install the python dependencies for the script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge -y --file arrow/ci/conda_env_crossbow.txt
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># pygit2 requires libgit2: http://www.pygit2.org/install.html</span>
+pip install <span class="se">\</span>
+    jinja2 <span class="se">\</span>
+    pygit2 <span class="se">\</span>
+    click <span class="se">\</span>
+    ruamel.yaml <span class="se">\</span>
+    setuptools_scm <span class="se">\</span>
+    github3.py <span class="se">\</span>
+    toolz <span class="se">\</span>
+    jira
+</pre></div>
+</div>
+</li>
+<li><p>Try running it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python crossbow.py --help
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>The script does the following:</p>
+<ol class="arabic">
+<li><p>Detects the current repository, thus supports forks. The following
+snippet will build kszucs’s fork instead of the upstream apache/arrow
+repository.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/kszucs/arrow
+$ git clone https://github.com/kszucs/crossbow
+
+$ <span class="nb">cd</span> arrow/dev/tasks
+$ python crossbow.py submit --help  <span class="c1"># show the available options</span>
+$ python crossbow.py submit conda-win conda-linux conda-osx
+</pre></div>
+</div>
+</li>
+<li><p>Gets the HEAD commit of the currently checked out branch and
+generates the version number based on <a class="reference external" href="https://pypi.python.org/pypi/setuptools_scm">setuptools_scm</a>. So to build
+a particular branch check out before running the script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout ARROW-&lt;ticket number&gt;
+python dev/tasks/crossbow.py submit --dry-run conda-linux conda-osx
+</pre></div>
+</div>
+<blockquote>
+<div><p>Note that the arrow branch must be pushed beforehand, because the
+script will clone the selected branch.</p>
+</div></blockquote>
+</li>
+<li><p>Reads and renders the required build configurations with the
+parameters substituted.</p></li>
+<li><p>Create a branch per task, prefixed with the job id. For example to
+build conda recipes on linux it will create a new branch:
+<code class="docutils literal notranslate"><span class="pre">crossbow&#64;build-&lt;id&gt;-conda-linux</span></code>.</p></li>
+<li><p>Pushes the modified branches to GitHub which triggers the builds. For
+authentication it uses GitHub OAuth tokens described in the install
+section.</p></li>
+</ol>
+<div class="section" id="query-the-build-status">
+<h3>Query the build status<a class="headerlink" href="#query-the-build-status" title="Permalink to this headline">¶</a></h3>
+<p>Build id (which has a corresponding branch in the queue repository) is returned
+by the <code class="docutils literal notranslate"><span class="pre">submit</span></code> command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python crossbow.py status &lt;build id / branch name&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="download-the-build-artifacts">
+<h3>Download the build artifacts<a class="headerlink" href="#download-the-build-artifacts" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python crossbow.py artifacts &lt;build id / branch name&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<p>Submit command accepts a list of task names and/or a list of task-group names
+to select which tasks to build.</p>
+<p>Run multiple builds:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python crossbow.py submit debian-stretch conda-linux-gcc-py37-r40
+Repository: https://github.com/kszucs/arrow@tasks
+Commit SHA: 810a718836bb3a8cefc053055600bdcc440e6702
+Version: <span class="m">0</span>.9.1.dev48+g810a7188.d20180414
+Pushed branches:
+ - debian-stretch
+ - conda-linux-gcc-py37-r40
+</pre></div>
+</div>
+<p>Just render without applying or committing the changes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python crossbow.py submit --dry-run task_name
+</pre></div>
+</div>
+<p>Run only <code class="docutils literal notranslate"><span class="pre">conda</span></code> package builds and a Linux one:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python crossbow.py submit --group conda centos-7
+</pre></div>
+</div>
+<p>Run <code class="docutils literal notranslate"><span class="pre">wheel</span></code> builds:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python crossbow.py submit --group wheel
+</pre></div>
+</div>
+<p>There are multiple task groups in the <code class="docutils literal notranslate"><span class="pre">tasks.yml</span></code> like docker, integration
+and cpp-python for running docker based tests.</p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">crossbow.py</span> <span class="pre">submit</span></code> supports multiple options and arguments, for more
+see its help page:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ python crossbow.py submit --help
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="archery.html" title="previous page">Daily Development using Archery</a>
+    <a class='right-next' id="next-link" href="docker.html" title="next page">Running Docker Builds</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.90951cbc93101d5860c0.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>

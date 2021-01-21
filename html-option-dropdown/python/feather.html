@@ -1,0 +1,650 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feather File Format &#8212; Apache Arrow v3.0.0.dev641+ge8678380d</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.5d5914fd1cc083e2424bb9c5e974de8e.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.90951cbc93101d5860c0.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Reading JSON files" href="json.html" />
+    <link rel="prev" title="Reading CSV files" href="csv.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-toc" viewBox="0 0 24 24">
+        <title>Contents</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="10" y1="12" x2="20" y2="12" />
+          <line x1="6" y1="18" x2="20" y2="18" />
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+
+    
+      
+      <a class="navbar-brand" href="../index.html">
+        <img src="../_static/arrow.png" class="logo" alt="logo">
+      </a>
+      
+    
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+
+      <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+        <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+          <li class="toctree-l1  nav-item">
+            <a class="reference internal nav-link" href="../format.html">
+              Specifications and Protocols
+            </a>
+          </li>
+  
+          <li class="toctree-l1 active nav-item dropdown">
+            <a class="reference internal nav-link dropdown-toggle" href="#"
+            id="navbarDropdownLibraries" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+              Libraries
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownGetArrow">
+              <a class="reference internal nav-link" href="../status.html">
+                Implementation Status
+               </a>
+               <a class="reference external nav-link" href="https://arrow.apache.org/docs/c_glib/">
+                C/GLib
+               </a>
+               <a class="reference internal nav-link" href="../cpp/index.html">
+                C++
+               </a>
+               <a class="reference external nav-link" href="https://github.com/apache/arrow/blob/master/csharp/README.md">
+                C#
+               </a>
+               <a class="reference external nav-link" href="https://godoc.org/github.com/apache/arrow/go/arrow">
+                Go
+               </a>
+               <a class="reference internal nav-link" href="../java/index.html">
+                Java
+               </a>
+               <a class="reference external nav-link" href="https://arrow.apache.org/docs/js/">
+                JavaScript
+               </a>
+               <a class="reference external nav-link" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">
+                Julia
+               </a>
+               <a class="reference external nav-link" href="https://github.com/apache/arrow/blob/master/matlab/README.md">
+                MATLAB
+               </a>
+               <a class="reference internal nav-link" href="index.html">
+                Python
+               </a>
+               <a class="reference external nav-link" href="https://arrow.apache.org/docs/r/">
+                R
+               </a>
+               <a class="reference external nav-link" href="https://github.com/apache/arrow/blob/master/ruby/README.md">
+                Ruby
+               </a>
+               <a class="reference external nav-link" href="https://docs.rs/crate/arrow/">
+                Rust
+               </a>
+              </div>
+            </li>
+
+          <li class="toctree-l1  nav-item">
+            <a class="reference internal nav-link" href="../developers.html">
+              Development
+            </a>
+          </li>
+        </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/apache/arrow" target="_blank" rel="noopener">
+              <span><i class="fab fa-github-square"></i></span>
+            </a>
+          </li>
+        
+        
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://twitter.com/ApacheArrow" target="_blank" rel="noopener">
+              <span><i class="fab fa-twitter-square"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <!-- <ul class="nav bd-sidenav"> -->
+      
+      <ul class="current nav bd-sidenav testest">
+ <li class="toctree-l3">
+  <a class="reference internal" href="install.html">
+   Installing PyArrow
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="memory.html">
+   Memory and IO Interfaces
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="data.html">
+   Data Types and In-Memory Data Model
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="compute.html">
+   Compute Functions
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="ipc.html">
+   Streaming, Serialization, and IPC
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="filesystems.html">
+   Filesystem Interface
+  </a>
+ </li>
+ <li class="toctree-l3 has-children">
+  <a class="reference internal" href="filesystems_deprecated.html">
+   Filesystem Interface (legacy)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="icon">
+    <svg>
+     <use href="#svg-arrow-right">
+     </use>
+    </svg>
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.hdfs.connect.html">
+     pyarrow.hdfs.connect
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.cat.html">
+     pyarrow.HadoopFileSystem.cat
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.chmod.html">
+     pyarrow.HadoopFileSystem.chmod
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.chown.html">
+     pyarrow.HadoopFileSystem.chown
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.delete.html">
+     pyarrow.HadoopFileSystem.delete
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.df.html">
+     pyarrow.HadoopFileSystem.df
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.disk_usage.html">
+     pyarrow.HadoopFileSystem.disk_usage
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.download.html">
+     pyarrow.HadoopFileSystem.download
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.exists.html">
+     pyarrow.HadoopFileSystem.exists
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.get_capacity.html">
+     pyarrow.HadoopFileSystem.get_capacity
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.get_space_used.html">
+     pyarrow.HadoopFileSystem.get_space_used
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.info.html">
+     pyarrow.HadoopFileSystem.info
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.ls.html">
+     pyarrow.HadoopFileSystem.ls
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.mkdir.html">
+     pyarrow.HadoopFileSystem.mkdir
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.open.html">
+     pyarrow.HadoopFileSystem.open
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.rename.html">
+     pyarrow.HadoopFileSystem.rename
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.rm.html">
+     pyarrow.HadoopFileSystem.rm
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.HadoopFileSystem.upload.html">
+     pyarrow.HadoopFileSystem.upload
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="generated/pyarrow.HdfsFile.html">
+     pyarrow.HdfsFile
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="plasma.html">
+   The Plasma In-Memory Object Store
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="numpy.html">
+   NumPy Integration
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="pandas.html">
+   Pandas Integration
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="timestamps.html">
+   Timestamps
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="csv.html">
+   Reading CSV files
+  </a>
+ </li>
+ <li class="toctree-l3 current active current-page">
+  <a class="current reference internal" href="#">
+   Feather File Format
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="json.html">
+   Reading JSON files
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="parquet.html">
+   Reading and Writing the Apache Parquet Format
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="dataset.html">
+   Tabular Datasets
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="cuda.html">
+   CUDA Integration
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="extending_types.html">
+   Extending pyarrow
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="extending.html">
+   Using pyarrow from C++ and Cython Code
+  </a>
+ </li>
+ <li class="toctree-l3 has-children">
+  <a class="reference internal" href="api.html">
+   API Reference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="icon">
+    <svg>
+     <use href="#svg-arrow-right">
+     </use>
+    </svg>
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/datatypes.html">
+     Data Types and Schemas
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/arrays.html">
+     Arrays and Scalars
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/memory.html">
+     Buffers and Memory
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/compute.html">
+     Compute Functions
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/files.html">
+     Streams and File Access
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/tables.html">
+     Tables and Tensors
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/ipc.html">
+     Serialization and IPC
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/flight.html">
+     Arrow Flight
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/formats.html">
+     Tabular File Formats
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/filesystems.html">
+     Filesystems
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/dataset.html">
+     Dataset
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/plasma.html">
+     Plasma In-Memory Object Store
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/cuda.html">
+     CUDA Integration
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/misc.html">
+     Miscellaneous
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="getting_involved.html">
+   Getting Involved
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="benchmarks.html">
+   Benchmarks
+  </a>
+ </li>
+</ul>
+      
+    <!-- </ul> -->
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-compression">
+   Using Compression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-version-1-v1-files">
+   Writing Version 1 (V1) Files
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="feather-file-format">
+<span id="feather"></span><h1>Feather File Format<a class="headerlink" href="#feather-file-format" title="Permalink to this headline">¶</a></h1>
+<p>Feather is a portable file format for storing Arrow tables or data frames (from
+languages like Python or R) that utilizes the <a class="reference internal" href="ipc.html#ipc"><span class="std std-ref">Arrow IPC format</span></a>
+internally. Feather was created early in the Arrow project as a proof of
+concept for fast, language-agnostic data frame storage for Python (pandas) and
+R. There are two file format versions for Feather:</p>
+<ul class="simple">
+<li><p>Version 2 (V2), the default version, which is exactly represented as the
+Arrow IPC file format on disk. V2 files support storing all Arrow data types
+as well as compression with LZ4 or ZSTD. V2 was first made available in
+Apache Arrow 0.17.0.</p></li>
+<li><p>Version 1 (V1), a legacy version available starting in 2016, replaced by
+V2. V1 files are distinct from Arrow IPC files and lack many features, such
+as the ability to store all Arrow data types. V1 files also lack compression
+support. We intend to maintain read support for V1 for the foreseeable
+future.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">pyarrow.feather</span></code> module contains the read and write functions for the
+format. <a class="reference internal" href="generated/pyarrow.feather.write_feather.html#pyarrow.feather.write_feather" title="pyarrow.feather.write_feather"><code class="xref py py-func docutils literal notranslate"><span class="pre">write_feather()</span></code></a> accepts either a
+<a class="reference internal" href="generated/pyarrow.Table.html#pyarrow.Table" title="pyarrow.Table"><code class="xref py py-class docutils literal notranslate"><span class="pre">Table</span></code></a> or <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyarrow.feather</span> <span class="k">as</span> <span class="nn">feather</span>
+<span class="n">feather</span><span class="o">.</span><span class="n">write_feather</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;/path/to/file&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="generated/pyarrow.feather.read_feather.html#pyarrow.feather.read_feather" title="pyarrow.feather.read_feather"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_feather()</span></code></a> reads a Feather file as a
+<code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>. <a class="reference internal" href="generated/pyarrow.feather.read_table.html#pyarrow.feather.read_table" title="pyarrow.feather.read_table"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_table()</span></code></a> reads a Feather file
+as a <a class="reference internal" href="generated/pyarrow.Table.html#pyarrow.Table" title="pyarrow.Table"><code class="xref py py-class docutils literal notranslate"><span class="pre">Table</span></code></a>. Internally, <a class="reference internal" href="generated/pyarrow.feather.read_feather.html#pyarrow.feather.read_feather" title="pyarrow.feather.read_feather"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_feather()</span></code></a>
+simply calls <a class="reference internal" href="generated/pyarrow.feather.read_table.html#pyarrow.feather.read_table" title="pyarrow.feather.read_table"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_table()</span></code></a> and the result is converted to
+pandas:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Result is pandas.DataFrame</span>
+<span class="n">read_df</span> <span class="o">=</span> <span class="n">feather</span><span class="o">.</span><span class="n">read_feather</span><span class="p">(</span><span class="s1">&#39;/path/to/file&#39;</span><span class="p">)</span>
+
+<span class="c1"># Result is pyarrow.Table</span>
+<span class="n">read_arrow</span> <span class="o">=</span> <span class="n">feather</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;/path/to/file&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>These functions can read and write with file-paths or file-like objects. For
+example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/path/to/file&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">feather</span><span class="o">.</span><span class="n">write_feather</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/path/to/file&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">read_df</span> <span class="o">=</span> <span class="n">feather</span><span class="o">.</span><span class="n">read_feather</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A file input to <code class="docutils literal notranslate"><span class="pre">read_feather</span></code> must support seeking.</p>
+<div class="section" id="using-compression">
+<h2>Using Compression<a class="headerlink" href="#using-compression" title="Permalink to this headline">¶</a></h2>
+<p>As of Apache Arrow version 0.17.0, Feather V2 files (the default version)
+support two fast compression libraries, LZ4 (using the frame format) and
+ZSTD. LZ4 is used by default if it is available (which it should be if you
+obtained pyarrow through a normal package manager):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uses LZ4 by default</span>
+<span class="n">feather</span><span class="o">.</span><span class="n">write_feather</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
+
+<span class="c1"># Use LZ4 explicitly</span>
+<span class="n">feather</span><span class="o">.</span><span class="n">write_feather</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s1">&#39;lz4&#39;</span><span class="p">)</span>
+
+<span class="c1"># Use ZSTD</span>
+<span class="n">feather</span><span class="o">.</span><span class="n">write_feather</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s1">&#39;zstd&#39;</span><span class="p">)</span>
+
+<span class="c1"># Do not compress</span>
+<span class="n">feather</span><span class="o">.</span><span class="n">write_feather</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s1">&#39;uncompressed&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that the default LZ4 compression generally yields much smaller files
+without sacrificing much read or write performance. In some instances,
+LZ4-compressed files may be faster to read and write than uncompressed due to
+reduced disk IO requirements.</p>
+</div>
+<div class="section" id="writing-version-1-v1-files">
+<h2>Writing Version 1 (V1) Files<a class="headerlink" href="#writing-version-1-v1-files" title="Permalink to this headline">¶</a></h2>
+<p>For compatibility with libraries without support for Version 2 files, you can
+write the version 1 format by passing <code class="docutils literal notranslate"><span class="pre">version=1</span></code> to <code class="docutils literal notranslate"><span class="pre">write_feather</span></code>. We
+intend to maintain read support for V1 for the foreseeable future.</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="csv.html" title="previous page">Reading CSV files</a>
+    <a class='right-next' id="next-link" href="json.html" title="next page">Reading JSON files</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.90951cbc93101d5860c0.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,753 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pyarrow.Field &#8212; Apache Arrow v3.0.0.dev641+ge8678380d</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.5d5914fd1cc083e2424bb9c5e974de8e.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.90951cbc93101d5860c0.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pyarrow.Schema" href="pyarrow.Schema.html" />
+    <link rel="prev" title="pyarrow.Decimal128Type" href="pyarrow.Decimal128Type.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-toc" viewBox="0 0 24 24">
+        <title>Contents</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="10" y1="12" x2="20" y2="12" />
+          <line x1="6" y1="18" x2="20" y2="18" />
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+
+    
+      
+      <a class="navbar-brand" href="../../index.html">
+        <img src="../../_static/arrow.png" class="logo" alt="logo">
+      </a>
+      
+    
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+
+      <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+        <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+          <li class="toctree-l1  nav-item">
+            <a class="reference internal nav-link" href="../../format.html">
+              Specifications and Protocols
+            </a>
+          </li>
+  
+          <li class="toctree-l1 active nav-item dropdown">
+            <a class="reference internal nav-link dropdown-toggle" href="#"
+            id="navbarDropdownLibraries" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+              Libraries
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownGetArrow">
+              <a class="reference internal nav-link" href="../../status.html">
+                Implementation Status
+               </a>
+               <a class="reference external nav-link" href="https://arrow.apache.org/docs/c_glib/">
+                C/GLib
+               </a>
+               <a class="reference internal nav-link" href="../../cpp/index.html">
+                C++
+               </a>
+               <a class="reference external nav-link" href="https://github.com/apache/arrow/blob/master/csharp/README.md">
+                C#
+               </a>
+               <a class="reference external nav-link" href="https://godoc.org/github.com/apache/arrow/go/arrow">
+                Go
+               </a>
+               <a class="reference internal nav-link" href="../../java/index.html">
+                Java
+               </a>
+               <a class="reference external nav-link" href="https://arrow.apache.org/docs/js/">
+                JavaScript
+               </a>
+               <a class="reference external nav-link" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">
+                Julia
+               </a>
+               <a class="reference external nav-link" href="https://github.com/apache/arrow/blob/master/matlab/README.md">
+                MATLAB
+               </a>
+               <a class="reference internal nav-link" href="../index.html">
+                Python
+               </a>
+               <a class="reference external nav-link" href="https://arrow.apache.org/docs/r/">
+                R
+               </a>
+               <a class="reference external nav-link" href="https://github.com/apache/arrow/blob/master/ruby/README.md">
+                Ruby
+               </a>
+               <a class="reference external nav-link" href="https://docs.rs/crate/arrow/">
+                Rust
+               </a>
+              </div>
+            </li>
+
+          <li class="toctree-l1  nav-item">
+            <a class="reference internal nav-link" href="../../developers.html">
+              Development
+            </a>
+          </li>
+        </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/apache/arrow" target="_blank" rel="noopener">
+              <span><i class="fab fa-github-square"></i></span>
+            </a>
+          </li>
+        
+        
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://twitter.com/ApacheArrow" target="_blank" rel="noopener">
+              <span><i class="fab fa-twitter-square"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <!-- <ul class="nav bd-sidenav"> -->
+      
+      <ul class="current nav bd-sidenav testest">
+ <li class="toctree-l3">
+  <a class="reference internal" href="../install.html">
+   Installing PyArrow
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../memory.html">
+   Memory and IO Interfaces
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../data.html">
+   Data Types and In-Memory Data Model
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../compute.html">
+   Compute Functions
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../ipc.html">
+   Streaming, Serialization, and IPC
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../filesystems.html">
+   Filesystem Interface
+  </a>
+ </li>
+ <li class="toctree-l3 has-children">
+  <a class="reference internal" href="../filesystems_deprecated.html">
+   Filesystem Interface (legacy)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="icon">
+    <svg>
+     <use href="#svg-arrow-right">
+     </use>
+    </svg>
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.hdfs.connect.html">
+     pyarrow.hdfs.connect
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.HadoopFileSystem.cat.html">
+     pyarrow.HadoopFileSystem.cat
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.HadoopFileSystem.chmod.html">
+     pyarrow.HadoopFileSystem.chmod
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.HadoopFileSystem.chown.html">
+     pyarrow.HadoopFileSystem.chown
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.HadoopFileSystem.delete.html">
+     pyarrow.HadoopFileSystem.delete
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.HadoopFileSystem.df.html">
+     pyarrow.HadoopFileSystem.df
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.HadoopFileSystem.disk_usage.html">
+     pyarrow.HadoopFileSystem.disk_usage
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.HadoopFileSystem.download.html">
+     pyarrow.HadoopFileSystem.download
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.HadoopFileSystem.exists.html">
+     pyarrow.HadoopFileSystem.exists
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.HadoopFileSystem.get_capacity.html">
+     pyarrow.HadoopFileSystem.get_capacity
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.HadoopFileSystem.get_space_used.html">
+     pyarrow.HadoopFileSystem.get_space_used
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.HadoopFileSystem.info.html">
+     pyarrow.HadoopFileSystem.info
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.HadoopFileSystem.ls.html">
+     pyarrow.HadoopFileSystem.ls
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.HadoopFileSystem.mkdir.html">
+     pyarrow.HadoopFileSystem.mkdir
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.HadoopFileSystem.open.html">
+     pyarrow.HadoopFileSystem.open
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.HadoopFileSystem.rename.html">
+     pyarrow.HadoopFileSystem.rename
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.HadoopFileSystem.rm.html">
+     pyarrow.HadoopFileSystem.rm
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.HadoopFileSystem.upload.html">
+     pyarrow.HadoopFileSystem.upload
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="pyarrow.HdfsFile.html">
+     pyarrow.HdfsFile
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../plasma.html">
+   The Plasma In-Memory Object Store
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../numpy.html">
+   NumPy Integration
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../pandas.html">
+   Pandas Integration
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../timestamps.html">
+   Timestamps
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../csv.html">
+   Reading CSV files
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../feather.html">
+   Feather File Format
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../json.html">
+   Reading JSON files
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../parquet.html">
+   Reading and Writing the Apache Parquet Format
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../dataset.html">
+   Tabular Datasets
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../cuda.html">
+   CUDA Integration
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../extending_types.html">
+   Extending pyarrow
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../extending.html">
+   Using pyarrow from C++ and Cython Code
+  </a>
+ </li>
+ <li class="toctree-l3 current active has-children">
+  <a class="reference internal" href="../api.html">
+   API Reference
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="icon">
+    <svg>
+     <use href="#svg-arrow-right">
+     </use>
+    </svg>
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l4 current active current-page">
+    <a class="reference internal" href="../api/datatypes.html">
+     Data Types and Schemas
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="../api/arrays.html">
+     Arrays and Scalars
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="../api/memory.html">
+     Buffers and Memory
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="../api/compute.html">
+     Compute Functions
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="../api/files.html">
+     Streams and File Access
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="../api/tables.html">
+     Tables and Tensors
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="../api/ipc.html">
+     Serialization and IPC
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="../api/flight.html">
+     Arrow Flight
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="../api/formats.html">
+     Tabular File Formats
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="../api/filesystems.html">
+     Filesystems
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="../api/dataset.html">
+     Dataset
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="../api/plasma.html">
+     Plasma In-Memory Object Store
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="../api/cuda.html">
+     CUDA Integration
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="../api/misc.html">
+     Miscellaneous
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../getting_involved.html">
+   Getting Involved
+  </a>
+ </li>
+ <li class="toctree-l3">
+  <a class="reference internal" href="../benchmarks.html">
+   Benchmarks
+  </a>
+ </li>
+</ul>
+      
+    <!-- </ul> -->
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+
+<nav id="bd-toc-nav">
+    
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="pyarrow-field">
+<h1>pyarrow.Field<a class="headerlink" href="#pyarrow-field" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="pyarrow.Field">
+<em class="property">class </em><code class="sig-prename descclassname">pyarrow.</code><code class="sig-name descname">Field</code><a class="headerlink" href="#pyarrow.Field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.lib._Weakrefable</span></code></p>
+<p>A named field, with a data type, nullability, and optional metadata.</p>
+<p class="rubric">Notes</p>
+<p>Do not use this class’s constructor directly; use pyarrow.field</p>
+<dl class="py method">
+<dt id="pyarrow.Field.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.Field.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.Field.__init__" title="pyarrow.Field.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Initialize self.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.Field.add_metadata" title="pyarrow.Field.add_metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_metadata</span></code></a>(self, metadata)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.Field.equals" title="pyarrow.Field.equals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equals</span></code></a>(self, Field other, …)</p></td>
+<td><p>Test if this field is equal to the other</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.Field.flatten" title="pyarrow.Field.flatten"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flatten</span></code></a>(self)</p></td>
+<td><p>Flatten this field.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.Field.remove_metadata" title="pyarrow.Field.remove_metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_metadata</span></code></a>(self)</p></td>
+<td><p>Create new field without metadata, if any</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.Field.with_metadata" title="pyarrow.Field.with_metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_metadata</span></code></a>(self, metadata)</p></td>
+<td><p>Add metadata as dict of string keys and values to Field</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.Field.with_name" title="pyarrow.Field.with_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_name</span></code></a>(self, name)</p></td>
+<td><p>A copy of this field with the replaced name</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.Field.with_nullable" title="pyarrow.Field.with_nullable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_nullable</span></code></a>(self, nullable)</p></td>
+<td><p>A copy of this field with the replaced nullability</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.Field.with_type" title="pyarrow.Field.with_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with_type</span></code></a>(self, DataType new_type)</p></td>
+<td><p>A copy of this field with the replaced type</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.Field.metadata" title="pyarrow.Field.metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">metadata</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.Field.name" title="pyarrow.Field.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pyarrow.Field.nullable" title="pyarrow.Field.nullable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nullable</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pyarrow.Field.type" title="pyarrow.Field.type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">type</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt id="pyarrow.Field.add_metadata">
+<code class="sig-name descname">add_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">metadata</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.Field.add_metadata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.Field.equals">
+<code class="sig-name descname">equals</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">Field other</em>, <em class="sig-param">bool check_metadata=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.Field.equals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test if this field is equal to the other</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>other</strong> (<a class="reference internal" href="#pyarrow.Field" title="pyarrow.Field"><em>pyarrow.Field</em></a>) – </p></li>
+<li><p><strong>check_metadata</strong> (<em>bool</em><em>, </em><em>default False</em>) – Whether Field metadata equality should be checked as well.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>is_equal</strong> (<em>bool</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.Field.flatten">
+<code class="sig-name descname">flatten</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.Field.flatten" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flatten this field.  If a struct field, individual child fields
+will be returned with their names prefixed by the parent’s name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>fields</strong> (<em>List[pyarrow.Field]</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pyarrow.Field.metadata">
+<code class="sig-name descname">metadata</code><a class="headerlink" href="#pyarrow.Field.metadata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyarrow.Field.name">
+<code class="sig-name descname">name</code><a class="headerlink" href="#pyarrow.Field.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pyarrow.Field.nullable">
+<code class="sig-name descname">nullable</code><a class="headerlink" href="#pyarrow.Field.nullable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.Field.remove_metadata">
+<code class="sig-name descname">remove_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.Field.remove_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create new field without metadata, if any</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>field</strong> (<em>pyarrow.Field</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pyarrow.Field.type">
+<code class="sig-name descname">type</code><a class="headerlink" href="#pyarrow.Field.type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.Field.with_metadata">
+<code class="sig-name descname">with_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">metadata</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.Field.with_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add metadata as dict of string keys and values to Field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>metadata</strong> (<em>dict</em>) – Keys and values must be string-like / coercible to bytes</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>field</strong> (<em>pyarrow.Field</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.Field.with_name">
+<code class="sig-name descname">with_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.Field.with_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>A copy of this field with the replaced name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>field</strong> (<em>pyarrow.Field</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.Field.with_nullable">
+<code class="sig-name descname">with_nullable</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">nullable</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.Field.with_nullable" title="Permalink to this definition">¶</a></dt>
+<dd><p>A copy of this field with the replaced nullability</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>nullable</strong> (<em>bool</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>field</strong> (<em>pyarrow.Field</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyarrow.Field.with_type">
+<code class="sig-name descname">with_type</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">DataType new_type</em><span class="sig-paren">)</span><a class="headerlink" href="#pyarrow.Field.with_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>A copy of this field with the replaced type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>new_type</strong> (<a class="reference internal" href="pyarrow.DataType.html#pyarrow.DataType" title="pyarrow.DataType"><em>pyarrow.DataType</em></a>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>field</strong> (<em>pyarrow.Field</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="pyarrow.Decimal128Type.html" title="previous page">pyarrow.Decimal128Type</a>
+    <a class='right-next' id="next-link" href="pyarrow.Schema.html" title="next page">pyarrow.Schema</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.90951cbc93101d5860c0.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>

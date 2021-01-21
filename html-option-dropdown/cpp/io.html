@@ -1,0 +1,553 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input / output and filesystems &#8212; Apache Arrow v3.0.0.dev641+ge8678380d</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.5d5914fd1cc083e2424bb9c5e974de8e.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.90951cbc93101d5860c0.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Reading and writing the Arrow IPC format" href="ipc.html" />
+    <link rel="prev" title="Compute Functions" href="compute.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-toc" viewBox="0 0 24 24">
+        <title>Contents</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z"/>
+          <line x1="4" y1="6" x2="20" y2="6" />
+          <line x1="10" y1="12" x2="20" y2="12" />
+          <line x1="6" y1="18" x2="20" y2="18" />
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+<div class="container-xl">
+
+
+    
+      
+      <a class="navbar-brand" href="../index.html">
+        <img src="../_static/arrow.png" class="logo" alt="logo">
+      </a>
+      
+    
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+
+      <div id="navbar-menu" class="col-lg-9 collapse navbar-collapse">
+        <ul id="navbar-main-elements" class="navbar-nav mr-auto">
+          <li class="toctree-l1  nav-item">
+            <a class="reference internal nav-link" href="../format.html">
+              Specifications and Protocols
+            </a>
+          </li>
+  
+          <li class="toctree-l1 active nav-item dropdown">
+            <a class="reference internal nav-link dropdown-toggle" href="#"
+            id="navbarDropdownLibraries" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+              Libraries
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownGetArrow">
+              <a class="reference internal nav-link" href="../status.html">
+                Implementation Status
+               </a>
+               <a class="reference external nav-link" href="https://arrow.apache.org/docs/c_glib/">
+                C/GLib
+               </a>
+               <a class="reference internal nav-link" href="index.html">
+                C++
+               </a>
+               <a class="reference external nav-link" href="https://github.com/apache/arrow/blob/master/csharp/README.md">
+                C#
+               </a>
+               <a class="reference external nav-link" href="https://godoc.org/github.com/apache/arrow/go/arrow">
+                Go
+               </a>
+               <a class="reference internal nav-link" href="../java/index.html">
+                Java
+               </a>
+               <a class="reference external nav-link" href="https://arrow.apache.org/docs/js/">
+                JavaScript
+               </a>
+               <a class="reference external nav-link" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">
+                Julia
+               </a>
+               <a class="reference external nav-link" href="https://github.com/apache/arrow/blob/master/matlab/README.md">
+                MATLAB
+               </a>
+               <a class="reference internal nav-link" href="../python/index.html">
+                Python
+               </a>
+               <a class="reference external nav-link" href="https://arrow.apache.org/docs/r/">
+                R
+               </a>
+               <a class="reference external nav-link" href="https://github.com/apache/arrow/blob/master/ruby/README.md">
+                Ruby
+               </a>
+               <a class="reference external nav-link" href="https://docs.rs/crate/arrow/">
+                Rust
+               </a>
+              </div>
+            </li>
+
+          <li class="toctree-l1  nav-item">
+            <a class="reference internal nav-link" href="../developers.html">
+              Development
+            </a>
+          </li>
+        </ul>
+
+
+      
+
+      <ul class="navbar-nav">
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/apache/arrow" target="_blank" rel="noopener">
+              <span><i class="fab fa-github-square"></i></span>
+            </a>
+          </li>
+        
+        
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://twitter.com/ApacheArrow" target="_blank" rel="noopener">
+              <span><i class="fab fa-twitter-square"></i></span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <!-- <ul class="nav bd-sidenav"> -->
+      
+      <ul class="current nav bd-sidenav testest">
+ <li class="toctree-l3 current active has-children">
+  <a class="reference internal" href="getting_started.html">
+   User Guide
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="icon">
+    <svg>
+     <use href="#svg-arrow-right">
+     </use>
+    </svg>
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l4">
+    <a class="reference internal" href="overview.html">
+     High-Level Overview
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="conventions.html">
+     Conventions
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="cmake.html">
+     Using Arrow C++ in your own project
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="memory.html">
+     Memory Management
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="arrays.html">
+     Arrays
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="datatypes.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="tables.html">
+     Tabular Data
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="compute.html">
+     Compute Functions
+    </a>
+   </li>
+   <li class="toctree-l4 current active current-page">
+    <a class="current reference internal" href="#">
+     Input / output and filesystems
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="ipc.html">
+     Reading and writing the Arrow IPC format
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="parquet.html">
+     Reading and writing Parquet files
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="csv.html">
+     Reading CSV files
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="json.html">
+     Reading JSON files
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="flight.html">
+     Arrow Flight RPC
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l3 has-children">
+  <a class="reference internal" href="examples/index.html">
+   Examples
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="icon">
+    <svg>
+     <use href="#svg-arrow-right">
+     </use>
+    </svg>
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l4">
+    <a class="reference internal" href="examples/cmake_minimal_build.html">
+     Minimal build using CMake
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="examples/row_columnar_conversion.html">
+     Row to columnar conversion
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="examples/tuple_range_conversion.html">
+     std::tuple-like ranges to Arrow
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l3 has-children">
+  <a class="reference internal" href="api.html">
+   API Reference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="icon">
+    <svg>
+     <use href="#svg-arrow-right">
+     </use>
+    </svg>
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/support.html">
+     Programming Support
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/memory.html">
+     Memory (management)
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/datatype.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/array.html">
+     Arrays
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/scalar.html">
+     Scalars
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/builder.html">
+     Array Builders
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/table.html">
+     Two-dimensional Datasets
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/c_abi.html">
+     C Interfaces
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/compute.html">
+     Compute Functions
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/tensor.html">
+     Tensors
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/utilities.html">
+     Utilities
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/io.html">
+     Input / output
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/ipc.html">
+     Arrow IPC
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/formats.html">
+     File Formats
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/cuda.html">
+     CUDA support
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/flight.html">
+     Arrow Flight RPC
+    </a>
+   </li>
+   <li class="toctree-l4">
+    <a class="reference internal" href="api/filesystem.html">
+     Filesystems
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+      
+    <!-- </ul> -->
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+              
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-binary-data">
+   Reading binary data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-binary-data">
+   Writing binary data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#filesystems">
+   Filesystems
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+
+              
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="input-output-and-filesystems">
+<h1>Input / output and filesystems<a class="headerlink" href="#input-output-and-filesystems" title="Permalink to this headline">¶</a></h1>
+<p>Arrow provides a range of C++ interfaces abstracting the concrete details
+of input / output operations.  They operate on streams of untyped binary data.
+Those abstractions are used for various purposes such as reading CSV or
+Parquet data, transmitting IPC streams, and more.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="api/io.html"><span class="doc">API reference for input/output facilities</span></a>.</p>
+</div>
+<div class="section" id="reading-binary-data">
+<h2>Reading binary data<a class="headerlink" href="#reading-binary-data" title="Permalink to this headline">¶</a></h2>
+<p>Interfaces for reading binary data come in two flavours:</p>
+<ul class="simple">
+<li><p>Sequential reading: the <a class="reference internal" href="api/io.html#_CPPv4N5arrow2io11InputStreamE" title="arrow::io::InputStream"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">InputStream</span></code></a> interface provides
+<code class="docutils literal notranslate"><span class="pre">Read</span></code> methods; it is recommended to <code class="docutils literal notranslate"><span class="pre">Read</span></code> to a <code class="docutils literal notranslate"><span class="pre">Buffer</span></code> as it
+may in some cases avoid a memory copy.</p></li>
+<li><p>Random access reading: the <a class="reference internal" href="api/io.html#_CPPv4N5arrow2io16RandomAccessFileE" title="arrow::io::RandomAccessFile"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">RandomAccessFile</span></code></a> interface
+provides additional facilities for positioning and, most importantly,
+the <code class="docutils literal notranslate"><span class="pre">ReadAt</span></code> methods which allow parallel reading from multiple threads.</p></li>
+</ul>
+<p>Concrete implementations are available for <a class="reference internal" href="api/io.html#_CPPv4N5arrow2io12BufferReaderE" title="arrow::io::BufferReader"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">in-memory</span> <span class="pre">reads</span></code></a>,
+<a class="reference internal" href="api/io.html#_CPPv4N5arrow2io12ReadableFileE" title="arrow::io::ReadableFile"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">unbuffered</span> <span class="pre">file</span> <span class="pre">reads</span></code></a>,
+<a class="reference internal" href="api/io.html#_CPPv4N5arrow2io16MemoryMappedFileE" title="arrow::io::MemoryMappedFile"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">memory-mapped</span> <span class="pre">file</span> <span class="pre">reads</span></code></a>,
+<a class="reference internal" href="api/io.html#_CPPv4N5arrow2io19BufferedInputStreamE" title="arrow::io::BufferedInputStream"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">buffered</span> <span class="pre">reads</span></code></a>,
+<a class="reference internal" href="api/io.html#_CPPv4N5arrow2io21CompressedInputStreamE" title="arrow::io::CompressedInputStream"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">compressed</span> <span class="pre">reads</span></code></a>.</p>
+</div>
+<div class="section" id="writing-binary-data">
+<h2>Writing binary data<a class="headerlink" href="#writing-binary-data" title="Permalink to this headline">¶</a></h2>
+<p>Writing binary data is mostly done through the <a class="reference internal" href="api/io.html#_CPPv4N5arrow2io12OutputStreamE" title="arrow::io::OutputStream"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">OutputStream</span></code></a>
+interface.</p>
+<p>Concrete implementations are available for <a class="reference internal" href="api/io.html#_CPPv4N5arrow2io18BufferOutputStreamE" title="arrow::io::BufferOutputStream"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">in-memory</span> <span class="pre">writes</span></code></a>,
+<a class="reference internal" href="api/io.html#_CPPv4N5arrow2io16FileOutputStreamE" title="arrow::io::FileOutputStream"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">unbuffered</span> <span class="pre">file</span> <span class="pre">writes</span></code></a>,
+<a class="reference internal" href="api/io.html#_CPPv4N5arrow2io16MemoryMappedFileE" title="arrow::io::MemoryMappedFile"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">memory-mapped</span> <span class="pre">file</span> <span class="pre">writes</span></code></a>,
+<a class="reference internal" href="api/io.html#_CPPv4N5arrow2io20BufferedOutputStreamE" title="arrow::io::BufferedOutputStream"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">buffered</span> <span class="pre">writes</span></code></a>,
+<a class="reference internal" href="api/io.html#_CPPv4N5arrow2io22CompressedOutputStreamE" title="arrow::io::CompressedOutputStream"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">compressed</span> <span class="pre">writes</span></code></a>.</p>
+</div>
+<div class="section" id="filesystems">
+<h2>Filesystems<a class="headerlink" href="#filesystems" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="api/filesystem.html#_CPPv4N5arrow2fs10FileSystemE" title="arrow::fs::FileSystem"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">filesystem</span> <span class="pre">interface</span></code></a> allows abstracted access over
+various data storage backends such as the local filesystem or a S3 bucket.
+It provides input and output streams as well as directory operations.</p>
+<p>The filesystem interface exposes a simplified view of the underlying data
+storage.  Data paths are represented as <em>abstract paths</em>, which are
+<code class="docutils literal notranslate"><span class="pre">/</span></code>-separated, even on Windows, and shouldn’t include special path
+components such as <code class="docutils literal notranslate"><span class="pre">.</span></code> and <code class="docutils literal notranslate"><span class="pre">..</span></code>.  Symbolic links, if supported by the
+underlying storage, are automatically dereferenced.  Only basic
+<code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">metadata</span></code> about file entries, such as the file size
+and modification time, is made available.</p>
+<p>Concrete implementations are available for
+<a class="reference internal" href="api/filesystem.html#_CPPv4N5arrow2fs15LocalFileSystemE" title="arrow::fs::LocalFileSystem"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">local</span> <span class="pre">filesystem</span> <span class="pre">access</span></code></a>,
+<a class="reference internal" href="api/filesystem.html#_CPPv4N5arrow2fs16HadoopFileSystemE" title="arrow::fs::HadoopFileSystem"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">HDFS</span></code></a> and
+<a class="reference internal" href="api/filesystem.html#_CPPv4N5arrow2fs12S3FileSystemE" title="arrow::fs::S3FileSystem"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">Amazon</span> <span class="pre">S3-compatible</span> <span class="pre">storage</span></code></a>.</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="compute.html" title="previous page">Compute Functions</a>
+    <a class='right-next' id="next-link" href="ipc.html" title="next page">Reading and writing the Arrow IPC format</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.90951cbc93101d5860c0.js"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107500873-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107500873-1');
+</script>
+
+  </body>
+</html>
