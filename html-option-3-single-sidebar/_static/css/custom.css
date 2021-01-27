@@ -40,6 +40,13 @@ svg {
   width: auto;
 }
 
+a.navbar-brand img {
+  height: auto;
+  width: auto;
+  max-height: 15vh;
+  max-width: 100%;
+}
+
 
 nav.bd-links p.caption {
   font-size:0.9em;
