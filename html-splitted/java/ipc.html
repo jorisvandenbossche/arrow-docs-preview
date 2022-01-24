@@ -1,0 +1,830 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reading/Writing IPC formats &#8212; Apache Arrow v7.0.0.dev574+gbd1ea0bfe</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="https://arrow.apache.org/docs/java/ipc.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Java Algorithms" href="algorithm.html" />
+    <link rel="prev" title="VectorSchemaRoot" href="vector_schema_root.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-107500873-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/arrow.png" class="logo" alt="logo">
+</a>
+
+
+<div id="subproject-button" class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    placeholder
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      
+      <a class="nav-link" href="/c_glib">C/GLib</a>
+      
+      <a class="nav-link" href="/cpp">C++</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+      
+      <a class="nav-link" href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+      
+      <a class="nav-link" href="/java">Java</a>
+      
+      <a class="nav-link" href="/js">JavaScript</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">Julia</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+      
+      <a class="nav-link" href="/python">Python</a>
+      
+      <a class="nav-link" href="/r">R</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+      
+      <a class="nav-link" href="https://docs.rs/crate/arrow/">Rust</a>
+      
+      <a class="nav-link" href="/status.html">Implementation status</a>
+      
+      <a class="nav-link" href="/format">Specifications and Protocols</a>
+      
+      <a class="nav-link" href="/developers">Developer documentation</a>
+      
+ </div>
+</div>
+
+<div id="version-search-wrapper">
+
+<div id="version-button" class="dropdown">
+    <button type="button" class="btn btn-secondary btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
+        7.0.0 (dev)
+        <span class="caret"></span>
+    </button>
+    <div id="version_switcher" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+
+<script type="text/javascript">
+// Function to construct the target URL from the JSON components
+function buildURL(entry) {
+    var template = "https://arrow.apache.org/docs/{version}";  // supplied by jinja
+    template = template.replace("{version}", entry.version);
+    return template;
+}
+
+// Function to check if corresponding page path exists in other version of docs
+// and, if so, go there instead of the homepage of the other docs version
+function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "java/ipc.html",
+          otherDocsHomepage = event.target.getAttribute("href");
+    let tryUrl = `${otherDocsHomepage}${currentFilePath}`;
+    $.ajax({
+        type: 'HEAD',
+        url: tryUrl,
+        // if the page exists, go there
+        success: function() {
+            location.href = tryUrl;
+        }
+    }).fail(function() {
+        location.href = otherDocsHomepage;
+    });
+    return false;
+}
+
+// Function to populate the version switcher
+(function () {
+    // get JSON config
+    $.getJSON("/docs/_static/versions.json", function(data, textStatus, jqXHR) {
+        // create the nodes first (before AJAX calls) to ensure the order is
+        // correct (for now, links will go to doc version homepage)
+        $.each(data, function(index, entry) {
+            // if no custom name specified (e.g., "latest"), use version string
+            if (!("name" in entry)) {
+                entry.name = entry.version;
+            }
+            // construct the appropriate URL, and add it to the dropdown
+            entry.url = buildURL(entry);
+            const node = document.createElement("a");
+            node.setAttribute("class", "list-group-item list-group-item-action py-1");
+            node.setAttribute("href", `${entry.url}`);
+            node.textContent = `${entry.name}`;
+            node.onclick = checkPageExistsAndRedirect;
+            $("#version_switcher").append(node);
+        });
+    });
+})();
+</script>
+
+<form id="search-box" class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+</div>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Supported Environments
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../c_glib/index.html">
+   C/GLib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/apache/arrow/blob/master/csharp/README.md">
+   C#
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://pkg.go.dev/github.com/apache/arrow/go">
+   Go
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Java
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="vector.html">
+     ValueVector
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="vector_schema_root.html">
+     VectorSchemaRoot
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Reading/Writing IPC formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="algorithm.html">
+     Java Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dataset.html">
+     Dataset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/index.html">
+     Reference (javadoc)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../js/index.html">
+   JavaScript
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">
+   Julia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/apache/arrow/blob/master/matlab/README.md">
+   MATLAB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../r/index.html">
+   R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/apache/arrow/blob/master/ruby/README.md">
+   Ruby
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://docs.rs/crate/arrow/">
+   Rust
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../status.html">
+   Implementation Status
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cookbooks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://arrow.apache.org/cookbook/cpp/">
+   C++
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://arrow.apache.org/cookbook/py/">
+   Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://arrow.apache.org/cookbook/r/">
+   R
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../format/index.html">
+   Specifications and Protocols
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../format/Versioning.html">
+     Format Versioning and Stability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../format/Columnar.html">
+     Arrow Columnar Format
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../format/Flight.html">
+     Arrow Flight RPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../format/Integration.html">
+     Integration Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../format/CDataInterface.html">
+     The Arrow C data interface
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../format/CStreamInterface.html">
+     The Arrow C stream interface
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../format/Other.html">
+     Other Data Structures
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developers/index.html">
+   Developers documentation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developers/contributing.html">
+     Contributing to Apache Arrow
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../developers/guide/index.html">
+     New Contributor’s Guide
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/guide/architectural_overview.html">
+       Architectural Overview
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/guide/communication.html">
+       Communication
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../developers/guide/step_by_step/index.html">
+       Steps in making your first PR
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+      <label for="toctree-checkbox-5">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../developers/guide/step_by_step/set_up.html">
+         Set up
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../developers/guide/step_by_step/building.html">
+         Building the Arrow libraries 🏋🏿‍♀️
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../developers/guide/step_by_step/finding_issues.html">
+         Finding good first issues 🔎
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../developers/guide/step_by_step/arrow_codebase.html">
+         Working on the Arrow codebase 🧐
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../developers/guide/step_by_step/testing.html">
+         Testing 🧪
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../developers/guide/step_by_step/pr_and_github.html">
+         Lifecycle of a pull request
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/guide/documentation.html">
+       Helping with documentation
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../developers/guide/tutorials/index.html">
+       Tutorials
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+      <label for="toctree-checkbox-6">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../developers/guide/tutorials/python_tutorial.html">
+         Python tutorial
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../developers/guide/tutorials/r_tutorial.html">
+         R tutorial
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/guide/resources.html">
+       Additional information and resources
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developers/reviewing.html">
+     Reviewing contributions
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../developers/cpp/index.html">
+     C++ Development
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/cpp/building.html">
+       Building Arrow C++
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/cpp/development.html">
+       Development Guidelines
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/cpp/windows.html">
+       Developing on Windows
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/cpp/conventions.html">
+       Conventions
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/cpp/fuzzing.html">
+       Fuzzing Arrow C++
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developers/python.html">
+     Python Development
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../developers/continuous_integration/index.html">
+     Continuous Integration
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/continuous_integration/overview.html">
+       Continuous Integration
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/continuous_integration/docker.html">
+       Running Docker Builds
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/continuous_integration/archery.html">
+       Daily Development using Archery
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/continuous_integration/crossbow.html">
+       Packaging and Testing with Crossbow
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developers/benchmarks.html">
+     Benchmarks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developers/documentation.html">
+     Building the Documentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developers/computeir.html">
+     Arrow Compute IR (Intermediate Representation)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-and-reading-streaming-format">
+   Writing and Reading Streaming Format
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#writing-and-reading-random-access-files">
+   Writing and Reading Random Access Files
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/apache/arrow/edit/master/docs/source/java/ipc.rst">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="reading-writing-ipc-formats">
+<h1>Reading/Writing IPC formats<a class="headerlink" href="#reading-writing-ipc-formats" title="Permalink to this headline">¶</a></h1>
+<p>Arrow defines two types of binary formats for serializing record batches:</p>
+<ul class="simple">
+<li><p><strong>Streaming format</strong>: for sending an arbitrary number of record
+batches. The format must be processed from start to end, and does not support
+random access</p></li>
+<li><p><strong>File or Random Access format</strong>: for serializing a fixed number of record
+batches. It supports random access, and thus is very useful when used with
+memory maps</p></li>
+</ul>
+<div class="section" id="writing-and-reading-streaming-format">
+<h2>Writing and Reading Streaming Format<a class="headerlink" href="#writing-and-reading-streaming-format" title="Permalink to this headline">¶</a></h2>
+<p>First, let’s populate a <code class="xref py py-class docutils literal notranslate"><span class="pre">VectorSchemaRoot</span></code> with a small batch of records</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="n">BitVector</span> <span class="n">bitVector</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BitVector</span><span class="p">(</span><span class="s">&quot;boolean&quot;</span><span class="p">,</span> <span class="n">allocator</span><span class="p">);</span>
+<span class="n">VarCharVector</span> <span class="n">varCharVector</span> <span class="o">=</span> <span class="k">new</span> <span class="n">VarCharVector</span><span class="p">(</span><span class="s">&quot;varchar&quot;</span><span class="p">,</span> <span class="n">allocator</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">bitVector</span><span class="p">.</span><span class="na">setSafe</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="p">:</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="n">varCharVector</span><span class="p">.</span><span class="na">setSafe</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="s">&quot;test&quot;</span> <span class="o">+</span> <span class="n">i</span><span class="p">).</span><span class="na">getBytes</span><span class="p">(</span><span class="n">StandardCharsets</span><span class="p">.</span><span class="na">UTF_8</span><span class="p">));</span>
+<span class="p">}</span>
+<span class="n">bitVector</span><span class="p">.</span><span class="na">setValueCount</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">varCharVector</span><span class="p">.</span><span class="na">setValueCount</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+
+<span class="n">List</span><span class="o">&lt;</span><span class="n">Field</span><span class="o">&gt;</span> <span class="n">fields</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">bitVector</span><span class="p">.</span><span class="na">getField</span><span class="p">(),</span> <span class="n">varCharVector</span><span class="p">.</span><span class="na">getField</span><span class="p">());</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">FieldVector</span><span class="o">&gt;</span> <span class="n">vectors</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">bitVector</span><span class="p">,</span> <span class="n">varCharVector</span><span class="p">);</span>
+<span class="n">VectorSchemaRoot</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">VectorSchemaRoot</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">vectors</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Now, we can begin writing a stream containing some number of these batches. For this we use <code class="xref py py-class docutils literal notranslate"><span class="pre">ArrowStreamWriter</span></code>
+(DictionaryProvider used for any vectors that are dictionary encoded is optional and can be null)):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ByteArrayOutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ByteArrayOutputStream</span><span class="p">();</span>
+<span class="n">ArrowStreamWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ArrowStreamWriter</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="o">/*</span><span class="n">DictionaryProvider</span><span class="o">=*/</span><span class="n">null</span><span class="p">,</span> <span class="n">Channels</span><span class="o">.</span><span class="n">newChannel</span><span class="p">(</span><span class="n">out</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Here we used an in-memory stream, but this could have been a socket or some other IO stream. Then we can do</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="n">writer</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+<span class="c1">// write the first batch</span>
+<span class="n">writer</span><span class="p">.</span><span class="na">writeBatch</span><span class="p">();</span>
+
+<span class="c1">// write another four batches.</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// populate VectorSchemaRoot data and write the second batch</span>
+  <span class="n">BitVector</span> <span class="n">childVector1</span> <span class="o">=</span> <span class="p">(</span><span class="n">BitVector</span><span class="p">)</span><span class="n">root</span><span class="p">.</span><span class="na">getVector</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="n">VarCharVector</span> <span class="n">childVector2</span> <span class="o">=</span> <span class="p">(</span><span class="n">VarCharVector</span><span class="p">)</span><span class="n">root</span><span class="p">.</span><span class="na">getVector</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">childVector1</span><span class="p">.</span><span class="na">reset</span><span class="p">();</span>
+  <span class="n">childVector2</span><span class="p">.</span><span class="na">reset</span><span class="p">();</span>
+  <span class="p">...</span> <span class="k">do</span> <span class="n">some</span> <span class="n">populate</span> <span class="n">work</span> <span class="n">here</span><span class="p">,</span> <span class="n">could</span> <span class="n">be</span> <span class="n">different</span> <span class="k">for</span> <span class="n">each</span> <span class="n">batch</span>
+  <span class="n">writer</span><span class="p">.</span><span class="na">writeBatch</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// end</span>
+<span class="n">writer</span><span class="p">.</span><span class="na">end</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Note since the <code class="xref py py-class docutils literal notranslate"><span class="pre">VectorSchemaRoot</span></code> in writer is a container that can hold batches, batches flow through
+<code class="xref py py-class docutils literal notranslate"><span class="pre">VectorSchemaRoot</span></code> as part of a pipeline, so we need to populate data before <cite>writeBatch</cite> so that later batches
+could overwrite previous ones.</p>
+<p>Now the <code class="xref py py-class docutils literal notranslate"><span class="pre">ByteArrayOutputStream</span></code> contains the complete stream which contains 5 record batches.
+We can read such a stream with <code class="xref py py-class docutils literal notranslate"><span class="pre">ArrowStreamReader</span></code>, note that <code class="xref py py-class docutils literal notranslate"><span class="pre">VectorSchemaRoot</span></code> within
+reader will be loaded with new values on every call to <code class="xref py py-class docutils literal notranslate"><span class="pre">loadNextBatch()</span></code></p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="k">try</span> <span class="p">(</span><span class="n">ArrowStreamReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrowStreamReader</span><span class="p">(</span><span class="k">new</span> <span class="n">ByteArrayInputStream</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="na">toByteArray</span><span class="p">()),</span> <span class="n">allocator</span><span class="p">))</span> <span class="p">{</span>
+  <span class="n">Schema</span> <span class="n">schema</span> <span class="o">=</span> <span class="n">reader</span><span class="p">.</span><span class="na">getVectorSchemaRoot</span><span class="p">().</span><span class="na">getSchema</span><span class="p">();</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// This will be loaded with new values on every call to loadNextBatch</span>
+    <span class="n">VectorSchemaRoot</span> <span class="n">readBatch</span> <span class="o">=</span> <span class="n">reader</span><span class="p">.</span><span class="na">getVectorSchemaRoot</span><span class="p">();</span>
+    <span class="n">reader</span><span class="p">.</span><span class="na">loadNextBatch</span><span class="p">();</span>
+    <span class="p">...</span> <span class="k">do</span> <span class="n">something</span> <span class="n">with</span> <span class="n">readBatch</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here we also give a simple example with dictionary encoded vectors</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="n">DictionaryProvider</span><span class="p">.</span><span class="na">MapDictionaryProvider</span> <span class="n">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DictionaryProvider</span><span class="p">.</span><span class="na">MapDictionaryProvider</span><span class="p">();</span>
+<span class="c1">// create dictionary and provider</span>
+<span class="kd">final</span> <span class="n">VarCharVector</span> <span class="n">dictVector</span> <span class="o">=</span> <span class="k">new</span> <span class="n">VarCharVector</span><span class="p">(</span><span class="s">&quot;dict&quot;</span><span class="p">,</span> <span class="n">allocator</span><span class="p">);</span>
+<span class="n">dictVector</span><span class="p">.</span><span class="na">allocateNewSafe</span><span class="p">();</span>
+<span class="n">dictVector</span><span class="p">.</span><span class="na">setSafe</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;aa&quot;</span><span class="p">.</span><span class="na">getBytes</span><span class="p">());</span>
+<span class="n">dictVector</span><span class="p">.</span><span class="na">setSafe</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;bb&quot;</span><span class="p">.</span><span class="na">getBytes</span><span class="p">());</span>
+<span class="n">dictVector</span><span class="p">.</span><span class="na">setSafe</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&quot;cc&quot;</span><span class="p">.</span><span class="na">getBytes</span><span class="p">());</span>
+<span class="n">dictVector</span><span class="p">.</span><span class="na">setValueCount</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="n">Dictionary</span> <span class="n">dictionary</span> <span class="o">=</span>
+    <span class="k">new</span> <span class="n">Dictionary</span><span class="p">(</span><span class="n">dictVector</span><span class="p">,</span> <span class="k">new</span> <span class="n">DictionaryEncoding</span><span class="p">(</span><span class="mi">1L</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="cm">/*indexType=*/</span><span class="kc">null</span><span class="p">));</span>
+<span class="n">provider</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">dictionary</span><span class="p">);</span>
+
+<span class="c1">// create vector and encode it</span>
+<span class="kd">final</span> <span class="n">VarCharVector</span> <span class="n">vector</span> <span class="o">=</span> <span class="k">new</span> <span class="n">VarCharVector</span><span class="p">(</span><span class="s">&quot;vector&quot;</span><span class="p">,</span> <span class="n">allocator</span><span class="p">);</span>
+<span class="n">vector</span><span class="p">.</span><span class="na">allocateNewSafe</span><span class="p">();</span>
+<span class="n">vector</span><span class="p">.</span><span class="na">setSafe</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;bb&quot;</span><span class="p">.</span><span class="na">getBytes</span><span class="p">());</span>
+<span class="n">vector</span><span class="p">.</span><span class="na">setSafe</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;bb&quot;</span><span class="p">.</span><span class="na">getBytes</span><span class="p">());</span>
+<span class="n">vector</span><span class="p">.</span><span class="na">setSafe</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">&quot;cc&quot;</span><span class="p">.</span><span class="na">getBytes</span><span class="p">());</span>
+<span class="n">vector</span><span class="p">.</span><span class="na">setSafe</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&quot;aa&quot;</span><span class="p">.</span><span class="na">getBytes</span><span class="p">());</span>
+<span class="n">vector</span><span class="p">.</span><span class="na">setValueCount</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+
+<span class="c1">// get the encoded vector</span>
+<span class="n">IntVector</span> <span class="n">encodedVector</span> <span class="o">=</span> <span class="p">(</span><span class="n">IntVector</span><span class="p">)</span> <span class="n">DictionaryEncoder</span><span class="p">.</span><span class="na">encode</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">);</span>
+
+<span class="c1">// create VectorSchemaRoot</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">Field</span><span class="o">&gt;</span> <span class="n">fields</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">encodedVector</span><span class="p">.</span><span class="na">getField</span><span class="p">());</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">FieldVector</span><span class="o">&gt;</span> <span class="n">vectors</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">encodedVector</span><span class="p">);</span>
+<span class="n">VectorSchemaRoot</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">VectorSchemaRoot</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">vectors</span><span class="p">);</span>
+
+<span class="c1">// write data</span>
+<span class="n">ByteArrayOutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ByteArrayOutputStream</span><span class="p">();</span>
+<span class="n">ArrowStreamWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrowStreamWriter</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">provider</span><span class="p">,</span> <span class="n">Channels</span><span class="p">.</span><span class="na">newChannel</span><span class="p">(</span><span class="n">out</span><span class="p">));</span>
+<span class="n">writer</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+<span class="n">writer</span><span class="p">.</span><span class="na">writeBatch</span><span class="p">();</span>
+<span class="n">writer</span><span class="p">.</span><span class="na">end</span><span class="p">();</span>
+
+<span class="c1">// read data</span>
+<span class="k">try</span> <span class="p">(</span><span class="n">ArrowStreamReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrowStreamReader</span><span class="p">(</span><span class="k">new</span> <span class="n">ByteArrayInputStream</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="na">toByteArray</span><span class="p">()),</span> <span class="n">allocator</span><span class="p">))</span> <span class="p">{</span>
+  <span class="n">reader</span><span class="p">.</span><span class="na">loadNextBatch</span><span class="p">();</span>
+  <span class="n">VectorSchemaRoot</span> <span class="n">readRoot</span> <span class="o">=</span> <span class="n">reader</span><span class="p">.</span><span class="na">getVectorSchemaRoot</span><span class="p">();</span>
+  <span class="c1">// get the encoded vector</span>
+  <span class="n">IntVector</span> <span class="n">intVector</span> <span class="o">=</span> <span class="p">(</span><span class="n">IntVector</span><span class="p">)</span> <span class="n">readRoot</span><span class="p">.</span><span class="na">getVector</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+  <span class="c1">// get dictionaries and decode the vector</span>
+  <span class="n">Map</span><span class="o">&lt;</span><span class="n">Long</span><span class="p">,</span> <span class="n">Dictionary</span><span class="o">&gt;</span> <span class="n">dictionaryMap</span> <span class="o">=</span> <span class="n">reader</span><span class="p">.</span><span class="na">getDictionaryVectors</span><span class="p">();</span>
+  <span class="kt">long</span> <span class="n">dictionaryId</span> <span class="o">=</span> <span class="n">intVector</span><span class="p">.</span><span class="na">getField</span><span class="p">().</span><span class="na">getDictionary</span><span class="p">().</span><span class="na">getId</span><span class="p">();</span>
+  <span class="n">VarCharVector</span> <span class="n">varCharVector</span> <span class="o">=</span>
+      <span class="p">(</span><span class="n">VarCharVector</span><span class="p">)</span> <span class="n">DictionaryEncoder</span><span class="p">.</span><span class="na">decode</span><span class="p">(</span><span class="n">intVector</span><span class="p">,</span> <span class="n">dictionaryMap</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">dictionaryId</span><span class="p">));</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="writing-and-reading-random-access-files">
+<h2>Writing and Reading Random Access Files<a class="headerlink" href="#writing-and-reading-random-access-files" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">ArrowFileWriter</span></code> has the same API as <code class="xref py py-class docutils literal notranslate"><span class="pre">ArrowStreamWriter</span></code></p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="n">ByteArrayOutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ByteArrayOutputStream</span><span class="p">();</span>
+<span class="n">ArrowFileWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrowFileWriter</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">Channels</span><span class="p">.</span><span class="na">newChannel</span><span class="p">(</span><span class="n">out</span><span class="p">));</span>
+<span class="n">writer</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+<span class="c1">// write the first batch</span>
+<span class="n">writer</span><span class="p">.</span><span class="na">writeBatch</span><span class="p">();</span>
+<span class="c1">// write another four batches.</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">...</span> <span class="k">do</span> <span class="n">populate</span> <span class="n">work</span>
+  <span class="n">writer</span><span class="p">.</span><span class="na">writeBatch</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="n">writer</span><span class="p">.</span><span class="na">end</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>The difference between <code class="xref py py-class docutils literal notranslate"><span class="pre">ArrowFileReader</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">ArrowStreamReader</span></code> is that the input source
+must have a <code class="docutils literal notranslate"><span class="pre">seek</span></code> method for random access. Because we have access to the entire payload, we know the
+number of record batches in the file, and can read any at random</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="k">try</span> <span class="p">(</span><span class="n">ArrowFileReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrowFileReader</span><span class="p">(</span>
+    <span class="k">new</span> <span class="n">ByteArrayReadableSeekableByteChannel</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="na">toByteArray</span><span class="p">()),</span> <span class="n">allocator</span><span class="p">))</span> <span class="p">{</span>
+
+  <span class="c1">// read the 4-th batch</span>
+  <span class="n">ArrowBlock</span> <span class="n">block</span> <span class="o">=</span> <span class="n">reader</span><span class="p">.</span><span class="na">getRecordBlocks</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="n">reader</span><span class="p">.</span><span class="na">loadRecordBatch</span><span class="p">(</span><span class="n">block</span><span class="p">);</span>
+  <span class="n">VectorSchemaRoot</span> <span class="n">readBatch</span> <span class="o">=</span> <span class="n">reader</span><span class="p">.</span><span class="na">getVectorSchemaRoot</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="vector_schema_root.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">VectorSchemaRoot</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="algorithm.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Java Algorithms</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2016-2022 Apache Software Foundation.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

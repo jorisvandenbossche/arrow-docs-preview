@@ -1,0 +1,891 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Developing on Windows &#8212; Apache Arrow v7.0.0.dev574+gbd1ea0bfe</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="https://arrow.apache.org/docs/developers/cpp/windows.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Conventions" href="conventions.html" />
+    <link rel="prev" title="Development Guidelines" href="development.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-107500873-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/arrow.png" class="logo" alt="logo">
+</a>
+
+
+<div id="subproject-button" class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Developer documentation
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      
+      <a class="nav-link" href="/c_glib">C/GLib</a>
+      
+      <a class="nav-link" href="/cpp">C++</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+      
+      <a class="nav-link" href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+      
+      <a class="nav-link" href="/java">Java</a>
+      
+      <a class="nav-link" href="/js">JavaScript</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">Julia</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+      
+      <a class="nav-link" href="/python">Python</a>
+      
+      <a class="nav-link" href="/r">R</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+      
+      <a class="nav-link" href="https://docs.rs/crate/arrow/">Rust</a>
+      
+      <a class="nav-link" href="/status.html">Implementation status</a>
+      
+      <a class="nav-link" href="/format">Specifications and Protocols</a>
+      
+      <a class="nav-link" href="/developers">Developer documentation</a>
+      
+ </div>
+</div>
+
+<div id="version-search-wrapper">
+
+<div id="version-button" class="dropdown">
+    <button type="button" class="btn btn-secondary btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
+        7.0.0 (dev)
+        <span class="caret"></span>
+    </button>
+    <div id="version_switcher" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+
+<script type="text/javascript">
+// Function to construct the target URL from the JSON components
+function buildURL(entry) {
+    var template = "https://arrow.apache.org/docs/{version}";  // supplied by jinja
+    template = template.replace("{version}", entry.version);
+    return template;
+}
+
+// Function to check if corresponding page path exists in other version of docs
+// and, if so, go there instead of the homepage of the other docs version
+function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "developers/cpp/windows.html",
+          otherDocsHomepage = event.target.getAttribute("href");
+    let tryUrl = `${otherDocsHomepage}${currentFilePath}`;
+    $.ajax({
+        type: 'HEAD',
+        url: tryUrl,
+        // if the page exists, go there
+        success: function() {
+            location.href = tryUrl;
+        }
+    }).fail(function() {
+        location.href = otherDocsHomepage;
+    });
+    return false;
+}
+
+// Function to populate the version switcher
+(function () {
+    // get JSON config
+    $.getJSON("/docs/_static/versions.json", function(data, textStatus, jqXHR) {
+        // create the nodes first (before AJAX calls) to ensure the order is
+        // correct (for now, links will go to doc version homepage)
+        $.each(data, function(index, entry) {
+            // if no custom name specified (e.g., "latest"), use version string
+            if (!("name" in entry)) {
+                entry.name = entry.version;
+            }
+            // construct the appropriate URL, and add it to the dropdown
+            entry.url = buildURL(entry);
+            const node = document.createElement("a");
+            node.setAttribute("class", "list-group-item list-group-item-action py-1");
+            node.setAttribute("href", `${entry.url}`);
+            node.textContent = `${entry.name}`;
+            node.onclick = checkPageExistsAndRedirect;
+            $("#version_switcher").append(node);
+        });
+    });
+})();
+</script>
+
+<form id="search-box" class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+</div>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contributing.html">
+   Contributing to Apache Arrow
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../guide/index.html">
+   New Contributor’s Guide
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../guide/architectural_overview.html">
+     Architectural Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../guide/communication.html">
+     Communication
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../guide/step_by_step/index.html">
+     Steps in making your first PR
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/step_by_step/set_up.html">
+       Set up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/step_by_step/building.html">
+       Building the Arrow libraries 🏋🏿‍♀️
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/step_by_step/finding_issues.html">
+       Finding good first issues 🔎
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/step_by_step/arrow_codebase.html">
+       Working on the Arrow codebase 🧐
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/step_by_step/testing.html">
+       Testing 🧪
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/step_by_step/pr_and_github.html">
+       Lifecycle of a pull request
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../guide/documentation.html">
+     Helping with documentation
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../guide/tutorials/index.html">
+     Tutorials
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/tutorials/python_tutorial.html">
+       Python tutorial
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/tutorials/r_tutorial.html">
+       R tutorial
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../guide/resources.html">
+     Additional information and resources
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reviewing.html">
+   Reviewing contributions
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   C++ Development
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="building.html">
+     Building Arrow C++
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="development.html">
+     Development Guidelines
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Developing on Windows
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="conventions.html">
+     Conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fuzzing.html">
+     Fuzzing Arrow C++
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../python.html">
+   Python Development
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../continuous_integration/index.html">
+   Continuous Integration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../continuous_integration/overview.html">
+     Continuous Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../continuous_integration/docker.html">
+     Running Docker Builds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../continuous_integration/archery.html">
+     Daily Development using Archery
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../continuous_integration/crossbow.html">
+     Packaging and Testing with Crossbow
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../benchmarks.html">
+   Benchmarks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation.html">
+   Building the Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../computeir.html">
+   Arrow Compute IR (Intermediate Representation)
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#system-setup">
+   System Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-conda-forge-for-build-dependencies">
+   Using conda-forge for build dependencies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-vcpkg-for-build-dependencies">
+   Using vcpkg for build dependencies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-using-visual-studio-msvc-solution-files">
+   Building using Visual Studio (MSVC) Solution Files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-with-ninja-and-clcache">
+   Building with Ninja and clcache
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-with-nmake">
+   Building with NMake
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-on-msys2">
+   Building on MSYS2
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-on-windows-arm64-using-ninja-and-clang">
+   Building on Windows/ARM64 using Ninja and Clang
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#debug-builds">
+   Debug builds
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#windows-dependency-resolution-issues">
+   Windows dependency resolution issues
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#statically-linking-to-arrow-on-windows">
+   Statically linking to Arrow on Windows
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#replicating-appveyor-builds">
+   Replicating Appveyor Builds
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/apache/arrow/edit/master/docs/source/developers/cpp/windows.rst">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="developing-on-windows">
+<span id="developers-cpp-windows"></span><h1>Developing on Windows<a class="headerlink" href="#developing-on-windows" title="Permalink to this headline">¶</a></h1>
+<p>Like Linux and macOS, we have worked to enable builds to work “out of the box”
+with CMake for a reasonably large subset of the project.</p>
+<div class="section" id="system-setup">
+<span id="windows-system-setup"></span><h2>System Setup<a class="headerlink" href="#system-setup" title="Permalink to this headline">¶</a></h2>
+<p>Microsoft provides the free Visual Studio Community edition. When doing
+development in the shell, you must initialize the development environment
+each time you open the shell.</p>
+<p>For Visual Studio 2017, execute the following batch script:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat&quot;</span> -arch<span class="o">=</span>amd64
+</pre></div>
+</div>
+<p>For Visual Studio 2019, the script is:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat&quot;</span> -arch<span class="o">=</span>amd64
+</pre></div>
+</div>
+<p>One can configure a console emulator like <a class="reference external" href="https://cmder.net/">cmder</a> to
+automatically launch this when starting a new development console.</p>
+</div>
+<div class="section" id="using-conda-forge-for-build-dependencies">
+<h2>Using conda-forge for build dependencies<a class="headerlink" href="#using-conda-forge-for-build-dependencies" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://conda.io/miniconda.html">Miniconda</a> is a minimal Python distribution
+including the <a class="reference external" href="https://conda.io">conda</a> package manager. Some memers of the
+Apache Arrow community participate in the maintenance of <a class="reference external" href="https://conda-forge.org/">conda-forge</a>, a community-maintained cross-platform package
+repository for conda.</p>
+<p>To use <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> for your C++ build dependencies on Windows, first
+download and install a 64-bit distribution from the <a class="reference external" href="https://conda.io/miniconda.html">Miniconda homepage</a></p>
+<p>To configure <code class="docutils literal notranslate"><span class="pre">conda</span></code> to use the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel by default, launch a
+command prompt (<code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code>), run the initialization command shown
+<a class="reference internal" href="#windows-system-setup"><span class="std std-ref">above</span></a> (<code class="docutils literal notranslate"><span class="pre">vcvarsall.bat</span></code> or <code class="docutils literal notranslate"><span class="pre">VsDevCmd.bat</span></code>), then
+run the command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda config --add channels conda-forge
+</pre></div>
+</div>
+<p>Now, you can bootstrap a build environment (call from the root directory of the
+Arrow codebase):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda create -y -n arrow-dev --file<span class="o">=</span>ci<span class="se">\c</span>onda_env_cpp.txt
+</pre></div>
+</div>
+<p>Then “activate” this conda environment with:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>activate arrow-dev
+</pre></div>
+</div>
+<p>If the environment has been activated, the Arrow build system will
+automatically see the <code class="docutils literal notranslate"><span class="pre">%CONDA_PREFIX%</span></code> environment variable and use that for
+resolving the build dependencies. This is equivalent to setting</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>-DARROW_DEPENDENCY_SOURCE<span class="o">=</span>SYSTEM ^
+-DARROW_PACKAGE_PREFIX<span class="o">=</span>%CONDA_PREFIX%<span class="se">\L</span>ibrary
+</pre></div>
+</div>
+<p>To use the Visual Studio IDE with this conda environment activated, launch it by
+running the command <code class="docutils literal notranslate"><span class="pre">devenv</span></code> from the same command prompt.</p>
+<p>Note that dependencies installed as conda packages are built in release mode and
+cannot link with debug builds. If you intend to use <code class="docutils literal notranslate"><span class="pre">-DCMAKE_BUILD_TYPE=debug</span></code>
+then you must build the packages from source.
+<code class="docutils literal notranslate"><span class="pre">-DCMAKE_BUILD_TYPE=relwithdebinfo</span></code> is also available, which produces a build
+that can both be linked with release libraries and be debugged.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you run into any problems using conda packages for dependencies, a very
+common problem is mixing packages from the <code class="docutils literal notranslate"><span class="pre">defaults</span></code> channel with those
+from <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>. You can examine the installed packages in your
+environment (and their origin) with <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span></code></p>
+</div>
+</div>
+<div class="section" id="using-vcpkg-for-build-dependencies">
+<h2>Using vcpkg for build dependencies<a class="headerlink" href="#using-vcpkg-for-build-dependencies" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/microsoft/vcpkg">vcpkg</a> is an open source package manager
+from Microsoft. It hosts community-contributed ports of C and C++ packages and
+their dependencies. Arrow includes a manifest file <a class="reference external" href="https://github.com/apache/arrow/blob/master/cpp/vcpkg.json">cpp/vcpkg.json</a> that specifies
+which vcpkg packages are required to build the C++ library.</p>
+<p>To use vcpkg for C++ build dependencies on Windows, first
+<a class="reference external" href="https://docs.microsoft.com/en-us/cpp/build/install-vcpkg">install</a> and
+<a class="reference external" href="https://docs.microsoft.com/en-us/cpp/build/integrate-vcpkg">integrate</a>
+vcpkg. Then change working directory in <code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code> to the root directory
+of Arrow and run the command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>vcpkg install ^
+  --triplet x64-windows ^
+  --x-manifest-root cpp  ^
+  --feature-flags<span class="o">=</span>versions ^
+  --clean-after-build
+</pre></div>
+</div>
+<p>On Windows, vcpkg builds dynamic link libraries by default. Use the triplet
+<code class="docutils literal notranslate"><span class="pre">x64-windows-static</span></code> to build static libraries. vcpkg downloads source
+packages and compiles them locally, so installing dependencies with vcpkg is
+more time-consuming than with conda.</p>
+<p>Then in your <code class="docutils literal notranslate"><span class="pre">cmake</span></code> command, to use dependencies installed by vcpkg, set:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>-DARROW_DEPENDENCY_SOURCE<span class="o">=</span>VCPKG
+</pre></div>
+</div>
+<p>You can optionally set other variables to override the default CMake
+configurations for vcpkg, including:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-DCMAKE_TOOLCHAIN_FILE</span></code>: by default, the CMake scripts automatically find
+the location of the vcpkg CMake toolchain file <code class="docutils literal notranslate"><span class="pre">vcpkg.cmake</span></code>; use this to
+instead specify its location</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DVCPKG_TARGET_TRIPLET</span></code>: by default, the CMake scripts attempt to infer the
+vcpkg
+<a class="reference external" href="https://github.com/microsoft/vcpkg/blob/master/docs/users/triplets.md">triplet</a>;
+use this to instead specify the triplet</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_DEPENDENCY_USE_SHARED</span></code>: default is <code class="docutils literal notranslate"><span class="pre">ON</span></code>; set to <code class="docutils literal notranslate"><span class="pre">OFF</span></code> for
+static libraries</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DVCPKG_MANIFEST_MODE</span></code>: default is <code class="docutils literal notranslate"><span class="pre">ON</span></code>; set to <code class="docutils literal notranslate"><span class="pre">OFF</span></code> to ignore the
+<code class="docutils literal notranslate"><span class="pre">vcpkg.json</span></code> manifest file and only look for vcpkg packages that are
+already installed under the directory where vcpkg is installed</p></li>
+</ul>
+</div>
+<div class="section" id="building-using-visual-studio-msvc-solution-files">
+<h2>Building using Visual Studio (MSVC) Solution Files<a class="headerlink" href="#building-using-visual-studio-msvc-solution-files" title="Permalink to this headline">¶</a></h2>
+<p>Change working directory in <code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code> to the root directory of Arrow and do
+an out of source build by generating a MSVC solution:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> cpp
+mkdir build
+<span class="nb">cd</span> build
+cmake .. -G <span class="s2">&quot;Visual Studio 15 2017&quot;</span> -A x64 ^
+      -DARROW_BUILD_TESTS<span class="o">=</span>ON
+cmake --build . --config Release
+</pre></div>
+</div>
+<p>For newer versions of Visual Studio, specify the generator
+<code class="docutils literal notranslate"><span class="pre">Visual</span> <span class="pre">Studio</span> <span class="pre">16</span> <span class="pre">2019</span></code> or see <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--help</span></code> for available
+generators.</p>
+</div>
+<div class="section" id="building-with-ninja-and-clcache">
+<h2>Building with Ninja and clcache<a class="headerlink" href="#building-with-ninja-and-clcache" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://ninja-build.org/">Ninja</a> build system offers better build
+parallelization, and the optional <a class="reference external" href="https://github.com/frerich/clcache/">clcache</a> compiler cache keeps track of
+past compilations to avoid running them over and over again (in a way similar
+to the Unix-specific <code class="docutils literal notranslate"><span class="pre">ccache</span></code>).</p>
+<p>Newer versions of Visual Studio include Ninja. To see if your Visual Studio
+includes Ninja, run the initialization command shown
+<a class="reference internal" href="#windows-system-setup"><span class="std std-ref">above</span></a> (<code class="docutils literal notranslate"><span class="pre">vcvarsall.bat</span></code> or <code class="docutils literal notranslate"><span class="pre">VsDevCmd.bat</span></code>), then
+run <code class="docutils literal notranslate"><span class="pre">ninja</span> <span class="pre">--version</span></code>.</p>
+<p>If Ninja is not included in your version of Visual Studio, and you are using
+conda, activate your conda environment and install Ninja and clcache:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>activate arrow-dev
+conda install -c conda-forge ninja
+pip install git+https://github.com/frerich/clcache.git
+</pre></div>
+</div>
+<p>If you are not using conda,
+<a class="reference external" href="https://github.com/ninja-build/ninja/wiki/Pre-built-Ninja-packages">install Ninja from another source</a>
+and optionally
+<a class="reference external" href="https://github.com/frerich/clcache/wiki/Installation">install clcache from another source</a>
+.</p>
+<p>After installation is complete, change working directory in <code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code> to the root directory of Arrow and
+do an out of source build by generating Ninja files:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> cpp
+mkdir build
+<span class="nb">cd</span> build
+cmake -G <span class="s2">&quot;Ninja&quot;</span> ^
+      -DCMAKE_C_COMPILER<span class="o">=</span>clcache ^
+      -DCMAKE_CXX_COMPILER<span class="o">=</span>clcache ^
+      -DARROW_BUILD_TESTS<span class="o">=</span>ON ^
+      -DGTest_SOURCE<span class="o">=</span>BUNDLED ..
+cmake --build . --config Release
+</pre></div>
+</div>
+<p>Setting <code class="docutils literal notranslate"><span class="pre">CMAKE_C_COMPILER</span></code> and <code class="docutils literal notranslate"><span class="pre">CMAKE_CXX_COMPILER</span></code> in the command line
+of <code class="docutils literal notranslate"><span class="pre">cmake</span></code> is the preferred method of using <code class="docutils literal notranslate"><span class="pre">clcache</span></code>. Alternatively, you
+can set <code class="docutils literal notranslate"><span class="pre">CC</span></code> and <code class="docutils literal notranslate"><span class="pre">CXX</span></code> environment variables before calling <code class="docutils literal notranslate"><span class="pre">cmake</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>...
+<span class="nb">set</span> <span class="nv">CC</span><span class="o">=</span>clcache
+<span class="nb">set</span> <span class="nv">CXX</span><span class="o">=</span>clcache
+cmake -G <span class="s2">&quot;Ninja&quot;</span> ^
+...
+</pre></div>
+</div>
+</div>
+<div class="section" id="building-with-nmake">
+<h2>Building with NMake<a class="headerlink" href="#building-with-nmake" title="Permalink to this headline">¶</a></h2>
+<p>Change working directory in <code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code> to the root directory of Arrow and
+do an out of source build using <code class="docutils literal notranslate"><span class="pre">nmake</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> cpp
+mkdir build
+<span class="nb">cd</span> build
+cmake -G <span class="s2">&quot;NMake Makefiles&quot;</span> ..
+nmake
+</pre></div>
+</div>
+</div>
+<div class="section" id="building-on-msys2">
+<h2>Building on MSYS2<a class="headerlink" href="#building-on-msys2" title="Permalink to this headline">¶</a></h2>
+<p>You can build on MSYS2 terminal, <code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code> or PowerShell terminal.</p>
+<p>On MSYS2 terminal:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> cpp
+mkdir build
+<span class="nb">cd</span> build
+cmake -G <span class="s2">&quot;MSYS Makefiles&quot;</span> ..
+make
+</pre></div>
+</div>
+<p>On <code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code> or PowerShell terminal, you can use the following batch
+file:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="k">setlocal</span>
+
+<span class="c1">REM For 64bit</span>
+<span class="k">set</span> <span class="nv">MINGW_PACKAGE_PREFIX</span><span class="p">=</span>mingw-w64-x86_64
+<span class="k">set</span> <span class="nv">MINGW_PREFIX</span><span class="p">=</span>c:\msys64\mingw64
+<span class="k">set</span> <span class="nv">MSYSTEM</span><span class="p">=</span>MINGW64
+
+<span class="k">set</span> <span class="nv">PATH</span><span class="p">=</span><span class="nv">%MINGW_PREFIX%</span>\bin;c:\msys64\usr\bin;<span class="nv">%PATH%</span>
+
+<span class="k">rmdir</span> /S /Q cpp\build
+<span class="k">mkdir</span> cpp\build
+<span class="k">pushd</span> cpp\build
+cmake -G <span class="s2">&quot;MSYS Makefiles&quot;</span> .. <span class="p">||</span> <span class="k">exit</span> /B
+make <span class="p">||</span> <span class="k">exit</span> /B
+<span class="k">popd</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="building-on-windows-arm64-using-ninja-and-clang">
+<h2>Building on Windows/ARM64 using Ninja and Clang<a class="headerlink" href="#building-on-windows-arm64-using-ninja-and-clang" title="Permalink to this headline">¶</a></h2>
+<p>Ninja and clang can be used for building library on windows/arm64 platform.</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="k">cd</span> cpp
+<span class="k">mkdir</span> build
+<span class="k">cd</span> build
+
+<span class="k">set</span> <span class="nv">CC</span><span class="p">=</span>clang-cl
+<span class="k">set</span> <span class="nv">CXX</span><span class="p">=</span>clang-cl
+
+cmake -G <span class="s2">&quot;Ninja&quot;</span> ..
+
+cmake --build . --config Release
+</pre></div>
+</div>
+<p>LLVM toolchain for Windows on ARM64 can be downloaded from LLVM release page <a class="reference external" href="https://releases.llvm.org">LLVM release page</a></p>
+<p>Visual Studio (MSVC) cannot be yet used for compiling win/arm64 build due to compatibility issues for dependencies like xsimd and boost library.</p>
+<p>Note: This is only an experimental build for WoA64 as all features are not extensively tested through CI due to lack of infrastructure.</p>
+</div>
+<div class="section" id="debug-builds">
+<h2>Debug builds<a class="headerlink" href="#debug-builds" title="Permalink to this headline">¶</a></h2>
+<p>To build a Debug version of Arrow, you should have pre-installed a Debug
+version of Boost. It’s recommended to configure <code class="docutils literal notranslate"><span class="pre">cmake</span></code> with the following
+variables for Debug build:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_BOOST_USE_SHARED=OFF</span></code>: enables static linking with boost debug
+libs and simplifies run-time loading of 3rd parties</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DBOOST_ROOT</span></code>: sets the root directory of boost libs. (Optional)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DBOOST_LIBRARYDIR</span></code>: sets the directory with boost lib files. (Optional)</p></li>
+</ul>
+<p>The command line to build Arrow in Debug mode will look something like this:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> cpp
+mkdir build
+<span class="nb">cd</span> build
+cmake .. -G <span class="s2">&quot;Visual Studio 15 2017&quot;</span> -A x64 ^
+      -DARROW_BOOST_USE_SHARED<span class="o">=</span>OFF ^
+      -DCMAKE_BUILD_TYPE<span class="o">=</span>Debug ^
+      -DBOOST_ROOT<span class="o">=</span>C:/local/boost_1_63_0  ^
+      -DBOOST_LIBRARYDIR<span class="o">=</span>C:/local/boost_1_63_0/lib64-msvc-14.0
+cmake --build . --config Debug
+</pre></div>
+</div>
+</div>
+<div class="section" id="windows-dependency-resolution-issues">
+<h2>Windows dependency resolution issues<a class="headerlink" href="#windows-dependency-resolution-issues" title="Permalink to this headline">¶</a></h2>
+<p>Because Windows uses <code class="docutils literal notranslate"><span class="pre">.lib</span></code> files for both static and dynamic linking of
+dependencies, the static library sometimes may be named something different
+like <code class="docutils literal notranslate"><span class="pre">%PACKAGE%_static.lib</span></code> to distinguish itself. If you are statically
+linking some dependencies, we provide some options</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-DBROTLI_MSVC_STATIC_LIB_SUFFIX=%BROTLI_SUFFIX%</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DSNAPPY_MSVC_STATIC_LIB_SUFFIX=%SNAPPY_SUFFIX%</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-LZ4_MSVC_STATIC_LIB_SUFFIX=%LZ4_SUFFIX%</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-ZSTD_MSVC_STATIC_LIB_SUFFIX=%ZSTD_SUFFIX%</span></code></p></li>
+</ul>
+<p>To get the latest build instructions, you can reference <a class="reference external" href="https://github.com/apache/arrow/blob/master/ci/appveyor-cpp-build.bat">ci/appveyor-built.bat</a>,
+which is used by automated Appveyor builds.</p>
+</div>
+<div class="section" id="statically-linking-to-arrow-on-windows">
+<h2>Statically linking to Arrow on Windows<a class="headerlink" href="#statically-linking-to-arrow-on-windows" title="Permalink to this headline">¶</a></h2>
+<p>The Arrow headers on Windows static library builds (enabled by the CMake
+option <code class="docutils literal notranslate"><span class="pre">ARROW_BUILD_STATIC</span></code>) use the preprocessor macro <code class="docutils literal notranslate"><span class="pre">ARROW_STATIC</span></code> to
+suppress dllimport/dllexport marking of symbols. Projects that statically link
+against Arrow on Windows additionally need this definition. The Unix builds do
+not use the macro.</p>
+</div>
+<div class="section" id="replicating-appveyor-builds">
+<h2>Replicating Appveyor Builds<a class="headerlink" href="#replicating-appveyor-builds" title="Permalink to this headline">¶</a></h2>
+<p>For people more familiar with linux development but need to replicate a failing
+appveyor build, here are some rough notes from replicating the
+<code class="docutils literal notranslate"><span class="pre">Static_Crt_Build</span></code> (make unittest will probably still fail but many unit
+tests can be made with there individual make targets).</p>
+<ol class="arabic">
+<li><p>Microsoft offers trial VMs for <a class="reference external" href="https://developer.microsoft.com/en-us/windows/downloads/virtual-machines">Windows with Microsoft Visual Studio</a>.
+Download and install a version.</p></li>
+<li><p>Run the VM and install <a class="reference external" href="https://git-scm.com/">Git</a>, <a class="reference external" href="https://cmake.org/">CMake</a>, and Miniconda or Anaconda (these instructions assume
+Anaconda). Also install the <a class="reference external" href="https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2019">“Build Tools for Visual Studio”</a>.
+Make sure to select the C++ toolchain in the installer wizard, and reboot
+after installation.</p></li>
+<li><p>Download <a class="reference external" href="https://sourceforge.net/projects/boost/files/boost-binaries/">pre-built Boost debug binaries</a> and install
+it.</p>
+<p>Run this from an Anaconda/Miniconda command prompt (<em>not</em> PowerShell prompt),
+and make sure to run “vcvarsall.bat x64” first. The location of vcvarsall.bat
+will depend, it may be under a different path than commonly indicated,
+e.g. “<code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files</span> <span class="pre">(x86)\Microsoft</span> <span class="pre">Visual</span> <span class="pre">Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat</span></code>”
+with the 2019 build tools.</p>
+</li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$EXTRACT_BOOST_DIRECTORY</span>
+.<span class="se">\b</span>ootstrap.bat
+@rem This is <span class="k">for</span> static libraries needed <span class="k">for</span> static_crt_build in appveyor
+.<span class="se">\b</span><span class="m">2</span> <span class="nv">link</span><span class="o">=</span>static --with-filesystem --with-regex --with-system install
+@rem this should put libraries and headers in c:<span class="se">\B</span>oost
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Activate anaconda/miniconda:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>@rem this might differ <span class="k">for</span> miniconda
+C:<span class="se">\U</span>sers<span class="se">\U</span>ser<span class="se">\A</span>naconda3<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Clone and change directories to the arrow source code (you might need to
+install git).</p></li>
+<li><p>Setup environment variables:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>@rem Change the build <span class="nb">type</span> based on which appveyor job you want.
+SET <span class="nv">JOB</span><span class="o">=</span>Static_Crt_Build
+SET <span class="nv">GENERATOR</span><span class="o">=</span>Ninja
+SET <span class="nv">APPVEYOR_BUILD_WORKER_IMAGE</span><span class="o">=</span>Visual Studio <span class="m">2017</span>
+SET <span class="nv">USE_CLCACHE</span><span class="o">=</span><span class="nb">false</span>
+SET <span class="nv">ARROW_BUILD_GANDIVA</span><span class="o">=</span>OFF
+SET <span class="nv">ARROW_LLVM_VERSION</span><span class="o">=</span><span class="m">8</span>.0.*
+SET <span class="nv">PYTHON</span><span class="o">=</span><span class="m">3</span>.9
+SET <span class="nv">ARCH</span><span class="o">=</span><span class="m">64</span>
+SET <span class="nv">PATH</span><span class="o">=</span>C:<span class="se">\U</span>sers<span class="se">\U</span>ser<span class="se">\A</span>naconda3<span class="p">;</span>C:<span class="se">\U</span>sers<span class="se">\U</span>ser<span class="se">\A</span>naconda3<span class="se">\S</span>cripts<span class="p">;</span>C:<span class="se">\U</span>sers<span class="se">\U</span>ser<span class="se">\A</span>naconda3<span class="se">\L</span>ibrary<span class="se">\b</span>in<span class="p">;</span>%PATH%
+SET <span class="nv">BOOST_LIBRARYDIR</span><span class="o">=</span>C:<span class="se">\B</span>oost<span class="se">\l</span>ib
+SET <span class="nv">BOOST_ROOT</span><span class="o">=</span>C:<span class="se">\B</span>oost
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p>Run appveyor scripts:</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge --file .<span class="se">\c</span>i<span class="se">\c</span>onda_env_cpp.txt
+.<span class="se">\c</span>i<span class="se">\a</span>ppveyor-cpp-setup.bat
+@rem this might fail but at this point most unit tests should be buildable by there individual targets
+@rem see next line <span class="k">for</span> example.
+.<span class="se">\c</span>i<span class="se">\a</span>ppveyor-cpp-build.bat
+@rem you can also just invoke cmake directly with the desired options
+cmake --build . --config Release --target arrow-compute-hash-test
+</pre></div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="development.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Development Guidelines</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="conventions.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Conventions</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2016-2022 Apache Software Foundation.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

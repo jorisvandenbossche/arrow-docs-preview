@@ -1,0 +1,565 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finding good first issues 🔎 &#8212; Apache Arrow v7.0.0.dev574+gbd1ea0bfe</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="canonical" href="https://arrow.apache.org/docs/developers/guide/step_by_step/finding_issues.html" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Working on the Arrow codebase 🧐" href="arrow_codebase.html" />
+    <link rel="prev" title="Building the Arrow libraries 🏋🏿‍♀️" href="building.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-107500873-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+<a class="navbar-brand" href="../../../index.html">
+  <img src="../../../_static/arrow.png" class="logo" alt="logo">
+</a>
+
+
+<div id="subproject-button" class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Developer documentation
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      
+      <a class="nav-link" href="/c_glib">C/GLib</a>
+      
+      <a class="nav-link" href="/cpp">C++</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+      
+      <a class="nav-link" href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+      
+      <a class="nav-link" href="/java">Java</a>
+      
+      <a class="nav-link" href="/js">JavaScript</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">Julia</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+      
+      <a class="nav-link" href="/python">Python</a>
+      
+      <a class="nav-link" href="/r">R</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+      
+      <a class="nav-link" href="https://docs.rs/crate/arrow/">Rust</a>
+      
+      <a class="nav-link" href="/status.html">Implementation status</a>
+      
+      <a class="nav-link" href="/format">Specifications and Protocols</a>
+      
+      <a class="nav-link" href="/developers">Developer documentation</a>
+      
+ </div>
+</div>
+
+<div id="version-search-wrapper">
+
+<div id="version-button" class="dropdown">
+    <button type="button" class="btn btn-secondary btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
+        7.0.0 (dev)
+        <span class="caret"></span>
+    </button>
+    <div id="version_switcher" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+
+<script type="text/javascript">
+// Function to construct the target URL from the JSON components
+function buildURL(entry) {
+    var template = "https://arrow.apache.org/docs/{version}";  // supplied by jinja
+    template = template.replace("{version}", entry.version);
+    return template;
+}
+
+// Function to check if corresponding page path exists in other version of docs
+// and, if so, go there instead of the homepage of the other docs version
+function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "developers/guide/step_by_step/finding_issues.html",
+          otherDocsHomepage = event.target.getAttribute("href");
+    let tryUrl = `${otherDocsHomepage}${currentFilePath}`;
+    $.ajax({
+        type: 'HEAD',
+        url: tryUrl,
+        // if the page exists, go there
+        success: function() {
+            location.href = tryUrl;
+        }
+    }).fail(function() {
+        location.href = otherDocsHomepage;
+    });
+    return false;
+}
+
+// Function to populate the version switcher
+(function () {
+    // get JSON config
+    $.getJSON("/docs/_static/versions.json", function(data, textStatus, jqXHR) {
+        // create the nodes first (before AJAX calls) to ensure the order is
+        // correct (for now, links will go to doc version homepage)
+        $.each(data, function(index, entry) {
+            // if no custom name specified (e.g., "latest"), use version string
+            if (!("name" in entry)) {
+                entry.name = entry.version;
+            }
+            // construct the appropriate URL, and add it to the dropdown
+            entry.url = buildURL(entry);
+            const node = document.createElement("a");
+            node.setAttribute("class", "list-group-item list-group-item-action py-1");
+            node.setAttribute("href", `${entry.url}`);
+            node.textContent = `${entry.name}`;
+            node.onclick = checkPageExistsAndRedirect;
+            $("#version_switcher").append(node);
+        });
+    });
+})();
+</script>
+
+<form id="search-box" class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+</div>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../contributing.html">
+   Contributing to Apache Arrow
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../index.html">
+   New Contributor’s Guide
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../architectural_overview.html">
+     Architectural Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../communication.html">
+     Communication
+    </a>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="index.html">
+     Steps in making your first PR
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="set_up.html">
+       Set up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="building.html">
+       Building the Arrow libraries 🏋🏿‍♀️
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Finding good first issues 🔎
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="arrow_codebase.html">
+       Working on the Arrow codebase 🧐
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="testing.html">
+       Testing 🧪
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pr_and_github.html">
+       Lifecycle of a pull request
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../documentation.html">
+     Helping with documentation
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../tutorials/index.html">
+     Tutorials
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../tutorials/python_tutorial.html">
+       Python tutorial
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../tutorials/r_tutorial.html">
+       R tutorial
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../resources.html">
+     Additional information and resources
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reviewing.html">
+   Reviewing contributions
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../cpp/index.html">
+   C++ Development
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../cpp/building.html">
+     Building Arrow C++
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../cpp/development.html">
+     Development Guidelines
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../cpp/windows.html">
+     Developing on Windows
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../cpp/conventions.html">
+     Conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../cpp/fuzzing.html">
+     Fuzzing Arrow C++
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../python.html">
+   Python Development
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../continuous_integration/index.html">
+   Continuous Integration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../continuous_integration/overview.html">
+     Continuous Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../continuous_integration/docker.html">
+     Running Docker Builds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../continuous_integration/archery.html">
+     Daily Development using Archery
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../continuous_integration/crossbow.html">
+     Packaging and Testing with Crossbow
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../benchmarks.html">
+   Benchmarks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../documentation.html">
+   Building the Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../computeir.html">
+   Arrow Compute IR (Intermediate Representation)
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-jira-account">
+   Creating a JIRA account
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-create-a-jira-issue">
+   How to create a JIRA issue
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-we-use-jira-to-find-an-issue">
+   How we use JIRA to find an issue
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/apache/arrow/edit/master/docs/source/developers/guide/step_by_step/finding_issues.rst">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="finding-good-first-issues">
+<span id="finding-issues"></span><h1>Finding good first issues 🔎<a class="headerlink" href="#finding-good-first-issues" title="Permalink to this headline">¶</a></h1>
+<p>You have successfully built the Arrow library; congrats!</p>
+<p>The next step is finding something to work on. As mentioned before,
+you might already have a bug to fix in mind, or a new feature that you want to implement.
+Or you still need an issue to work on and you need some help with finding one.</p>
+<p>For both cases, JIRA is the issue tracker that we use.</p>
+<p>First we will explain how to use JIRA if you have a fix or a feature to work on that doesn’t yet have a JIRA ticket open, in which case you will need to create a JIRA ticket yourself.</p>
+<p>Secondly, we will show you a way to find good first issues to work on.</p>
+<div class="section" id="creating-a-jira-account">
+<h2>Creating a JIRA account<a class="headerlink" href="#creating-a-jira-account" title="Permalink to this headline">¶</a></h2>
+<p>First thing you need to do is to make an account on the ASF JIRA following
+<a class="reference external" href="https://issues.apache.org/jira/secure/Signup!default.jspa">this link</a>. You will be asked
+to select a language and choose an avatar if you wish. If the registration is successful
+you will see:</p>
+<div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="../../../_images/jira_new_account.jpeg"><img alt="creating an ASF JIRA account" src="../../../_images/jira_new_account.jpeg" style="width: 589.4px; height: 315.0px;" /></a>
+<p class="caption"><span class="caption-text">The window you get after creating an account on the ASF JIRA.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="how-to-create-a-jira-issue">
+<span id="create-jira"></span><h2>How to create a JIRA issue<a class="headerlink" href="#how-to-create-a-jira-issue" title="Permalink to this headline">¶</a></h2>
+<p>After creating an account you can click <strong>Create an issue</strong> and select <strong>Apache Arrow project</strong>
+and <strong>Type</strong> of the issue (Bug, Feature, …).</p>
+<div class="figure align-default" id="id2">
+<a class="reference internal image-reference" href="../../../_images/jira_create_issue.jpeg"><img alt="creating JIRA issue" src="../../../_images/jira_create_issue.jpeg" style="width: 606.9px; height: 275.09999999999997px;" /></a>
+<p class="caption"><span class="caption-text">The window to create a JIRA issue.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>If you are already in JIRA dashboard click the red <code class="docutils literal notranslate"><span class="pre">create</span></code> button in the top to do the same.</p>
+<p>You are ready to create the issue! Add a title and a description following the
+<a class="reference internal" href="../../contributing.html#jira-tips"><span class="std std-ref">tips for using JIRA</span></a> and you are ready to go!</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../../contributing.html#jira-tips"><span class="std std-ref">Tips for using JIRA</span></a></p>
+</div>
+<p>You don’t need any special permissions on JIRA to be able to create issues.
+Once you are more involved in the project and want to do more on JIRA, for example assigning
+yourself an issue, you will need <strong>“Contributor” permissions</strong>. To get this role, ask on the
+<a class="reference internal" href="../communication.html#mailing-list"><span class="std std-ref">Mailing Lists</span></a> or in the comment of the JIRA issue you created.</p>
+<p>When the ticket is created you can start a discussion about it in the JIRA comments section.</p>
+</div>
+<div class="section" id="how-we-use-jira-to-find-an-issue">
+<h2>How we use JIRA to find an issue<a class="headerlink" href="#how-we-use-jira-to-find-an-issue" title="Permalink to this headline">¶</a></h2>
+<p>To make it easier for you to find issues that are well-suited for new contributors, we have added labels
+like “good-first-issue” or “beginner” to some JIRA tickets.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Search for good first/second issues with labels like in the <a class="reference external" href="https://issues.apache.org/jira/issues/?filter=-4&amp;jql=project%20%3D%20ARROW%20AND%20status%20%3D%20Open%20AND%20labels%20in%20(Beginner%2C%20beginner%2C%20beginners%2C%20beginnner%2C%20beginner-friendly%2C%20good-first-issue%2C%20good-second-issue%2C%20GoodForNewContributors%2C%20newbie%2C%20easyfix%2C%20documentation)%20order%20by%20created%20DESC">link here</a></p>
+</div>
+<p>The issues labeled as good first issues should take no more than two days or a weekend to
+fix them. Once you dig into the code you may find that the issue is not easy at all - this can
+happen as the problem could be harder than the person who triaged the ticket expected it to be.
+Don’t hesitate to write that in the comments.</p>
+<div class="figure align-default" id="id3">
+<a class="reference internal image-reference" href="../../../_images/jira_good_first_issue.jpeg"><img alt="finding good first JIRA issue" src="../../../_images/jira_good_first_issue.jpeg" style="width: 748.35px; height: 362.7px;" /></a>
+<p class="caption"><span class="caption-text">Example of the list of good first issues.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When you find a JIRA issue you would like to work on, please mention your interest in the comment
+section of that issue; that way we will know you are working on it.</p>
+</div>
+<p>Also, do not hesitate to ask questions in the comment section of the issue.
+You can get some pointers about where to start and similar issues already solved.</p>
+<p><strong>Do not forget to create a new branch once you have created or chosen an issue you will be
+working on!</strong> Follow the instructions in the <a class="reference internal" href="pr_and_github.html#pr-and-github"><span class="std std-ref">Lifecycle of a pull request</span></a> section or follow the next section: <a class="reference internal" href="arrow_codebase.html#arrow-codebase"><span class="std std-ref">Working on the Arrow codebase 🧐</span></a>.</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="building.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Building the Arrow libraries 🏋🏿‍♀️</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="arrow_codebase.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Working on the Arrow codebase 🧐</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2016-2022 Apache Software Foundation.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,528 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C++ Development &#8212; Apache Arrow v7.0.0.dev574+gbd1ea0bfe</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="https://arrow.apache.org/docs/developers/cpp/index.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Building Arrow C++" href="building.html" />
+    <link rel="prev" title="Reviewing contributions" href="../reviewing.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-107500873-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/arrow.png" class="logo" alt="logo">
+</a>
+
+
+<div id="subproject-button" class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Developer documentation
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      
+      <a class="nav-link" href="/c_glib">C/GLib</a>
+      
+      <a class="nav-link" href="/cpp">C++</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+      
+      <a class="nav-link" href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+      
+      <a class="nav-link" href="/java">Java</a>
+      
+      <a class="nav-link" href="/js">JavaScript</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">Julia</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+      
+      <a class="nav-link" href="/python">Python</a>
+      
+      <a class="nav-link" href="/r">R</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+      
+      <a class="nav-link" href="https://docs.rs/crate/arrow/">Rust</a>
+      
+      <a class="nav-link" href="/status.html">Implementation status</a>
+      
+      <a class="nav-link" href="/format">Specifications and Protocols</a>
+      
+      <a class="nav-link" href="/developers">Developer documentation</a>
+      
+ </div>
+</div>
+
+<div id="version-search-wrapper">
+
+<div id="version-button" class="dropdown">
+    <button type="button" class="btn btn-secondary btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
+        7.0.0 (dev)
+        <span class="caret"></span>
+    </button>
+    <div id="version_switcher" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+
+<script type="text/javascript">
+// Function to construct the target URL from the JSON components
+function buildURL(entry) {
+    var template = "https://arrow.apache.org/docs/{version}";  // supplied by jinja
+    template = template.replace("{version}", entry.version);
+    return template;
+}
+
+// Function to check if corresponding page path exists in other version of docs
+// and, if so, go there instead of the homepage of the other docs version
+function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "developers/cpp/index.html",
+          otherDocsHomepage = event.target.getAttribute("href");
+    let tryUrl = `${otherDocsHomepage}${currentFilePath}`;
+    $.ajax({
+        type: 'HEAD',
+        url: tryUrl,
+        // if the page exists, go there
+        success: function() {
+            location.href = tryUrl;
+        }
+    }).fail(function() {
+        location.href = otherDocsHomepage;
+    });
+    return false;
+}
+
+// Function to populate the version switcher
+(function () {
+    // get JSON config
+    $.getJSON("/docs/_static/versions.json", function(data, textStatus, jqXHR) {
+        // create the nodes first (before AJAX calls) to ensure the order is
+        // correct (for now, links will go to doc version homepage)
+        $.each(data, function(index, entry) {
+            // if no custom name specified (e.g., "latest"), use version string
+            if (!("name" in entry)) {
+                entry.name = entry.version;
+            }
+            // construct the appropriate URL, and add it to the dropdown
+            entry.url = buildURL(entry);
+            const node = document.createElement("a");
+            node.setAttribute("class", "list-group-item list-group-item-action py-1");
+            node.setAttribute("href", `${entry.url}`);
+            node.textContent = `${entry.name}`;
+            node.onclick = checkPageExistsAndRedirect;
+            $("#version_switcher").append(node);
+        });
+    });
+})();
+</script>
+
+<form id="search-box" class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+</div>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contributing.html">
+   Contributing to Apache Arrow
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../guide/index.html">
+   New Contributor’s Guide
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../guide/architectural_overview.html">
+     Architectural Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../guide/communication.html">
+     Communication
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../guide/step_by_step/index.html">
+     Steps in making your first PR
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/step_by_step/set_up.html">
+       Set up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/step_by_step/building.html">
+       Building the Arrow libraries 🏋🏿‍♀️
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/step_by_step/finding_issues.html">
+       Finding good first issues 🔎
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/step_by_step/arrow_codebase.html">
+       Working on the Arrow codebase 🧐
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/step_by_step/testing.html">
+       Testing 🧪
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/step_by_step/pr_and_github.html">
+       Lifecycle of a pull request
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../guide/documentation.html">
+     Helping with documentation
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../guide/tutorials/index.html">
+     Tutorials
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/tutorials/python_tutorial.html">
+       Python tutorial
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/tutorials/r_tutorial.html">
+       R tutorial
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../guide/resources.html">
+     Additional information and resources
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reviewing.html">
+   Reviewing contributions
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   C++ Development
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="building.html">
+     Building Arrow C++
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="development.html">
+     Development Guidelines
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="windows.html">
+     Developing on Windows
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="conventions.html">
+     Conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fuzzing.html">
+     Fuzzing Arrow C++
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../python.html">
+   Python Development
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../continuous_integration/index.html">
+   Continuous Integration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../continuous_integration/overview.html">
+     Continuous Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../continuous_integration/docker.html">
+     Running Docker Builds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../continuous_integration/archery.html">
+     Daily Development using Archery
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../continuous_integration/crossbow.html">
+     Packaging and Testing with Crossbow
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../benchmarks.html">
+   Benchmarks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation.html">
+   Building the Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../computeir.html">
+   Arrow Compute IR (Intermediate Representation)
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/apache/arrow/edit/master/docs/source/developers/cpp/index.rst">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="c-development">
+<span id="cpp-development"></span><h1>C++ Development<a class="headerlink" href="#c-development" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="building.html">Building Arrow C++</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="building.html#system-setup">System setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html#building">Building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html#build-dependency-management">Build Dependency Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="development.html#compiler-warning-levels">Compiler warning levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#running-unit-tests">Running unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#running-benchmarks">Running benchmarks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#code-style-linting-and-ci">Code Style, Linting, and CI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#api-documentation">API Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#apache-parquet-development">Apache Parquet Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#arrow-flight-rpc">Arrow Flight RPC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">Developing on Windows</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#system-setup">System Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#using-conda-forge-for-build-dependencies">Using conda-forge for build dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#using-vcpkg-for-build-dependencies">Using vcpkg for build dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#building-using-visual-studio-msvc-solution-files">Building using Visual Studio (MSVC) Solution Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#building-with-ninja-and-clcache">Building with Ninja and clcache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#building-with-nmake">Building with NMake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#building-on-msys2">Building on MSYS2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#building-on-windows-arm64-using-ninja-and-clang">Building on Windows/ARM64 using Ninja and Clang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#debug-builds">Debug builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#windows-dependency-resolution-issues">Windows dependency resolution issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#statically-linking-to-arrow-on-windows">Statically linking to Arrow on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#replicating-appveyor-builds">Replicating Appveyor Builds</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="conventions.html">Conventions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="conventions.html#file-naming">File Naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conventions.html#comments-and-docstrings">Comments and Docstrings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conventions.html#memory-pools">Memory Pools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conventions.html#error-handling-and-exceptions">Error Handling and Exceptions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fuzzing.html">Fuzzing Arrow C++</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fuzzing.html#fuzz-targets-and-utilities">Fuzz Targets and Utilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fuzzing.html#continuous-fuzzing-infrastructure">Continuous fuzzing infrastructure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fuzzing.html#reproducing-locally">Reproducing locally</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../reviewing.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Reviewing contributions</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="building.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Building Arrow C++</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2016-2022 Apache Software Foundation.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

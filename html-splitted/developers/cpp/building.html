@@ -1,0 +1,1141 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Building Arrow C++ &#8212; Apache Arrow v7.0.0.dev574+gbd1ea0bfe</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/theme_overrides.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="canonical" href="https://arrow.apache.org/docs/developers/cpp/building.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Development Guidelines" href="development.html" />
+    <link rel="prev" title="C++ Development" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-107500873-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+<a class="navbar-brand" href="../../index.html">
+  <img src="../../_static/arrow.png" class="logo" alt="logo">
+</a>
+
+
+<div id="subproject-button" class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Developer documentation
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      
+      <a class="nav-link" href="/c_glib">C/GLib</a>
+      
+      <a class="nav-link" href="/cpp">C++</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+      
+      <a class="nav-link" href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+      
+      <a class="nav-link" href="/java">Java</a>
+      
+      <a class="nav-link" href="/js">JavaScript</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">Julia</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+      
+      <a class="nav-link" href="/python">Python</a>
+      
+      <a class="nav-link" href="/r">R</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+      
+      <a class="nav-link" href="https://docs.rs/crate/arrow/">Rust</a>
+      
+      <a class="nav-link" href="/status.html">Implementation status</a>
+      
+      <a class="nav-link" href="/format">Specifications and Protocols</a>
+      
+      <a class="nav-link" href="/developers">Developer documentation</a>
+      
+ </div>
+</div>
+
+<div id="version-search-wrapper">
+
+<div id="version-button" class="dropdown">
+    <button type="button" class="btn btn-secondary btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
+        7.0.0 (dev)
+        <span class="caret"></span>
+    </button>
+    <div id="version_switcher" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+
+<script type="text/javascript">
+// Function to construct the target URL from the JSON components
+function buildURL(entry) {
+    var template = "https://arrow.apache.org/docs/{version}";  // supplied by jinja
+    template = template.replace("{version}", entry.version);
+    return template;
+}
+
+// Function to check if corresponding page path exists in other version of docs
+// and, if so, go there instead of the homepage of the other docs version
+function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "developers/cpp/building.html",
+          otherDocsHomepage = event.target.getAttribute("href");
+    let tryUrl = `${otherDocsHomepage}${currentFilePath}`;
+    $.ajax({
+        type: 'HEAD',
+        url: tryUrl,
+        // if the page exists, go there
+        success: function() {
+            location.href = tryUrl;
+        }
+    }).fail(function() {
+        location.href = otherDocsHomepage;
+    });
+    return false;
+}
+
+// Function to populate the version switcher
+(function () {
+    // get JSON config
+    $.getJSON("/docs/_static/versions.json", function(data, textStatus, jqXHR) {
+        // create the nodes first (before AJAX calls) to ensure the order is
+        // correct (for now, links will go to doc version homepage)
+        $.each(data, function(index, entry) {
+            // if no custom name specified (e.g., "latest"), use version string
+            if (!("name" in entry)) {
+                entry.name = entry.version;
+            }
+            // construct the appropriate URL, and add it to the dropdown
+            entry.url = buildURL(entry);
+            const node = document.createElement("a");
+            node.setAttribute("class", "list-group-item list-group-item-action py-1");
+            node.setAttribute("href", `${entry.url}`);
+            node.textContent = `${entry.name}`;
+            node.onclick = checkPageExistsAndRedirect;
+            $("#version_switcher").append(node);
+        });
+    });
+})();
+</script>
+
+<form id="search-box" class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+</div>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contributing.html">
+   Contributing to Apache Arrow
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../guide/index.html">
+   New Contributor’s Guide
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../guide/architectural_overview.html">
+     Architectural Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../guide/communication.html">
+     Communication
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../guide/step_by_step/index.html">
+     Steps in making your first PR
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/step_by_step/set_up.html">
+       Set up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/step_by_step/building.html">
+       Building the Arrow libraries 🏋🏿‍♀️
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/step_by_step/finding_issues.html">
+       Finding good first issues 🔎
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/step_by_step/arrow_codebase.html">
+       Working on the Arrow codebase 🧐
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/step_by_step/testing.html">
+       Testing 🧪
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/step_by_step/pr_and_github.html">
+       Lifecycle of a pull request
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../guide/documentation.html">
+     Helping with documentation
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../guide/tutorials/index.html">
+     Tutorials
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/tutorials/python_tutorial.html">
+       Python tutorial
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../guide/tutorials/r_tutorial.html">
+       R tutorial
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../guide/resources.html">
+     Additional information and resources
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../reviewing.html">
+   Reviewing contributions
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   C++ Development
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Building Arrow C++
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="development.html">
+     Development Guidelines
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="windows.html">
+     Developing on Windows
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="conventions.html">
+     Conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="fuzzing.html">
+     Fuzzing Arrow C++
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../python.html">
+   Python Development
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../continuous_integration/index.html">
+   Continuous Integration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../continuous_integration/overview.html">
+     Continuous Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../continuous_integration/docker.html">
+     Running Docker Builds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../continuous_integration/archery.html">
+     Daily Development using Archery
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../continuous_integration/crossbow.html">
+     Packaging and Testing with Crossbow
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../benchmarks.html">
+   Benchmarks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../documentation.html">
+   Building the Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../computeir.html">
+   Arrow Compute IR (Intermediate Representation)
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#system-setup">
+   System setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building">
+   Building
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cmake-presets">
+     CMake presets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#manual-configuration">
+     Manual configuration
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#faster-builds-with-ninja">
+       Faster builds with Ninja
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#unity-builds">
+       Unity builds
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#optional-components">
+       Optional Components
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#optional-targets">
+       Optional Targets
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#optional-checks">
+       Optional Checks
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#cmake-version-requirements">
+       CMake version requirements
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#llvm-and-clang-tools">
+       LLVM and Clang Tools
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#build-dependency-management">
+   Build Dependency Management
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#individual-dependency-resolution">
+     Individual Dependency Resolution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bundled-dependency-versions">
+     Bundled Dependency Versions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#boost-related-options">
+     Boost-related Options
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#offline-builds">
+     Offline Builds
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statically-linking">
+     Statically Linking
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extra-debugging-help">
+     Extra debugging help
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deprecations-and-api-changes">
+     Deprecations and API Changes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modular-build-targets">
+     Modular Build Targets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#debugging-with-xcode-on-macos">
+     Debugging with Xcode on macOS
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/apache/arrow/edit/master/docs/source/developers/cpp/building.rst">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="building-arrow-c">
+<span id="building-arrow-cpp"></span><h1>Building Arrow C++<a class="headerlink" href="#building-arrow-c" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="system-setup">
+<h2>System setup<a class="headerlink" href="#system-setup" title="Permalink to this headline">¶</a></h2>
+<p>Arrow uses CMake as a build configuration system. We recommend building
+out-of-source. If you are not familiar with this terminology:</p>
+<ul class="simple">
+<li><p><strong>In-source build</strong>: <code class="docutils literal notranslate"><span class="pre">cmake</span></code> is invoked directly from the <code class="docutils literal notranslate"><span class="pre">cpp</span></code>
+directory. This can be inflexible when you wish to maintain multiple build
+environments (e.g. one for debug builds and another for release builds)</p></li>
+<li><p><strong>Out-of-source build</strong>: <code class="docutils literal notranslate"><span class="pre">cmake</span></code> is invoked from another directory,
+creating an isolated build environment that does not interact with any other
+build environment. For example, you could create <code class="docutils literal notranslate"><span class="pre">cpp/build-debug</span></code> and
+invoke <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">$CMAKE_ARGS</span> <span class="pre">..</span></code> from this directory</p></li>
+</ul>
+<p>Building requires:</p>
+<ul class="simple">
+<li><p>A C++11-enabled compiler. On Linux, gcc 4.8 and higher should be
+sufficient. For Windows, at least Visual Studio 2017 is required.</p></li>
+<li><p>CMake 3.5 or higher</p></li>
+<li><p>On Linux and macOS, either <code class="docutils literal notranslate"><span class="pre">make</span></code> or <code class="docutils literal notranslate"><span class="pre">ninja</span></code> build utilities</p></li>
+<li><p>At least 1GB of RAM for a minimal build, 4GB for a minimal
+debug build with tests and 8GB for a full build using
+<a class="reference internal" href="../continuous_integration/docker.html#docker-builds"><span class="std std-ref">docker</span></a>.</p></li>
+</ul>
+<p>On Ubuntu/Debian you can install the requirements with:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo apt-get install <span class="se">\</span>
+     build-essential <span class="se">\</span>
+     cmake
+</pre></div>
+</div>
+<p>On Alpine Linux:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>apk add autoconf <span class="se">\</span>
+        bash <span class="se">\</span>
+        cmake <span class="se">\</span>
+        g++ <span class="se">\</span>
+        gcc <span class="se">\</span>
+        make
+</pre></div>
+</div>
+<p>On Fedora Linux:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo dnf install <span class="se">\</span>
+     cmake <span class="se">\</span>
+     gcc <span class="se">\</span>
+     gcc-c++ <span class="se">\</span>
+     make
+</pre></div>
+</div>
+<p>On macOS, you can use <a class="reference external" href="https://brew.sh/">Homebrew</a>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/apache/arrow.git
+<span class="nb">cd</span> arrow
+brew update <span class="o">&amp;&amp;</span> brew bundle --file<span class="o">=</span>cpp/Brewfile
+</pre></div>
+</div>
+<p>With <a class="reference external" href="https://github.com/Microsoft/vcpkg">vcpkg</a>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/apache/arrow.git
+<span class="nb">cd</span> arrow
+vcpkg install <span class="se">\</span>
+  --x-manifest-root cpp <span class="se">\</span>
+  --feature-flags<span class="o">=</span>versions <span class="se">\</span>
+  --clean-after-build
+</pre></div>
+</div>
+<p>On MSYS2:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pacman --sync --refresh --noconfirm <span class="se">\</span>
+  ccache <span class="se">\</span>
+  git <span class="se">\</span>
+  mingw-w64-<span class="si">${</span><span class="nv">MSYSTEM_CARCH</span><span class="si">}</span>-boost <span class="se">\</span>
+  mingw-w64-<span class="si">${</span><span class="nv">MSYSTEM_CARCH</span><span class="si">}</span>-brotli <span class="se">\</span>
+  mingw-w64-<span class="si">${</span><span class="nv">MSYSTEM_CARCH</span><span class="si">}</span>-cmake <span class="se">\</span>
+  mingw-w64-<span class="si">${</span><span class="nv">MSYSTEM_CARCH</span><span class="si">}</span>-gcc <span class="se">\</span>
+  mingw-w64-<span class="si">${</span><span class="nv">MSYSTEM_CARCH</span><span class="si">}</span>-gflags <span class="se">\</span>
+  mingw-w64-<span class="si">${</span><span class="nv">MSYSTEM_CARCH</span><span class="si">}</span>-glog <span class="se">\</span>
+  mingw-w64-<span class="si">${</span><span class="nv">MSYSTEM_CARCH</span><span class="si">}</span>-gtest <span class="se">\</span>
+  mingw-w64-<span class="si">${</span><span class="nv">MSYSTEM_CARCH</span><span class="si">}</span>-lz4 <span class="se">\</span>
+  mingw-w64-<span class="si">${</span><span class="nv">MSYSTEM_CARCH</span><span class="si">}</span>-protobuf <span class="se">\</span>
+  mingw-w64-<span class="si">${</span><span class="nv">MSYSTEM_CARCH</span><span class="si">}</span>-python3-numpy <span class="se">\</span>
+  mingw-w64-<span class="si">${</span><span class="nv">MSYSTEM_CARCH</span><span class="si">}</span>-rapidjson <span class="se">\</span>
+  mingw-w64-<span class="si">${</span><span class="nv">MSYSTEM_CARCH</span><span class="si">}</span>-snappy <span class="se">\</span>
+  mingw-w64-<span class="si">${</span><span class="nv">MSYSTEM_CARCH</span><span class="si">}</span>-thrift <span class="se">\</span>
+  mingw-w64-<span class="si">${</span><span class="nv">MSYSTEM_CARCH</span><span class="si">}</span>-zlib <span class="se">\</span>
+  mingw-w64-<span class="si">${</span><span class="nv">MSYSTEM_CARCH</span><span class="si">}</span>-zstd
+</pre></div>
+</div>
+</div>
+<div class="section" id="building">
+<span id="cpp-building-building"></span><h2>Building<a class="headerlink" href="#building" title="Permalink to this headline">¶</a></h2>
+<p>All the instructions below assume that you have cloned the Arrow git
+repository and navigated to the <code class="docutils literal notranslate"><span class="pre">cpp</span></code> subdirectory:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git clone https://github.com/apache/arrow.git
+<span class="gp">$</span> <span class="nb">cd</span> arrow/cpp
+</pre></div>
+</div>
+<div class="section" id="cmake-presets">
+<span id="id1"></span><h3>CMake presets<a class="headerlink" href="#cmake-presets" title="Permalink to this headline">¶</a></h3>
+<p>Using CMake version 3.21.0 or higher, some presets for various build
+configurations are provided.  You can get a list of the available presets
+using <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--list-presets</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cmake --list-presets   <span class="c1"># from inside the `cpp` subdirectory</span>
+<span class="go">Available configure presets:</span>
+
+<span class="go">  &quot;ninja-debug-minimal&quot;     - Debug build without anything enabled</span>
+<span class="go">  &quot;ninja-debug-basic&quot;       - Debug build with tests and reduced dependencies</span>
+<span class="go">  &quot;ninja-debug&quot;             - Debug build with tests and more optional components</span>
+<span class="go">   [ etc. ]</span>
+</pre></div>
+</div>
+<p>You can inspect the specific options enabled by a given preset using
+<code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-N</span> <span class="pre">--preset</span> <span class="pre">&lt;preset</span> <span class="pre">name&gt;</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cmake --preset -N ninja-debug-minimal
+<span class="go">Preset CMake variables:</span>
+
+<span class="go">  ARROW_BUILD_INTEGRATION=&quot;OFF&quot;</span>
+<span class="go">  ARROW_BUILD_STATIC=&quot;OFF&quot;</span>
+<span class="go">  ARROW_BUILD_TESTS=&quot;OFF&quot;</span>
+<span class="go">  ARROW_EXTRA_ERROR_CONTEXT=&quot;ON&quot;</span>
+<span class="go">  ARROW_WITH_RE2=&quot;OFF&quot;</span>
+<span class="go">  ARROW_WITH_UTF8PROC=&quot;OFF&quot;</span>
+<span class="go">  CMAKE_BUILD_TYPE=&quot;Debug&quot;</span>
+</pre></div>
+</div>
+<p>You can also create a build from a given preset:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mkdir build   <span class="c1"># from inside the `cpp` subdirectory</span>
+<span class="gp">$</span> <span class="nb">cd</span> build
+<span class="gp">$</span> cmake .. --preset ninja-debug-minimal
+<span class="go">   Preset CMake variables:</span>
+
+<span class="go">     ARROW_BUILD_INTEGRATION=&quot;OFF&quot;</span>
+<span class="go">     ARROW_BUILD_STATIC=&quot;OFF&quot;</span>
+<span class="go">     ARROW_BUILD_TESTS=&quot;OFF&quot;</span>
+<span class="go">     ARROW_EXTRA_ERROR_CONTEXT=&quot;ON&quot;</span>
+<span class="go">     ARROW_WITH_RE2=&quot;OFF&quot;</span>
+<span class="go">     ARROW_WITH_UTF8PROC=&quot;OFF&quot;</span>
+<span class="go">     CMAKE_BUILD_TYPE=&quot;Debug&quot;</span>
+
+<span class="go">   -- Building using CMake version: 3.21.3</span>
+<span class="go">   [ etc. ]</span>
+</pre></div>
+</div>
+<p>and then ask to compile the build targets:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cmake --build .
+<span class="go">[142/142] Creating library symlink debug/libarrow.so.700 debug/libarrow.so</span>
+
+<span class="gp">$</span> tree debug/
+<span class="go">debug/</span>
+<span class="go">├── libarrow.so -&gt; libarrow.so.700</span>
+<span class="go">├── libarrow.so.700 -&gt; libarrow.so.700.0.0</span>
+<span class="go">└── libarrow.so.700.0.0</span>
+
+<span class="go">0 directories, 3 files</span>
+</pre></div>
+</div>
+<p>When creating a build, it is possible to pass custom options besides
+the preset-defined ones, for example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cmake .. --preset ninja-debug-minimal -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/usr/local
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The CMake presets are provided as a help to get started with Arrow
+development and understand common build configurations.  They are not
+guaranteed to be immutable but may change in the future based on
+feedback.</p>
+<p>Instead of relying on CMake presets, it is <strong>highly recommended</strong> that
+automated builds, continuous integration, release scripts, etc. use
+manual configuration, as outlined below.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://cmake.org/cmake/help/v3.21/manual/cmake-presets.7.html">Official documentation for CMake presets</a>.</p>
+</div>
+</div>
+<div class="section" id="manual-configuration">
+<h3>Manual configuration<a class="headerlink" href="#manual-configuration" title="Permalink to this headline">¶</a></h3>
+<p>The build system uses <code class="docutils literal notranslate"><span class="pre">CMAKE_BUILD_TYPE=release</span></code> by default, so if this
+argument is omitted then a release build will be produced.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You need to set more options to build on Windows. See
+<a class="reference internal" href="windows.html#developers-cpp-windows"><span class="std std-ref">Developing on Windows</span></a> for details.</p>
+</div>
+<p>Several build types are possible:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Debug</span></code>: doesn’t apply any compiler optimizations and adds debugging
+information in the binary.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RelWithDebInfo</span></code>: applies compiler optimizations while adding debug
+information in the binary.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Release</span></code>: applies compiler optimizations and removes debug information
+from the binary.</p></li>
+</ul>
+<p>You can also run default build with flag <code class="docutils literal notranslate"><span class="pre">-DARROW_EXTRA_ERROR_CONTEXT=ON</span></code>, see
+<a class="reference internal" href="#cpp-extra-debugging"><span class="std std-ref">Extra debugging help</span></a>.</p>
+<p>Minimal release build (1GB of RAM for building or more recommended):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mkdir build-release
+<span class="gp">$</span> <span class="nb">cd</span> build-release
+<span class="gp">$</span> cmake ..
+<span class="gp">$</span> make -j8       <span class="c1"># if you have 8 CPU cores, otherwise adjust</span>
+</pre></div>
+</div>
+<p>Minimal debug build with unit tests (4GB of RAM for building or more recommended):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git submodule update --init --recursive
+<span class="gp">$</span> <span class="nb">export</span> <span class="nv">ARROW_TEST_DATA</span><span class="o">=</span><span class="nv">$PWD</span>/../testing/data
+<span class="gp">$</span> mkdir build-debug
+<span class="gp">$</span> <span class="nb">cd</span> build-debug
+<span class="gp">$</span> cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Debug -DARROW_BUILD_TESTS<span class="o">=</span>ON ..
+<span class="gp">$</span> make -j8       <span class="c1"># if you have 8 CPU cores, otherwise adjust</span>
+<span class="gp">$</span> make unittest  <span class="c1"># to run the tests</span>
+</pre></div>
+</div>
+<p>The unit tests are not built by default. After building, one can also invoke
+the unit tests using the <code class="docutils literal notranslate"><span class="pre">ctest</span></code> tool provided by CMake (note that <code class="docutils literal notranslate"><span class="pre">test</span></code>
+depends on <code class="docutils literal notranslate"><span class="pre">python</span></code> being available).</p>
+<p>On some Linux distributions, running the test suite might require setting an
+explicit locale. If you see any locale-related errors, try setting the
+environment variable (which requires the <cite>locales</cite> package or equivalent):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">export</span> <span class="nv">LC_ALL</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
+</pre></div>
+</div>
+<div class="section" id="faster-builds-with-ninja">
+<h4>Faster builds with Ninja<a class="headerlink" href="#faster-builds-with-ninja" title="Permalink to this headline">¶</a></h4>
+<p>Many contributors use the <a class="reference external" href="https://ninja-build.org/">Ninja build system</a> to
+get faster builds. It especially speeds up incremental builds. To use
+<code class="docutils literal notranslate"><span class="pre">ninja</span></code>, pass <code class="docutils literal notranslate"><span class="pre">-GNinja</span></code> when calling <code class="docutils literal notranslate"><span class="pre">cmake</span></code> and then use the <code class="docutils literal notranslate"><span class="pre">ninja</span></code>
+command instead of <code class="docutils literal notranslate"><span class="pre">make</span></code>.</p>
+</div>
+<div class="section" id="unity-builds">
+<h4>Unity builds<a class="headerlink" href="#unity-builds" title="Permalink to this headline">¶</a></h4>
+<p>The CMake
+<a class="reference external" href="https://cmake.org/cmake/help/latest/prop_tgt/UNITY_BUILD.html/">unity builds</a>
+option can make full builds significantly faster, but it also increases the
+memory requirements.  Consider turning it on (using <code class="docutils literal notranslate"><span class="pre">-DCMAKE_UNITY_BUILD=ON</span></code>)
+if memory consumption is not an issue.</p>
+</div>
+<div class="section" id="optional-components">
+<span id="cpp-build-optional-components"></span><h4>Optional Components<a class="headerlink" href="#optional-components" title="Permalink to this headline">¶</a></h4>
+<p>By default, the C++ build system creates a fairly minimal build. We have
+several optional system components which you can opt into building by passing
+boolean flags to <code class="docutils literal notranslate"><span class="pre">cmake</span></code>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_BUILD_UTILITIES=ON</span></code> : Build Arrow commandline utilities</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_COMPUTE=ON</span></code>: Computational kernel functions and other support</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_CSV=ON</span></code>: CSV reader module</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_CUDA=ON</span></code>: CUDA integration for GPU development. Depends on NVIDIA
+CUDA toolkit. The CUDA toolchain used to build the library can be customized
+by using the <code class="docutils literal notranslate"><span class="pre">$CUDA_HOME</span></code> environment variable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_DATASET=ON</span></code>: Dataset API, implies the Filesystem API</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_FILESYSTEM=ON</span></code>: Filesystem API for accessing local and remote
+filesystems</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_FLIGHT=ON</span></code>: Arrow Flight RPC system, which depends at least on
+gRPC</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_GANDIVA=ON</span></code>: Gandiva expression compiler, depends on LLVM,
+Protocol Buffers, and re2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_GANDIVA_JAVA=ON</span></code>: Gandiva JNI bindings for Java</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_GCS=ON</span></code>: Build Arrow with GCS support (requires the GCloud SDK for C++)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_HDFS=ON</span></code>: Arrow integration with libhdfs for accessing the Hadoop
+Filesystem</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_HIVESERVER2=ON</span></code>: Client library for HiveServer2 database protocol</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_JEMALLOC=ON</span></code>: Build the Arrow jemalloc-based allocator, on by default</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_JSON=ON</span></code>: JSON reader module</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_MIMALLOC=ON</span></code>: Build the Arrow mimalloc-based allocator</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_ORC=ON</span></code>: Arrow integration with Apache ORC</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_PARQUET=ON</span></code>: Apache Parquet libraries and Arrow integration</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_PLASMA=ON</span></code>: Plasma Shared Memory Object Store</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_PLASMA_JAVA_CLIENT=ON</span></code>: Build Java client for Plasma</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_PYTHON=ON</span></code>: Arrow Python C++ integration library (required for
+building pyarrow). This library must be built against the same Python version
+for which you are building pyarrow. NumPy must also be installed. Enabling
+this option also enables <code class="docutils literal notranslate"><span class="pre">ARROW_COMPUTE</span></code>, <code class="docutils literal notranslate"><span class="pre">ARROW_CSV</span></code>, <code class="docutils literal notranslate"><span class="pre">ARROW_DATASET</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ARROW_FILESYSTEM</span></code>, <code class="docutils literal notranslate"><span class="pre">ARROW_HDFS</span></code>, and <code class="docutils literal notranslate"><span class="pre">ARROW_JSON</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_S3=ON</span></code>: Support for Amazon S3-compatible filesystems</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_WITH_RE2=ON</span></code> Build with support for regular expressions using the re2
+library, on by default and used when <code class="docutils literal notranslate"><span class="pre">ARROW_COMPUTE</span></code> or <code class="docutils literal notranslate"><span class="pre">ARROW_GANDIVA</span></code> is <code class="docutils literal notranslate"><span class="pre">ON</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_WITH_UTF8PROC=ON</span></code>: Build with support for Unicode properties using
+the utf8proc library, on by default and used when <code class="docutils literal notranslate"><span class="pre">ARROW_COMPUTE</span></code> or <code class="docutils literal notranslate"><span class="pre">ARROW_GANDIVA</span></code>
+is <code class="docutils literal notranslate"><span class="pre">ON</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_TENSORFLOW=ON</span></code>: Build Arrow with TensorFlow support enabled</p></li>
+</ul>
+<p>Compression options available in Arrow are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_WITH_BROTLI=ON</span></code>: Build support for Brotli compression</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_WITH_BZ2=ON</span></code>: Build support for BZ2 compression</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_WITH_LZ4=ON</span></code>: Build support for lz4 compression</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_WITH_SNAPPY=ON</span></code>: Build support for Snappy compression</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_WITH_ZLIB=ON</span></code>: Build support for zlib (gzip) compression</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_WITH_ZSTD=ON</span></code>: Build support for ZSTD compression</p></li>
+</ul>
+<p>Some features of the core Arrow shared library can be switched off for improved
+build times if they are not required for your application:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_IPC=ON</span></code>: build the IPC extensions</p></li>
+</ul>
+</div>
+<div class="section" id="optional-targets">
+<h4>Optional Targets<a class="headerlink" href="#optional-targets" title="Permalink to this headline">¶</a></h4>
+<p>For development builds, you will often want to enable additional targets in
+enable to exercise your changes, using the following <code class="docutils literal notranslate"><span class="pre">cmake</span></code> options.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_BUILD_BENCHMARKS=ON</span></code>: Build executable benchmarks.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_BUILD_EXAMPLES=ON</span></code>: Build examples of using the Arrow C++ API.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_BUILD_INTEGRATION=ON</span></code>: Build additional executables that are
+used to exercise protocol interoperability between the different Arrow
+implementations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_BUILD_UTILITIES=ON</span></code>: Build executable utilities.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_BUILD_TESTS=ON</span></code>: Build executable unit tests.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_ENABLE_TIMING_TESTS=ON</span></code>: If building unit tests, enable those
+unit tests that rely on wall-clock timing (this flag is disabled on CI
+because it can make test results flaky).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_FUZZING=ON</span></code>: Build fuzz targets and related executables.</p></li>
+</ul>
+</div>
+<div class="section" id="optional-checks">
+<h4>Optional Checks<a class="headerlink" href="#optional-checks" title="Permalink to this headline">¶</a></h4>
+<p>The following special checks are available as well.  They instrument the
+generated code in various ways so as to detect select classes of problems
+at runtime (for example when executing unit tests).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_USE_ASAN=ON</span></code>: Enable Address Sanitizer to check for memory leaks,
+buffer overflows or other kinds of memory management issues.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_USE_TSAN=ON</span></code>: Enable Thread Sanitizer to check for races in
+multi-threaded code.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-DARROW_USE_UBSAN=ON</span></code>: Enable Undefined Behavior Sanitizer to check for
+situations which trigger C++ undefined behavior.</p></li>
+</ul>
+<p>Some of those options are mutually incompatible, so you may have to build
+several times with different options if you want to exercise all of them.</p>
+</div>
+<div class="section" id="cmake-version-requirements">
+<h4>CMake version requirements<a class="headerlink" href="#cmake-version-requirements" title="Permalink to this headline">¶</a></h4>
+<p>While we support CMake 3.5 and higher, some features require a newer version of
+CMake:</p>
+<ul class="simple">
+<li><p>Building the benchmarks requires 3.6 or higher</p></li>
+<li><p>Building zstd from source requires 3.7 or higher</p></li>
+<li><p>Building Gandiva JNI bindings requires 3.11 or higher</p></li>
+</ul>
+</div>
+<div class="section" id="llvm-and-clang-tools">
+<h4>LLVM and Clang Tools<a class="headerlink" href="#llvm-and-clang-tools" title="Permalink to this headline">¶</a></h4>
+<p>We are currently using LLVM for library builds and for other developer tools
+such as code formatting with <code class="docutils literal notranslate"><span class="pre">clang-format</span></code>. LLVM can be installed via most
+modern package managers (apt, yum, conda, Homebrew, vcpkg, chocolatey).</p>
+</div>
+</div>
+</div>
+<div class="section" id="build-dependency-management">
+<span id="cpp-build-dependency-management"></span><h2>Build Dependency Management<a class="headerlink" href="#build-dependency-management" title="Permalink to this headline">¶</a></h2>
+<p>The build system supports a number of third-party dependencies</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">AWSSDK</span></code>: for S3 support, requires system cURL and can use the
+<code class="docutils literal notranslate"><span class="pre">BUNDLED</span></code> method described below</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">benchmark</span></code>: Google benchmark, for testing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Boost</span></code>: for cross-platform support</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Brotli</span></code>: for data compression</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BZip2</span></code>: for data compression</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">c-ares</span></code>: a dependency of gRPC</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gflags</span></code>: for command line utilities (formerly Googleflags)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GLOG</span></code>: for logging</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">google_cloud_cpp_storage</span></code>: for Google Cloud Storage support, requires
+system cURL and can use the <code class="docutils literal notranslate"><span class="pre">BUNDLED</span></code> method described below</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gRPC</span></code>: for remote procedure calls</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GTest</span></code>: Googletest, for testing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LLVM</span></code>: a dependency of Gandiva</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Lz4</span></code>: for data compression</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ORC</span></code>: for Apache ORC format support</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">re2</span></code>: for compute kernels and Gandiva, a dependency of gRPC</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Protobuf</span></code>: Google Protocol Buffers, for data serialization</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RapidJSON</span></code>: for data serialization</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Snappy</span></code>: for data compression</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Thrift</span></code>: Apache Thrift, for data serialization</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">utf8proc</span></code>: for compute kernels</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ZLIB</span></code>: for data compression</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zstd</span></code>: for data compression</p></li>
+</ul>
+</div></blockquote>
+<p>The CMake option <code class="docutils literal notranslate"><span class="pre">ARROW_DEPENDENCY_SOURCE</span></code> is a global option that instructs
+the build system how to resolve each dependency. There are a few options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">AUTO</span></code>: Try to find package in the system default locations and build from
+source if not found</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BUNDLED</span></code>: Building the dependency automatically from source</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SYSTEM</span></code>: Finding the dependency in system paths using CMake’s built-in
+<code class="docutils literal notranslate"><span class="pre">find_package</span></code> function, or using <code class="docutils literal notranslate"><span class="pre">pkg-config</span></code> for packages that do not
+have this feature</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CONDA</span></code>: Use <code class="docutils literal notranslate"><span class="pre">$CONDA_PREFIX</span></code> as alternative <code class="docutils literal notranslate"><span class="pre">SYSTEM</span></code> PATH</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VCPKG</span></code>: Find dependencies installed by vcpkg, and if not found, run
+<code class="docutils literal notranslate"><span class="pre">vcpkg</span> <span class="pre">install</span></code> to install them</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BREW</span></code>: Use Homebrew default paths as an alternative <code class="docutils literal notranslate"><span class="pre">SYSTEM</span></code> path</p></li>
+</ul>
+<p>The default method is <code class="docutils literal notranslate"><span class="pre">AUTO</span></code> unless you are developing within an active conda
+environment (detected by presence of the <code class="docutils literal notranslate"><span class="pre">$CONDA_PREFIX</span></code> environment
+variable), in which case it is <code class="docutils literal notranslate"><span class="pre">CONDA</span></code>.</p>
+<div class="section" id="individual-dependency-resolution">
+<h3>Individual Dependency Resolution<a class="headerlink" href="#individual-dependency-resolution" title="Permalink to this headline">¶</a></h3>
+<p>While <code class="docutils literal notranslate"><span class="pre">-DARROW_DEPENDENCY_SOURCE=$SOURCE</span></code> sets a global default for all
+packages, the resolution strategy can be overridden for individual packages by
+setting <code class="docutils literal notranslate"><span class="pre">-D$PACKAGE_NAME_SOURCE=..</span></code>. For example, to build Protocol Buffers
+from source, set</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>-DProtobuf_SOURCE<span class="o">=</span>BUNDLED
+</pre></div>
+</div>
+<p>This variable is unfortunately case-sensitive; the name used for each package
+is listed above, but the most up-to-date listing can be found in
+<a class="reference external" href="https://github.com/apache/arrow/blob/master/cpp/cmake_modules/ThirdpartyToolchain.cmake">cpp/cmake_modules/ThirdpartyToolchain.cmake</a>.</p>
+</div>
+<div class="section" id="bundled-dependency-versions">
+<h3>Bundled Dependency Versions<a class="headerlink" href="#bundled-dependency-versions" title="Permalink to this headline">¶</a></h3>
+<p>When using the <code class="docutils literal notranslate"><span class="pre">BUNDLED</span></code> method to build a dependency from source, the
+version number from <code class="docutils literal notranslate"><span class="pre">cpp/thirdparty/versions.txt</span></code> is used. There is also a
+dependency source downloader script (see below), which can be used to set up
+offline builds.</p>
+<p>When using <code class="docutils literal notranslate"><span class="pre">BUNDLED</span></code> for dependency resolution (and if you use either the
+jemalloc or mimalloc allocators, which are recommended), statically linking the
+Arrow libraries in a third party project is more complex. See below for
+instructions about how to configure your build system in this case.</p>
+</div>
+<div class="section" id="boost-related-options">
+<h3>Boost-related Options<a class="headerlink" href="#boost-related-options" title="Permalink to this headline">¶</a></h3>
+<p>We depend on some Boost C++ libraries for cross-platform support. In most cases,
+the Boost version available in your package manager may be new enough, and the
+build system will find it automatically. If you have Boost installed in a
+non-standard location, you can specify it by passing
+<code class="docutils literal notranslate"><span class="pre">-DBOOST_ROOT=$MY_BOOST_ROOT</span></code> or setting the <code class="docutils literal notranslate"><span class="pre">BOOST_ROOT</span></code> environment
+variable.</p>
+</div>
+<div class="section" id="offline-builds">
+<h3>Offline Builds<a class="headerlink" href="#offline-builds" title="Permalink to this headline">¶</a></h3>
+<p>If you do not use the above variables to direct the Arrow build system to
+preinstalled dependencies, they will be built automatically by the Arrow build
+system. The source archive for each dependency will be downloaded via the
+internet, which can cause issues in environments with limited access to the
+internet.</p>
+<p>To enable offline builds, you can download the source artifacts yourself and
+use environment variables of the form <code class="docutils literal notranslate"><span class="pre">ARROW_$LIBRARY_URL</span></code> to direct the
+build system to read from a local file rather than accessing the internet.</p>
+<p>To make this easier for you, we have prepared a script
+<code class="docutils literal notranslate"><span class="pre">thirdparty/download_dependencies.sh</span></code> which will download the correct version
+of each dependency to a directory of your choosing. It will print a list of
+bash-style environment variable statements at the end to use for your build
+script.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> Download tarballs into <span class="nv">$HOME</span>/arrow-thirdparty
+<span class="gp">$</span> ./thirdparty/download_dependencies.sh <span class="nv">$HOME</span>/arrow-thirdparty
+</pre></div>
+</div>
+<p>You can then invoke CMake to create the build directory and it will use the
+declared environment variable pointing to downloaded archives instead of
+downloading them (one for each build dir!).</p>
+</div>
+<div class="section" id="statically-linking">
+<h3>Statically Linking<a class="headerlink" href="#statically-linking" title="Permalink to this headline">¶</a></h3>
+<p>When <code class="docutils literal notranslate"><span class="pre">-DARROW_BUILD_STATIC=ON</span></code>, all build dependencies built as static
+libraries by the Arrow build system will be merged together to create a static
+library <code class="docutils literal notranslate"><span class="pre">arrow_bundled_dependencies</span></code>. In UNIX-like environments (Linux, macOS,
+MinGW), this is called <code class="docutils literal notranslate"><span class="pre">libarrow_bundled_dependencies.a</span></code> and on Windows with
+Visual Studio <code class="docutils literal notranslate"><span class="pre">arrow_bundled_dependencies.lib</span></code>. This “dependency bundle”
+library is installed in the same place as the other Arrow static libraries.</p>
+<p>If you are using CMake, the bundled dependencies will automatically be included
+when linking if you use the <code class="docutils literal notranslate"><span class="pre">arrow_static</span></code> CMake target. In other build
+systems, you may need to explicitly link to the dependency bundle. We created
+an <a class="reference external" href="https://github.com/apache/arrow/tree/master/cpp/examples/minimal_build">example CMake-based build configuration</a> to
+show you a working example.</p>
+<p>On Linux and macOS, if your application does not link to the <code class="docutils literal notranslate"><span class="pre">pthread</span></code>
+library already, you must include <code class="docutils literal notranslate"><span class="pre">-pthread</span></code> in your linker setup. In CMake
+this can be accomplished with the <code class="docutils literal notranslate"><span class="pre">Threads</span></code> built-in package:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">(</span><span class="s">THREADS_PREFER_PTHREAD_FLAG</span> <span class="s">ON</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">Threads</span> <span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">my_target</span> <span class="s">PRIVATE</span> <span class="s">Threads::Threads</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extra-debugging-help">
+<span id="cpp-extra-debugging"></span><h3>Extra debugging help<a class="headerlink" href="#extra-debugging-help" title="Permalink to this headline">¶</a></h3>
+<p>If you use the CMake option <code class="docutils literal notranslate"><span class="pre">-DARROW_EXTRA_ERROR_CONTEXT=ON</span></code> it will compile
+the libraries with extra debugging information on error checks inside the
+<code class="docutils literal notranslate"><span class="pre">RETURN_NOT_OK</span></code> macro. In unit tests with <code class="docutils literal notranslate"><span class="pre">ASSERT_OK</span></code>, this will yield error
+outputs like:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>../src/arrow/ipc/ipc-read-write-test.cc:609: Failure
+Failed
+../src/arrow/ipc/metadata-internal.cc:508 code: TypeToFlatbuffer<span class="o">(</span>fbb, *field.type<span class="o">()</span>, <span class="p">&amp;</span>children, <span class="p">&amp;</span>layout, <span class="p">&amp;</span>type_enum, dictionary_memo, <span class="p">&amp;</span>type_offset<span class="o">)</span>
+../src/arrow/ipc/metadata-internal.cc:598 code: FieldToFlatbuffer<span class="o">(</span>fbb, *schema.field<span class="o">(</span>i<span class="o">)</span>, dictionary_memo, <span class="p">&amp;</span>offset<span class="o">)</span>
+../src/arrow/ipc/metadata-internal.cc:651 code: SchemaToFlatbuffer<span class="o">(</span>fbb, schema, dictionary_memo, <span class="p">&amp;</span>fb_schema<span class="o">)</span>
+../src/arrow/ipc/writer.cc:697 code: WriteSchemaMessage<span class="o">(</span>schema_, dictionary_memo_, <span class="p">&amp;</span>schema_fb<span class="o">)</span>
+../src/arrow/ipc/writer.cc:730 code: WriteSchema<span class="o">()</span>
+../src/arrow/ipc/writer.cc:755 code: schema_writer.Write<span class="o">(</span><span class="p">&amp;</span>dictionaries_<span class="o">)</span>
+../src/arrow/ipc/writer.cc:778 code: CheckStarted<span class="o">()</span>
+../src/arrow/ipc/ipc-read-write-test.cc:574 code: writer-&gt;WriteRecordBatch<span class="o">(</span>batch<span class="o">)</span>
+NotImplemented: Unable to convert type: decimal<span class="o">(</span><span class="m">19</span>, <span class="m">4</span><span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="deprecations-and-api-changes">
+<h3>Deprecations and API Changes<a class="headerlink" href="#deprecations-and-api-changes" title="Permalink to this headline">¶</a></h3>
+<p>We use the compiler definition <code class="docutils literal notranslate"><span class="pre">ARROW_NO_DEPRECATED_API</span></code> to disable APIs that
+have been deprecated. It is a good practice to compile third party applications
+with this flag to proactively catch and account for API changes.</p>
+</div>
+<div class="section" id="modular-build-targets">
+<h3>Modular Build Targets<a class="headerlink" href="#modular-build-targets" title="Permalink to this headline">¶</a></h3>
+<p>Since there are several major parts of the C++ project, we have provided
+modular CMake targets for building each library component, group of unit tests
+and benchmarks, and their dependencies:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">arrow</span></code> for Arrow core libraries</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">parquet</span></code> for Parquet libraries</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">gandiva</span></code> for Gandiva (LLVM expression compiler) libraries</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">plasma</span></code> for Plasma libraries, server</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you have selected Ninja as CMake generator, replace <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">arrow</span></code> with
+<code class="docutils literal notranslate"><span class="pre">ninja</span> <span class="pre">arrow</span></code>, and so on.</p>
+</div>
+<p>To build the unit tests or benchmarks, add <code class="docutils literal notranslate"><span class="pre">-tests</span></code> or <code class="docutils literal notranslate"><span class="pre">-benchmarks</span></code>
+to the target name. So <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">arrow-tests</span></code> will build the Arrow core unit
+tests. Using the <code class="docutils literal notranslate"><span class="pre">-all</span></code> target, e.g. <code class="docutils literal notranslate"><span class="pre">parquet-all</span></code>, will build everything.</p>
+<p>If you wish to only build and install one or more project subcomponents, we
+have provided the CMake option <code class="docutils literal notranslate"><span class="pre">ARROW_OPTIONAL_INSTALL</span></code> to only install
+targets that have been built. For example, if you only wish to build the
+Parquet libraries, its tests, and its dependencies, you can run:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cmake .. -DARROW_PARQUET<span class="o">=</span>ON <span class="se">\</span>
+      -DARROW_OPTIONAL_INSTALL<span class="o">=</span>ON <span class="se">\</span>
+      -DARROW_BUILD_TESTS<span class="o">=</span>ON
+make parquet
+make install
+</pre></div>
+</div>
+<p>If you omit an explicit target when invoking <code class="docutils literal notranslate"><span class="pre">make</span></code>, all targets will be
+built.</p>
+</div>
+<div class="section" id="debugging-with-xcode-on-macos">
+<h3>Debugging with Xcode on macOS<a class="headerlink" href="#debugging-with-xcode-on-macos" title="Permalink to this headline">¶</a></h3>
+<p>Xcode is the IDE provided with macOS and can be use to develop and debug Arrow
+by generating an Xcode project:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> cpp
+mkdir xcode-build
+<span class="nb">cd</span> xcode-build
+cmake .. -G Xcode -DARROW_BUILD_TESTS<span class="o">=</span>ON -DCMAKE_BUILD_TYPE<span class="o">=</span>DEBUG
+open arrow.xcodeproj
+</pre></div>
+</div>
+<p>This will generate a project and open it in the Xcode app. As an alternative,
+the command <code class="docutils literal notranslate"><span class="pre">xcodebuild</span></code> will perform a command-line build using the
+generated project. It is recommended to use the “Automatically Create Schemes”
+option when first launching the project.  Selecting an auto-generated scheme
+will allow you to build and run a unittest with breakpoints enabled.</p>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">C++ Development</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="development.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Development Guidelines</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2016-2022 Apache Software Foundation.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

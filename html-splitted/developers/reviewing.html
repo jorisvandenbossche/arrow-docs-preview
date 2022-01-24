@@ -1,0 +1,749 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reviewing contributions &#8212; Apache Arrow v7.0.0.dev574+gbd1ea0bfe</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="https://arrow.apache.org/docs/developers/reviewing.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="C++ Development" href="cpp/index.html" />
+    <link rel="prev" title="Additional information and resources" href="guide/resources.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-107500873-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/arrow.png" class="logo" alt="logo">
+</a>
+
+
+<div id="subproject-button" class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Developer documentation
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      
+      <a class="nav-link" href="/c_glib">C/GLib</a>
+      
+      <a class="nav-link" href="/cpp">C++</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+      
+      <a class="nav-link" href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+      
+      <a class="nav-link" href="/java">Java</a>
+      
+      <a class="nav-link" href="/js">JavaScript</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">Julia</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+      
+      <a class="nav-link" href="/python">Python</a>
+      
+      <a class="nav-link" href="/r">R</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+      
+      <a class="nav-link" href="https://docs.rs/crate/arrow/">Rust</a>
+      
+      <a class="nav-link" href="/status.html">Implementation status</a>
+      
+      <a class="nav-link" href="/format">Specifications and Protocols</a>
+      
+      <a class="nav-link" href="/developers">Developer documentation</a>
+      
+ </div>
+</div>
+
+<div id="version-search-wrapper">
+
+<div id="version-button" class="dropdown">
+    <button type="button" class="btn btn-secondary btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
+        7.0.0 (dev)
+        <span class="caret"></span>
+    </button>
+    <div id="version_switcher" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+
+<script type="text/javascript">
+// Function to construct the target URL from the JSON components
+function buildURL(entry) {
+    var template = "https://arrow.apache.org/docs/{version}";  // supplied by jinja
+    template = template.replace("{version}", entry.version);
+    return template;
+}
+
+// Function to check if corresponding page path exists in other version of docs
+// and, if so, go there instead of the homepage of the other docs version
+function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "developers/reviewing.html",
+          otherDocsHomepage = event.target.getAttribute("href");
+    let tryUrl = `${otherDocsHomepage}${currentFilePath}`;
+    $.ajax({
+        type: 'HEAD',
+        url: tryUrl,
+        // if the page exists, go there
+        success: function() {
+            location.href = tryUrl;
+        }
+    }).fail(function() {
+        location.href = otherDocsHomepage;
+    });
+    return false;
+}
+
+// Function to populate the version switcher
+(function () {
+    // get JSON config
+    $.getJSON("/docs/_static/versions.json", function(data, textStatus, jqXHR) {
+        // create the nodes first (before AJAX calls) to ensure the order is
+        // correct (for now, links will go to doc version homepage)
+        $.each(data, function(index, entry) {
+            // if no custom name specified (e.g., "latest"), use version string
+            if (!("name" in entry)) {
+                entry.name = entry.version;
+            }
+            // construct the appropriate URL, and add it to the dropdown
+            entry.url = buildURL(entry);
+            const node = document.createElement("a");
+            node.setAttribute("class", "list-group-item list-group-item-action py-1");
+            node.setAttribute("href", `${entry.url}`);
+            node.textContent = `${entry.name}`;
+            node.onclick = checkPageExistsAndRedirect;
+            $("#version_switcher").append(node);
+        });
+    });
+})();
+</script>
+
+<form id="search-box" class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+</div>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing.html">
+   Contributing to Apache Arrow
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="guide/index.html">
+   New Contributor’s Guide
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="guide/architectural_overview.html">
+     Architectural Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="guide/communication.html">
+     Communication
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="guide/step_by_step/index.html">
+     Steps in making your first PR
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="guide/step_by_step/set_up.html">
+       Set up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="guide/step_by_step/building.html">
+       Building the Arrow libraries 🏋🏿‍♀️
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="guide/step_by_step/finding_issues.html">
+       Finding good first issues 🔎
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="guide/step_by_step/arrow_codebase.html">
+       Working on the Arrow codebase 🧐
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="guide/step_by_step/testing.html">
+       Testing 🧪
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="guide/step_by_step/pr_and_github.html">
+       Lifecycle of a pull request
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="guide/documentation.html">
+     Helping with documentation
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="guide/tutorials/index.html">
+     Tutorials
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="guide/tutorials/python_tutorial.html">
+       Python tutorial
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="guide/tutorials/r_tutorial.html">
+       R tutorial
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="guide/resources.html">
+     Additional information and resources
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Reviewing contributions
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="cpp/index.html">
+   C++ Development
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="cpp/building.html">
+     Building Arrow C++
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="cpp/development.html">
+     Development Guidelines
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="cpp/windows.html">
+     Developing on Windows
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="cpp/conventions.html">
+     Conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="cpp/fuzzing.html">
+     Fuzzing Arrow C++
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python.html">
+   Python Development
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="continuous_integration/index.html">
+   Continuous Integration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="continuous_integration/overview.html">
+     Continuous Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="continuous_integration/docker.html">
+     Running Docker Builds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="continuous_integration/archery.html">
+     Daily Development using Archery
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="continuous_integration/crossbow.html">
+     Packaging and Testing with Crossbow
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="benchmarks.html">
+   Benchmarks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="documentation.html">
+   Building the Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="computeir.html">
+   Arrow Compute IR (Intermediate Representation)
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#principles">
+   Principles
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#guidelines">
+   Guidelines
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#meta">
+     Meta
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scope-and-completeness">
+     Scope and completeness
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#public-api-design">
+     Public API design
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#robustness">
+     Robustness
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#performance">
+     Performance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#documentation">
+     Documentation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing">
+     Testing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#social-aspects">
+   Social aspects
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/apache/arrow/edit/master/docs/source/developers/reviewing.rst">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="reviewing-contributions">
+<h1>Reviewing contributions<a class="headerlink" href="#reviewing-contributions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="principles">
+<h2>Principles<a class="headerlink" href="#principles" title="Permalink to this headline">¶</a></h2>
+<p>Arrow is a foundational project that will need to evolve over many years
+or even decades, while serving potentially millions of users.  We believe
+that being meticulous when reviewing brings greater rewards to the project
+than being lenient and aiming for quick merges.</p>
+<p>Code reviews like this lead to better quality code, more people who are
+engaged with and understand the code being changed, and a generally
+healthier project with more room to grow and accommodate emerging needs.</p>
+</div>
+<div class="section" id="guidelines">
+<h2>Guidelines<a class="headerlink" href="#guidelines" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="meta">
+<h3>Meta<a class="headerlink" href="#meta" title="Permalink to this headline">¶</a></h3>
+<p><strong>Use your own judgement</strong>.  These guidelines are not hard rules.
+Committers are expected to have sufficient expertise on their work
+areas to be able to adjust their approach based on any concerns they have.</p>
+<p>These guidelines are not listed in a particular order and are not intended
+to be used as a checklist.</p>
+<p>Finally, these guidelines are not exhaustive.</p>
+</div>
+<div class="section" id="scope-and-completeness">
+<h3>Scope and completeness<a class="headerlink" href="#scope-and-completeness" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Our general policy is to not introduce regressions or merge PRs that require
+follow-ons to function correctly (though exceptions to this can be made).
+Making necessary changes after a merge is more costly both for the
+contributor and the reviewer, but also for other developers who may be
+confused if they hit problems introduced by a merged PR.</p></li>
+<li><p>What changes are in-scope for a PR and what changes might/could/should be
+pushed out of scope and have a follow-up JIRA created should be determined
+in collaboration between the authors and the reviewers.</p></li>
+<li><p>When a large piece of functionality is being contributed and it seems
+desirable to integrate it piecewise, favour functional cohesion when
+deciding how to divide changes (for example, if a filesystem implementation
+is being contributed, a first PR may contribute directory metadata
+operations, a second PR file reading facilities and a third PR file writing
+facilities).</p></li>
+</ul>
+</div>
+<div class="section" id="public-api-design">
+<h3>Public API design<a class="headerlink" href="#public-api-design" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Public APIs should nudge users towards the most desirable constructs.
+In other words, if there is a “best” way to do something, it should
+ideally also be the most easily discoverable and the most concise to type.
+For example, safe APIs should be featured more prominently than
+unsafe APIs that may crash or silently produce erroneous results on
+invalid input.</p></li>
+<li><p>Public APIs should ideally tend to produce readable code.  One example
+is when multiple options are expected to be added over time: it is better
+to try to organize options logically rather than juxtapose them all in
+a function’s signature (see for example the CSV reading APIs in
+<a class="reference external" href="https://arrow.apache.org/docs/cpp/api/formats.html#cpp-api-csv" title="(in Apache Arrow v6.0.1)"><span class="xref std std-ref">C++</span></a> and <span class="xref std std-ref">Python</span>).</p></li>
+<li><p>Naming is important.  Try to ask yourself if code calling the new API
+would be understandable without having to read the API docs.
+Vague naming should be avoided; inaccurate naming is even worse as it
+can mislead the reader and lead to buggy user code.</p></li>
+<li><p>Be mindful of terminology.  Every project has (explicitly or tacitly) set
+conventions about how to name important concepts; steering away from those
+conventions increases the cognitive workload both for contributors and
+users of the project.  Conversely, reusing a well-known term for a different
+purpose than usual can also increase the cognitive workload and make
+developers’ lives more difficult.</p></li>
+<li><p>If you are unsure whether an API is the right one for the task at hand,
+it is advisable to mark it experimental, such that users know that it
+may be changed over time, while contributors are less wary of bringing
+code-breaking improvements.  However, experimental APIs should not be
+used as an excuse for eschewing basic API design principles.</p></li>
+</ul>
+</div>
+<div class="section" id="robustness">
+<h3>Robustness<a class="headerlink" href="#robustness" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Arrow is a set of open source libraries that will be used in a very wide
+array of contexts (including fiddling with deliberately artificial data
+at a Jupyter interpreter prompt).  If you are writing a public API, make
+sure that it won’t crash or produce undefined behaviour on unusual (but
+valid) inputs.</p></li>
+<li><p>When a non-trivial algorithm is implemented, defensive coding can
+be useful to catch potential problems (such as debug-only assertions, if
+the language allows them).</p></li>
+<li><p>APIs ingesting potentially untrusted data, such as on-disk file formats,
+should try to avoid crashing or produce silent bugs when invalid or
+corrupt data is fed to them.  This can require a lot of care that is
+out of the scope of regular code reviews (such as setting up
+<a class="reference internal" href="cpp/fuzzing.html#cpp-fuzzing"><span class="std std-ref">fuzz testing</span></a>), but basic checks can still be
+suggested at the code review stage.</p></li>
+<li><p>When calling foreign APIs, especially system functions or APIs dealing with
+input / output, do check for errors and propagate them (if the language
+does not propagate errors automatically, such as C++).</p></li>
+</ul>
+</div>
+<div class="section" id="performance">
+<h3>Performance<a class="headerlink" href="#performance" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>Think about performance, but do not obsess over it.  Algorithmic complexity
+is important if input size may be “large” (the meaning of large depends
+on the context: use your own expertise to decide!).  Micro-optimizations
+improving performance by 20% or more on performance-sensitive functionality
+may be useful as well; lesser micro-optimizations may not be worth the
+time spent on them, especially if they lead to more complicated code.</p></li>
+<li><p>If performance is important, measure it.  Do not satisfy yourself with
+guesses and intuitions (which may be founded on incorrect assumptions
+about the compiler or the hardware).</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="benchmarks.html#benchmarks"><span class="std std-ref">Benchmarking Arrow</span></a></p>
+</div>
+</li>
+<li><p>Try to avoid trying to trick the compiler/interpreter/runtime by writing
+the code in a certain way, unless it’s really important.  These tricks
+are generally brittle and dependent on platform details that may become
+obsolete, and they can make code harder to maintain (a common question
+that can block contributors is “what should I do about this weird hack
+that my changes would like to remove”?).</p></li>
+<li><p>Avoiding rough edges or degenerate behaviour (such as memory blowups when
+a size estimate is inaccurately large) may be more important than trying to
+improve the common case by a small amount.</p></li>
+</ul>
+</div>
+<div class="section" id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<p>These guidelines should ideally apply to both prose documentation and
+in-code docstrings.</p>
+<ul class="simple">
+<li><p>Look for ambiguous / poorly informative wording.  For example, <em>“it is an
+error if …”</em> is less informative than either <em>“An error is raised if … “</em>
+or <em>“Behaviour is undefined if …”</em> (the first phrasing doesn’t tell the
+reader what actually <em>happens</em> on such an error).</p></li>
+<li><p>When reviewing documentation changes (or prose snippets, in general),
+be mindful about spelling, grammar, expression, and concision.  Clear
+communication is essential for effective collaboration with people
+from a wide range of backgrounds, and contributes to better documentation.</p></li>
+<li><p>Some contributors do not have English as a native language (and perhaps
+neither do you).  It is advised to help them and/or ask for external help
+if needed.</p></li>
+<li><p>Cross-linking increases the global value of documentation.  Sphinx especially
+has great cross-linking capabilities (including topic references, glossary
+terms, API references), so be sure to make use of them!</p></li>
+</ul>
+</div>
+<div class="section" id="testing">
+<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>When adding an API, all nominal cases should have test cases.  Does a function
+allow null values? Then null values should be tested (alongside non-null
+values, of course). Does a function allow different input types? etc.</p></li>
+<li><p>If some aspect of a functionality is delicate (either by definition or
+as an implementation detail), it should be tested.</p></li>
+<li><p>Corner cases should be exercised, especially in low-level implementation
+languages such as C++.  Examples: empty arrays, zero-chunk arrays, arrays
+with only nulls, etc.</p></li>
+<li><p>Stress tests can be useful, for example to uncover synchronizations bugs
+if non-trivial parallelization is being added, or to validate a computational
+argument against a slow and straightforward reference implementation.</p></li>
+<li><p>A mitigating concern, however, is the overall cost of running the test
+suite.  Continuous Integration (CI) runtimes can be painfully long and
+we should be wary of increasing them too much.  Sometimes it is
+worthwhile to fine-tune testing parameters to balance the usefulness
+of tests against the cost of running them (especially where stress tests
+are involved, since they tend to imply execution over large datasets).</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="social-aspects">
+<h2>Social aspects<a class="headerlink" href="#social-aspects" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Reviewing is a communication between the contributor and the reviewer.
+Avoid letting questions or comments remain unanswered for too long
+(“too long” is of course very subjective, but two weeks can be a reasonable
+heuristic).  If you cannot allocate time soon, do say it explicitly.
+If you don’t have the answer to a question, do say it explicitly.
+Saying <em>“I don’t have time immediately but I will come back later,
+feel free to ping if I seem to have forgotten”</em> or <em>“Sorry, I am out of
+my depth here”</em> is always better than saying nothing and leaving the
+other person wondering.</p></li>
+<li><p>If you know someone who has the competence to help on a blocking issue
+and past experience suggests they may be willing to do so, feel free to
+add them to the discussion (for example by gently pinging their Github
+handle).</p></li>
+<li><p>If the contributor has stopped giving feedback or updating their PR,
+perhaps they’re not interested any more, but perhaps also they’re stuck
+on some issue and feel unable to push their contribution any further.
+Don’t hesitate to ask (<em>“I see this PR hasn’t seen any updates recently,
+are you stuck on something? Do you need any help?”</em>).</p></li>
+<li><p>If the contribution is genuinely desirable and the contributor is not making
+any progress, it is also possible to take it up.  Out of politeness,
+it is however better to ask the contributor first.</p></li>
+<li><p>Some contributors are looking for a quick fix to a specific problem and
+don’t want to spend too much time on it.  Others on the contrary are eager
+to learn and improve their contribution to make it conform to the
+project’s standards.  The latter kind of contributors are especially
+valuable as they may become long-term contributors or even committers
+to the project.</p></li>
+<li><p>Some contributors may respond <em>“I will fix it later, can we merge anyway?”</em>
+when a problem is pointed out to them.  Unfortunately, whether the fix will
+really be contributed soon in a later PR is difficult to predict or enforce.
+If the contributor has previously demonstrated that they are reliable,
+it may be acceptable to do as suggested.  Otherwise, it is better to
+decline the suggestion.</p></li>
+<li><p>If a PR is generally ready for merge apart from trivial or uncontroversial
+concerns, the reviewer may decide to push changes themselves to the
+PR instead of asking the contributor to make the changes.</p></li>
+<li><p>Ideally, contributing code should be a rewarding process.  Of course,
+it will not always be, but we should strive to reduce contributor
+frustration while keeping the above issues in mind.</p></li>
+<li><p>Like any communication, code reviews are governed by the Apache
+<a class="reference external" href="https://www.apache.org/foundation/policies/conduct.html">Code of Conduct</a>.
+This applies to both reviewers and contributors.</p></li>
+</ul>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="guide/resources.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Additional information and resources</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="cpp/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">C++ Development</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2016-2022 Apache Software Foundation.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

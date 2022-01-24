@@ -1,0 +1,691 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Using Arrow C++ in your own project &#8212; Apache Arrow v7.0.0.dev574+gbd1ea0bfe</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/theme_overrides.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="canonical" href="https://arrow.apache.org/docs/cpp/build_system.html" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Memory Management" href="memory.html" />
+    <link rel="prev" title="Conventions" href="conventions.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-107500873-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+<a class="navbar-brand" href="index.html">
+  <img src="_static/arrow.png" class="logo" alt="logo">
+</a>
+
+
+<div id="subproject-button" class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    C++
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      
+      <a class="nav-link" href="/c_glib">C/GLib</a>
+      
+      <a class="nav-link" href="/cpp">C++</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+      
+      <a class="nav-link" href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+      
+      <a class="nav-link" href="/java">Java</a>
+      
+      <a class="nav-link" href="/js">JavaScript</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">Julia</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+      
+      <a class="nav-link" href="/python">Python</a>
+      
+      <a class="nav-link" href="/r">R</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+      
+      <a class="nav-link" href="https://docs.rs/crate/arrow/">Rust</a>
+      
+      <a class="nav-link" href="/status.html">Implementation status</a>
+      
+      <a class="nav-link" href="/format">Specifications and Protocols</a>
+      
+      <a class="nav-link" href="/developers">Developer documentation</a>
+      
+ </div>
+</div>
+
+<div id="version-search-wrapper">
+
+<div id="version-button" class="dropdown">
+    <button type="button" class="btn btn-secondary btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
+        7.0.0 (dev)
+        <span class="caret"></span>
+    </button>
+    <div id="version_switcher" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+
+<script type="text/javascript">
+// Function to construct the target URL from the JSON components
+function buildURL(entry) {
+    var template = "https://arrow.apache.org/docs/{version}";  // supplied by jinja
+    template = template.replace("{version}", entry.version);
+    return template;
+}
+
+// Function to check if corresponding page path exists in other version of docs
+// and, if so, go there instead of the homepage of the other docs version
+function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "build_system.html",
+          otherDocsHomepage = event.target.getAttribute("href");
+    let tryUrl = `${otherDocsHomepage}${currentFilePath}`;
+    $.ajax({
+        type: 'HEAD',
+        url: tryUrl,
+        // if the page exists, go there
+        success: function() {
+            location.href = tryUrl;
+        }
+    }).fail(function() {
+        location.href = otherDocsHomepage;
+    });
+    return false;
+}
+
+// Function to populate the version switcher
+(function () {
+    // get JSON config
+    $.getJSON("/docs/_static/versions.json", function(data, textStatus, jqXHR) {
+        // create the nodes first (before AJAX calls) to ensure the order is
+        // correct (for now, links will go to doc version homepage)
+        $.each(data, function(index, entry) {
+            // if no custom name specified (e.g., "latest"), use version string
+            if (!("name" in entry)) {
+                entry.name = entry.version;
+            }
+            // construct the appropriate URL, and add it to the dropdown
+            entry.url = buildURL(entry);
+            const node = document.createElement("a");
+            node.setAttribute("class", "list-group-item list-group-item-action py-1");
+            node.setAttribute("href", `${entry.url}`);
+            node.textContent = `${entry.name}`;
+            node.onclick = checkPageExistsAndRedirect;
+            $("#version_switcher").append(node);
+        });
+    });
+})();
+</script>
+
+<form id="search-box" class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+</div>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="getting_started.html">
+   User Guide
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="overview.html">
+     High-Level Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="conventions.html">
+     Conventions
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Using Arrow C++ in your own project
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="memory.html">
+     Memory Management
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="arrays.html">
+     Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="datatypes.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="tables.html">
+     Tabular Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="compute.html">
+     Compute Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="streaming_execution.html">
+     Streaming execution engine
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="io.html">
+     Input / output and filesystems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ipc.html">
+     Reading and writing the Arrow IPC format
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="parquet.html">
+     Reading and writing Parquet files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="csv.html">
+     Reading and Writing CSV files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="json.html">
+     Reading JSON files
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dataset.html">
+     Tabular Datasets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="flight.html">
+     Arrow Flight RPC
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="examples/index.html">
+   Examples
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/cmake_minimal_build.html">
+     Minimal build using CMake
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/compute_and_write_example.html">
+     Compute and Write CSV Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/dataset_documentation_example.html">
+     Arrow Datasets example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/row_columnar_conversion.html">
+     Row to columnar conversion
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="examples/tuple_range_conversion.html">
+     std::tuple-like ranges to Arrow
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="api.html">
+   API Reference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/support.html">
+     Programming Support
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/memory.html">
+     Memory (management)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/datatype.html">
+     Data Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/array.html">
+     Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/scalar.html">
+     Scalars
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/builder.html">
+     Array Builders
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/table.html">
+     Two-dimensional Datasets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/c_abi.html">
+     C Interfaces
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/compute.html">
+     Compute Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/tensor.html">
+     Tensors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/utilities.html">
+     Utilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/io.html">
+     Input / output
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/ipc.html">
+     Arrow IPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/formats.html">
+     File Formats
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/cuda.html">
+     CUDA support
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/flight.html">
+     Arrow Flight RPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/filesystem.html">
+     Filesystems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/dataset.html">
+     Dataset
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cmake">
+   CMake
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-usage">
+     Basic usage
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#available-variables-and-targets">
+     Available variables and targets
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   pkg-config
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Basic usage
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#available-packages">
+     Available packages
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-note-on-linking">
+   A Note on Linking
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/apache/arrow/edit/master/docs/source/cpp/build_system.rst">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="using-arrow-c-in-your-own-project">
+<h1>Using Arrow C++ in your own project<a class="headerlink" href="#using-arrow-c-in-your-own-project" title="Permalink to this headline">¶</a></h1>
+<p>This section assumes you already have the Arrow C++ libraries on your
+system, either after installing them using a package manager or after
+<a class="reference external" href="https://arrow.apache.org/docs/developers/cpp/building.html#building-arrow-cpp" title="(in Apache Arrow v7.0.0.dev574+gbd1ea0bfe)"><span class="xref std std-ref">building them yourself</span></a>.</p>
+<p>The recommended way to integrate the Arrow C++ libraries in your own
+C++ project is to use CMake’s <a class="reference external" href="https://cmake.org/cmake/help/latest/command/find_package.html">find_package</a>
+function for locating and integrating dependencies. If you don’t use
+CMake as a build system, you can use <a class="reference external" href="https://www.freedesktop.org/wiki/Software/pkg-config/">pkg-config</a> to find
+installed the Arrow C++ libraries.</p>
+<div class="section" id="cmake">
+<h2>CMake<a class="headerlink" href="#cmake" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="basic-usage">
+<h3>Basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h3>
+<p>This minimal <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> file compiles a <code class="docutils literal notranslate"><span class="pre">my_example.cc</span></code> source
+file into an executable linked with the Arrow C++ shared library:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">project</span><span class="p">(</span><span class="s">MyExample</span><span class="p">)</span>
+
+<span class="nb">find_package</span><span class="p">(</span><span class="s">Arrow</span> <span class="s">REQUIRED</span><span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">my_example</span> <span class="s">my_example.cc</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">my_example</span> <span class="s">PRIVATE</span> <span class="s">arrow_shared</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="available-variables-and-targets">
+<h3>Available variables and targets<a class="headerlink" href="#available-variables-and-targets" title="Permalink to this headline">¶</a></h3>
+<p>The directive <code class="docutils literal notranslate"><span class="pre">find_package(Arrow</span> <span class="pre">REQUIRED)</span></code> asks CMake to find an Arrow
+C++ installation on your system.  When it returns, it will have set a few
+CMake variables:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">${Arrow_FOUND}</span></code> is true if the Arrow C++ libraries have been found</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">${ARROW_VERSION}</span></code> contains the Arrow version string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">${ARROW_FULL_SO_VERSION}</span></code> contains the Arrow DLL version string</p></li>
+</ul>
+<p>In addition, it will have created some targets that you can link against
+(note these are plain strings, not variables):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">arrow_shared</span></code> links to the Arrow shared libraries</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arrow_static</span></code> links to the Arrow static libraries</p></li>
+</ul>
+<p>In most cases, it is recommended to use the Arrow shared libraries.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>CMake is case-sensitive.  The names and variables listed above have to be
+spelt exactly that way!</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>A Docker-based <a class="reference internal" href="examples/cmake_minimal_build.html"><span class="doc">minimal build example</span></a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>pkg-config<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3>Basic usage<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>You can get suitable build flags by the following command line:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pkg-config --cflags --libs arrow
+</pre></div>
+</div>
+<p>If you want to link the Arrow C++ static library, you need to add
+<code class="docutils literal notranslate"><span class="pre">--static</span></code> option:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pkg-config --cflags --libs --static arrow
+</pre></div>
+</div>
+<p>This minimal <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> file compiles a <code class="docutils literal notranslate"><span class="pre">my_example.cc</span></code> source
+file into an executable linked with the Arrow C++ shared library:</p>
+<div class="highlight-makefile notranslate"><div class="highlight"><pre><span></span><span class="nf">my_example</span><span class="o">:</span> <span class="n">my_example</span>.<span class="n">cc</span>
+     <span class="k">$(</span>CXX<span class="k">)</span> -o <span class="nv">$@</span> <span class="k">$(</span>CXXFLAGS<span class="k">)</span> $&lt; <span class="nv">$$</span><span class="o">(</span>pkg-config --cflags --libs arrow<span class="o">)</span>
+</pre></div>
+</div>
+<p>Many build systems support pkg-config. For example:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://people.freedesktop.org/~dbn/pkg-config-guide.html#using">GNU Autotools</a></p></li>
+<li><p><a class="reference external" href="https://cmake.org/cmake/help/latest/module/FindPkgConfig.html">CMake</a>
+(But you should use <code class="docutils literal notranslate"><span class="pre">find_package(Arrow)</span></code> instead.)</p></li>
+<li><p><a class="reference external" href="https://mesonbuild.com/Reference-manual.html#dependency">Meson</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="available-packages">
+<h3>Available packages<a class="headerlink" href="#available-packages" title="Permalink to this headline">¶</a></h3>
+<p>The Arrow C++ provides a pkg-config package for each module. Here are
+all available packages:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">arrow-csv</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arrow-cuda</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arrow-dataset</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arrow-filesystem</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arrow-flight-testing</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arrow-flight</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arrow-json</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arrow-orc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arrow-python-flight</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arrow-python</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arrow-tensorflow</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arrow-testing</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arrow</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gandiva</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parquet</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plasma</span></code></p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="a-note-on-linking">
+<h2>A Note on Linking<a class="headerlink" href="#a-note-on-linking" title="Permalink to this headline">¶</a></h2>
+<p>Some Arrow components have dependencies that you may want to use in your own
+project. Care must be taken to ensure that your project links the same version
+of these dependencies in the same way (statically or dynamically) as Arrow,
+else <a class="reference external" href="https://en.wikipedia.org/wiki/One_Definition_Rule">ODR</a> violations may
+result and your program may crash or silently corrupt data.</p>
+<p>In particular, Arrow Flight and its dependencies <a class="reference external" href="https://developers.google.com/protocol-buffers/">Protocol Buffers (Protobuf)</a> and <a class="reference external" href="https://grpc.io/">gRPC</a> are likely to cause issues. When using Arrow Flight, note
+the following guidelines:</p>
+<ul class="simple">
+<li><p>If statically linking Arrow Flight, Protobuf and gRPC must also be statically
+linked, and the same goes for dynamic linking.</p></li>
+<li><p>Some platforms (e.g. Ubuntu 20.04 at the time of this writing) may ship a
+version of Protobuf and/or gRPC that is not recent enough for Arrow
+Flight. In that case, Arrow Flight bundles these dependencies, so care must
+be taken not to mix the Arrow Flight library with the platform Protobuf/gRPC
+libraries (as then you will have two versions of Protobuf and/or gRPC linked
+into your application).</p></li>
+</ul>
+<p>It may be easiest to depend on a version of Arrow built from source, where you
+can control the source of each dependency and whether it is statically or
+dynamically linked. See <a class="reference external" href="https://arrow.apache.org/docs/developers/cpp/building.html#building-arrow-cpp" title="(in Apache Arrow v7.0.0.dev574+gbd1ea0bfe)"><span>Building Arrow C++</span></a> for instructions. Or
+alternatively, use Arrow from a package manager such as Conda or vcpkg which
+will manage consistent versions of Arrow and its dependencies.</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="conventions.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Conventions</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="memory.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Memory Management</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2016-2022 Apache Software Foundation.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

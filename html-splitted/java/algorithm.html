@@ -1,0 +1,743 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Java Algorithms &#8212; Apache Arrow v7.0.0.dev574+gbd1ea0bfe</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="canonical" href="https://arrow.apache.org/docs/java/algorithm.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dataset" href="dataset.html" />
+    <link rel="prev" title="Reading/Writing IPC formats" href="ipc.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-107500873-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/arrow.png" class="logo" alt="logo">
+</a>
+
+
+<div id="subproject-button" class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    placeholder
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      
+      <a class="nav-link" href="/c_glib">C/GLib</a>
+      
+      <a class="nav-link" href="/cpp">C++</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+      
+      <a class="nav-link" href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+      
+      <a class="nav-link" href="/java">Java</a>
+      
+      <a class="nav-link" href="/js">JavaScript</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">Julia</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+      
+      <a class="nav-link" href="/python">Python</a>
+      
+      <a class="nav-link" href="/r">R</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+      
+      <a class="nav-link" href="https://docs.rs/crate/arrow/">Rust</a>
+      
+      <a class="nav-link" href="/status.html">Implementation status</a>
+      
+      <a class="nav-link" href="/format">Specifications and Protocols</a>
+      
+      <a class="nav-link" href="/developers">Developer documentation</a>
+      
+ </div>
+</div>
+
+<div id="version-search-wrapper">
+
+<div id="version-button" class="dropdown">
+    <button type="button" class="btn btn-secondary btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
+        7.0.0 (dev)
+        <span class="caret"></span>
+    </button>
+    <div id="version_switcher" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+
+<script type="text/javascript">
+// Function to construct the target URL from the JSON components
+function buildURL(entry) {
+    var template = "https://arrow.apache.org/docs/{version}";  // supplied by jinja
+    template = template.replace("{version}", entry.version);
+    return template;
+}
+
+// Function to check if corresponding page path exists in other version of docs
+// and, if so, go there instead of the homepage of the other docs version
+function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "java/algorithm.html",
+          otherDocsHomepage = event.target.getAttribute("href");
+    let tryUrl = `${otherDocsHomepage}${currentFilePath}`;
+    $.ajax({
+        type: 'HEAD',
+        url: tryUrl,
+        // if the page exists, go there
+        success: function() {
+            location.href = tryUrl;
+        }
+    }).fail(function() {
+        location.href = otherDocsHomepage;
+    });
+    return false;
+}
+
+// Function to populate the version switcher
+(function () {
+    // get JSON config
+    $.getJSON("/docs/_static/versions.json", function(data, textStatus, jqXHR) {
+        // create the nodes first (before AJAX calls) to ensure the order is
+        // correct (for now, links will go to doc version homepage)
+        $.each(data, function(index, entry) {
+            // if no custom name specified (e.g., "latest"), use version string
+            if (!("name" in entry)) {
+                entry.name = entry.version;
+            }
+            // construct the appropriate URL, and add it to the dropdown
+            entry.url = buildURL(entry);
+            const node = document.createElement("a");
+            node.setAttribute("class", "list-group-item list-group-item-action py-1");
+            node.setAttribute("href", `${entry.url}`);
+            node.textContent = `${entry.name}`;
+            node.onclick = checkPageExistsAndRedirect;
+            $("#version_switcher").append(node);
+        });
+    });
+})();
+</script>
+
+<form id="search-box" class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+</div>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Supported Environments
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../c_glib/index.html">
+   C/GLib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/apache/arrow/blob/master/csharp/README.md">
+   C#
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://pkg.go.dev/github.com/apache/arrow/go">
+   Go
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Java
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="vector.html">
+     ValueVector
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="vector_schema_root.html">
+     VectorSchemaRoot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ipc.html">
+     Reading/Writing IPC formats
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Java Algorithms
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dataset.html">
+     Dataset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/index.html">
+     Reference (javadoc)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../js/index.html">
+   JavaScript
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">
+   Julia
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/apache/arrow/blob/master/matlab/README.md">
+   MATLAB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../r/index.html">
+   R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/apache/arrow/blob/master/ruby/README.md">
+   Ruby
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://docs.rs/crate/arrow/">
+   Rust
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../status.html">
+   Implementation Status
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Cookbooks
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://arrow.apache.org/cookbook/cpp/">
+   C++
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://arrow.apache.org/cookbook/py/">
+   Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://arrow.apache.org/cookbook/r/">
+   R
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../format/index.html">
+   Specifications and Protocols
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../format/Versioning.html">
+     Format Versioning and Stability
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../format/Columnar.html">
+     Arrow Columnar Format
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../format/Flight.html">
+     Arrow Flight RPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../format/Integration.html">
+     Integration Testing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../format/CDataInterface.html">
+     The Arrow C data interface
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../format/CStreamInterface.html">
+     The Arrow C stream interface
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../format/Other.html">
+     Other Data Structures
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../developers/index.html">
+   Developers documentation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developers/contributing.html">
+     Contributing to Apache Arrow
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../developers/guide/index.html">
+     New Contributor’s Guide
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/guide/architectural_overview.html">
+       Architectural Overview
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/guide/communication.html">
+       Communication
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../developers/guide/step_by_step/index.html">
+       Steps in making your first PR
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+      <label for="toctree-checkbox-5">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../developers/guide/step_by_step/set_up.html">
+         Set up
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../developers/guide/step_by_step/building.html">
+         Building the Arrow libraries 🏋🏿‍♀️
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../developers/guide/step_by_step/finding_issues.html">
+         Finding good first issues 🔎
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../developers/guide/step_by_step/arrow_codebase.html">
+         Working on the Arrow codebase 🧐
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../developers/guide/step_by_step/testing.html">
+         Testing 🧪
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../developers/guide/step_by_step/pr_and_github.html">
+         Lifecycle of a pull request
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/guide/documentation.html">
+       Helping with documentation
+      </a>
+     </li>
+     <li class="toctree-l3 has-children">
+      <a class="reference internal" href="../developers/guide/tutorials/index.html">
+       Tutorials
+      </a>
+      <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+      <label for="toctree-checkbox-6">
+       <i class="fas fa-chevron-down">
+       </i>
+      </label>
+      <ul>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../developers/guide/tutorials/python_tutorial.html">
+         Python tutorial
+        </a>
+       </li>
+       <li class="toctree-l4">
+        <a class="reference internal" href="../developers/guide/tutorials/r_tutorial.html">
+         R tutorial
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/guide/resources.html">
+       Additional information and resources
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developers/reviewing.html">
+     Reviewing contributions
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../developers/cpp/index.html">
+     C++ Development
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/cpp/building.html">
+       Building Arrow C++
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/cpp/development.html">
+       Development Guidelines
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/cpp/windows.html">
+       Developing on Windows
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/cpp/conventions.html">
+       Conventions
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/cpp/fuzzing.html">
+       Fuzzing Arrow C++
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developers/python.html">
+     Python Development
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../developers/continuous_integration/index.html">
+     Continuous Integration
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/continuous_integration/overview.html">
+       Continuous Integration
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/continuous_integration/docker.html">
+       Running Docker Builds
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/continuous_integration/archery.html">
+       Daily Development using Archery
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../developers/continuous_integration/crossbow.html">
+       Packaging and Testing with Crossbow
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developers/benchmarks.html">
+     Benchmarks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developers/documentation.html">
+     Building the Documentation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../developers/computeir.html">
+     Arrow Compute IR (Intermediate Representation)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparing-vector-elements">
+   Comparing Vector Elements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vector-element-search">
+   Vector Element Search
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vector-sorting">
+   Vector Sorting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-algorithms">
+   Other Algorithms
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/apache/arrow/edit/master/docs/source/java/algorithm.rst">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="java-algorithms">
+<h1>Java Algorithms<a class="headerlink" href="#java-algorithms" title="Permalink to this headline">¶</a></h1>
+<p>Arrow’s Java library provides algorithms for some commonly-used
+functionalities. The algorithms are provided in the <code class="docutils literal notranslate"><span class="pre">org.apache.arrow.algorithm</span></code>
+package of the <code class="docutils literal notranslate"><span class="pre">algorithm</span></code> module.</p>
+<div class="section" id="comparing-vector-elements">
+<h2>Comparing Vector Elements<a class="headerlink" href="#comparing-vector-elements" title="Permalink to this headline">¶</a></h2>
+<p>Comparing vector elements is the basic for many algorithms. Vector
+elements can be compared in one of the two ways:</p>
+<p>1. <strong>Equality comparison</strong>: there are two possible results for this type of comparisons: <code class="docutils literal notranslate"><span class="pre">equal</span></code> and <code class="docutils literal notranslate"><span class="pre">unequal</span></code>.
+Currently, this type of comparison is supported through the <code class="docutils literal notranslate"><span class="pre">org.apache.arrow.vector.compare.VectorValueEqualizer</span></code>
+interface.</p>
+<p>2. <strong>Ordering comparison</strong>: there are three possible results for this type of comparisons: <code class="docutils literal notranslate"><span class="pre">less</span> <span class="pre">than</span></code>, <code class="docutils literal notranslate"><span class="pre">equal</span> <span class="pre">to</span> <span class="pre">``</span>
+<span class="pre">and</span> <span class="pre">``greater</span> <span class="pre">than</span></code>. This comparison is supported by the abstract class <code class="docutils literal notranslate"><span class="pre">org.apache.arrow.algorithm.sort.VectorValueComparator</span></code>.</p>
+<p>We provide default implementations to compare vector elements. However, users can also define ways
+for customized comparisons.</p>
+</div>
+<div class="section" id="vector-element-search">
+<h2>Vector Element Search<a class="headerlink" href="#vector-element-search" title="Permalink to this headline">¶</a></h2>
+<p>A search algorithm tries to find a particular value in a vector. When successful, a vector index is
+returned; otherwise, a <code class="docutils literal notranslate"><span class="pre">-1</span></code> is returned. The following search algorithms are provided:</p>
+<p>1. <strong>Linear search</strong>: this algorithm simply traverses the vector from the beginning, until a match is
+found, or the end of the vector is reached. So it takes <code class="docutils literal notranslate"><span class="pre">O(n)</span></code> time, where <code class="docutils literal notranslate"><span class="pre">n</span></code> is the number of elements
+in the vector.  This algorithm is implemented in <code class="docutils literal notranslate"><span class="pre">org.apache.arrow.algorithm.search.VectorSearcher#linearSearch</span></code>.</p>
+<p>2. <strong>Binary search</strong>: this represents a more efficient search algorithm, as it runs in <code class="docutils literal notranslate"><span class="pre">O(log(n))</span></code> time.
+However, it is only applicable to sorted vectors. To get a sorted vector,
+one can use one of our sorting algorithms, which will be discussed in the next section. This algorithm
+is implemented in <code class="docutils literal notranslate"><span class="pre">org.apache.arrow.algorithm.search.VectorSearcher#binarySearch</span></code>.</p>
+<p>3. <strong>Parallel search</strong>: when the vector is large, it takes a long time to traverse the elements to search
+for a value. To make this process faster, one can split the vector into multiple partitions, and perform the
+search for each partition in parallel. This is supported by <code class="docutils literal notranslate"><span class="pre">org.apache.arrow.algorithm.search.ParallelSearcher</span></code>.</p>
+<p>4. <strong>Range search</strong>: for many scenarios, there can be multiple matching values in the vector.
+If the vector is sorted, the matching values reside in a contiguous region in the vector. The
+range search algorithm tries to find the upper/lower bound of the region in <code class="docutils literal notranslate"><span class="pre">O(log(n))</span></code> time.
+An implementation is provided in <code class="docutils literal notranslate"><span class="pre">org.apache.arrow.algorithm.search.VectorRangeSearcher</span></code>.</p>
+</div>
+<div class="section" id="vector-sorting">
+<h2>Vector Sorting<a class="headerlink" href="#vector-sorting" title="Permalink to this headline">¶</a></h2>
+<p>Given a vector, a sorting algorithm turns it into a sorted one. The sorting criteria must
+be specified by some ordering comparison operation. The sorting algorithms can be
+classified into the following categories:</p>
+<p>1. <strong>In-place sorter</strong>: an in-place sorter performs the sorting by manipulating the original
+vector, without creating any new vector. So it just returns the original vector after the sorting operations.
+Currently, we have <code class="docutils literal notranslate"><span class="pre">org.apache.arrow.algorithm.sort.FixedWidthInPlaceVectorSorter</span></code> for in-place
+sorting in <code class="docutils literal notranslate"><span class="pre">O(nlog(n))</span></code> time. As the name suggests, it only supports fixed width vectors.</p>
+<p>2. <strong>Out-of-place sorter</strong>: an out-of-place sorter does not mutate the original vector. Instead,
+it copies vector elements to a new vector in sorted order, and returns the new vector.
+We have <code class="docutils literal notranslate"><span class="pre">org.apache.arrow.algorithm.sort.FixedWidthInPlaceVectorSorter.FixedWidthOutOfPlaceVectorSorter</span></code>
+and <code class="docutils literal notranslate"><span class="pre">org.apache.arrow.algorithm.sort.FixedWidthInPlaceVectorSorter.VariableWidthOutOfPlaceVectorSorter</span></code>
+for fixed width and variable width vectors, respectively. Both algorithms run in <code class="docutils literal notranslate"><span class="pre">O(nlog(n))</span></code> time.</p>
+<p>3. <strong>Index sorter</strong>: this sorter does not actually sort the vector. Instead, it returns an integer
+vector, which correspond to indices of vector elements in sorted order. With the index vector, one can
+easily construct a sorted vector. In addition, some other tasks can be easily achieved, like finding the <code class="docutils literal notranslate"><span class="pre">k``th</span>
+<span class="pre">smallest</span> <span class="pre">value</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">vector.</span> <span class="pre">Index</span> <span class="pre">sorting</span> <span class="pre">is</span> <span class="pre">supported</span> <span class="pre">by</span> <span class="pre">``org.apache.arrow.algorithm.sort.IndexSorter</span></code>,
+which runs in <code class="docutils literal notranslate"><span class="pre">O(nlog(n))</span></code> time. It is applicable to vectors of any type.</p>
+</div>
+<div class="section" id="other-algorithms">
+<h2>Other Algorithms<a class="headerlink" href="#other-algorithms" title="Permalink to this headline">¶</a></h2>
+<p>Other algorithms include vector deduplication, dictionary encoding, etc., in the <code class="docutils literal notranslate"><span class="pre">algorithm</span></code> module.</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="ipc.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Reading/Writing IPC formats</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="dataset.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Dataset</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2016-2022 Apache Software Foundation.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

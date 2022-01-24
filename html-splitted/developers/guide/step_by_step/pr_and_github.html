@@ -1,0 +1,693 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lifecycle of a pull request &#8212; Apache Arrow v7.0.0.dev574+gbd1ea0bfe</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/blank.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/theme_overrides.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="canonical" href="https://arrow.apache.org/docs/developers/guide/step_by_step/pr_and_github.html" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Helping with documentation" href="../documentation.html" />
+    <link rel="prev" title="Testing 🧪" href="testing.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script>
+                        window.ga = window.ga || function () {
+                            (ga.q = ga.q || []).push(arguments) };
+                        ga.l = +new Date;
+                        ga('create', 'UA-107500873-1', 'auto');
+                        ga('set', 'anonymizeIp', true);
+                        ga('send', 'pageview');
+                    </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+<a class="navbar-brand" href="../../../index.html">
+  <img src="../../../_static/arrow.png" class="logo" alt="logo">
+</a>
+
+
+<div id="subproject-button" class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Developer documentation
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      
+      <a class="nav-link" href="/c_glib">C/GLib</a>
+      
+      <a class="nav-link" href="/cpp">C++</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
+      
+      <a class="nav-link" href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
+      
+      <a class="nav-link" href="/java">Java</a>
+      
+      <a class="nav-link" href="/js">JavaScript</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">Julia</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
+      
+      <a class="nav-link" href="/python">Python</a>
+      
+      <a class="nav-link" href="/r">R</a>
+      
+      <a class="nav-link" href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
+      
+      <a class="nav-link" href="https://docs.rs/crate/arrow/">Rust</a>
+      
+      <a class="nav-link" href="/status.html">Implementation status</a>
+      
+      <a class="nav-link" href="/format">Specifications and Protocols</a>
+      
+      <a class="nav-link" href="/developers">Developer documentation</a>
+      
+ </div>
+</div>
+
+<div id="version-search-wrapper">
+
+<div id="version-button" class="dropdown">
+    <button type="button" class="btn btn-secondary btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
+        7.0.0 (dev)
+        <span class="caret"></span>
+    </button>
+    <div id="version_switcher" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+
+<script type="text/javascript">
+// Function to construct the target URL from the JSON components
+function buildURL(entry) {
+    var template = "https://arrow.apache.org/docs/{version}";  // supplied by jinja
+    template = template.replace("{version}", entry.version);
+    return template;
+}
+
+// Function to check if corresponding page path exists in other version of docs
+// and, if so, go there instead of the homepage of the other docs version
+function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "developers/guide/step_by_step/pr_and_github.html",
+          otherDocsHomepage = event.target.getAttribute("href");
+    let tryUrl = `${otherDocsHomepage}${currentFilePath}`;
+    $.ajax({
+        type: 'HEAD',
+        url: tryUrl,
+        // if the page exists, go there
+        success: function() {
+            location.href = tryUrl;
+        }
+    }).fail(function() {
+        location.href = otherDocsHomepage;
+    });
+    return false;
+}
+
+// Function to populate the version switcher
+(function () {
+    // get JSON config
+    $.getJSON("/docs/_static/versions.json", function(data, textStatus, jqXHR) {
+        // create the nodes first (before AJAX calls) to ensure the order is
+        // correct (for now, links will go to doc version homepage)
+        $.each(data, function(index, entry) {
+            // if no custom name specified (e.g., "latest"), use version string
+            if (!("name" in entry)) {
+                entry.name = entry.version;
+            }
+            // construct the appropriate URL, and add it to the dropdown
+            entry.url = buildURL(entry);
+            const node = document.createElement("a");
+            node.setAttribute("class", "list-group-item list-group-item-action py-1");
+            node.setAttribute("href", `${entry.url}`);
+            node.textContent = `${entry.name}`;
+            node.onclick = checkPageExistsAndRedirect;
+            $("#version_switcher").append(node);
+        });
+    });
+})();
+</script>
+
+<form id="search-box" class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form>
+
+</div>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../contributing.html">
+   Contributing to Apache Arrow
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../index.html">
+   New Contributor’s Guide
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../architectural_overview.html">
+     Architectural Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../communication.html">
+     Communication
+    </a>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="index.html">
+     Steps in making your first PR
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="set_up.html">
+       Set up
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="building.html">
+       Building the Arrow libraries 🏋🏿‍♀️
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="finding_issues.html">
+       Finding good first issues 🔎
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="arrow_codebase.html">
+       Working on the Arrow codebase 🧐
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="testing.html">
+       Testing 🧪
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       Lifecycle of a pull request
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../documentation.html">
+     Helping with documentation
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../tutorials/index.html">
+     Tutorials
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../tutorials/python_tutorial.html">
+       Python tutorial
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../tutorials/r_tutorial.html">
+       R tutorial
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../resources.html">
+     Additional information and resources
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../reviewing.html">
+   Reviewing contributions
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../cpp/index.html">
+   C++ Development
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../cpp/building.html">
+     Building Arrow C++
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../cpp/development.html">
+     Development Guidelines
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../cpp/windows.html">
+     Developing on Windows
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../cpp/conventions.html">
+     Conventions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../cpp/fuzzing.html">
+     Fuzzing Arrow C++
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../python.html">
+   Python Development
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../continuous_integration/index.html">
+   Continuous Integration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../continuous_integration/overview.html">
+     Continuous Integration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../continuous_integration/docker.html">
+     Running Docker Builds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../continuous_integration/archery.html">
+     Daily Development using Archery
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../continuous_integration/crossbow.html">
+     Packaging and Testing with Crossbow
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../benchmarks.html">
+   Benchmarks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../documentation.html">
+   Building the Documentation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../computeir.html">
+   Arrow Compute IR (Intermediate Representation)
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-pull-request">
+   Creating a pull request
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reviews-and-merge-of-the-pull-request">
+   Reviews and merge of the pull request
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-get-your-pull-request-to-be-reviewed">
+     How to get your pull request to be reviewed?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#commenting-on-a-pull-request">
+     Commenting on a pull request
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#resolve-conversation">
+     Resolve conversation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#updating-your-pull-request">
+     Updating your pull request
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#congratulations">
+   Congratulations! 🎉
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+
+<div class="tocsection editthispage">
+    <a href="https://github.com/apache/arrow/edit/master/docs/source/developers/guide/step_by_step/pr_and_github.rst">
+        <i class="fas fa-pencil-alt"></i> Edit this page
+    </a>
+</div>
+
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="lifecycle-of-a-pull-request">
+<span id="pr-and-github"></span><h1>Lifecycle of a pull request<a class="headerlink" href="#lifecycle-of-a-pull-request" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="set_up.html#set-up"><span class="std std-ref">As mentioned before</span></a>, the Arrow project uses Git for
+version control and a workflow based on pull requests. That means
+that you contribute the changes to the code by creating a branch
+in Git, make changes to the code, push the changes to your <code class="docutils literal notranslate"><span class="pre">origin</span></code>
+which is your fork of the Arrow repository on GitHub and then you
+create a <strong>pull request</strong> against the official Arrow repository
+which is saved in your set up as <code class="docutils literal notranslate"><span class="pre">upstream</span></code>.</p>
+<p>You should have Git set up by now, have cloned the repository,
+have successfully built Arrow and have a JIRA issue to work on.</p>
+<p><strong>Before making changes to the code, you should create a new
+branch in Git.</strong></p>
+<ol class="arabic">
+<li><p>Update/sync the code from your <code class="docutils literal notranslate"><span class="pre">upstream</span></code>
+in the master branch. Run it in the shell from the <code class="docutils literal notranslate"><span class="pre">arrow</span></code> directory.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git checkout master <span class="c1"># select the main Arrow branch</span>
+<span class="gp">$</span> git fetch upstream <span class="c1"># check for changes in upstream/master</span>
+<span class="gp">$</span> git pull --ff-only upstream master <span class="c1"># save the changes from upstream/master</span>
+</pre></div>
+</div>
+<p>Note: <code class="docutils literal notranslate"><span class="pre">--ff-only</span></code> applies changes only if they can be fast-forwarded
+without conflicts or creating merge commits.</p>
+</li>
+<li><p>Create a new branch</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git checkout -b &lt;branch-name&gt;
+</pre></div>
+</div>
+<p>or (does the same thing)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git switch --create &lt;branch-name&gt;
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Now you can make changes to the code. To see the changes
+made in the library use this two commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git status <span class="c1"># to see what files are changed</span>
+<span class="gp">$</span> git diff <span class="c1"># to see code change per file</span>
+</pre></div>
+</div>
+<div class="section" id="creating-a-pull-request">
+<span id="create-pr"></span><h2>Creating a pull request<a class="headerlink" href="#creating-a-pull-request" title="Permalink to this headline">¶</a></h2>
+<p>Once you are satisfied with the changes, run the <a class="reference internal" href="testing.html#testing"><span class="std std-ref">tests</span></a>
+and linters and then go ahead and commit the changes.</p>
+<ol class="arabic" start="3">
+<li><p>Add and commit the changes</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git add &lt;filenames&gt;
+<span class="gp">$</span> git commit -m <span class="s2">&quot;&lt;message&gt;&quot;</span>
+</pre></div>
+</div>
+<p>Alternatively, you can add and commit in one step, if all the files changed
+are to be committed (-a to add all, -m for message)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git commit -am <span class="s2">&quot;&lt;message&gt;&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Then push your work to your Arrow fork</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git push origin &lt;branch-name&gt;
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Your work is now still under your watchful eye so it’s not a problem
+if you see any errors you would like to correct. You can make an
+additional commit to correct, and Git has lots of ways to
+amend, delete, revise, etc. See <a class="reference external" href="https://git-scm.com/docs">https://git-scm.com/docs</a> for more
+information.</p>
+<p>Until you make the pull request, nothing is visible on the Arrow
+repository and you are free to experiment.</p>
+</div>
+<p>If all is set, you can make the pull request!</p>
+<ol class="arabic" start="5">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">https://github.com/&lt;your</span> <span class="pre">username&gt;/arrow</span></code> where you will see a box with
+the name of the branch that you pushed and next to it a green button
+<strong>Compare &amp; pull request</strong>. After clicking on it, you should add a
+title and description of the pull request. Underneath you can check
+once again the changes you have made.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Get more details on naming the pull request in Arrow repository
+and other additional information <a class="reference internal" href="../../contributing.html#pull-request-and-review"><span class="std std-ref">Pull request and review</span></a>
+section.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="reviews-and-merge-of-the-pull-request">
+<h2>Reviews and merge of the pull request<a class="headerlink" href="#reviews-and-merge-of-the-pull-request" title="Permalink to this headline">¶</a></h2>
+<p>When the pull request is submitted it waits to get reviewed. One of
+great things about open source is that your work can get lots of feedback and
+so it gets perfected. Do not be discouraged by the time it takes for
+the PR to get merged due to reviews and corrections. It is a process
+that supports quality and with it you can learn a lot.</p>
+<p>If it still takes too long to get merged, do not hesitate to remind
+maintainers in the comment section of the pull request and post
+reminders on the JIRA ticket also.</p>
+<div class="section" id="how-to-get-your-pull-request-to-be-reviewed">
+<h3>How to get your pull request to be reviewed?<a class="headerlink" href="#how-to-get-your-pull-request-to-be-reviewed" title="Permalink to this headline">¶</a></h3>
+<p>Arrow maintainers will be notified when a pull request is created and
+they will get to it as soon as possible. If days pass and it still had
+not been reviewed go ahead and mention the reporter of the JIRA issue
+or a developer that you communicated with via JIRA comments, mailing
+list or GitHub.</p>
+<p>To put a <strong>mention</strong> in GitHub insert &#64; in the comment and select the
+username from the list.</p>
+</div>
+<div class="section" id="commenting-on-a-pull-request">
+<h3>Commenting on a pull request<a class="headerlink" href="#commenting-on-a-pull-request" title="Permalink to this headline">¶</a></h3>
+<p>When a pull request is open in the repository you and other developers
+can comment on the proposed solution.</p>
+<p>To create a general comment navigate to the <strong>Conversation</strong> tab of
+you pull request and start writing in the comment box at the bottom of
+the page.</p>
+<p>You can also comment on a section of the file to point out something
+specific from your code. To do this navigate to <strong>Files changed</strong> tab and
+select a line you want to insert the comment to. Hovering over the beginning
+of the line you will see a <strong>blue plus icon</strong>. You can click on it or drag
+it to select multiple lines and then click the icon to insert the comment.</p>
+</div>
+<div class="section" id="resolve-conversation">
+<h3>Resolve conversation<a class="headerlink" href="#resolve-conversation" title="Permalink to this headline">¶</a></h3>
+<p>You can resolve a conversion in a pull request review by clicking
+<strong>Resolve conversation</strong> in the <strong>Files changed</strong> tab. This way the
+conversation will be collapsed and marked as resolved which will make it
+easier for you to organize what is done and what still needs to be addressed.</p>
+</div>
+<div class="section" id="updating-your-pull-request">
+<h3>Updating your pull request<a class="headerlink" href="#updating-your-pull-request" title="Permalink to this headline">¶</a></h3>
+<p>The procedure after getting reviews is similar to creating the initial pull request.
+You need to update your code locally, make a commit, update the branch to sync
+it with upstream and push your code to origin. It will automatically be updated
+in your pull request as well.</p>
+<p>The steps for updating the pull request would then be as follows:</p>
+<ol class="arabic">
+<li><p>Updating the code locally and making a commit as before:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git commit -am <span class="s2">&quot;&lt;message&gt;&quot;</span> <span class="c1">#if all changed files are to be committed</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Important!</strong> In case there are commits from other developers on the Pull
+Request branch or if you committed suggestions from the GitHub you need
+to update you code with <code class="docutils literal notranslate"><span class="pre">origin</span></code> before rebasing! To do this run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git pull origin &lt;branch-name&gt;
+</pre></div>
+</div>
+<p>Here we merge the new commits with our local branch and we do not rebase.</p>
+</li>
+<li><p>Now we have to update the branch to sync with upstream master Arrow branch.
+This way the pull request will be able to get merged. We use rebase in this
+case.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git pull upstream master --rebase
+</pre></div>
+</div>
+</li>
+<li><p>Now you can push the changes by running:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> git push origin &lt;branch-name&gt;
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See more about updating the branch (we use <code class="docutils literal notranslate"><span class="pre">rebase</span></code>, not <code class="docutils literal notranslate"><span class="pre">merge</span></code>) in
+the review process <a class="reference internal" href="../../contributing.html#git-conventions"><span class="std std-ref">here</span></a>.</p>
+</div>
+<p>If the review process is successful your pull request will get merged.</p>
+</div>
+</div>
+<div class="section" id="congratulations">
+<h2>Congratulations! 🎉<a class="headerlink" href="#congratulations" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="testing.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Testing 🧪</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../documentation.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Helping with documentation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2016-2022 Apache Software Foundation.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
