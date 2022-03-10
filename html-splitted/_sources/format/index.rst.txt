@@ -27,6 +27,7 @@ TODO better landing page
    Versioning
    Columnar
    Flight
+   FlightSql
    Integration
    CDataInterface
    CStreamInterface

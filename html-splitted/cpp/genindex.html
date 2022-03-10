@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; Apache Arrow v7.0.0.dev574+gbd1ea0bfe</title>
+    <title>Index &#8212; Apache Arrow v8.0.0.dev205+gf59fba46e</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -78,37 +78,67 @@
     C++
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    
       
-      <a class="nav-link" href="/c_glib">C/GLib</a>
+      <a class="nav-link" href="../c_glib/index.html">C/GLib</a>
       
-      <a class="nav-link" href="/cpp">C++</a>
+    
+      
+      <a class="nav-link" href="../cpp/index.html">C++</a>
+      
+    
       
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
       
+    
+      
       <a class="nav-link" href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
       
-      <a class="nav-link" href="/java">Java</a>
+    
       
-      <a class="nav-link" href="/js">JavaScript</a>
+      <a class="nav-link" href="../java/index.html">Java</a>
+      
+    
+      
+      <a class="nav-link" href="../js/index.html">JavaScript</a>
+      
+    
       
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">Julia</a>
       
+    
+      
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
       
-      <a class="nav-link" href="/python">Python</a>
+    
       
-      <a class="nav-link" href="/r">R</a>
+      <a class="nav-link" href="../python/index.html">Python</a>
+      
+    
+      
+      <a class="nav-link" href="../r/index.html">R</a>
+      
+    
       
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
       
+    
+      
       <a class="nav-link" href="https://docs.rs/crate/arrow/">Rust</a>
       
-      <a class="nav-link" href="/status.html">Implementation status</a>
+    
       
-      <a class="nav-link" href="/format">Specifications and Protocols</a>
+      <a class="nav-link" href="..//status.html/index.html">Implementation status</a>
       
-      <a class="nav-link" href="/developers">Developer documentation</a>
+    
       
+      <a class="nav-link" href="../format/index.html">Specifications and Protocols</a>
+      
+    
+      
+      <a class="nav-link" href="../developers/index.html">Developer documentation</a>
+      
+    
  </div>
 </div>
 
@@ -116,7 +146,7 @@
 
 <div id="version-button" class="dropdown">
     <button type="button" class="btn btn-secondary btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
-        7.0.0 (dev)
+        8.0.0 (dev)
         <span class="caret"></span>
     </button>
     <div id="version_switcher" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
@@ -276,6 +306,11 @@ function checkPageExistsAndRedirect(event) {
      Arrow Flight RPC
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="gdb.html">
+     Debugging code using Arrow
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -378,6 +413,11 @@ function checkPageExistsAndRedirect(event) {
    <li class="toctree-l2">
     <a class="reference internal" href="api/utilities.html">
      Utilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/async.html">
+     Asynchronous programming
     </a>
    </li>
    <li class="toctree-l2">
@@ -532,6 +572,30 @@ function checkPageExistsAndRedirect(event) {
 </li>
       <li><a href="api/formats.html#_CPPv4N5arrow8adapters3orc13ORCFileWriter5WriteERK5Table">arrow::adapters::orc::ORCFileWriter::Write (C++ function)</a>
 </li>
+      <li><a href="api/formats.html#_CPPv4N5arrow8adapters3orc12WriteOptionsE">arrow::adapters::orc::WriteOptions (C++ struct)</a>
+</li>
+      <li><a href="api/formats.html#_CPPv4N5arrow8adapters3orc12WriteOptions10batch_sizeE">arrow::adapters::orc::WriteOptions::batch_size (C++ member)</a>
+</li>
+      <li><a href="api/formats.html#_CPPv4N5arrow8adapters3orc12WriteOptions20bloom_filter_columnsE">arrow::adapters::orc::WriteOptions::bloom_filter_columns (C++ member)</a>
+</li>
+      <li><a href="api/formats.html#_CPPv4N5arrow8adapters3orc12WriteOptions16bloom_filter_fppE">arrow::adapters::orc::WriteOptions::bloom_filter_fpp (C++ member)</a>
+</li>
+      <li><a href="api/formats.html#_CPPv4N5arrow8adapters3orc12WriteOptions11compressionE">arrow::adapters::orc::WriteOptions::compression (C++ member)</a>
+</li>
+      <li><a href="api/formats.html#_CPPv4N5arrow8adapters3orc12WriteOptions22compression_block_sizeE">arrow::adapters::orc::WriteOptions::compression_block_size (C++ member)</a>
+</li>
+      <li><a href="api/formats.html#_CPPv4N5arrow8adapters3orc12WriteOptions20compression_strategyE">arrow::adapters::orc::WriteOptions::compression_strategy (C++ member)</a>
+</li>
+      <li><a href="api/formats.html#_CPPv4N5arrow8adapters3orc12WriteOptions29dictionary_key_size_thresholdE">arrow::adapters::orc::WriteOptions::dictionary_key_size_threshold (C++ member)</a>
+</li>
+      <li><a href="api/formats.html#_CPPv4N5arrow8adapters3orc12WriteOptions12file_versionE">arrow::adapters::orc::WriteOptions::file_version (C++ member)</a>
+</li>
+      <li><a href="api/formats.html#_CPPv4N5arrow8adapters3orc12WriteOptions17padding_toleranceE">arrow::adapters::orc::WriteOptions::padding_tolerance (C++ member)</a>
+</li>
+      <li><a href="api/formats.html#_CPPv4N5arrow8adapters3orc12WriteOptions16row_index_strideE">arrow::adapters::orc::WriteOptions::row_index_stride (C++ member)</a>
+</li>
+      <li><a href="api/formats.html#_CPPv4N5arrow8adapters3orc12WriteOptions11stripe_sizeE">arrow::adapters::orc::WriteOptions::stripe_size (C++ member)</a>
+</li>
       <li><a href="api/array.html#_CPPv4N5arrow5ArrayE">arrow::Array (C++ class)</a>
 </li>
       <li><a href="api/array.html#_CPPv4NK5arrow5Array12ApproxEqualsERKNSt10shared_ptrI5ArrayEERK12EqualOptions">arrow::Array::ApproxEquals (C++ function)</a>
@@ -658,11 +722,103 @@ function checkPageExistsAndRedirect(event) {
 </li>
       <li><a href="api/datatype.html#_CPPv4N5arrow12BaseListTypeE">arrow::BaseListType (C++ class)</a>
 </li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal128E">arrow::BasicDecimal128 (C++ class)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal1283AbsERK15BasicDecimal128">arrow::BasicDecimal128::Abs (C++ function)</a>, <a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal1283AbsEv">[1]</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4I00EN5arrow15BasicDecimal12815BasicDecimal128E1T">arrow::BasicDecimal128::BasicDecimal128 (C++ function)</a>, <a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal12815BasicDecimal128E7int64_t8uint64_t">[1]</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow15BasicDecimal12823CountLeadingBinaryZerosEv">arrow::BasicDecimal128::CountLeadingBinaryZeros (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow15BasicDecimal1286DivideERK15BasicDecimal128P15BasicDecimal128P15BasicDecimal128">arrow::BasicDecimal128::Divide (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow15BasicDecimal12815FitsInPrecisionE7int32_t">arrow::BasicDecimal128::FitsInPrecision (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal12819GenericBasicDecimalE20LittleEndianArrayTagRK9WordArray">arrow::BasicDecimal128::GenericBasicDecimal (C++ function)</a>, <a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal12819GenericBasicDecimalEPK7uint8_t">[1]</a>, <a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal12819GenericBasicDecimalERK9WordArray">[2]</a>, <a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal12819GenericBasicDecimalEv">[3]</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal12822GetHalfScaleMultiplierE7int32_t">arrow::BasicDecimal128::GetHalfScaleMultiplier (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal12814GetMaxSentinelEv">arrow::BasicDecimal128::GetMaxSentinel (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal12811GetMaxValueE7int32_t">arrow::BasicDecimal128::GetMaxValue (C++ function)</a>, <a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal12811GetMaxValueEv">[1]</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal12814GetMinSentinelEv">arrow::BasicDecimal128::GetMinSentinel (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal12818GetScaleMultiplierE7int32_t">arrow::BasicDecimal128::GetScaleMultiplier (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow15BasicDecimal12819GetWholeAndFractionE7int32_tP15BasicDecimal128P15BasicDecimal128">arrow::BasicDecimal128::GetWholeAndFraction (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow15BasicDecimal1289high_bitsEv">arrow::BasicDecimal128::high_bits (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow15BasicDecimal12815IncreaseScaleByE7int32_t">arrow::BasicDecimal128::IncreaseScaleBy (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow15BasicDecimal1288low_bitsEv">arrow::BasicDecimal128::low_bits (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal1286NegateEv">arrow::BasicDecimal128::Negate (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal128aNERK15BasicDecimal128">arrow::BasicDecimal128::operator&amp;= (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal128mLERK15BasicDecimal128">arrow::BasicDecimal128::operator*= (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal128pLERK15BasicDecimal128">arrow::BasicDecimal128::operator+= (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal128mIERK15BasicDecimal128">arrow::BasicDecimal128::operator-= (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal128dVERK15BasicDecimal128">arrow::BasicDecimal128::operator/= (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal128lSE8uint32_t">arrow::BasicDecimal128::operator&lt;&lt;= (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal128rSE8uint32_t">arrow::BasicDecimal128::operator&gt;&gt;= (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal128oRERK15BasicDecimal128">arrow::BasicDecimal128::operator|= (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow15BasicDecimal12813ReduceScaleByE7int32_tb">arrow::BasicDecimal128::ReduceScaleBy (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow15BasicDecimal1287RescaleE7int32_t7int32_tP15BasicDecimal128">arrow::BasicDecimal128::Rescale (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal256E">arrow::BasicDecimal256 (C++ class)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal2563AbsERK15BasicDecimal256">arrow::BasicDecimal256::Abs (C++ function)</a>, <a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal2563AbsEv">[1]</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4I00EN5arrow15BasicDecimal25615BasicDecimal256E1T">arrow::BasicDecimal256::BasicDecimal256 (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow15BasicDecimal2566DivideERK15BasicDecimal256P15BasicDecimal256P15BasicDecimal256">arrow::BasicDecimal256::Divide (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow15BasicDecimal25615FitsInPrecisionE7int32_t">arrow::BasicDecimal256::FitsInPrecision (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal25619GenericBasicDecimalE20LittleEndianArrayTagRK9WordArray">arrow::BasicDecimal256::GenericBasicDecimal (C++ function)</a>, <a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal25619GenericBasicDecimalEPK7uint8_t">[1]</a>, <a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal25619GenericBasicDecimalERK9WordArray">[2]</a>, <a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal25619GenericBasicDecimalEv">[3]</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal25622GetHalfScaleMultiplierE7int32_t">arrow::BasicDecimal256::GetHalfScaleMultiplier (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal25614GetMaxSentinelEv">arrow::BasicDecimal256::GetMaxSentinel (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal25611GetMaxValueE7int32_t">arrow::BasicDecimal256::GetMaxValue (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal25614GetMinSentinelEv">arrow::BasicDecimal256::GetMinSentinel (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal25618GetScaleMultiplierE7int32_t">arrow::BasicDecimal256::GetScaleMultiplier (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow15BasicDecimal25615IncreaseScaleByE7int32_t">arrow::BasicDecimal256::IncreaseScaleBy (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow15BasicDecimal2568low_bitsEv">arrow::BasicDecimal256::low_bits (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal2566NegateEv">arrow::BasicDecimal256::Negate (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal256mLERK15BasicDecimal256">arrow::BasicDecimal256::operator*= (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal256pLERK15BasicDecimal256">arrow::BasicDecimal256::operator+= (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal256mIERK15BasicDecimal256">arrow::BasicDecimal256::operator-= (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal256dVERK15BasicDecimal256">arrow::BasicDecimal256::operator/= (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow15BasicDecimal256lSE8uint32_t">arrow::BasicDecimal256::operator&lt;&lt;= (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow15BasicDecimal25613ReduceScaleByE7int32_tb">arrow::BasicDecimal256::ReduceScaleBy (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow15BasicDecimal2567RescaleE7int32_t7int32_tP15BasicDecimal256">arrow::BasicDecimal256::Rescale (C++ function)</a>
+</li>
       <li><a href="api/array.html#_CPPv4N5arrow11BinaryArrayE">arrow::BinaryArray (C++ class)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow13BinaryBuilderE">arrow::BinaryBuilder (C++ class)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4NK5arrow13BinaryBuilder4typeEv">arrow::BinaryBuilder::type (C++ function)</a>
 </li>
       <li><a href="api/scalar.html#_CPPv4N5arrow12BinaryScalarE">arrow::BinaryScalar (C++ struct)</a>
 </li>
@@ -1094,6 +1250,12 @@ function checkPageExistsAndRedirect(event) {
 </li>
       <li><a href="api/compute.html#_CPPv4N5arrow7compute12IndexOptions5valueE">arrow::compute::IndexOptions::value (C++ member)</a>
 </li>
+      <li><a href="api/compute.html#_CPPv4N5arrow7compute10JoinKeyCmpE">arrow::compute::JoinKeyCmp (C++ enum)</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4N5arrow7compute10JoinKeyCmp2EQE">arrow::compute::JoinKeyCmp::EQ (C++ enumerator)</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4N5arrow7compute10JoinKeyCmp2ISE">arrow::compute::JoinKeyCmp::IS (C++ enumerator)</a>
+</li>
       <li><a href="api/compute.html#_CPPv4N5arrow7compute11JoinOptionsE">arrow::compute::JoinOptions (C++ class)</a>
 </li>
       <li><a href="api/compute.html#_CPPv4N5arrow7compute11JoinOptions8DefaultsEv">arrow::compute::JoinOptions::Defaults (C++ function)</a>
@@ -1111,6 +1273,24 @@ function checkPageExistsAndRedirect(event) {
       <li><a href="api/compute.html#_CPPv4N5arrow7compute11JoinOptions20NullHandlingBehavior7REPLACEE">arrow::compute::JoinOptions::NullHandlingBehavior::REPLACE (C++ enumerator)</a>
 </li>
       <li><a href="api/compute.html#_CPPv4N5arrow7compute11JoinOptions20NullHandlingBehavior4SKIPE">arrow::compute::JoinOptions::NullHandlingBehavior::SKIP (C++ enumerator)</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4N5arrow7compute8JoinTypeE">arrow::compute::JoinType (C++ enum)</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4N5arrow7compute8JoinType10FULL_OUTERE">arrow::compute::JoinType::FULL_OUTER (C++ enumerator)</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4N5arrow7compute8JoinType5INNERE">arrow::compute::JoinType::INNER (C++ enumerator)</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4N5arrow7compute8JoinType9LEFT_ANTIE">arrow::compute::JoinType::LEFT_ANTI (C++ enumerator)</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4N5arrow7compute8JoinType10LEFT_OUTERE">arrow::compute::JoinType::LEFT_OUTER (C++ enumerator)</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4N5arrow7compute8JoinType9LEFT_SEMIE">arrow::compute::JoinType::LEFT_SEMI (C++ enumerator)</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4N5arrow7compute8JoinType10RIGHT_ANTIE">arrow::compute::JoinType::RIGHT_ANTI (C++ enumerator)</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4N5arrow7compute8JoinType11RIGHT_OUTERE">arrow::compute::JoinType::RIGHT_OUTER (C++ enumerator)</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4N5arrow7compute8JoinType10RIGHT_SEMIE">arrow::compute::JoinType::RIGHT_SEMI (C++ enumerator)</a>
 </li>
       <li><a href="api/compute.html#_CPPv4N5arrow7compute17MakeStructOptionsE">arrow::compute::MakeStructOptions (C++ class)</a>
 </li>
@@ -1522,8 +1702,6 @@ function checkPageExistsAndRedirect(event) {
 </li>
       <li><a href="api/formats.html#_CPPv4NK5arrow3csv14ConvertOptions8ValidateEv">arrow::csv::ConvertOptions::Validate (C++ function)</a>
 </li>
-      <li><a href="api/formats.html#_CPPv4N5arrow3csv13MakeCSVWriterENSt10shared_ptrIN2io12OutputStreamEEERKNSt10shared_ptrI6SchemaEERK12WriteOptions">arrow::csv::MakeCSVWriter (C++ function)</a>, <a href="api/formats.html#_CPPv4N5arrow3csv13MakeCSVWriterEPN2io12OutputStreamERKNSt10shared_ptrI6SchemaEERK12WriteOptions">[1]</a>
-</li>
       <li><a href="api/formats.html#_CPPv4N5arrow3csv12ParseOptionsE">arrow::csv::ParseOptions (C++ struct)</a>
 </li>
       <li><a href="api/formats.html#_CPPv4N5arrow3csv12ParseOptions8DefaultsEv">arrow::csv::ParseOptions::Defaults (C++ function)</a>
@@ -1566,6 +1744,12 @@ function checkPageExistsAndRedirect(event) {
 </li>
       <li><a href="api/formats.html#_CPPv4NK5arrow3csv11ReadOptions8ValidateEv">arrow::csv::ReadOptions::Validate (C++ function)</a>
 </li>
+      <li><a href="api/formats.html#_CPPv4N5arrow3csv15StreamingReaderE">arrow::csv::StreamingReader (C++ class)</a>
+</li>
+      <li><a href="api/formats.html#_CPPv4NK5arrow3csv15StreamingReader10bytes_readEv">arrow::csv::StreamingReader::bytes_read (C++ function)</a>
+</li>
+      <li><a href="api/formats.html#_CPPv4N5arrow3csv15StreamingReader9MakeAsyncEN2io9IOContextENSt10shared_ptrIN2io11InputStreamEEEPN5arrow8internal8ExecutorERK11ReadOptionsRK12ParseOptionsRK14ConvertOptions">arrow::csv::StreamingReader::MakeAsync (C++ function)</a>
+</li>
       <li><a href="api/formats.html#_CPPv4N5arrow3csv11TableReaderE">arrow::csv::TableReader (C++ class)</a>
 </li>
       <li><a href="api/formats.html#_CPPv4N5arrow3csv11TableReader4MakeEN2io9IOContextENSt10shared_ptrIN2io11InputStreamEEERK11ReadOptionsRK12ParseOptionsRK14ConvertOptions">arrow::csv::TableReader::Make (C++ function)</a>
@@ -1573,8 +1757,6 @@ function checkPageExistsAndRedirect(event) {
       <li><a href="api/formats.html#_CPPv4N5arrow3csv11TableReader4ReadEv">arrow::csv::TableReader::Read (C++ function)</a>
 </li>
       <li><a href="api/formats.html#_CPPv4N5arrow3csv11TableReader9ReadAsyncEv">arrow::csv::TableReader::ReadAsync (C++ function)</a>
-</li>
-      <li><a href="api/formats.html#_CPPv4N5arrow3csv8WriteCSVERK11RecordBatchRK12WriteOptionsPN5arrow2io12OutputStreamE">arrow::csv::WriteCSV (C++ function)</a>, <a href="api/formats.html#_CPPv4N5arrow3csv8WriteCSVERK5TableRK12WriteOptionsPN5arrow2io12OutputStreamE">[1]</a>
 </li>
       <li><a href="api/formats.html#_CPPv4N5arrow3csv12WriteOptionsE">arrow::csv::WriteOptions (C++ struct)</a>
 </li>
@@ -2314,14 +2496,6 @@ function checkPageExistsAndRedirect(event) {
 </li>
       <li><a href="api/array.html#_CPPv4N5arrow15Decimal128Array15Decimal128ArrayERKNSt10shared_ptrI9ArrayDataEE">arrow::Decimal128Array::Decimal128Array (C++ function)</a>
 </li>
-      <li><a href="api/builder.html#_CPPv4N5arrow17Decimal128BuilderE">arrow::Decimal128Builder (C++ class)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow17Decimal128Builder14FinishInternalEPNSt10shared_ptrI9ArrayDataEE">arrow::Decimal128Builder::FinishInternal (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow17Decimal128Builder5ResetEv">arrow::Decimal128Builder::Reset (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4NK5arrow17Decimal128Builder4typeEv">arrow::Decimal128Builder::type (C++ function)</a>
-</li>
       <li><a href="api/scalar.html#_CPPv4N5arrow16Decimal128ScalarE">arrow::Decimal128Scalar (C++ struct)</a>
 </li>
       <li><a href="api/scalar.html#_CPPv4N5arrow16Decimal128Scalar13DecimalScalarE9ValueTypeNSt10shared_ptrI8DataTypeEE">arrow::Decimal128Scalar::DecimalScalar (C++ function)</a>
@@ -2335,6 +2509,32 @@ function checkPageExistsAndRedirect(event) {
       <li><a href="api/datatype.html#_CPPv4NK5arrow14Decimal128Type4nameEv">arrow::Decimal128Type::name (C++ function)</a>
 </li>
       <li><a href="api/datatype.html#_CPPv4NK5arrow14Decimal128Type8ToStringEv">arrow::Decimal128Type::ToString (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow10Decimal256E">arrow::Decimal256 (C++ class)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow10Decimal25610Decimal256ERK15BasicDecimal256">arrow::Decimal256::Decimal256 (C++ function)</a>, <a href="api/utilities.html#_CPPv4N5arrow10Decimal25610Decimal256ERKNSt6stringE">[1]</a>, <a href="api/utilities.html#_CPPv4N5arrow10Decimal25610Decimal256Ev">[2]</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow10Decimal2566DivideERK10Decimal256">arrow::Decimal256::Divide (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow10Decimal25613FromBigEndianEPK7uint8_t7int32_t">arrow::Decimal256::FromBigEndian (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4N5arrow10Decimal25610FromStringERKN4util11string_viewEP10Decimal256P7int32_tP7int32_t">arrow::Decimal256::FromString (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow10Decimal2567RescaleE7int32_t7int32_t">arrow::Decimal256::Rescale (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow10Decimal2568ToDoubleE7int32_t">arrow::Decimal256::ToDouble (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow10Decimal2567ToFloatE7int32_t">arrow::Decimal256::ToFloat (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow10Decimal25615ToIntegerStringEv">arrow::Decimal256::ToIntegerString (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4I0ENK5arrow10Decimal2566ToRealE1T7int32_t">arrow::Decimal256::ToReal (C++ function)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4IEN5arrow10Decimal25616ToRealConversionIdEE">arrow::Decimal256::ToRealConversion&lt;double&gt; (C++ struct)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4IEN5arrow10Decimal25616ToRealConversionIfEE">arrow::Decimal256::ToRealConversion&lt;float&gt; (C++ struct)</a>
+</li>
+      <li><a href="api/utilities.html#_CPPv4NK5arrow10Decimal2568ToStringE7int32_t">arrow::Decimal256::ToString (C++ function)</a>
 </li>
       <li><a href="api/array.html#_CPPv4N5arrow15Decimal256ArrayE">arrow::Decimal256Array (C++ class)</a>
 </li>
@@ -2544,35 +2744,39 @@ function checkPageExistsAndRedirect(event) {
 </li>
       <li><a href="api/datatype.html#_CPPv4NK5arrow5Field8WithTypeERKNSt10shared_ptrI8DataTypeEE">arrow::Field::WithType (C++ function)</a>
 </li>
+      <li><a href="api/datatype.html#_CPPv4N5arrow9FieldPathE">arrow::FieldPath (C++ class)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/datatype.html#_CPPv4NK5arrow9FieldPath3GetERK11RecordBatch">arrow::FieldPath::Get (C++ function)</a>, <a href="api/datatype.html#_CPPv4NK5arrow9FieldPath3GetERK5Array">[1]</a>, <a href="api/datatype.html#_CPPv4NK5arrow9FieldPath3GetERK6Schema">[2]</a>
+</li>
+      <li><a href="api/datatype.html#_CPPv4N5arrow9FieldPath4HashE">arrow::FieldPath::Hash (C++ struct)</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4N5arrow8FieldRefE">arrow::FieldRef (C++ class)</a>, <a href="api/datatype.html#_CPPv4N5arrow8FieldRefE">[1]</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4I0ENK5arrow8FieldRef13CheckNonEmptyE6StatusRKNSt6vectorI9FieldPathEERK1T">arrow::FieldRef::CheckNonEmpty (C++ function)</a>, <a href="api/datatype.html#_CPPv4I0ENK5arrow8FieldRef13CheckNonEmptyE6StatusRKNSt6vectorI9FieldPathEERK1T">[1]</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4I0ENK5arrow8FieldRef16CheckNonMultipleE6StatusRKNSt6vectorI9FieldPathEERK1T">arrow::FieldRef::CheckNonMultiple (C++ function)</a>, <a href="api/datatype.html#_CPPv4I0ENK5arrow8FieldRef16CheckNonMultipleE6StatusRKNSt6vectorI9FieldPathEERK1T">[1]</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4I00DpEN5arrow8FieldRef8FieldRefERR2A0RR2A1DpRR1A">arrow::FieldRef::FieldRef (C++ function)</a>, <a href="api/compute.html#_CPPv4N5arrow8FieldRef8FieldRefE9FieldPath">[1]</a>, <a href="api/compute.html#_CPPv4N5arrow8FieldRef8FieldRefENSt6stringE">[2]</a>, <a href="api/compute.html#_CPPv4N5arrow8FieldRef8FieldRefEi">[3]</a>, <a href="api/datatype.html#_CPPv4I00DpEN5arrow8FieldRef8FieldRefERR2A0RR2A1DpRR1A">[4]</a>, <a href="api/datatype.html#_CPPv4N5arrow8FieldRef8FieldRefE9FieldPath">[5]</a>, <a href="api/datatype.html#_CPPv4N5arrow8FieldRef8FieldRefENSt6stringE">[6]</a>, <a href="api/datatype.html#_CPPv4N5arrow8FieldRef8FieldRefEi">[7]</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4NK5arrow8FieldRef7FindAllERK6Schema">arrow::FieldRef::FindAll (C++ function)</a>, <a href="api/compute.html#_CPPv4NK5arrow8FieldRef7FindAllERK9ArrayData">[1]</a>, <a href="api/datatype.html#_CPPv4NK5arrow8FieldRef7FindAllERK6Schema">[2]</a>, <a href="api/datatype.html#_CPPv4NK5arrow8FieldRef7FindAllERK9ArrayData">[3]</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4I0ENK5arrow8FieldRef7FindOneE6ResultI9FieldPathERK1T">arrow::FieldRef::FindOne (C++ function)</a>, <a href="api/datatype.html#_CPPv4I0ENK5arrow8FieldRef7FindOneE6ResultI9FieldPathERK1T">[1]</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4I0ENK5arrow8FieldRef13FindOneOrNoneE6ResultI9FieldPathERK1T">arrow::FieldRef::FindOneOrNone (C++ function)</a>, <a href="api/datatype.html#_CPPv4I0ENK5arrow8FieldRef13FindOneOrNoneE6ResultI9FieldPathERK1T">[1]</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4N5arrow8FieldRef11FromDotPathERKNSt6stringE">arrow::FieldRef::FromDotPath (C++ function)</a>, <a href="api/datatype.html#_CPPv4N5arrow8FieldRef11FromDotPathERKNSt6stringE">[1]</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4I0ENK5arrow8FieldRef6GetAllENSt6vectorI7GetTypeI1TEEERK1T">arrow::FieldRef::GetAll (C++ function)</a>, <a href="api/datatype.html#_CPPv4I0ENK5arrow8FieldRef6GetAllENSt6vectorI7GetTypeI1TEEERK1T">[1]</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4I0ENK5arrow8FieldRef6GetOneE6ResultI7GetTypeI1TEERK1T">arrow::FieldRef::GetOne (C++ function)</a>, <a href="api/datatype.html#_CPPv4I0ENK5arrow8FieldRef6GetOneE6ResultI7GetTypeI1TEERK1T">[1]</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4I0ENK5arrow8FieldRef12GetOneOrNoneE6ResultI7GetTypeI1TEERK1T">arrow::FieldRef::GetOneOrNone (C++ function)</a>, <a href="api/datatype.html#_CPPv4I0ENK5arrow8FieldRef12GetOneOrNoneE6ResultI7GetTypeI1TEERK1T">[1]</a>
+</li>
+      <li><a href="api/compute.html#_CPPv4N5arrow8FieldRef4HashE">arrow::FieldRef::Hash (C++ struct)</a>, <a href="api/datatype.html#_CPPv4N5arrow8FieldRef4HashE">[1]</a>
+</li>
       <li><a href="api/array.html#_CPPv4N5arrow20FixedSizeBinaryArrayE">arrow::FixedSizeBinaryArray (C++ class)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow22FixedSizeBinaryBuilderE">arrow::FixedSizeBinaryBuilder (C++ class)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow22FixedSizeBinaryBuilder16AppendArraySliceERK9ArrayData7int64_t7int64_t">arrow::FixedSizeBinaryBuilder::AppendArraySlice (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow22FixedSizeBinaryBuilder16AppendEmptyValueEv">arrow::FixedSizeBinaryBuilder::AppendEmptyValue (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow22FixedSizeBinaryBuilder17AppendEmptyValuesE7int64_t">arrow::FixedSizeBinaryBuilder::AppendEmptyValues (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow22FixedSizeBinaryBuilder10AppendNullEv">arrow::FixedSizeBinaryBuilder::AppendNull (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow22FixedSizeBinaryBuilder11AppendNullsE7int64_t">arrow::FixedSizeBinaryBuilder::AppendNulls (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow22FixedSizeBinaryBuilder14FinishInternalEPNSt10shared_ptrI9ArrayDataEE">arrow::FixedSizeBinaryBuilder::FinishInternal (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4NK5arrow22FixedSizeBinaryBuilder8GetValueE7int64_t">arrow::FixedSizeBinaryBuilder::GetValue (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4NK5arrow22FixedSizeBinaryBuilder7GetViewE7int64_t">arrow::FixedSizeBinaryBuilder::GetView (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow22FixedSizeBinaryBuilder11ReserveDataE7int64_t">arrow::FixedSizeBinaryBuilder::ReserveData (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow22FixedSizeBinaryBuilder5ResetEv">arrow::FixedSizeBinaryBuilder::Reset (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow22FixedSizeBinaryBuilder6ResizeE7int64_t">arrow::FixedSizeBinaryBuilder::Resize (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4NK5arrow22FixedSizeBinaryBuilder4typeEv">arrow::FixedSizeBinaryBuilder::type (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4NK5arrow22FixedSizeBinaryBuilder17value_data_lengthEv">arrow::FixedSizeBinaryBuilder::value_data_length (C++ function)</a>
 </li>
       <li><a href="api/scalar.html#_CPPv4N5arrow21FixedSizeBinaryScalarE">arrow::FixedSizeBinaryScalar (C++ struct)</a>
 </li>
@@ -2592,8 +2796,6 @@ function checkPageExistsAndRedirect(event) {
 </li>
       <li><a href="api/array.html#_CPPv4NK5arrow18FixedSizeListArray7FlattenEP10MemoryPool">arrow::FixedSizeListArray::Flatten (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/array.html#_CPPv4N5arrow18FixedSizeListArray10FromArraysERKNSt10shared_ptrI5ArrayEE7int32_t">arrow::FixedSizeListArray::FromArrays (C++ function)</a>
 </li>
       <li><a href="api/array.html#_CPPv4NK5arrow18FixedSizeListArray6valuesEv">arrow::FixedSizeListArray::values (C++ function)</a>
@@ -3054,6 +3256,46 @@ function checkPageExistsAndRedirect(event) {
 </li>
       <li><a href="api/filesystem.html#_CPPv4N5arrow2fs8FileType7UnknownE">arrow::fs::FileType::Unknown (C++ enumerator)</a>
 </li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs13GcsFileSystemE">arrow::fs::GcsFileSystem (C++ class)</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs13GcsFileSystem8CopyFileERKNSt6stringERKNSt6stringE">arrow::fs::GcsFileSystem::CopyFile (C++ function)</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs13GcsFileSystem9CreateDirERKNSt6stringEb">arrow::fs::GcsFileSystem::CreateDir (C++ function)</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs13GcsFileSystem9DeleteDirERKNSt6stringE">arrow::fs::GcsFileSystem::DeleteDir (C++ function)</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs13GcsFileSystem17DeleteDirContentsERKNSt6stringE">arrow::fs::GcsFileSystem::DeleteDirContents (C++ function)</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs13GcsFileSystem10DeleteFileERKNSt6stringE">arrow::fs::GcsFileSystem::DeleteFile (C++ function)</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs13GcsFileSystem21DeleteRootDirContentsEv">arrow::fs::GcsFileSystem::DeleteRootDirContents (C++ function)</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs13GcsFileSystem11GetFileInfoERK12FileSelector">arrow::fs::GcsFileSystem::GetFileInfo (C++ function)</a>, <a href="api/filesystem.html#_CPPv4N5arrow2fs13GcsFileSystem11GetFileInfoERKNSt6stringE">[1]</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs13GcsFileSystem4MakeERK10GcsOptionsRKN2io9IOContextE">arrow::fs::GcsFileSystem::Make (C++ function)</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs13GcsFileSystem4MoveERKNSt6stringERKNSt6stringE">arrow::fs::GcsFileSystem::Move (C++ function)</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs13GcsFileSystem16OpenAppendStreamERKNSt6stringERKNSt10shared_ptrIK16KeyValueMetadataEE">arrow::fs::GcsFileSystem::OpenAppendStream (C++ function)</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs13GcsFileSystem13OpenInputFileERK8FileInfo">arrow::fs::GcsFileSystem::OpenInputFile (C++ function)</a>, <a href="api/filesystem.html#_CPPv4N5arrow2fs13GcsFileSystem13OpenInputFileERKNSt6stringE">[1]</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs13GcsFileSystem15OpenInputStreamERK8FileInfo">arrow::fs::GcsFileSystem::OpenInputStream (C++ function)</a>, <a href="api/filesystem.html#_CPPv4N5arrow2fs13GcsFileSystem15OpenInputStreamERKNSt6stringE">[1]</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs13GcsFileSystem16OpenOutputStreamERKNSt6stringERKNSt10shared_ptrIK16KeyValueMetadataEE">arrow::fs::GcsFileSystem::OpenOutputStream (C++ function)</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs10GcsOptionsE">arrow::fs::GcsOptions (C++ struct)</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs10GcsOptions9AnonymousEv">arrow::fs::GcsOptions::Anonymous (C++ function)</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs10GcsOptions8DefaultsEv">arrow::fs::GcsOptions::Defaults (C++ function)</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs10GcsOptions15FromAccessTokenERKNSt6stringENSt6chrono12system_clock10time_pointE">arrow::fs::GcsOptions::FromAccessToken (C++ function)</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs10GcsOptions30FromImpersonatedServiceAccountERK14GcsCredentialsRKNSt6stringE">arrow::fs::GcsOptions::FromImpersonatedServiceAccount (C++ function)</a>
+</li>
+      <li><a href="api/filesystem.html#_CPPv4N5arrow2fs10GcsOptions29FromServiceAccountCredentialsERKNSt6stringE">arrow::fs::GcsOptions::FromServiceAccountCredentials (C++ function)</a>
+</li>
       <li><a href="api/filesystem.html#_CPPv4N5arrow2fs16HadoopFileSystemE">arrow::fs::HadoopFileSystem (C++ class)</a>
 </li>
       <li><a href="api/filesystem.html#_CPPv4N5arrow2fs16HadoopFileSystem8CopyFileERKNSt6stringERKNSt6stringE">arrow::fs::HadoopFileSystem::CopyFile (C++ function)</a>
@@ -3240,7 +3482,53 @@ function checkPageExistsAndRedirect(event) {
 </li>
       <li><a href="api/filesystem.html#_CPPv4N5arrow2fs17SubTreeFileSystem16OpenOutputStreamERKNSt6stringERKNSt10shared_ptrIK16KeyValueMetadataEE">arrow::fs::SubTreeFileSystem::OpenOutputStream (C++ function)</a>
 </li>
+      <li><a href="api/async.html#_CPPv4I0EN5arrow6FutureE">arrow::Future (C++ class)</a>
+</li>
+      <li><a href="api/async.html#_CPPv4I00ENK5arrow6Future11AddCallbackEv10OnComplete15CallbackOptions">arrow::Future::AddCallback (C++ function)</a>
+</li>
+      <li><a href="api/async.html#_CPPv4N5arrow6Future6FutureE6ResultI9ValueTypeE">arrow::Future::Future (C++ function)</a>, <a href="api/async.html#_CPPv4N5arrow6Future6FutureE6Status">[1]</a>, <a href="api/async.html#_CPPv4N5arrow6Future6FutureE9ValueType">[2]</a>
+</li>
+      <li><a href="api/async.html#_CPPv4NK5arrow6Future11is_finishedEv">arrow::Future::is_finished (C++ function)</a>
+</li>
+      <li><a href="api/async.html#_CPPv4N5arrow6Future4MakeEv">arrow::Future::Make (C++ function)</a>
+</li>
+      <li><a href="api/async.html#_CPPv4I00EN5arrow6Future12MakeFinishedE6Future6Status">arrow::Future::MakeFinished (C++ function)</a>, <a href="api/async.html#_CPPv4N5arrow6Future12MakeFinishedE6ResultI9ValueTypeE">[1]</a>
+</li>
+      <li><a href="api/async.html#_CPPv4I00EN5arrow6Future12MarkFinishedEv6Status">arrow::Future::MarkFinished (C++ function)</a>, <a href="api/async.html#_CPPv4N5arrow6Future12MarkFinishedE6ResultI9ValueTypeE">[1]</a>
+</li>
+      <li><a href="api/async.html#_CPPv4N5arrow6Future10MoveResultEv">arrow::Future::MoveResult (C++ function)</a>
+</li>
+      <li><a href="api/async.html#_CPPv4NK5arrow6Futurecv6FutureEv">arrow::Future::operator Future (C++ function)</a>
+</li>
+      <li><a href="api/async.html#_CPPv4I0EN5arrow6Future17PassthruOnFailureE">arrow::Future::PassthruOnFailure (C++ struct)</a>
+</li>
+      <li><a href="api/async.html#_CPPv4NKR5arrow6Future6resultEv">arrow::Future::result (C++ function)</a>
+</li>
+      <li><a href="api/async.html#_CPPv4NK5arrow6Future5stateEv">arrow::Future::state (C++ function)</a>
+</li>
+      <li><a href="api/async.html#_CPPv4NK5arrow6Future6statusEv">arrow::Future::status (C++ function)</a>
+</li>
+      <li><a href="api/async.html#_CPPv4I0000ENK5arrow6Future4ThenE15ContinuedFuture9OnSuccess9OnFailure15CallbackOptions">arrow::Future::Then (C++ function)</a>
+</li>
+      <li><a href="api/async.html#_CPPv4I00EN5arrow6Future14ThenOnCompleteE">arrow::Future::ThenOnComplete (C++ struct)</a>
+</li>
+      <li><a href="api/async.html#_CPPv4N5arrow6Future14ThenOnComplete14DummyOnSuccessE">arrow::Future::ThenOnComplete::DummyOnSuccess (C++ struct)</a>
+</li>
+      <li><a href="api/async.html#_CPPv4I000ENK5arrow6Future14TryAddCallbackEbRK15CallbackFactory15CallbackOptions">arrow::Future::TryAddCallback (C++ function)</a>
+</li>
+      <li><a href="api/async.html#_CPPv4NK5arrow6Future4WaitEd">arrow::Future::Wait (C++ function)</a>, <a href="api/async.html#_CPPv4NK5arrow6Future4WaitEv">[1]</a>
+</li>
+      <li><a href="api/async.html#_CPPv4N5arrow6Future21WrapResultyOnCompleteE">arrow::Future::WrapResultyOnComplete (C++ struct)</a>
+</li>
+      <li><a href="api/async.html#_CPPv4I0EN5arrow6Future21WrapResultyOnComplete8CallbackE">arrow::Future::WrapResultyOnComplete::Callback (C++ struct)</a>
+</li>
+      <li><a href="api/async.html#_CPPv4N5arrow6Future21WrapStatusyOnCompleteE">arrow::Future::WrapStatusyOnComplete (C++ struct)</a>
+</li>
+      <li><a href="api/async.html#_CPPv4I0EN5arrow6Future21WrapStatusyOnComplete8CallbackE">arrow::Future::WrapStatusyOnComplete::Callback (C++ struct)</a>
+</li>
       <li><a href="api/support.html#_CPPv4N5arrow12GetBuildInfoEv">arrow::GetBuildInfo (C++ function)</a>
+</li>
+      <li><a href="api/support.html#_CPPv4N5arrow14GetRuntimeInfoEv">arrow::GetRuntimeInfo (C++ function)</a>
 </li>
       <li><a href="api/scalar.html#_CPPv4N5arrow15HalfFloatScalarE">arrow::HalfFloatScalar (C++ struct)</a>
 </li>
@@ -3494,6 +3782,22 @@ function checkPageExistsAndRedirect(event) {
 </li>
       <li><a href="api/io.html#_CPPv4N5arrow2io8SeekableE">arrow::io::Seekable (C++ class)</a>
 </li>
+      <li><a href="api/io.html#_CPPv4N5arrow2io20TransformInputStreamE">arrow::io::TransformInputStream (C++ class)</a>
+</li>
+      <li><a href="api/io.html#_CPPv4N5arrow2io20TransformInputStream5AbortEv">arrow::io::TransformInputStream::Abort (C++ function)</a>
+</li>
+      <li><a href="api/io.html#_CPPv4N5arrow2io20TransformInputStream5CloseEv">arrow::io::TransformInputStream::Close (C++ function)</a>
+</li>
+      <li><a href="api/io.html#_CPPv4NK5arrow2io20TransformInputStream6closedEv">arrow::io::TransformInputStream::closed (C++ function)</a>
+</li>
+      <li><a href="api/io.html#_CPPv4N5arrow2io20TransformInputStream4ReadE7int64_t">arrow::io::TransformInputStream::Read (C++ function)</a>, <a href="api/io.html#_CPPv4N5arrow2io20TransformInputStream4ReadE7int64_tPv">[1]</a>
+</li>
+      <li><a href="api/io.html#_CPPv4N5arrow2io20TransformInputStream12ReadMetadataEv">arrow::io::TransformInputStream::ReadMetadata (C++ function)</a>
+</li>
+      <li><a href="api/io.html#_CPPv4N5arrow2io20TransformInputStream17ReadMetadataAsyncERK9IOContext">arrow::io::TransformInputStream::ReadMetadataAsync (C++ function)</a>
+</li>
+      <li><a href="api/io.html#_CPPv4NK5arrow2io20TransformInputStream4TellEv">arrow::io::TransformInputStream::Tell (C++ function)</a>
+</li>
       <li><a href="api/io.html#_CPPv4N5arrow2io8WritableE">arrow::io::Writable (C++ class)</a>
 </li>
       <li><a href="api/io.html#_CPPv4N5arrow2io8Writable5FlushEv">arrow::io::Writable::Flush (C++ function)</a>
@@ -3670,6 +3974,8 @@ function checkPageExistsAndRedirect(event) {
 </li>
       <li><a href="api/formats.html#_CPPv4N5arrow4json23UnexpectedFieldBehavior9InferTypeE">arrow::json::UnexpectedFieldBehavior::InferType (C++ enumerator)</a>
 </li>
+      <li><a href="api/datatype.html#_CPPv4N5arrow16KeyValueMetadataE">arrow::KeyValueMetadata (C++ class)</a>
+</li>
       <li><a href="api/array.html#_CPPv4N5arrow16LargeBinaryArrayE">arrow::LargeBinaryArray (C++ class)</a>
 </li>
       <li><a href="api/scalar.html#_CPPv4N5arrow17LargeBinaryScalarE">arrow::LargeBinaryScalar (C++ struct)</a>
@@ -3737,10 +4043,6 @@ function checkPageExistsAndRedirect(event) {
       <li><a href="api/array.html#_CPPv4N5arrow9ListArray10FromArraysERK5ArrayRK5ArrayP10MemoryPool">arrow::ListArray::FromArrays (C++ function)</a>
 </li>
       <li><a href="api/array.html#_CPPv4NK5arrow9ListArray7offsetsEv">arrow::ListArray::offsets (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow11ListBuilderE">arrow::ListBuilder (C++ class)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow11ListBuilder15BaseListBuilderEP10MemoryPoolRKNSt10shared_ptrI12ArrayBuilderEERKNSt10shared_ptrI8DataTypeEE">arrow::ListBuilder::BaseListBuilder (C++ function)</a>
 </li>
       <li><a href="api/scalar.html#_CPPv4N5arrow10ListScalarE">arrow::ListScalar (C++ struct)</a>
 </li>
@@ -3890,32 +4192,6 @@ function checkPageExistsAndRedirect(event) {
 </li>
       <li><a href="api/array.html#_CPPv4I0EN5arrow12NumericArrayE">arrow::NumericArray (C++ class)</a>
 </li>
-      <li><a href="api/builder.html#_CPPv4I0EN5arrow14NumericBuilderE">arrow::NumericBuilder (C++ class)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow14NumericBuilder6AppendEK10value_type">arrow::NumericBuilder::Append (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow14NumericBuilder16AppendArraySliceERK9ArrayData7int64_t7int64_t">arrow::NumericBuilder::AppendArraySlice (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow14NumericBuilder16AppendEmptyValueEv">arrow::NumericBuilder::AppendEmptyValue (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow14NumericBuilder17AppendEmptyValuesE7int64_t">arrow::NumericBuilder::AppendEmptyValues (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow14NumericBuilder10AppendNullEv">arrow::NumericBuilder::AppendNull (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow14NumericBuilder11AppendNullsE7int64_t">arrow::NumericBuilder::AppendNulls (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4I00EN5arrow14NumericBuilder12AppendValuesE11enable_if_tIXntNSt10is_pointerI9ValidIterE5valueEE6StatusE10ValuesIter10ValuesIter9ValidIter">arrow::NumericBuilder::AppendValues (C++ function)</a>, <a href="api/builder.html#_CPPv4I0EN5arrow14NumericBuilder12AppendValuesE6Status10ValuesIter10ValuesIter">[1]</a>, <a href="api/builder.html#_CPPv4N5arrow14NumericBuilder12AppendValuesEPK10value_type7int64_tPK7uint8_t">[2]</a>, <a href="api/builder.html#_CPPv4N5arrow14NumericBuilder12AppendValuesEPK10value_type7int64_tPK7uint8_t7int64_t">[3]</a>, <a href="api/builder.html#_CPPv4N5arrow14NumericBuilder12AppendValuesEPK10value_type7int64_tRKNSt6vectorIbEE">[4]</a>, <a href="api/builder.html#_CPPv4N5arrow14NumericBuilder12AppendValuesERKNSt6vectorI10value_typeEE">[5]</a>, <a href="api/builder.html#_CPPv4N5arrow14NumericBuilder12AppendValuesERKNSt6vectorI10value_typeEERKNSt6vectorIbEE">[6]</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow14NumericBuilder14FinishInternalEPNSt10shared_ptrI9ArrayDataEE">arrow::NumericBuilder::FinishInternal (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow14NumericBuilder5ResetEv">arrow::NumericBuilder::Reset (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow14NumericBuilder6ResizeE7int64_t">arrow::NumericBuilder::Resize (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4NK5arrow14NumericBuilder4typeEv">arrow::NumericBuilder::type (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow14NumericBuilder12UnsafeAppendEK10value_type">arrow::NumericBuilder::UnsafeAppend (C++ function)</a>
-</li>
       <li><a href="api/scalar.html#_CPPv4I0EN5arrow13NumericScalarE">arrow::NumericScalar (C++ struct)</a>
 </li>
       <li><a href="api/scalar.html#_CPPv4N5arrow13NumericScalar4BaseE">arrow::NumericScalar::Base (C++ type)</a>
@@ -4037,6 +4313,12 @@ function checkPageExistsAndRedirect(event) {
       <li><a href="api/support.html#_CPPv4NKR5arrow6Result10ValueOrDieEv">arrow::Result::ValueOrDie (C++ function)</a>, <a href="api/support.html#_CPPv4NO5arrow6Result10ValueOrDieEv">[1]</a>, <a href="api/support.html#_CPPv4NR5arrow6Result10ValueOrDieEv">[2]</a>
 </li>
       <li><a href="api/support.html#_CPPv4I0ENO5arrow6Result11ValueOrElseE1TRR1G">arrow::Result::ValueOrElse (C++ function)</a>
+</li>
+      <li><a href="api/support.html#_CPPv4N5arrow11RuntimeInfoE">arrow::RuntimeInfo (C++ struct)</a>
+</li>
+      <li><a href="api/support.html#_CPPv4N5arrow11RuntimeInfo19detected_simd_levelE">arrow::RuntimeInfo::detected_simd_level (C++ member)</a>
+</li>
+      <li><a href="api/support.html#_CPPv4N5arrow11RuntimeInfo10simd_levelE">arrow::RuntimeInfo::simd_level (C++ member)</a>
 </li>
       <li><a href="api/scalar.html#_CPPv4N5arrow6ScalarE">arrow::Scalar (C++ struct)</a>
 </li>
@@ -4282,10 +4564,6 @@ function checkPageExistsAndRedirect(event) {
 </li>
       <li><a href="api/array.html#_CPPv4NK5arrow11StringArray12ValidateUTF8Ev">arrow::StringArray::ValidateUTF8 (C++ function)</a>
 </li>
-      <li><a href="api/builder.html#_CPPv4N5arrow13StringBuilderE">arrow::StringBuilder (C++ class)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4NK5arrow13StringBuilder4typeEv">arrow::StringBuilder::type (C++ function)</a>
-</li>
       <li><a href="api/scalar.html#_CPPv4N5arrow12StringScalarE">arrow::StringScalar (C++ struct)</a>
 </li>
       <li><a href="api/scalar.html#_CPPv4N5arrow12StringScalar12BinaryScalarENSt10shared_ptrI6BufferEE">arrow::StringScalar::BinaryScalar (C++ function)</a>, <a href="api/scalar.html#_CPPv4N5arrow12StringScalar12BinaryScalarENSt10shared_ptrI6BufferEENSt10shared_ptrI8DataTypeEE">[1]</a>, <a href="api/scalar.html#_CPPv4N5arrow12StringScalar12BinaryScalarEv">[2]</a>
@@ -4309,30 +4587,6 @@ function checkPageExistsAndRedirect(event) {
       <li><a href="api/array.html#_CPPv4NK5arrow11StructArray17GetFlattenedFieldEiP10MemoryPool">arrow::StructArray::GetFlattenedField (C++ function)</a>
 </li>
       <li><a href="api/array.html#_CPPv4N5arrow11StructArray4MakeERK11ArrayVectorRK11FieldVectorNSt10shared_ptrI6BufferEE7int64_t7int64_t">arrow::StructArray::Make (C++ function)</a>, <a href="api/array.html#_CPPv4N5arrow11StructArray4MakeERK11ArrayVectorRKNSt6vectorINSt6stringEEENSt10shared_ptrI6BufferEE7int64_t7int64_t">[1]</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow13StructBuilderE">arrow::StructBuilder (C++ class)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow13StructBuilder6AppendEb">arrow::StructBuilder::Append (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow13StructBuilder16AppendArraySliceERK9ArrayData7int64_t7int64_t">arrow::StructBuilder::AppendArraySlice (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow13StructBuilder16AppendEmptyValueEv">arrow::StructBuilder::AppendEmptyValue (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow13StructBuilder17AppendEmptyValuesE7int64_t">arrow::StructBuilder::AppendEmptyValues (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow13StructBuilder10AppendNullEv">arrow::StructBuilder::AppendNull (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow13StructBuilder11AppendNullsE7int64_t">arrow::StructBuilder::AppendNulls (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow13StructBuilder12AppendValuesE7int64_tPK7uint8_t">arrow::StructBuilder::AppendValues (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow13StructBuilder14FinishInternalEPNSt10shared_ptrI9ArrayDataEE">arrow::StructBuilder::FinishInternal (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow13StructBuilder5ResetEv">arrow::StructBuilder::Reset (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4N5arrow13StructBuilder13StructBuilderERKNSt10shared_ptrI8DataTypeEEP10MemoryPoolNSt6vectorINSt10shared_ptrI12ArrayBuilderEEEE">arrow::StructBuilder::StructBuilder (C++ function)</a>
-</li>
-      <li><a href="api/builder.html#_CPPv4NK5arrow13StructBuilder4typeEv">arrow::StructBuilder::type (C++ function)</a>
 </li>
       <li><a href="api/scalar.html#_CPPv4N5arrow12StructScalarE">arrow::StructScalar (C++ struct)</a>
 </li>
@@ -4369,6 +4623,8 @@ function checkPageExistsAndRedirect(event) {
       <li><a href="api/datatype.html#_CPPv4NK5arrow10StructType8SetFieldEiRKNSt10shared_ptrI5FieldEE">arrow::StructType::SetField (C++ function)</a>
 </li>
       <li><a href="api/datatype.html#_CPPv4NK5arrow10StructType8ToStringEv">arrow::StructType::ToString (C++ function)</a>
+</li>
+      <li><a href="api/memory.html#_CPPv4N5arrow27SupportedMemoryBackendNamesEv">arrow::SupportedMemoryBackendNames (C++ function)</a>
 </li>
       <li><a href="api/memory.html#_CPPv4N5arrow18system_memory_poolEv">arrow::system_memory_pool (C++ function)</a>
 </li>
@@ -4716,6 +4972,16 @@ function checkPageExistsAndRedirect(event) {
 </li>
       <li><a href="api/support.html#c.ARROW_RETURN_NOT_OK">ARROW_RETURN_NOT_OK (C macro)</a>
 </li>
+      <li><a href="api/support.html#c.ARROW_VERSION">ARROW_VERSION (C macro)</a>
+</li>
+      <li><a href="api/support.html#c.ARROW_VERSION_MAJOR">ARROW_VERSION_MAJOR (C macro)</a>
+</li>
+      <li><a href="api/support.html#c.ARROW_VERSION_MINOR">ARROW_VERSION_MINOR (C macro)</a>
+</li>
+      <li><a href="api/support.html#c.ARROW_VERSION_PATCH">ARROW_VERSION_PATCH (C macro)</a>
+</li>
+      <li><a href="api/support.html#c.ARROW_VERSION_STRING">ARROW_VERSION_STRING (C macro)</a>
+</li>
       <li><a href="api/c_abi.html#_CPPv410ArrowArray">ArrowArray (C++ struct)</a>
 </li>
       <li><a href="api/c_abi.html#_CPPv416ArrowArrayStream">ArrowArrayStream (C++ struct)</a>
@@ -4760,13 +5026,15 @@ function checkPageExistsAndRedirect(event) {
 </li>
       <li><a href="api/compute.html#_CPPv4N12CalendarUnit6SECONDE">CalendarUnit::SECOND (C++ enumerator)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/compute.html#_CPPv4N12CalendarUnit4WEEKE">CalendarUnit::WEEK (C++ enumerator)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/compute.html#_CPPv4N12CalendarUnit4YEARE">CalendarUnit::YEAR (C++ enumerator)</a>
 </li>
       <li><a href="api/compute.html#_CPPv412CallFunctionRKNSt6stringERKNSt6vectorI5DatumEEP11ExecContext">CallFunction (C++ function)</a>, <a href="api/compute.html#_CPPv412CallFunctionRKNSt6stringERKNSt6vectorI5DatumEEPK15FunctionOptionsP11ExecContext">[1]</a>
+</li>
+      <li><a href="api/compute.html#_CPPv412Canonicalize10ExpressionP11ExecContext">Canonicalize (C++ function)</a>
 </li>
       <li><a href="api/compute.html#_CPPv415CompareOperator">CompareOperator (C++ enum)</a>
 </li>
@@ -4859,6 +5127,8 @@ function checkPageExistsAndRedirect(event) {
       <li><a href="api/datatype.html#_CPPv47float32v">float32 (C++ function)</a>
 </li>
       <li><a href="api/datatype.html#_CPPv47float64v">float64 (C++ function)</a>
+</li>
+      <li><a href="api/compute.html#_CPPv413FoldConstants10Expression">FoldConstants (C++ function)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -5104,6 +5374,8 @@ function checkPageExistsAndRedirect(event) {
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/cuda.html#_CPPv415ReadRecordBatchRKNSt10shared_ptrI6SchemaEEPKN3ipc14DictionaryMemoERKNSt10shared_ptrI10CudaBufferEEP10MemoryPool">ReadRecordBatch (C++ function)</a>
 </li>
+      <li><a href="api/compute.html#_CPPv428ReplaceFieldsWithKnownValuesRK16KnownFieldValues10Expression">ReplaceFieldsWithKnownValues (C++ function)</a>
+</li>
       <li><a href="api/compute.html#_CPPv49RoundMode">RoundMode (C++ enum)</a>
 </li>
       <li><a href="api/compute.html#_CPPv4N9RoundMode4DOWNE">RoundMode::DOWN (C++ enumerator)</a>
@@ -5112,10 +5384,10 @@ function checkPageExistsAndRedirect(event) {
 </li>
       <li><a href="api/compute.html#_CPPv4N9RoundMode12HALF_TO_EVENE">RoundMode::HALF_TO_EVEN (C++ enumerator)</a>
 </li>
-      <li><a href="api/compute.html#_CPPv4N9RoundMode11HALF_TO_ODDE">RoundMode::HALF_TO_ODD (C++ enumerator)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/compute.html#_CPPv4N9RoundMode11HALF_TO_ODDE">RoundMode::HALF_TO_ODD (C++ enumerator)</a>
+</li>
       <li><a href="api/compute.html#_CPPv4N9RoundMode21HALF_TOWARDS_INFINITYE">RoundMode::HALF_TOWARDS_INFINITY (C++ enumerator)</a>
 </li>
       <li><a href="api/compute.html#_CPPv4N9RoundMode17HALF_TOWARDS_ZEROE">RoundMode::HALF_TOWARDS_ZERO (C++ enumerator)</a>
@@ -5145,6 +5417,8 @@ function checkPageExistsAndRedirect(event) {
       <li><a href="api/cuda.html#_CPPv420SerializeRecordBatchRK11RecordBatchP11CudaContext">SerializeRecordBatch (C++ function)</a>
 </li>
       <li><a href="api/dataset.html#_CPPv413SetProjectionP11ScanOptions15ProjectionDescr">SetProjection (C++ function)</a>
+</li>
+      <li><a href="api/compute.html#_CPPv421SimplifyWithGuarantee10ExpressionRK10Expression">SimplifyWithGuarantee (C++ function)</a>
 </li>
       <li><a href="api/dataset.html#_CPPv4N7skyhook12RadosConnCtxE">skyhook::RadosConnCtx (C++ struct)</a>
 </li>

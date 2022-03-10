@@ -25,6 +25,7 @@ Developers documentation
    guide/index
    reviewing
    cpp/index
+   java/index
    python
    continuous_integration/index
    benchmarks

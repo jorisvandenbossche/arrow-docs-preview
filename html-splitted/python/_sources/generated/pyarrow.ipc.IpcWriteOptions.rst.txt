@@ -27,6 +27,7 @@
       ~IpcWriteOptions.compression
       ~IpcWriteOptions.emit_dictionary_deltas
       ~IpcWriteOptions.metadata_version
+      ~IpcWriteOptions.unify_dictionaries
       ~IpcWriteOptions.use_legacy_format
       ~IpcWriteOptions.use_threads
    

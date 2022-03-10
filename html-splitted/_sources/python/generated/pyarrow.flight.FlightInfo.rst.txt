@@ -1,6 +1,0 @@
-﻿pyarrow.flight.FlightInfo
-=========================
-
-.. currentmodule:: pyarrow.flight
-
-.. autoattribute:: FlightInfo

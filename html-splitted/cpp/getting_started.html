@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Guide &#8212; Apache Arrow v7.0.0.dev574+gbd1ea0bfe</title>
+    <title>User Guide &#8212; Apache Arrow v8.0.0.dev205+gf59fba46e</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -79,37 +79,67 @@
     C++
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    
       
-      <a class="nav-link" href="/c_glib">C/GLib</a>
+      <a class="nav-link" href="../c_glib/index.html">C/GLib</a>
       
-      <a class="nav-link" href="/cpp">C++</a>
+    
+      
+      <a class="nav-link" href="../cpp/index.html">C++</a>
+      
+    
       
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
       
+    
+      
       <a class="nav-link" href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
       
-      <a class="nav-link" href="/java">Java</a>
+    
       
-      <a class="nav-link" href="/js">JavaScript</a>
+      <a class="nav-link" href="../java/index.html">Java</a>
+      
+    
+      
+      <a class="nav-link" href="../js/index.html">JavaScript</a>
+      
+    
       
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">Julia</a>
       
+    
+      
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
       
-      <a class="nav-link" href="/python">Python</a>
+    
       
-      <a class="nav-link" href="/r">R</a>
+      <a class="nav-link" href="../python/index.html">Python</a>
+      
+    
+      
+      <a class="nav-link" href="../r/index.html">R</a>
+      
+    
       
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
       
+    
+      
       <a class="nav-link" href="https://docs.rs/crate/arrow/">Rust</a>
       
-      <a class="nav-link" href="/status.html">Implementation status</a>
+    
       
-      <a class="nav-link" href="/format">Specifications and Protocols</a>
+      <a class="nav-link" href="..//status.html/index.html">Implementation status</a>
       
-      <a class="nav-link" href="/developers">Developer documentation</a>
+    
       
+      <a class="nav-link" href="../format/index.html">Specifications and Protocols</a>
+      
+    
+      
+      <a class="nav-link" href="../developers/index.html">Developer documentation</a>
+      
+    
  </div>
 </div>
 
@@ -117,7 +147,7 @@
 
 <div id="version-button" class="dropdown">
     <button type="button" class="btn btn-secondary btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
-        7.0.0 (dev)
+        8.0.0 (dev)
         <span class="caret"></span>
     </button>
     <div id="version_switcher" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
@@ -277,6 +307,11 @@ function checkPageExistsAndRedirect(event) {
      Arrow Flight RPC
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="gdb.html">
+     Debugging code using Arrow
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -379,6 +414,11 @@ function checkPageExistsAndRedirect(event) {
    <li class="toctree-l2">
     <a class="reference internal" href="api/utilities.html">
      Utilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/async.html">
+     Asynchronous programming
     </a>
    </li>
    <li class="toctree-l2">
@@ -518,6 +558,7 @@ function checkPageExistsAndRedirect(event) {
 <li class="toctree-l3"><a class="reference internal" href="memory.html#device-agnostic-programming">Device-Agnostic Programming</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="memory.html#memory-profiling">Memory Profiling</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="arrays.html">Arrays</a><ul>
@@ -603,6 +644,22 @@ function checkPageExistsAndRedirect(event) {
 <li class="toctree-l2"><a class="reference internal" href="streaming_execution.html#motivation">Motivation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="streaming_execution.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="streaming_execution.html#constructing-execplan-objects">Constructing <code class="docutils literal notranslate"><span class="pre">ExecPlan</span></code> objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="streaming_execution.html#constructing-execnode-using-options">Constructing <code class="docutils literal notranslate"><span class="pre">ExecNode</span></code> using Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="streaming_execution.html#source"><code class="docutils literal notranslate"><span class="pre">source</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="streaming_execution.html#filter"><code class="docutils literal notranslate"><span class="pre">filter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="streaming_execution.html#project"><code class="docutils literal notranslate"><span class="pre">project</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="streaming_execution.html#aggregate"><code class="docutils literal notranslate"><span class="pre">aggregate</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="streaming_execution.html#sink"><code class="docutils literal notranslate"><span class="pre">sink</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="streaming_execution.html#consuming-sink"><code class="docutils literal notranslate"><span class="pre">consuming_sink</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="streaming_execution.html#order-by-sink"><code class="docutils literal notranslate"><span class="pre">order_by_sink</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="streaming_execution.html#select-k-sink"><code class="docutils literal notranslate"><span class="pre">select_k_sink</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="streaming_execution.html#scan"><code class="docutils literal notranslate"><span class="pre">scan</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="streaming_execution.html#write"><code class="docutils literal notranslate"><span class="pre">write</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="streaming_execution.html#union"><code class="docutils literal notranslate"><span class="pre">union</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="streaming_execution.html#hash-join"><code class="docutils literal notranslate"><span class="pre">hash_join</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="streaming_execution.html#summary">Summary</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="io.html">Input / output and filesystems</a><ul>
@@ -705,6 +762,15 @@ function checkPageExistsAndRedirect(event) {
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="flight.html#using-the-flight-client">Using the Flight Client</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gdb.html">Debugging code using Arrow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gdb.html#gdb-extension-for-arrow-c">GDB extension for Arrow C++</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gdb.html#manual-loading">Manual loading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gdb.html#automatic-loading">Automatic loading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gdb.html#supported-classes">Supported classes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

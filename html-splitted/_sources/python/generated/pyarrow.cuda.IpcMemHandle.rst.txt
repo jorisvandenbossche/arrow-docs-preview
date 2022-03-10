@@ -1,6 +1,0 @@
-﻿pyarrow.cuda.IpcMemHandle
-=========================
-
-.. currentmodule:: pyarrow.cuda
-
-.. autoattribute:: IpcMemHandle

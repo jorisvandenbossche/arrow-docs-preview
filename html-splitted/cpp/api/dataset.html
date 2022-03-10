@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dataset &#8212; Apache Arrow v7.0.0.dev574+gbd1ea0bfe</title>
+    <title>Dataset &#8212; Apache Arrow v8.0.0.dev205+gf59fba46e</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -78,37 +78,67 @@
     C++
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    
       
-      <a class="nav-link" href="/c_glib">C/GLib</a>
+      <a class="nav-link" href="../../c_glib/index.html">C/GLib</a>
       
-      <a class="nav-link" href="/cpp">C++</a>
+    
+      
+      <a class="nav-link" href="../../cpp/index.html">C++</a>
+      
+    
       
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
       
+    
+      
       <a class="nav-link" href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
       
-      <a class="nav-link" href="/java">Java</a>
+    
       
-      <a class="nav-link" href="/js">JavaScript</a>
+      <a class="nav-link" href="../../java/index.html">Java</a>
+      
+    
+      
+      <a class="nav-link" href="../../js/index.html">JavaScript</a>
+      
+    
       
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">Julia</a>
       
+    
+      
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
       
-      <a class="nav-link" href="/python">Python</a>
+    
       
-      <a class="nav-link" href="/r">R</a>
+      <a class="nav-link" href="../../python/index.html">Python</a>
+      
+    
+      
+      <a class="nav-link" href="../../r/index.html">R</a>
+      
+    
       
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
       
+    
+      
       <a class="nav-link" href="https://docs.rs/crate/arrow/">Rust</a>
       
-      <a class="nav-link" href="/status.html">Implementation status</a>
+    
       
-      <a class="nav-link" href="/format">Specifications and Protocols</a>
+      <a class="nav-link" href="../..//status.html/index.html">Implementation status</a>
       
-      <a class="nav-link" href="/developers">Developer documentation</a>
+    
       
+      <a class="nav-link" href="../../format/index.html">Specifications and Protocols</a>
+      
+    
+      
+      <a class="nav-link" href="../../developers/index.html">Developer documentation</a>
+      
+    
  </div>
 </div>
 
@@ -116,7 +146,7 @@
 
 <div id="version-button" class="dropdown">
     <button type="button" class="btn btn-secondary btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
-        7.0.0 (dev)
+        8.0.0 (dev)
         <span class="caret"></span>
     </button>
     <div id="version_switcher" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
@@ -276,6 +306,11 @@ function checkPageExistsAndRedirect(event) {
      Arrow Flight RPC
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gdb.html">
+     Debugging code using Arrow
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -378,6 +413,11 @@ function checkPageExistsAndRedirect(event) {
    <li class="toctree-l2">
     <a class="reference internal" href="utilities.html">
      Utilities
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="async.html">
+     Asynchronous programming
     </a>
    </li>
    <li class="toctree-l2">
@@ -531,7 +571,7 @@ function checkPageExistsAndRedirect(event) {
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5arrow7dataset8Fragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE">
-<span id="_CPPv3N5arrow7dataset8Fragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE"></span><span id="_CPPv2N5arrow7dataset8Fragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE"></span><span id="arrow::dataset::Fragment::CountRows__compute::Expression.std::shared_ptr:ScanOptions:CR"></span><span class="target" id="classarrow_1_1dataset_1_1_fragment_1affe9746f8fe630034fdc6c0fb3a5339e"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">Future</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">util</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">int64_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CountRows</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">compute</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Expression</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">predicate</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N5arrow7dataset11ScanOptionsE" title="arrow::dataset::ScanOptions"><span class="n"><span class="pre">ScanOptions</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">options</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5arrow7dataset8Fragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N5arrow7dataset8Fragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE"></span><span id="_CPPv2N5arrow7dataset8Fragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE"></span><span id="arrow::dataset::Fragment::CountRows__compute::Expression.std::shared_ptr:ScanOptions:CR"></span><span class="target" id="classarrow_1_1dataset_1_1_fragment_1affe9746f8fe630034fdc6c0fb3a5339e"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="async.html#_CPPv4I0EN5arrow6FutureE" title="arrow::Future"><span class="n"><span class="pre">Future</span></span></a><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">util</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">int64_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CountRows</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">compute</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Expression</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">predicate</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N5arrow7dataset11ScanOptionsE" title="arrow::dataset::ScanOptions"><span class="n"><span class="pre">ScanOptions</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">options</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5arrow7dataset8Fragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Count the number of rows in this fragment matching the filter using metadata only. </p>
 <p>That is, this method may perform I/O, but will not load data.</p>
 <p>If this is not possible, resolve with an empty optional. The fragment can perform I/O (e.g. to read metadata) before it deciding whether it can satisfy the request. </p>
@@ -1097,7 +1137,7 @@ function checkPageExistsAndRedirect(event) {
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5arrow7dataset11ScanOptions18MaterializedFieldsEv">
-<span id="_CPPv3NK5arrow7dataset11ScanOptions18MaterializedFieldsEv"></span><span id="_CPPv2NK5arrow7dataset11ScanOptions18MaterializedFieldsEv"></span><span id="arrow::dataset::ScanOptions::MaterializedFieldsC"></span><span class="target" id="structarrow_1_1dataset_1_1_scan_options_1a209db8dec6bf9cc38e9f738bce59ccb7"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">FieldRef</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MaterializedFields</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5arrow7dataset11ScanOptions18MaterializedFieldsEv" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3NK5arrow7dataset11ScanOptions18MaterializedFieldsEv"></span><span id="_CPPv2NK5arrow7dataset11ScanOptions18MaterializedFieldsEv"></span><span id="arrow::dataset::ScanOptions::MaterializedFieldsC"></span><span class="target" id="structarrow_1_1dataset_1_1_scan_options_1a209db8dec6bf9cc38e9f738bce59ccb7"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="compute.html#_CPPv4N5arrow8FieldRefE" title="arrow::FieldRef"><span class="n"><span class="pre">FieldRef</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MaterializedFields</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5arrow7dataset11ScanOptions18MaterializedFieldsEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Return a vector of FieldRefs that require materialization. </p>
 <p>This is usually the union of the fields referenced in the projection and the filter expression. Examples:</p>
 <p><ul class="simple">
@@ -1477,7 +1517,7 @@ This option provides a control limiting the memory owned by any <a class="refere
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5arrow7dataset16InMemoryFragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE">
-<span id="_CPPv3N5arrow7dataset16InMemoryFragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE"></span><span id="_CPPv2N5arrow7dataset16InMemoryFragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE"></span><span id="arrow::dataset::InMemoryFragment::CountRows__compute::Expression.std::shared_ptr:ScanOptions:CR"></span><span class="target" id="classarrow_1_1dataset_1_1_in_memory_fragment_1aa9a49dab62746eab00b9aef17fb96bba"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">Future</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">util</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">int64_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CountRows</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">compute</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Expression</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">predicate</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N5arrow7dataset11ScanOptionsE" title="arrow::dataset::ScanOptions"><span class="n"><span class="pre">ScanOptions</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">options</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N5arrow7dataset16InMemoryFragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N5arrow7dataset16InMemoryFragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE"></span><span id="_CPPv2N5arrow7dataset16InMemoryFragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE"></span><span id="arrow::dataset::InMemoryFragment::CountRows__compute::Expression.std::shared_ptr:ScanOptions:CR"></span><span class="target" id="classarrow_1_1dataset_1_1_in_memory_fragment_1aa9a49dab62746eab00b9aef17fb96bba"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="async.html#_CPPv4I0EN5arrow6FutureE" title="arrow::Future"><span class="n"><span class="pre">Future</span></span></a><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">util</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">int64_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CountRows</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">compute</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Expression</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">predicate</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N5arrow7dataset11ScanOptionsE" title="arrow::dataset::ScanOptions"><span class="n"><span class="pre">ScanOptions</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">options</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N5arrow7dataset16InMemoryFragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Count the number of rows in this fragment matching the filter using metadata only. </p>
 <p>That is, this method may perform I/O, but will not load data.</p>
 <p>If this is not possible, resolve with an empty optional. The fragment can perform I/O (e.g. to read metadata) before it deciding whether it can satisfy the request. </p>
@@ -1874,7 +1914,7 @@ This option provides a control limiting the memory owned by any <a class="refere
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5arrow7dataset12FileFragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE">
-<span id="_CPPv3N5arrow7dataset12FileFragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE"></span><span id="_CPPv2N5arrow7dataset12FileFragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE"></span><span id="arrow::dataset::FileFragment::CountRows__compute::Expression.std::shared_ptr:ScanOptions:CR"></span><span class="target" id="classarrow_1_1dataset_1_1_file_fragment_1a06ef14b03265367297f0ecc1769c8484"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">Future</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">util</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">int64_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CountRows</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">compute</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Expression</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">predicate</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N5arrow7dataset11ScanOptionsE" title="arrow::dataset::ScanOptions"><span class="n"><span class="pre">ScanOptions</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">options</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N5arrow7dataset12FileFragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N5arrow7dataset12FileFragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE"></span><span id="_CPPv2N5arrow7dataset12FileFragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE"></span><span id="arrow::dataset::FileFragment::CountRows__compute::Expression.std::shared_ptr:ScanOptions:CR"></span><span class="target" id="classarrow_1_1dataset_1_1_file_fragment_1a06ef14b03265367297f0ecc1769c8484"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="async.html#_CPPv4I0EN5arrow6FutureE" title="arrow::Future"><span class="n"><span class="pre">Future</span></span></a><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">util</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">int64_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CountRows</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">compute</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Expression</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">predicate</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N5arrow7dataset11ScanOptionsE" title="arrow::dataset::ScanOptions"><span class="n"><span class="pre">ScanOptions</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">options</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N5arrow7dataset12FileFragment9CountRowsEN7compute10ExpressionERKNSt10shared_ptrI11ScanOptionsEE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Count the number of rows in this fragment matching the filter using metadata only. </p>
 <p>That is, this method may perform I/O, but will not load data.</p>
 <p>If this is not possible, resolve with an empty optional. The fragment can perform I/O (e.g. to read metadata) before it deciding whether it can satisfy the request. </p>
@@ -1990,7 +2030,7 @@ Note that fragments wrapping files resident in differing filesystems are not per
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5arrow7dataset10FileWriter6FinishEv">
-<span id="_CPPv3N5arrow7dataset10FileWriter6FinishEv"></span><span id="_CPPv2N5arrow7dataset10FileWriter6FinishEv"></span><span id="arrow::dataset::FileWriter::Finish"></span><span class="target" id="classarrow_1_1dataset_1_1_file_writer_1a1e5400135956180accdaf369053b56a8"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">Future</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Finish</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5arrow7dataset10FileWriter6FinishEv" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N5arrow7dataset10FileWriter6FinishEv"></span><span id="_CPPv2N5arrow7dataset10FileWriter6FinishEv"></span><span id="arrow::dataset::FileWriter::Finish"></span><span class="target" id="classarrow_1_1dataset_1_1_file_writer_1a1e5400135956180accdaf369053b56a8"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="async.html#_CPPv4I0EN5arrow6FutureE" title="arrow::Future"><span class="n"><span class="pre">Future</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Finish</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5arrow7dataset10FileWriter6FinishEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Indicate that writing is done. </p>
 </dd></dl>
 
@@ -2192,7 +2232,7 @@ Note that fragments wrapping files resident in differing filesystems are not per
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5arrow7dataset19CsvFileWriteOptions13write_optionsE">
 <span id="_CPPv3N5arrow7dataset19CsvFileWriteOptions13write_optionsE"></span><span id="_CPPv2N5arrow7dataset19CsvFileWriteOptions13write_optionsE"></span><span id="arrow::dataset::CsvFileWriteOptions::write_options__std::shared_ptr:csv::WriteOptions:"></span><span class="target" id="classarrow_1_1dataset_1_1_csv_file_write_options_1a0a06c0f02f3c8a6f86b17d5f3b00f18c"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">csv</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="formats.html#_CPPv4N5arrow3csv12WriteOptionsE" title="arrow::csv::WriteOptions"><span class="n"><span class="pre">WriteOptions</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">write_options</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7dataset19CsvFileWriteOptions13write_optionsE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Options passed to <a class="reference internal" href="formats.html#namespacearrow_1_1csv_1af3087d8c3da92b5c544d6e43fedc1a96"><span class="std std-ref">csv::MakeCSVWriter</span></a>. </p>
+<dd><p>Options passed to csv::MakeCSVWriter. </p>
 </dd></dl>
 
 </div>
@@ -2287,7 +2327,7 @@ Note that fragments wrapping files resident in differing filesystems are not per
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5arrow7dataset19IpcFileWriteOptions8metadataE">
-<span id="_CPPv3N5arrow7dataset19IpcFileWriteOptions8metadataE"></span><span id="_CPPv2N5arrow7dataset19IpcFileWriteOptions8metadataE"></span><span id="arrow::dataset::IpcFileWriteOptions::metadata__std::shared_ptr:KeyValueMetadataC:"></span><span class="target" id="classarrow_1_1dataset_1_1_ipc_file_write_options_1aa8b403b52cc01a5a5a5831ee549b9d47"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">KeyValueMetadata</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">metadata</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7dataset19IpcFileWriteOptions8metadataE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N5arrow7dataset19IpcFileWriteOptions8metadataE"></span><span id="_CPPv2N5arrow7dataset19IpcFileWriteOptions8metadataE"></span><span id="arrow::dataset::IpcFileWriteOptions::metadata__std::shared_ptr:KeyValueMetadataC:"></span><span class="target" id="classarrow_1_1dataset_1_1_ipc_file_write_options_1aa8b403b52cc01a5a5a5831ee549b9d47"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="datatype.html#_CPPv4N5arrow16KeyValueMetadataE" title="arrow::KeyValueMetadata"><span class="n"><span class="pre">KeyValueMetadata</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">metadata</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7dataset19IpcFileWriteOptions8metadataE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>custom_metadata written to the file’s footer </p>
 </dd></dl>
 

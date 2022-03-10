@@ -1,6 +1,0 @@
-﻿pyarrow.flight.ServerAuthHandler
-================================
-
-.. currentmodule:: pyarrow.flight
-
-.. autoattribute:: ServerAuthHandler

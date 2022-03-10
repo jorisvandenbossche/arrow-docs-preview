@@ -1,6 +1,0 @@
-﻿pyarrow.flight.ActionType
-=========================
-
-.. currentmodule:: pyarrow.flight
-
-.. autoattribute:: ActionType

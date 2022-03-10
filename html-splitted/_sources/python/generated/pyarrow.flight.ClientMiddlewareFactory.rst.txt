@@ -1,6 +1,0 @@
-﻿pyarrow.flight.ClientMiddlewareFactory
-======================================
-
-.. currentmodule:: pyarrow.flight
-
-.. autoattribute:: ClientMiddlewareFactory

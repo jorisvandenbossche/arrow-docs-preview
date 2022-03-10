@@ -1,6 +1,0 @@
-﻿pyarrow.flight.Result
-=====================
-
-.. currentmodule:: pyarrow.flight
-
-.. autoattribute:: Result

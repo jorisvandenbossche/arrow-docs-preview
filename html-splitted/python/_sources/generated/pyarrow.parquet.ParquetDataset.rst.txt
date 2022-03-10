@@ -29,6 +29,7 @@
    
       ~ParquetDataset.buffer_size
       ~ParquetDataset.common_metadata
+      ~ParquetDataset.fragments
       ~ParquetDataset.fs
       ~ParquetDataset.memory_map
       ~ParquetDataset.partitions

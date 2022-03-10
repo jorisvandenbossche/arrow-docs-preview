@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New Contributor’s Guide &#8212; Apache Arrow v7.0.0.dev574+gbd1ea0bfe</title>
+    <title>New Contributor’s Guide &#8212; Apache Arrow v8.0.0.dev205+gf59fba46e</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -79,37 +79,67 @@
     Developer documentation
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    
       
-      <a class="nav-link" href="/c_glib">C/GLib</a>
+      <a class="nav-link" href="../../c_glib/index.html">C/GLib</a>
       
-      <a class="nav-link" href="/cpp">C++</a>
+    
+      
+      <a class="nav-link" href="../../cpp/index.html">C++</a>
+      
+    
       
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
       
+    
+      
       <a class="nav-link" href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
       
-      <a class="nav-link" href="/java">Java</a>
+    
       
-      <a class="nav-link" href="/js">JavaScript</a>
+      <a class="nav-link" href="../../java/index.html">Java</a>
+      
+    
+      
+      <a class="nav-link" href="../../js/index.html">JavaScript</a>
+      
+    
       
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">Julia</a>
       
+    
+      
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
       
-      <a class="nav-link" href="/python">Python</a>
+    
       
-      <a class="nav-link" href="/r">R</a>
+      <a class="nav-link" href="../../python/index.html">Python</a>
+      
+    
+      
+      <a class="nav-link" href="../../r/index.html">R</a>
+      
+    
       
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
       
+    
+      
       <a class="nav-link" href="https://docs.rs/crate/arrow/">Rust</a>
       
-      <a class="nav-link" href="/status.html">Implementation status</a>
+    
       
-      <a class="nav-link" href="/format">Specifications and Protocols</a>
+      <a class="nav-link" href="../..//status.html/index.html">Implementation status</a>
       
-      <a class="nav-link" href="/developers">Developer documentation</a>
+    
       
+      <a class="nav-link" href="../../format/index.html">Specifications and Protocols</a>
+      
+    
+      
+      <a class="nav-link" href="../../developers/index.html">Developer documentation</a>
+      
+    
  </div>
 </div>
 
@@ -117,7 +147,7 @@
 
 <div id="version-button" class="dropdown">
     <button type="button" class="btn btn-secondary btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
-        7.0.0 (dev)
+        8.0.0 (dev)
         <span class="caret"></span>
     </button>
     <div id="version_switcher" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
@@ -248,7 +278,12 @@ function checkPageExistsAndRedirect(event) {
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="step_by_step/pr_and_github.html">
+      <a class="reference internal" href="step_by_step/styling.html">
+       Styling 😎
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="step_by_step/pr_lifecycle.html">
        Lifecycle of a pull request
       </a>
      </li>
@@ -276,7 +311,7 @@ function checkPageExistsAndRedirect(event) {
      </li>
      <li class="toctree-l3">
       <a class="reference internal" href="tutorials/r_tutorial.html">
-       R tutorial
+       R tutorials
       </a>
      </li>
     </ul>
@@ -330,6 +365,28 @@ function checkPageExistsAndRedirect(event) {
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../java/index.html">
+   Java Development
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../java/building.html">
+     Building Arrow Java
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../java/development.html">
+     Development Guidelines
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../python.html">
    Python Development
@@ -339,8 +396,8 @@ function checkPageExistsAndRedirect(event) {
   <a class="reference internal" href="../continuous_integration/index.html">
    Continuous Integration
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -511,11 +568,12 @@ you can run the tests from a terminal for Python</p>
 </li>
 <li><p><strong>Find an issue (if needed), create a new branch and work on the problem</strong></p>
 <p><strong>Finding an issue</strong></p>
-<p>You might already have a bug to fix in mind, or a new feature that you want to implement. But if you
-don’t and you need an issue to work on, then you may need help finding it. Read
-through the <a class="reference internal" href="step_by_step/finding_issues.html#finding-issues"><span class="std std-ref">Finding good first issues 🔎</span></a>  section to get some ideas.</p>
+<p>You might already have a bug to fix in mind, or a new feature that you want to
+implement. But if you don’t and you need an issue to work on, then you may need
+help finding it. Read through the <a class="reference internal" href="step_by_step/finding_issues.html#finding-issues"><span class="std std-ref">Finding good first issues 🔎</span></a>  section to get some ideas.</p>
 <p><strong>Finding your way through the project</strong></p>
-<p>The first step when starting a new project is the hardest and so we’ve wrote some guides to help you with this.</p>
+<p>The first step when starting a new project is the hardest and so we’ve
+wrote some guides to help you with this.</p>
 <p>You can start by reading through <a class="reference internal" href="step_by_step/arrow_codebase.html#arrow-codebase"><span class="std std-ref">Working on the Arrow codebase 🧐</span></a> section.</p>
 <p><strong>Communication</strong></p>
 <p>Communication is very important. You may need some help solving problems
@@ -525,10 +583,12 @@ know you are working on it and may need some help.</p>
 <p>See possible channels of <a class="reference internal" href="communication.html#communication"><span class="std std-ref">Communication</span></a>.</p>
 </li>
 <li><p><strong>Once you implemented the planned fix or feature, write and run tests for it</strong></p>
-<p>See detailed instructions on how to <a class="reference internal" href="step_by_step/testing.html#testing"><span class="std std-ref">test</span></a>.</p>
+<p>See detailed instructions on how to <a class="reference internal" href="step_by_step/testing.html#testing"><span class="std std-ref">test</span></a>. Also run the linter
+to make sure the code is <a class="reference internal" href="step_by_step/styling.html#styling"><span class="std std-ref">styled</span></a> correctly before proceeding
+to the next step!</p>
 </li>
 <li><p><strong>Push the branch on your fork and create a Pull Request</strong></p>
-<p>See detailed instructions on <a class="reference internal" href="step_by_step/pr_and_github.html#create-pr"><span class="std std-ref">Creating a pull request</span></a></p>
+<p>See detailed instructions on <a class="reference internal" href="step_by_step/pr_lifecycle.html#create-pr"><span class="std std-ref">Creating a pull request</span></a></p>
 </li>
 </ol>
 <p>If you are ready you can start with building Arrow or choose to follow
@@ -575,10 +635,14 @@ one of the <a class="reference internal" href="tutorials/index.html#tutorial-ind
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="step_by_step/testing.html">Testing 🧪</a></li>
-<li class="toctree-l2"><a class="reference internal" href="step_by_step/pr_and_github.html">Lifecycle of a pull request</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="step_by_step/pr_and_github.html#creating-a-pull-request">Creating a pull request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="step_by_step/pr_and_github.html#reviews-and-merge-of-the-pull-request">Reviews and merge of the pull request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="step_by_step/pr_and_github.html#congratulations">Congratulations! 🎉</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step_by_step/styling.html">Styling 😎</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="step_by_step/styling.html#pre-commit">Pre-commit</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="step_by_step/pr_lifecycle.html">Lifecycle of a pull request</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="step_by_step/pr_lifecycle.html#creating-a-pull-request">Creating a pull request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step_by_step/pr_lifecycle.html#reviews-and-merge-of-the-pull-request">Reviews and merge of the pull request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step_by_step/pr_lifecycle.html#congratulations">Congratulations! 🎉</a></li>
 </ul>
 </li>
 </ul>
@@ -598,8 +662,9 @@ one of the <a class="reference internal" href="tutorials/index.html#tutorial-ind
 <li class="toctree-l3"><a class="reference internal" href="tutorials/python_tutorial.html#creating-a-pull-request">Creating a Pull Request</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/r_tutorial.html">R tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/r_tutorial.html">R tutorials</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="tutorials/r_tutorial.html#writing-bindings-walkthrough">Writing Bindings Walkthrough</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/r_tutorial.html#r-tutorial-on-adding-a-lubridate-binding">R tutorial on adding a lubridate binding</a></li>
 </ul>
 </li>
 </ul>

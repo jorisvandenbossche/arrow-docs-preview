@@ -25,6 +25,7 @@
    .. autosummary::
    
       ~WriteOptions.batch_size
+      ~WriteOptions.delimiter
       ~WriteOptions.include_header
    
    

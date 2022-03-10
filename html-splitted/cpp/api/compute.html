@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Compute Functions &#8212; Apache Arrow v7.0.0.dev574+gbd1ea0bfe</title>
+    <title>Compute Functions &#8212; Apache Arrow v8.0.0.dev205+gf59fba46e</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -79,37 +79,67 @@
     C++
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    
       
-      <a class="nav-link" href="/c_glib">C/GLib</a>
+      <a class="nav-link" href="../../c_glib/index.html">C/GLib</a>
       
-      <a class="nav-link" href="/cpp">C++</a>
+    
+      
+      <a class="nav-link" href="../../cpp/index.html">C++</a>
+      
+    
       
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/csharp/README.md">C#</a>
       
+    
+      
       <a class="nav-link" href="https://godoc.org/github.com/apache/arrow/go/arrow">Go</a>
       
-      <a class="nav-link" href="/java">Java</a>
+    
       
-      <a class="nav-link" href="/js">JavaScript</a>
+      <a class="nav-link" href="../../java/index.html">Java</a>
+      
+    
+      
+      <a class="nav-link" href="../../js/index.html">JavaScript</a>
+      
+    
       
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/julia/Arrow/README.md">Julia</a>
       
+    
+      
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/matlab/README.md">MATLAB</a>
       
-      <a class="nav-link" href="/python">Python</a>
+    
       
-      <a class="nav-link" href="/r">R</a>
+      <a class="nav-link" href="../../python/index.html">Python</a>
+      
+    
+      
+      <a class="nav-link" href="../../r/index.html">R</a>
+      
+    
       
       <a class="nav-link" href="https://github.com/apache/arrow/blob/master/ruby/README.md">Ruby</a>
       
+    
+      
       <a class="nav-link" href="https://docs.rs/crate/arrow/">Rust</a>
       
-      <a class="nav-link" href="/status.html">Implementation status</a>
+    
       
-      <a class="nav-link" href="/format">Specifications and Protocols</a>
+      <a class="nav-link" href="../..//status.html/index.html">Implementation status</a>
       
-      <a class="nav-link" href="/developers">Developer documentation</a>
+    
       
+      <a class="nav-link" href="../../format/index.html">Specifications and Protocols</a>
+      
+    
+      
+      <a class="nav-link" href="../../developers/index.html">Developer documentation</a>
+      
+    
  </div>
 </div>
 
@@ -117,7 +147,7 @@
 
 <div id="version-button" class="dropdown">
     <button type="button" class="btn btn-secondary btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
-        7.0.0 (dev)
+        8.0.0 (dev)
         <span class="caret"></span>
     </button>
     <div id="version_switcher" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
@@ -277,6 +307,11 @@ function checkPageExistsAndRedirect(event) {
      Arrow Flight RPC
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../gdb.html">
+     Debugging code using Arrow
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -382,6 +417,11 @@ function checkPageExistsAndRedirect(event) {
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="async.html">
+     Asynchronous programming
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="io.html">
      Input / output
     </a>
@@ -439,30 +479,54 @@ function checkPageExistsAndRedirect(event) {
 
 <nav id="bd-toc-nav">
     <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#datum-class">
-   Datum class
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Compute Functions
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datum-class">
+     Datum class
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#abstract-function-classes">
+     Abstract Function classes
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#function-registry">
+     Function registry
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convenience-functions">
+     Convenience functions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concrete-options-classes">
+     Concrete options classes
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#abstract-function-classes">
-   Abstract Function classes
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#streaming-execution">
+   Streaming Execution
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#function-registry">
-   Function registry
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#convenience-functions">
-   Convenience functions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#concrete-options-classes">
-   Concrete options classes
-  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#streaming-execution-operators">
+     Streaming Execution Operators
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#execution-plan-expressions">
+     Execution Plan Expressions
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -2551,7 +2615,7 @@ function checkPageExistsAndRedirect(event) {
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5arrow7compute17MakeStructOptions17MakeStructOptionsENSt6vectorINSt6stringEEENSt6vectorIbEENSt6vectorINSt10shared_ptrIK16KeyValueMetadataEEEE">
-<span id="_CPPv3N5arrow7compute17MakeStructOptions17MakeStructOptionsENSt6vectorINSt6stringEEENSt6vectorIbEENSt6vectorINSt10shared_ptrIK16KeyValueMetadataEEEE"></span><span id="_CPPv2N5arrow7compute17MakeStructOptions17MakeStructOptionsENSt6vectorINSt6stringEEENSt6vectorIbEENSt6vectorINSt10shared_ptrIK16KeyValueMetadataEEEE"></span><span id="arrow::compute::MakeStructOptions::MakeStructOptions__std::vector:ss:.std::vector:b:.std::vector:std::shared_ptr:KeyValueMetadataC::"></span><span class="target" id="classarrow_1_1compute_1_1_make_struct_options_1a43953894d8ec802c8b10b696e7bf7746"></span><span class="sig-name descname"><span class="n"><span class="pre">MakeStructOptions</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">bool</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">r</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">KeyValueMetadata</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5arrow7compute17MakeStructOptions17MakeStructOptionsENSt6vectorINSt6stringEEENSt6vectorIbEENSt6vectorINSt10shared_ptrIK16KeyValueMetadataEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N5arrow7compute17MakeStructOptions17MakeStructOptionsENSt6vectorINSt6stringEEENSt6vectorIbEENSt6vectorINSt10shared_ptrIK16KeyValueMetadataEEEE"></span><span id="_CPPv2N5arrow7compute17MakeStructOptions17MakeStructOptionsENSt6vectorINSt6stringEEENSt6vectorIbEENSt6vectorINSt10shared_ptrIK16KeyValueMetadataEEEE"></span><span id="arrow::compute::MakeStructOptions::MakeStructOptions__std::vector:ss:.std::vector:b:.std::vector:std::shared_ptr:KeyValueMetadataC::"></span><span class="target" id="classarrow_1_1compute_1_1_make_struct_options_1a43953894d8ec802c8b10b696e7bf7746"></span><span class="sig-name descname"><span class="n"><span class="pre">MakeStructOptions</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">bool</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">r</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="datatype.html#_CPPv4N5arrow16KeyValueMetadataE" title="arrow::KeyValueMetadata"><span class="n"><span class="pre">KeyValueMetadata</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">m</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5arrow7compute17MakeStructOptions17MakeStructOptionsENSt6vectorINSt6stringEEENSt6vectorIbEENSt6vectorINSt10shared_ptrIK16KeyValueMetadataEEEE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -2581,7 +2645,7 @@ function checkPageExistsAndRedirect(event) {
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5arrow7compute17MakeStructOptions14field_metadataE">
-<span id="_CPPv3N5arrow7compute17MakeStructOptions14field_metadataE"></span><span id="_CPPv2N5arrow7compute17MakeStructOptions14field_metadataE"></span><span id="arrow::compute::MakeStructOptions::field_metadata__std::vector:std::shared_ptr:KeyValueMetadataC::"></span><span class="target" id="classarrow_1_1compute_1_1_make_struct_options_1aed91ac8a09fc46b8f4c307d688921cea"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">KeyValueMetadata</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">field_metadata</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7compute17MakeStructOptions14field_metadataE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N5arrow7compute17MakeStructOptions14field_metadataE"></span><span id="_CPPv2N5arrow7compute17MakeStructOptions14field_metadataE"></span><span id="arrow::compute::MakeStructOptions::field_metadata__std::vector:std::shared_ptr:KeyValueMetadataC::"></span><span class="target" id="classarrow_1_1compute_1_1_make_struct_options_1aed91ac8a09fc46b8f4c307d688921cea"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="datatype.html#_CPPv4N5arrow16KeyValueMetadataE" title="arrow::KeyValueMetadata"><span class="n"><span class="pre">KeyValueMetadata</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">field_metadata</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7compute17MakeStructOptions14field_metadataE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Metadata attached to wrapped columns. </p>
 </dd></dl>
 
@@ -3123,7 +3187,7 @@ function checkPageExistsAndRedirect(event) {
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5arrow7compute7SortKey7SortKeyE8FieldRef9SortOrder">
-<span id="_CPPv3N5arrow7compute7SortKey7SortKeyE8FieldRef9SortOrder"></span><span id="_CPPv2N5arrow7compute7SortKey7SortKeyE8FieldRef9SortOrder"></span><span id="arrow::compute::SortKey::SortKey__FieldRef.SortOrder"></span><span class="target" id="classarrow_1_1compute_1_1_sort_key_1a7a8e745fa39570af9c4e02b93ca4e221"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SortKey</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FieldRef</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">target</span></span>, <a class="reference internal" href="#_CPPv49SortOrder" title="SortOrder"><span class="n"><span class="pre">SortOrder</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">order</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49SortOrder" title="SortOrder"><span class="n"><span class="pre">SortOrder</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N9SortOrder9AscendingE" title="SortOrder::Ascending"><span class="n"><span class="pre">Ascending</span></span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5arrow7compute7SortKey7SortKeyE8FieldRef9SortOrder" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N5arrow7compute7SortKey7SortKeyE8FieldRef9SortOrder"></span><span id="_CPPv2N5arrow7compute7SortKey7SortKeyE8FieldRef9SortOrder"></span><span id="arrow::compute::SortKey::SortKey__FieldRef.SortOrder"></span><span class="target" id="classarrow_1_1compute_1_1_sort_key_1a7a8e745fa39570af9c4e02b93ca4e221"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SortKey</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N5arrow8FieldRefE" title="arrow::FieldRef"><span class="n"><span class="pre">FieldRef</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">target</span></span>, <a class="reference internal" href="#_CPPv49SortOrder" title="SortOrder"><span class="n"><span class="pre">SortOrder</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">order</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49SortOrder" title="SortOrder"><span class="n"><span class="pre">SortOrder</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N9SortOrder9AscendingE" title="SortOrder::Ascending"><span class="n"><span class="pre">Ascending</span></span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5arrow7compute7SortKey7SortKeyE8FieldRef9SortOrder" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -3141,8 +3205,8 @@ function checkPageExistsAndRedirect(event) {
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5arrow7compute7SortKey6targetE">
-<span id="_CPPv3N5arrow7compute7SortKey6targetE"></span><span id="_CPPv2N5arrow7compute7SortKey6targetE"></span><span id="arrow::compute::SortKey::target__FieldRef"></span><span class="target" id="classarrow_1_1compute_1_1_sort_key_1a3d2537ea045debf8c526afc4659e178b"></span><span class="n"><span class="pre">FieldRef</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">target</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7compute7SortKey6targetE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>A FieldRef targetting the sort column. </p>
+<span id="_CPPv3N5arrow7compute7SortKey6targetE"></span><span id="_CPPv2N5arrow7compute7SortKey6targetE"></span><span id="arrow::compute::SortKey::target__FieldRef"></span><span class="target" id="classarrow_1_1compute_1_1_sort_key_1a3d2537ea045debf8c526afc4659e178b"></span><a class="reference internal" href="#_CPPv4N5arrow8FieldRefE" title="arrow::FieldRef"><span class="n"><span class="pre">FieldRef</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">target</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7compute7SortKey6targetE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a> targetting the sort column. </p>
 </dd></dl>
 
 <dl class="cpp var">
@@ -3409,6 +3473,232 @@ function checkPageExistsAndRedirect(event) {
 <dd></dd></dl>
 
 </div>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="streaming-execution">
+<h1>Streaming Execution<a class="headerlink" href="#streaming-execution" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="streaming-execution-operators">
+<h2>Streaming Execution Operators<a class="headerlink" href="#streaming-execution-operators" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv4N5arrow7compute8JoinTypeE">
+<span id="_CPPv3N5arrow7compute8JoinTypeE"></span><span id="_CPPv2N5arrow7compute8JoinTypeE"></span><span class="target" id="namespacearrow_1_1compute_1a90e601221ca7fc466a9d58747672fa90"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">arrow</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">compute</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">JoinType</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7compute8JoinTypeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5arrow7compute8JoinType9LEFT_SEMIE">
+<span id="_CPPv3N5arrow7compute8JoinType9LEFT_SEMIE"></span><span id="_CPPv2N5arrow7compute8JoinType9LEFT_SEMIE"></span><span class="target" id="namespacearrow_1_1compute_1a90e601221ca7fc466a9d58747672fa90a4366a67a27bed2358373373ddd47392c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LEFT_SEMI</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7compute8JoinType9LEFT_SEMIE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5arrow7compute8JoinType10RIGHT_SEMIE">
+<span id="_CPPv3N5arrow7compute8JoinType10RIGHT_SEMIE"></span><span id="_CPPv2N5arrow7compute8JoinType10RIGHT_SEMIE"></span><span class="target" id="namespacearrow_1_1compute_1a90e601221ca7fc466a9d58747672fa90a85cb2e8dcaef5618a5b41990aebeac61"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RIGHT_SEMI</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7compute8JoinType10RIGHT_SEMIE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5arrow7compute8JoinType9LEFT_ANTIE">
+<span id="_CPPv3N5arrow7compute8JoinType9LEFT_ANTIE"></span><span id="_CPPv2N5arrow7compute8JoinType9LEFT_ANTIE"></span><span class="target" id="namespacearrow_1_1compute_1a90e601221ca7fc466a9d58747672fa90a5eaa1ff1617607966eb1293d6f7c0c6a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LEFT_ANTI</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7compute8JoinType9LEFT_ANTIE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5arrow7compute8JoinType10RIGHT_ANTIE">
+<span id="_CPPv3N5arrow7compute8JoinType10RIGHT_ANTIE"></span><span id="_CPPv2N5arrow7compute8JoinType10RIGHT_ANTIE"></span><span class="target" id="namespacearrow_1_1compute_1a90e601221ca7fc466a9d58747672fa90ad4220640f3f5a6ed247d289683f93249"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RIGHT_ANTI</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7compute8JoinType10RIGHT_ANTIE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5arrow7compute8JoinType5INNERE">
+<span id="_CPPv3N5arrow7compute8JoinType5INNERE"></span><span id="_CPPv2N5arrow7compute8JoinType5INNERE"></span><span class="target" id="namespacearrow_1_1compute_1a90e601221ca7fc466a9d58747672fa90ac4540d3222d43c398e55b47cb3846a40"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">INNER</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7compute8JoinType5INNERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5arrow7compute8JoinType10LEFT_OUTERE">
+<span id="_CPPv3N5arrow7compute8JoinType10LEFT_OUTERE"></span><span id="_CPPv2N5arrow7compute8JoinType10LEFT_OUTERE"></span><span class="target" id="namespacearrow_1_1compute_1a90e601221ca7fc466a9d58747672fa90afad50b06f6e7723087425c4263d7d926"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LEFT_OUTER</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7compute8JoinType10LEFT_OUTERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5arrow7compute8JoinType11RIGHT_OUTERE">
+<span id="_CPPv3N5arrow7compute8JoinType11RIGHT_OUTERE"></span><span id="_CPPv2N5arrow7compute8JoinType11RIGHT_OUTERE"></span><span class="target" id="namespacearrow_1_1compute_1a90e601221ca7fc466a9d58747672fa90a6792c183a86a256fec7d3c3dc49d3b32"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RIGHT_OUTER</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7compute8JoinType11RIGHT_OUTERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5arrow7compute8JoinType10FULL_OUTERE">
+<span id="_CPPv3N5arrow7compute8JoinType10FULL_OUTERE"></span><span id="_CPPv2N5arrow7compute8JoinType10FULL_OUTERE"></span><span class="target" id="namespacearrow_1_1compute_1a90e601221ca7fc466a9d58747672fa90a2afcfafefd05a51318c2b3eb54c03622"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FULL_OUTER</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7compute8JoinType10FULL_OUTERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv4N5arrow7compute10JoinKeyCmpE">
+<span id="_CPPv3N5arrow7compute10JoinKeyCmpE"></span><span id="_CPPv2N5arrow7compute10JoinKeyCmpE"></span><span class="target" id="namespacearrow_1_1compute_1aac3ba5022a7ab464a107d4c309fa386e"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">arrow</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">compute</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">JoinKeyCmp</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7compute10JoinKeyCmpE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5arrow7compute10JoinKeyCmp2EQE">
+<span id="_CPPv3N5arrow7compute10JoinKeyCmp2EQE"></span><span id="_CPPv2N5arrow7compute10JoinKeyCmp2EQE"></span><span class="target" id="namespacearrow_1_1compute_1aac3ba5022a7ab464a107d4c309fa386ea2dcbad7477fd40561e8b8198f173bd47"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">EQ</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7compute10JoinKeyCmp2EQE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5arrow7compute10JoinKeyCmp2ISE">
+<span id="_CPPv3N5arrow7compute10JoinKeyCmp2ISE"></span><span id="_CPPv2N5arrow7compute10JoinKeyCmp2ISE"></span><span class="target" id="namespacearrow_1_1compute_1aac3ba5022a7ab464a107d4c309fa386ea0bfc16cc12effc1bae4d3766c4f2257d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IS</span></span></span><a class="headerlink" href="#_CPPv4N5arrow7compute10JoinKeyCmp2ISE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “execnode-options” in doxygen xml output for project “arrow_cpp” from directory: ../../../cpp/apidoc/xml</p>
+</div>
+</div>
+<div class="section" id="execution-plan-expressions">
+<h2>Execution Plan Expressions<a class="headerlink" href="#execution-plan-expressions" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N5arrow8FieldRefE">
+<span id="_CPPv3N5arrow8FieldRefE"></span><span id="_CPPv2N5arrow8FieldRefE"></span><span id="arrow::FieldRef"></span><span class="target" id="classarrow_1_1_field_ref"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">arrow</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">FieldRef</span></span></span><a class="headerlink" href="#_CPPv4N5arrow8FieldRefE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Descriptor of a (potentially nested) field within a schema. </p>
+<p>Unlike <a class="reference internal" href="datatype.html#classarrow_1_1_field_path"><span class="std std-ref">FieldPath</span></a> (which exclusively uses indices of child fields), <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a> may reference a field by name. It is intended to replace parameters like <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">field_index</span></code> and <code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">std::string&amp;</span> <span class="pre">field_name</span></code>; it can be implicitly constructed from either a field index or a name.</p>
+<p>Nested fields can be referenced as well. Given schema({field(“a”, struct_({field(“n”, <a class="reference internal" href="datatype.html#group__type-factories_1gaf642d53dac1a6b6b686fb5984d33bc9a"><span class="std std-ref">null()</span></a>)})), field(“b”, <a class="reference internal" href="datatype.html#group__type-factories_1ga86f6bfe394347f77befa2143297ad541"><span class="std std-ref">int32()</span></a>)})</p>
+<p>the following all indicate the nested field named “n”: <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a> ref1(0, 0); <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a> ref2(“a”, 0); <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a> ref3(“a”, “n”); <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a> ref4(0, “n”); ARROW_ASSIGN_OR_RAISE(<a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a> ref5, <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref_1abea828b46abe54db47c3af1b5faa49b2"><span class="std std-ref">FieldRef::FromDotPath</span></a>(“.a[0]”));</p>
+<p>FieldPaths matching a <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a> are retrieved using the member function FindAll. Multiple matches are possible because field names may be duplicated within a schema. For example: <a class="reference internal" href="datatype.html#classarrow_1_1_schema"><span class="std std-ref">Schema</span></a> a_is_ambiguous({field(“a”, <a class="reference internal" href="datatype.html#group__type-factories_1ga86f6bfe394347f77befa2143297ad541"><span class="std std-ref">int32()</span></a>), field(“a”, <a class="reference internal" href="datatype.html#group__type-factories_1ga48fca9d26feda61c8255ec3c44a2078c"><span class="std std-ref">float32()</span></a>)}); auto matches = <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a>(“a”).FindAll(a_is_ambiguous); assert(matches.size() == 2); assert(matches[0].Get(a_is_ambiguous)-&gt;Equals(a_is_ambiguous.field(0))); assert(matches[1].Get(a_is_ambiguous)-&gt;Equals(a_is_ambiguous.field(1)));</p>
+<p>Convenience accessors are available which raise a helpful error if the field is not found or ambiguous, and for immediately calling <a class="reference internal" href="datatype.html#classarrow_1_1_field_path_1a165fd942d59b8b8a6f45f1f939cb7a1b"><span class="std std-ref">FieldPath::Get</span></a> to retrieve any matching children: auto maybe_match = <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a>(“struct”, “field_i32”).FindOneOrNone(schema); auto maybe_column = <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a>(“struct”, “field_i32”).GetOne(some_table); </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5arrow8FieldRef8FieldRefE9FieldPath">
+<span id="_CPPv3N5arrow8FieldRef8FieldRefE9FieldPath"></span><span id="_CPPv2N5arrow8FieldRef8FieldRefE9FieldPath"></span><span id="arrow::FieldRef::FieldRef__FieldPath"></span><span class="target" id="classarrow_1_1_field_ref_1ac4eb88bec1e2e92c0904014630a703da"></span><span class="sig-name descname"><span class="n"><span class="pre">FieldRef</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="datatype.html#_CPPv4N5arrow9FieldPathE" title="arrow::FieldPath"><span class="n"><span class="pre">FieldPath</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">indices</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5arrow8FieldRef8FieldRefE9FieldPath" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Construct a <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a> using a string of indices. </p>
+<p>The reference will be retrieved as: schema.fields[self.indices[0]].type.fields[self.indices[1]] …</p>
+<p>Empty indices are not valid. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5arrow8FieldRef8FieldRefENSt6stringE">
+<span id="_CPPv3N5arrow8FieldRef8FieldRefENSt6stringE"></span><span id="_CPPv2N5arrow8FieldRef8FieldRefENSt6stringE"></span><span id="arrow::FieldRef::FieldRef__ss"></span><span class="target" id="classarrow_1_1_field_ref_1a184489f63e9ea5656c1978b135bcfb33"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FieldRef</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5arrow8FieldRef8FieldRefENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Construct a by-name <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a>. </p>
+<p>Multiple fields may match a by-name <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a>: [f for f in schema.fields where f.name == self.name] </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5arrow8FieldRef8FieldRefEi">
+<span id="_CPPv3N5arrow8FieldRef8FieldRefEi"></span><span id="_CPPv2N5arrow8FieldRef8FieldRefEi"></span><span id="arrow::FieldRef::FieldRef__i"></span><span class="target" id="classarrow_1_1_field_ref_1ada3081176aebf294d36e69761c395fd0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FieldRef</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5arrow8FieldRef8FieldRefEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Equivalent to a single index string of indices. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I00DpEN5arrow8FieldRef8FieldRefERR2A0RR2A1DpRR1A">
+<span id="_CPPv3I00DpEN5arrow8FieldRef8FieldRefERR2A0RR2A1DpRR1A"></span><span id="_CPPv2I00DpEN5arrow8FieldRef8FieldRefERR2A0RR2A1DpRR1A"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">A0</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">A1</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">A</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classarrow_1_1_field_ref_1a34007097362d31fba751b9b7a4516b63"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FieldRef</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I00DpEN5arrow8FieldRef8FieldRefERR2A0RR2A1DpRR1A" title="arrow::FieldRef::FieldRef::A0"><span class="n"><span class="pre">A0</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a0</span></span>, <a class="reference internal" href="#_CPPv4I00DpEN5arrow8FieldRef8FieldRefERR2A0RR2A1DpRR1A" title="arrow::FieldRef::FieldRef::A1"><span class="n"><span class="pre">A1</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a1</span></span>, <a class="reference internal" href="#_CPPv4I00DpEN5arrow8FieldRef8FieldRefERR2A0RR2A1DpRR1A" title="arrow::FieldRef::FieldRef::A"><span class="n"><span class="pre">A</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">...</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">a</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I00DpEN5arrow8FieldRef8FieldRefERR2A0RR2A1DpRR1A" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Convenience constructor for nested FieldRefs: each argument will be used to construct a <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5arrow8FieldRef7FindAllERK6Schema">
+<span id="_CPPv3NK5arrow8FieldRef7FindAllERK6Schema"></span><span id="_CPPv2NK5arrow8FieldRef7FindAllERK6Schema"></span><span id="arrow::FieldRef::FindAll__SchemaCRC"></span><span class="target" id="classarrow_1_1_field_ref_1aaff5736dd030e307d798190eedd76b70"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="datatype.html#_CPPv4N5arrow9FieldPathE" title="arrow::FieldPath"><span class="n"><span class="pre">FieldPath</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FindAll</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="datatype.html#_CPPv4N5arrow6SchemaE" title="arrow::Schema"><span class="n"><span class="pre">Schema</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">schema</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5arrow8FieldRef7FindAllERK6Schema" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Retrieve <a class="reference internal" href="datatype.html#classarrow_1_1_field_path"><span class="std std-ref">FieldPath</span></a> of every child field which matches this <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5arrow8FieldRef7FindAllERK9ArrayData">
+<span id="_CPPv3NK5arrow8FieldRef7FindAllERK9ArrayData"></span><span id="_CPPv2NK5arrow8FieldRef7FindAllERK9ArrayData"></span><span id="arrow::FieldRef::FindAll__ArrayDataCRC"></span><span class="target" id="classarrow_1_1_field_ref_1a8d5ffb7a033d2a3997afee3cd134f12e"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="datatype.html#_CPPv4N5arrow9FieldPathE" title="arrow::FieldPath"><span class="n"><span class="pre">FieldPath</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FindAll</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="array.html#_CPPv4N5arrow9ArrayDataE" title="arrow::ArrayData"><span class="n"><span class="pre">ArrayData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">array</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5arrow8FieldRef7FindAllERK9ArrayData" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Convenience function which applies FindAll to arg’s type or schema. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK5arrow8FieldRef13CheckNonEmptyE6StatusRKNSt6vectorI9FieldPathEERK1T">
+<span id="_CPPv3I0ENK5arrow8FieldRef13CheckNonEmptyERKNSt6vectorI9FieldPathEERK1T"></span><span id="_CPPv2I0ENK5arrow8FieldRef13CheckNonEmptyERKNSt6vectorI9FieldPathEERK1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classarrow_1_1_field_ref_1a1905a993f22a735911a7903e746f05e9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="support.html#_CPPv4N5arrow6StatusE" title="arrow::Status"><span class="n"><span class="pre">Status</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CheckNonEmpty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="datatype.html#_CPPv4N5arrow9FieldPathE" title="arrow::FieldPath"><span class="n"><span class="pre">FieldPath</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">matches</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK5arrow8FieldRef13CheckNonEmptyE6StatusRKNSt6vectorI9FieldPathEERK1T" title="arrow::FieldRef::CheckNonEmpty::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">root</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK5arrow8FieldRef13CheckNonEmptyE6StatusRKNSt6vectorI9FieldPathEERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Convenience function: raise an error if matches is empty. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK5arrow8FieldRef16CheckNonMultipleE6StatusRKNSt6vectorI9FieldPathEERK1T">
+<span id="_CPPv3I0ENK5arrow8FieldRef16CheckNonMultipleERKNSt6vectorI9FieldPathEERK1T"></span><span id="_CPPv2I0ENK5arrow8FieldRef16CheckNonMultipleERKNSt6vectorI9FieldPathEERK1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classarrow_1_1_field_ref_1a993d0872b2c308ed541d943fc785129d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="support.html#_CPPv4N5arrow6StatusE" title="arrow::Status"><span class="n"><span class="pre">Status</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CheckNonMultiple</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="datatype.html#_CPPv4N5arrow9FieldPathE" title="arrow::FieldPath"><span class="n"><span class="pre">FieldPath</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">matches</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK5arrow8FieldRef16CheckNonMultipleE6StatusRKNSt6vectorI9FieldPathEERK1T" title="arrow::FieldRef::CheckNonMultiple::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">root</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK5arrow8FieldRef16CheckNonMultipleE6StatusRKNSt6vectorI9FieldPathEERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Convenience function: raise an error if matches contains multiple FieldPaths. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK5arrow8FieldRef7FindOneE6ResultI9FieldPathERK1T">
+<span id="_CPPv3I0ENK5arrow8FieldRef7FindOneERK1T"></span><span id="_CPPv2I0ENK5arrow8FieldRef7FindOneERK1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classarrow_1_1_field_ref_1a3a46e4e8f9041e4ffa5bb34e50ad93b4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="support.html#_CPPv4I0EN5arrow6ResultE" title="arrow::Result"><span class="n"><span class="pre">Result</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="datatype.html#_CPPv4N5arrow9FieldPathE" title="arrow::FieldPath"><span class="n"><span class="pre">FieldPath</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FindOne</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK5arrow8FieldRef7FindOneE6ResultI9FieldPathERK1T" title="arrow::FieldRef::FindOne::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">root</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK5arrow8FieldRef7FindOneE6ResultI9FieldPathERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Retrieve <a class="reference internal" href="datatype.html#classarrow_1_1_field_path"><span class="std std-ref">FieldPath</span></a> of a single child field which matches this <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a>. </p>
+<p>Emit an error if none or multiple match. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK5arrow8FieldRef13FindOneOrNoneE6ResultI9FieldPathERK1T">
+<span id="_CPPv3I0ENK5arrow8FieldRef13FindOneOrNoneERK1T"></span><span id="_CPPv2I0ENK5arrow8FieldRef13FindOneOrNoneERK1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classarrow_1_1_field_ref_1a7663e6dcd2b692877ca071f126ac22c1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="support.html#_CPPv4I0EN5arrow6ResultE" title="arrow::Result"><span class="n"><span class="pre">Result</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="datatype.html#_CPPv4N5arrow9FieldPathE" title="arrow::FieldPath"><span class="n"><span class="pre">FieldPath</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FindOneOrNone</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK5arrow8FieldRef13FindOneOrNoneE6ResultI9FieldPathERK1T" title="arrow::FieldRef::FindOneOrNone::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">root</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK5arrow8FieldRef13FindOneOrNoneE6ResultI9FieldPathERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Retrieve <a class="reference internal" href="datatype.html#classarrow_1_1_field_path"><span class="std std-ref">FieldPath</span></a> of a single child field which matches this <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a>. </p>
+<p>Emit an error if multiple match. An empty (invalid) <a class="reference internal" href="datatype.html#classarrow_1_1_field_path"><span class="std std-ref">FieldPath</span></a> will be returned if none match. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK5arrow8FieldRef6GetAllENSt6vectorI7GetTypeI1TEEERK1T">
+<span id="_CPPv3I0ENK5arrow8FieldRef6GetAllERK1T"></span><span id="_CPPv2I0ENK5arrow8FieldRef6GetAllERK1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classarrow_1_1_field_ref_1a658301f688f2cbeb9fad49c7560ad618"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">GetType</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0ENK5arrow8FieldRef6GetAllENSt6vectorI7GetTypeI1TEEERK1T" title="arrow::FieldRef::GetAll::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetAll</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK5arrow8FieldRef6GetAllENSt6vectorI7GetTypeI1TEEERK1T" title="arrow::FieldRef::GetAll::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">root</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK5arrow8FieldRef6GetAllENSt6vectorI7GetTypeI1TEEERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get all children matching this <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK5arrow8FieldRef6GetOneE6ResultI7GetTypeI1TEERK1T">
+<span id="_CPPv3I0ENK5arrow8FieldRef6GetOneERK1T"></span><span id="_CPPv2I0ENK5arrow8FieldRef6GetOneERK1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classarrow_1_1_field_ref_1a59b98c599b14aca11a32e2cb3082f583"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="support.html#_CPPv4I0EN5arrow6ResultE" title="arrow::Result"><span class="n"><span class="pre">Result</span></span></a><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">GetType</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0ENK5arrow8FieldRef6GetOneE6ResultI7GetTypeI1TEERK1T" title="arrow::FieldRef::GetOne::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetOne</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK5arrow8FieldRef6GetOneE6ResultI7GetTypeI1TEERK1T" title="arrow::FieldRef::GetOne::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">root</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK5arrow8FieldRef6GetOneE6ResultI7GetTypeI1TEERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the single child matching this <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a>. </p>
+<p>Emit an error if none or multiple match. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK5arrow8FieldRef12GetOneOrNoneE6ResultI7GetTypeI1TEERK1T">
+<span id="_CPPv3I0ENK5arrow8FieldRef12GetOneOrNoneERK1T"></span><span id="_CPPv2I0ENK5arrow8FieldRef12GetOneOrNoneERK1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classarrow_1_1_field_ref_1a6687be25f7b918d83439f33f2969fdc3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="support.html#_CPPv4I0EN5arrow6ResultE" title="arrow::Result"><span class="n"><span class="pre">Result</span></span></a><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">GetType</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0ENK5arrow8FieldRef12GetOneOrNoneE6ResultI7GetTypeI1TEERK1T" title="arrow::FieldRef::GetOneOrNone::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetOneOrNone</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK5arrow8FieldRef12GetOneOrNoneE6ResultI7GetTypeI1TEERK1T" title="arrow::FieldRef::GetOneOrNone::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">root</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK5arrow8FieldRef12GetOneOrNoneE6ResultI7GetTypeI1TEERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the single child matching this <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a>. </p>
+<p>Return nullptr if none match, emit an error if multiple match. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5arrow8FieldRef11FromDotPathERKNSt6stringE">
+<span id="_CPPv3N5arrow8FieldRef11FromDotPathERKNSt6stringE"></span><span id="_CPPv2N5arrow8FieldRef11FromDotPathERKNSt6stringE"></span><span id="arrow::FieldRef::FromDotPath__ssCR"></span><span class="target" id="classarrow_1_1_field_ref_1abea828b46abe54db47c3af1b5faa49b2"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="support.html#_CPPv4I0EN5arrow6ResultE" title="arrow::Result"><span class="n"><span class="pre">Result</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N5arrow8FieldRefE" title="arrow::FieldRef"><span class="n"><span class="pre">FieldRef</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FromDotPath</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">dot_path</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5arrow8FieldRef11FromDotPathERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Parse a dot path into a <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a>. </p>
+<p>dot_path = ‘.’ name | ‘[‘ digit+ ‘]’ | dot_path+</p>
+<p>Examples: “.alpha” =&gt; <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a>(“alpha”) “[2]” =&gt; FieldRef(2) “.beta[3]” =&gt; <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a>(“beta”, 3) “[5].gamma.delta[7]” =&gt; <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a>(5, “gamma”, “delta”, 7) “.hello world” =&gt; <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a>(“hello world”) R”(.\[y\]\tho.\)” =&gt; <a class="reference internal" href="datatype.html#classarrow_1_1_field_ref"><span class="std std-ref">FieldRef</span></a>(R”([y]\tho.\)”)</p>
+<p>Note: When parsing a name, a ‘' preceding any other character will be dropped from the resulting name. Therefore if a name must contain the characters ‘.’, ‘', or ‘[‘ those must be escaped with a preceding ‘'. </p>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N5arrow8FieldRef4HashE">
+<span id="_CPPv3N5arrow8FieldRef4HashE"></span><span id="_CPPv2N5arrow8FieldRef4HashE"></span><span id="arrow::FieldRef::Hash"></span><span class="target" id="structarrow_1_1_field_ref_1_1_hash"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Hash</span></span></span><a class="headerlink" href="#_CPPv4N5arrow8FieldRef4HashE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “expression-core” in doxygen xml output for project “arrow_cpp” from directory: ../../../cpp/apidoc/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “expression-convenience” in doxygen xml output for project “arrow_cpp” from directory: ../../../cpp/apidoc/xml</p>
+</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412Canonicalize10ExpressionP11ExecContext">
+<span id="_CPPv312Canonicalize10ExpressionP11ExecContext"></span><span id="_CPPv212Canonicalize10ExpressionP11ExecContext"></span><span id="Canonicalize__Expression.ExecContextP"></span><span class="target" id="group__expression-passes_1gab4592c7ddfba9484153e8e36d955cdc2"></span><span class="n"><span class="pre">Result</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Expression</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Canonicalize</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Expression</span></span>, <span class="n"><span class="pre">ExecContext</span></span><span class="p"><span class="pre">*</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">NULLPTR</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412Canonicalize10ExpressionP11ExecContext" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Weak canonicalization which establishes guarantees for subsequent passes. </p>
+<p>Even equivalent Expressions may result in different canonicalized expressions. TODO this could be a strong canonicalization </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413FoldConstants10Expression">
+<span id="_CPPv313FoldConstants10Expression"></span><span id="_CPPv213FoldConstants10Expression"></span><span id="FoldConstants__Expression"></span><span class="target" id="group__expression-passes_1ga53cba9163da90f4a8b562b4995d5bf63"></span><span class="n"><span class="pre">Result</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Expression</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FoldConstants</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Expression</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413FoldConstants10Expression" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Simplify Expressions based on literal arguments (for example, add(null, x) will always be null so replace the call with a null literal). </p>
+<p>Includes early evaluation of all calls whose arguments are entirely literal. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv428ReplaceFieldsWithKnownValuesRK16KnownFieldValues10Expression">
+<span id="_CPPv328ReplaceFieldsWithKnownValuesRK16KnownFieldValues10Expression"></span><span id="_CPPv228ReplaceFieldsWithKnownValuesRK16KnownFieldValues10Expression"></span><span id="ReplaceFieldsWithKnownValues__KnownFieldValuesCR.Expression"></span><span class="target" id="group__expression-passes_1ga2cd03bf604047bfa6ca5924a05eddf2b"></span><span class="n"><span class="pre">Result</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Expression</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ReplaceFieldsWithKnownValues</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">KnownFieldValues</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">known_values</span></span>, <span class="n"><span class="pre">Expression</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428ReplaceFieldsWithKnownValuesRK16KnownFieldValues10Expression" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Simplify Expressions by replacing with known values of the fields which it references. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421SimplifyWithGuarantee10ExpressionRK10Expression">
+<span id="_CPPv321SimplifyWithGuarantee10ExpressionRK10Expression"></span><span id="_CPPv221SimplifyWithGuarantee10ExpressionRK10Expression"></span><span id="SimplifyWithGuarantee__Expression.ExpressionCR"></span><span class="target" id="group__expression-passes_1ga18a718236c8b2ad0df2a8db75aa5c64c"></span><span class="n"><span class="pre">Result</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Expression</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SimplifyWithGuarantee</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Expression</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Expression</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">guaranteed_true_predicate</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421SimplifyWithGuarantee10ExpressionRK10Expression" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Simplify an expression by replacing subexpressions based on a guarantee: a boolean expression which is guaranteed to evaluate to <code class="docutils literal notranslate"><span class="pre">true</span></code>. </p>
+<p>For example, this is used to remove redundant function calls from a filter expression or to replace a reference to a constant-value field with a literal. </p>
 </dd></dl>
 
 </div>
